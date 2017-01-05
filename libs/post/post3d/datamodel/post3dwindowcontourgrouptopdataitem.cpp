@@ -11,8 +11,10 @@
 #include <misc/iricundostack.h>
 #include <misc/stringtool.h>
 
+#include <QAction>
 #include <QDomNode>
 #include <QDomElement>
+#include <QMenu>
 #include <QMessageBox>
 #include <QXmlStreamWriter>
 
@@ -22,6 +24,9 @@ Post3dWindowContourGroupTopDataItem::Post3dWindowContourGroupTopDataItem(Post3dW
 	Post3dWindowDataItem {tr("Contours"), QIcon(":/libs/guibase/images/iconFolder.png"), p},
 	m_zScale {1}
 {
+	m_addAction = new QAction(Post3dWindowContourGroupTopDataItem::tr("&Add Contour..."), this);
+	connect(m_addAction, SIGNAL(triggered()), this, SLOT(addContour()));
+
 	setupStandardItem(Checked, NotReorderable, NotDeletable);
 
 	PostZoneDataContainer* cont = dynamic_cast<Post3dWindowZoneDataItem*>(parent())->dataContainer();
@@ -113,7 +118,7 @@ void Post3dWindowContourGroupTopDataItem::innerUpdateZScale(double scale)
 	m_zScale = scale;
 }
 
-QDialog* Post3dWindowContourGroupTopDataItem::propertyDialog(QWidget* p)
+QDialog* Post3dWindowContourGroupTopDataItem::dialog(QWidget* p)
 {
 	PostZoneDataContainer* zoneData = dynamic_cast<Post3dWindowZoneDataItem*>(parent())->dataContainer();
 	if (zoneData == nullptr || zoneData->data() == nullptr) {
@@ -214,7 +219,23 @@ private:
 	bool m_firstDialog;
 };
 
-void Post3dWindowContourGroupTopDataItem::handlePropertyDialogAccepted(QDialog* propDialog)
+void Post3dWindowContourGroupTopDataItem::accept(QDialog* propDialog)
 {
 	iRICUndoStack::instance().push(new CreateCommand(this, propDialog));
+}
+
+void Post3dWindowContourGroupTopDataItem::addCustomMenuItems(QMenu* menu)
+{
+	menu->addAction(m_addAction);
+}
+
+void Post3dWindowContourGroupTopDataItem::addContour()
+{
+	QDialog* propDialog = dialog(mainWindow());
+	if (propDialog == nullptr) {return;}
+	int result = propDialog->exec();
+	if (result == QDialog::Accepted) {
+		accept(propDialog);
+	}
+	delete propDialog;
 }
