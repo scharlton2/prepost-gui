@@ -8,4 +8,5 @@ CONFIG += ordered
 
 SUBDIRS = \
 	geometry \
-	iricpython
+	iricpython \
+	geos_lineunion
