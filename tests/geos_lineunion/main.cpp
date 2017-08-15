@@ -122,7 +122,7 @@ QVector<QVector<QPointF> > unionLines(const QVector<QVector<QPointF> >& lines)
 		auto str = dynamic_cast<const geos::geom::LineString*>(strs->getGeometryN(i));
 		QVector<QPointF> line;
 		for (int j = 0; j < str->getNumPoints(); ++j) {
-			geos::geom::Point* p = str->getPointN(j);
+			std::unique_ptr<geos::geom::Point> p(str->getPointN(j));
 			line.push_back(QPointF(p->getX(), p->getY()));
 		}
 		ret.push_back(line);
