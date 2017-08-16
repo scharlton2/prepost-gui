@@ -44,9 +44,291 @@ unix {
 }
 LIBS += -liricMisc
 
+
+#iricCS library
+
+unix {
+	LIBS += -L"../../libs/cs"
+	LIBS += -liricCs
+}
+
+#iricGccExternalprogram library
+
+unix {
+	LIBS += -L"../../libs/gridcreatingcondition/externalprogram"
+	LIBS += -liricGccExternalprogram
+}
+
+#iricGdPointmap library
+
+unix {
+	LIBS += -L"../../libs/geodata/pointmap"
+	LIBS += -liricGdPointmap
+}
+
+
+#iricGdRiversurvey library
+
+unix {
+	LIBS += -L"../../libs/geodata/riversurvey"
+	LIBS += -liricGdRiversurvey
+}
+
+#iricGraph2dhybrid library
+
+unix {
+	LIBS += -L"../../libs/post/graph2dhybrid"
+	LIBS += -liricGraph2dhybrid
+}
+
+#iricGraph2dscattered library
+
+unix {
+	LIBS += -L"../../libs/post/graph2dscattered"
+	LIBS += -liricGraph2dscattered
+}
+
+#iricGuibase library
+
+unix {
+	LIBS += -L"../../libs/guibase"
+	LIBS += -liricGuibase
+}
+
+#iricGuicore library
+
+unix {
+	LIBS += -L"../../libs/guicore"
+	LIBS += -liricGuicore
+}
+
+#iricPost2d library
+
+unix {
+	LIBS += -L"../../libs/post/post2d"
+	LIBS += -liricPost2d
+}
+
+#iricPost2dbirdeye library
+
+unix {
+	LIBS += -L"../../libs/post/post2dbirdeye"
+	LIBS += -liricPost2dbirdeye
+}
+
+#iricPost3d library
+
+unix {
+	LIBS += -L"../../libs/post/post3d"
+	LIBS += -liricPost3d
+}
+
+#iricPre library
+
+unix {
+	LIBS += -L"../../libs/pre"
+	LIBS += -liricPre
+}
+
+#iricSolverconsole library
+
+unix {
+	LIBS += -L"../../libs/solverconsole"
+	LIBS += -liricSolverconsole
+}
+
+#iricTmsLoader library
+
+unix {
+	LIBS += -L"../../libs/tmsloader"
+	LIBS += -liricTmsLoader
+}
+
+#iricTriangle library
+
+unix {
+	LIBS += -L"../../libs/triangle"
+	LIBS += -liricTriangle
+}
+
+#iricAxis2d library
+
+unix {
+	LIBS += -L"../../libs/dataitem/axis2d"
+	LIBS += -liricAxis2d
+}
+
+
+#iricAxis3d library
+
+unix {
+	LIBS += -L"../../libs/dataitem/axis3d"
+	LIBS += -liricAxis3d
+}
+
+#iricDistancemeasure library
+
+unix {
+	LIBS += -L"../../libs/dataitem/distancemeasure"
+	LIBS += -liricDistancemeasure
+}
+
+
+#iricMeasureddata library
+
+unix {
+	LIBS += -L"../../libs/dataitem/measureddata"
+	LIBS += -liricMeasureddata
+}
+
+#iricGdPolygon library
+
+unix {
+	LIBS += -L"../../libs/geodata/polygon"
+	LIBS += -liricGdPolygon
+}
+
+#iricGdNetcdf library
+
+unix {
+	LIBS += -L"../../libs/geodata/netcdf"
+	LIBS += -liricGdNetcdf
+}
+
+#iricGraph2d library
+
+unix {
+	LIBS += -L"../../libs/post/graph2d"
+	LIBS += -liricGraph2d
+}
+
+#iricGeoio library
+
+unix {
+	LIBS += -L"../../libs/geoio"
+	LIBS += -liricGeoio
+}
+
+#iricGccCenterandwidth library
+
+unix {
+	LIBS += -L"../../libs/gridcreatingcondition/centerandwidth"
+	LIBS += -liricGccCenterandwidth
+}
+
+#iricGccCompoundchannel library
+
+unix {
+	LIBS += -L"../../libs/gridcreatingcondition/compoundchannel"
+	LIBS += -liricGccCompoundchannel
+}
+
+#-liricGccRectangularregion library
+
+unix {
+	LIBS += -L"../../libs/gridcreatingcondition/rectangularregion"
+	LIBS += -liricGccRectangularregion
+}
+
+#iricGccRectangularregionlonlat library
+
+unix {
+	LIBS += -L"../../libs/gridcreatingcondition/rectangularregionlonlat"
+	LIBS += -liricGccRectangularregionlonlat
+}
+
+#iricGccRiversurvey library
+
+unix {
+	LIBS += -L"../../libs/gridcreatingcondition/riversurvey"
+	LIBS += -liricGccRiversurvey
+}
+
+#iricGccRiversurvey15d library
+
+unix {
+	LIBS += -L"../../libs/gridcreatingcondition/riversurvey15d"
+	LIBS += -liricGccRiversurvey15d
+}
+
+#iricGccTriangle library
+
+unix {
+	LIBS += -L"../../libs/gridcreatingcondition/triangle"
+	LIBS += -liricGccTriangle
+}
+
+#iricGccPoisson library
+
+unix {
+	LIBS += -L"../../libs/gridcreatingcondition/poisson"
+	LIBS += -liricGccPoisson
+}
+
+#iricHdRiversurveywaterelevation library
+
+unix {
+	LIBS += -L"../../libs/hydraulicdata/riversurveywaterelevation"
+	LIBS += -liricHdRiversurveywaterelevation
+}
+
+#iricPostbase library
+
+unix {
+	LIBS += -L"../../libs/postbase"
+	LIBS += -liricPostbase
+}
+
+#iriclib library
+
+unix {
+	LIBS += -liriclib
+}
+
+
 ######################
 # External libraries #
 ######################
+
+#cgns library
+
+unix {
+	LIBS += -lcgns
+}
+
+#gdal library
+
+unix {
+	LIBS += -lgdal
+}
+
+#geos library
+
+unix {
+	LIBS += -lgeos
+}
+
+#hdf5 library
+
+unix {
+	LIBS += \
+		-lhdf5 \
+		-lhdf5_hl \
+                -lz \
+		-lszip
+}
+
+#netcdf library
+
+unix {
+	LIBS += -lnetcdf
+}
+
+#proj library
+
+unix {
+	LIBS += -lproj
+}
 
 # VTK
 
@@ -58,6 +340,69 @@ LIBS += \
 	-lvtkRenderingFreeType-6.1 \
 	-lvtkRenderingFreeTypeOpenGL-6.1 \
 	-lvtkRenderingOpenGL-6.1
+
+unix {
+	LIBS += \
+		-lvtkalglib-6.1 \
+		-lvtkCommonComputationalGeometry-6.1 \
+		-lvtkCommonExecutionModel-6.1 \
+		-lvtkCommonMath-6.1 \
+		-lvtkCommonMisc-6.1 \
+		-lvtkCommonSystem-6.1 \
+		-lvtkCommonTransforms-6.1 \
+		-lvtkDICOMParser-6.1 \
+		-lvtkFiltersCore-6.1 \
+		-lvtkFiltersExtraction-6.1 \
+		-lvtkFiltersFlowPaths-6.1 \
+		-lvtkFiltersGeneral-6.1 \
+		-lvtkFiltersGeometry-6.1 \
+		-lvtkFiltersHybrid-6.1 \
+		-lvtkFiltersModeling-6.1 \
+		-lvtkFiltersSources-6.1 \
+		-lvtkFiltersStatistics-6.1 \
+		-lvtkFiltersTexture-6.1 \
+		-lvtkfreetype-6.1 \
+		-lvtkftgl-6.1 \
+		-lvtkgl2ps-6.1 \
+		-lvtkGUISupportQt-6.1 \
+		-lvtkImagingCore-6.1 \
+		-lvtkImagingFourier-6.1 \
+		-lvtkImagingGeneral-6.1 \
+		-lvtkImagingHybrid-6.1 \
+		-lvtkImagingSources-6.1 \
+		-lvtkInteractionWidgets-6.1 \
+		-lvtkIOCore-6.1 \
+		-lvtkIOGeometry-6.1 \
+		-lvtkIOImage-6.1 \
+		-lvtkIOLegacy-6.1 \
+		-lvtkjpeg-6.1 \
+		-lvtkjsoncpp-6.1 \
+		-lvtkmetaio-6.1 \
+		-lvtkpng-6.1 \
+		-lvtkRenderingAnnotation-6.1 \
+		-lvtkRenderingContext2D-6.1 \
+		-lvtkRenderingCore-6.1 \
+		-lvtkRenderingGL2PS-6.1 \
+		-lvtkRenderingLabel-6.1 \
+		-lvtkRenderingLOD-6.1 \
+		-lvtkRenderingQt-6.1 \
+		-lvtkRenderingVolume-6.1 \
+		-lvtksys-6.1 \
+		-lvtktiff-6.1 \
+		-lvtkzlib-6.1
+}
+
+#qwt library
+
+unix {
+	LIBS += -lqwt
+}
+
+#yaml-cpp library
+
+unix {
+	LIBS += -lyaml-cpp
+}
 
 
 # Post-Build Event

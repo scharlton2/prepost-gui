@@ -1,6 +1,7 @@
 TARGET = iricGuibase
 TEMPLATE = lib
 INCLUDEPATH += ..
+INCLUDEPATH += ./widget
 
 DEFINES += GUIBASE_LIBRARY
 
