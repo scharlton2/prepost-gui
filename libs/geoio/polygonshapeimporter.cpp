@@ -4,7 +4,7 @@
 #include <misc/stringtool.h>
 
 #include <QMessageBox>
-#include <QPolygonf>
+#include <QPolygonF>
 #include <shapefil.h>
 
 #include <cmath>

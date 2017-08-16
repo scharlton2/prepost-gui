@@ -40,7 +40,7 @@ win32 {
 	}
 }
 unix {
-	LIBS += -L"../../distancemeasure/axis2d"
+	LIBS += -L"../../dataitem/distancemeasure"
 }
 LIBS += -liricDistancemeasure
 
@@ -54,7 +54,7 @@ win32 {
 	}
 }
 unix {
-	LIBS += -L"../../measureddata/axis2d"
+	LIBS += -L"../../dataitem/measureddata"
 }
 LIBS += -liricMeasureddata
 

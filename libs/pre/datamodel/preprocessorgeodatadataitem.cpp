@@ -121,7 +121,8 @@ void PreProcessorGeoDataDataItem::exportGeoData()
 {
 	QMainWindow* mainW = projectData()->mainWindow();
 
-	auto& exps = m_geoData->exporters();
+	//auto& exps = m_geoData->exporters();
+	auto exps = m_geoData->exporters();
 	QStringList filters;
 	QList<GeoDataExporter*> exporters;
 	for (auto exp_it = exps.begin(); exp_it != exps.end(); ++exp_it) {

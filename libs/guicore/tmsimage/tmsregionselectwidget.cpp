@@ -257,7 +257,9 @@ void TmsRegionSelectWidget::requestUpdate()
 	if (lat > 82) {lat = 82;}
 	if (lat < -82) {lat = -82;}
 
-	tmsloader::TmsRequest* req = manager.buildRequest(QPointF(lon, lat), size(), impl->m_scale, impl->m_mapSetting);
+	QPointF center(lon, lat);
+	QSize sz = size();
+	tmsloader::TmsRequest* req = manager.buildRequest(center, sz, impl->m_scale, impl->m_mapSetting);
 	if (req == nullptr) {return;}
 
 	impl->m_loader.registerRequest(*req, &impl->m_requestId);

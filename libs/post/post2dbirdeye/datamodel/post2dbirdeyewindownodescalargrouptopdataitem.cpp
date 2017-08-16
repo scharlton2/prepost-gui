@@ -15,7 +15,7 @@
 #include <QAction>
 #include <QDomNode>
 #include <QList>
-#include <QMenu.h>
+#include <QMenu>
 #include <QMessageBox>
 #include <QStandardItem>
 #include <QXmlStreamWriter>

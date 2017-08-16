@@ -664,10 +664,14 @@ bool GridCreatingConditionPoisson::create(QWidget* parent)
 
 	GridCreatingConditionPoissonGridGenerateDialog dialog(preProcessorWindow());
 
-	double iLen = polyLineLength(impl->m_centerLineController.polyLine());
+	std::vector<QPointF> polyline = impl->m_centerLineController.polyLine();
+	std::vector<QPointF> upstream_polyline = impl->m_upstreamLineController.polyLine();
+	std::vector<QPointF> downstream_polyline = impl->m_downstreamLineController.polyLine();
+
+	double iLen = polyLineLength(polyline);
 	double jLen = 0.5 * (
-				polyLineLength(impl->m_upstreamLineController.polyLine()) +
-				polyLineLength(impl->m_downstreamLineController.polyLine()));
+				polyLineLength(upstream_polyline) +
+				polyLineLength(downstream_polyline));
 	dialog.setILength(iLen);
 	dialog.setJLength(jLen);
 

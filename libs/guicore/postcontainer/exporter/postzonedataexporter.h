@@ -1,10 +1,12 @@
 #ifndef POSTZONEDATAEXPORTER_H
 #define POSTZONEDATAEXPORTER_H
 
+#include <vtkPoints.h>
 #include <vtkSmartPointer.h>
 
+#include <QVector2D>
+
 class QString;
-class QVector2D;
 class ProjectData;
 class PostZoneDataContainer;
 

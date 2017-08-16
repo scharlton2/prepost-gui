@@ -44,6 +44,131 @@ unix {
 }
 LIBS += -liricMisc
 
+
+#iricCS library
+
+unix {
+	LIBS += -L"../../libs/cs"
+	LIBS += -liricCs
+}
+
+#iricGccExternalprogram library
+
+unix {
+	LIBS += -L"../../libs/gridcreatingcondition/externalprogram"
+	LIBS += -liricGccExternalprogram
+}
+
+#iricGdPointmap library
+
+unix {
+	LIBS += -L"../../libs/geodata/pointmap"
+	LIBS += -liricGdPointmap
+}
+
+unix {
+        LIBS += -L"../../libs/geodata/riversurvey"
+        LIBS += -L"../../libs/post/graph2dhybrid"
+        LIBS += -L"../../libs/post/graph2dscattered"
+        LIBS += -L"../../libs/guibase"
+        LIBS += -L"../../libs/guicore"
+        LIBS += -L"../../libs/post/post2d"
+        LIBS += -L"../../libs/post/post2dbirdeye"
+        LIBS += -L"../../libs/post/post3d"
+        LIBS += -L"../../libs/pre"
+        LIBS += -L"../../libs/solverconsole"
+
+        LIBS += -L"../../libs/tmsloader"
+        LIBS += -L"../../libs/triangle"
+        LIBS += -L"../../libs/dataitem/axis2d"
+        LIBS += -L"../../libs/dataitem/distancemeasure"
+        LIBS += -L"../../libs/dataitem/measureddata"
+
+        
+        LIBS += -L"../../libs/geodata/polygon"
+        LIBS += -L"../../libs/geodata/netcdf"
+        LIBS += -L"../../libs/geoio"
+        LIBS += -L"../../libs/gridcreatingcondition/centerandwidth"
+        LIBS += -L"../../libs/gridcreatingcondition/compoundchannel"
+        LIBS += -L"../../libs/gridcreatingcondition/rectangularregion"
+        LIBS += -L"../../libs/gridcreatingcondition/rectangularregionlonlat"
+        LIBS += -L"../../libs/gridcreatingcondition/riversurvey"
+        LIBS += -L"../../libs/gridcreatingcondition/riversurvey15d"
+        LIBS += -L"../../libs/gridcreatingcondition/triangle"
+        LIBS += -L"../../libs/gridcreatingcondition/poisson"
+        LIBS += -L"../../libs/hydraulicdata/riversurveywaterelevation"
+        LIBS += -L"../../libs/postbase"
+        LIBS += -L"../../libs/dataitem/axis3d"
+        LIBS += -L"../../libs/post/graph2d"
+
+
+        LIBS += -L"/home/charlton/programs/iric/iricdev/lib/install/yaml-cpp-0.5.2/release/lib"
+        LIBS += -L"/home/charlton/programs/iric/iricdev/lib/install/cgnslib-3.2.1/release/lib"
+        LIBS += -L"/home/charlton/programs/iric/iricdev/lib/install/iriclib-d19fd70/release/lib"
+        
+
+        LIBS += -lproj
+        LIBS += -lgdal
+        LIBS += -lyaml-cpp
+        LIBS += -lcgns
+        LIBS += -lgeos
+        LIBS += -lnetcdf
+
+        LIBS += -L"/home/charlton/programs/iric/iricdev/lib/install/hdf5-1.8.14/release/lib"
+        LIBS += -lz
+        LIBS += -lszip
+        
+
+        
+        LIBS += -lvtkFiltersFlowPaths-6.1
+        LIBS += -lvtkInteractionWidgets-6.1
+        LIBS += -lvtkRenderingAnnotation-6.1
+        LIBS += -lvtkFiltersTexture-6.1
+        LIBS += -lvtkGUISupportQt-6.1
+        LIBS += -lvtkIOLegacy-6.1
+        LIBS += -lvtkRenderingQt-6.1
+        LIBS += -lvtkRenderingLOD-6.1
+        LIBS += -lvtkIOGeometry-6.1
+        LIBS += -lvtkImagingFourier-6.1
+        LIBS += -lvtkalglib-6.1
+
+
+        LIBS += -lvtkFiltersHybrid-6.1
+        LIBS += -lvtkFiltersModeling-6.1
+        LIBS += -lvtkImagingGeneral-6.1
+        LIBS += -lvtkRenderingVolume-6.1
+        LIBS += -lvtkjsoncpp-6.1
+
+        LIBS += -lvtkImagingSources-6.1
+
+        
+        LIBS += -liricTmsLoader
+        LIBS += -liricTriangle
+        LIBS += -liricAxis3d
+        LIBS += -liricGraph2d
+        LIBS += -liriclib
+        LIBS += -liricAxis2d
+        LIBS += -liricDistancemeasure
+        LIBS += -liricMeasureddata
+        LIBS += -liricGdPolygon
+        LIBS += -liricGeoio
+        LIBS += -liricGdNetcdf
+        LIBS += -liricGccCenterandwidth
+        LIBS += -liricGccCompoundchannel
+        LIBS += -liricGccRectangularregion
+        LIBS += -liricGccRectangularregionlonlat
+        LIBS += -liricGccRiversurvey
+        LIBS += -liricGccRiversurvey15d
+        LIBS += -liricGccTriangle
+        LIBS += -liricGccPoisson
+        LIBS += -liricHdRiversurveywaterelevation
+        LIBS += -liricPostbase
+        
+}
+
+
+
+
 ######################
 # External libraries #
 ######################
@@ -57,7 +182,57 @@ LIBS += \
 	-lvtkIOExport-6.1 \
 	-lvtkRenderingFreeType-6.1 \
 	-lvtkRenderingFreeTypeOpenGL-6.1 \
-	-lvtkRenderingOpenGL-6.1
+        -lvtkRenderingOpenGL-6.1
+
+unix {
+LIBS += \
+-lvtkCommonComputationalGeometry-6.1 \
+-lvtkCommonExecutionModel-6.1 \
+-lvtkCommonMath-6.1 \
+-lvtkCommonMisc-6.1 \
+-lvtkCommonSystem-6.1 \
+-lvtkCommonTransforms-6.1 \
+-lvtkDICOMParser-6.1 \
+-lvtkFiltersCore-6.1 \
+-lvtkFiltersExtraction-6.1 \
+-lvtkFiltersGeneral-6.1 \
+-lvtkFiltersGeometry-6.1 \
+-lvtkFiltersSources-6.1 \
+-lvtkFiltersStatistics-6.1 \
+-lvtkIOCore-6.1 \
+-lvtkIOImage-6.1 \
+-lvtkImagingCore-6.1 \
+-lvtkImagingHybrid-6.1 \
+-lvtkRenderingContext2D-6.1 \
+-lvtkRenderingCore-6.1 \
+-lvtkRenderingGL2PS-6.1 \
+-lvtkRenderingLabel-6.1 \
+-lvtkfreetype-6.1 \
+-lvtkftgl-6.1 \
+-lvtkgl2ps-6.1 \
+-lvtkjpeg-6.1 \
+-lvtkmetaio-6.1 \
+-lvtkpng-6.1 \
+-lvtksys-6.1 \
+-lvtktiff-6.1 \
+-lvtkzlib-6.1
+
+LIBS += \
+-liricGdRiversurvey \
+-liricGraph2dhybrid \
+-liricGraph2dscattered \
+-liricGuibase \
+-liricGuicore \
+-liricPost2d \
+-liricPost2dbirdeye \
+-liricPost3d \
+-liricPre \
+-liricSolverconsole
+
+LIBS += \
+-lqwt
+
+}
 
 
 # Post-Build Event
