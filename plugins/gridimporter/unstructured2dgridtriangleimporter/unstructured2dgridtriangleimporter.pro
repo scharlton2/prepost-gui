@@ -18,6 +18,11 @@ CONFIG(debug, debug|release) {
 } else {
 	LIBS += -L"../../../libs/guicore/release"
 }
+unix {
+	LIBS += -L"../../../libs/guicore"
+}
+
+
 LIBS += -liricGuicore
 
 # VTK
