@@ -13,16 +13,16 @@ include( ../../../paths.pri )
 
 # iricGuicore library
 
-CONFIG(debug, debug|release) {
-	LIBS += -L"../../../libs/guicore/debug"
-} else {
-	LIBS += -L"../../../libs/guicore/release"
+win32 {
+	CONFIG(debug, debug|release) {
+		LIBS += -L"../../../libs/guicore/debug"
+	} else {
+		LIBS += -L"../../../libs/guicore/release"
+	}
 }
 unix {
 	LIBS += -L"../../../libs/guicore"
 }
-
-
 LIBS += -liricGuicore
 
 # VTK

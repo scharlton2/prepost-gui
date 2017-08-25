@@ -61,8 +61,7 @@ Post2dWindowNodeVectorParticleGroupDataItem::Setting& Post2dWindowNodeVectorPart
 
 Post2dWindowNodeVectorParticleGroupDataItem::Post2dWindowNodeVectorParticleGroupDataItem(Post2dWindowDataItem* p) :
 	Post2dWindowDataItem {tr("Particles (auto)"), QIcon(":/libs/guibase/images/iconFolder.png"), p},
-	//m_previousStep {-2},
-	m_previousStep {0},
+	m_previousStep {-2},
 	m_previousTime {0},
 	m_nextStepToAddParticles {0},
 	m_zScale {1}

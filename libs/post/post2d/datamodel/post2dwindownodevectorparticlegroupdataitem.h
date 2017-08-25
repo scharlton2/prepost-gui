@@ -105,7 +105,7 @@ protected:
 
 	Setting m_setting;
 
-	unsigned int m_previousStep;
+	int m_previousStep;
 	double m_previousTime;
 	int m_nextStepToAddParticles;
 	double m_zScale;
