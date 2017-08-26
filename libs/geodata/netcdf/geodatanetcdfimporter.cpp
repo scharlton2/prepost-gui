@@ -368,7 +368,7 @@ int getVariableAsQVariant(int ncid, int varid, size_t len, int (*f)(int, int, T*
 	int ret = f(ncid, varid, tmpbuffer.data());
 	if (ret != NC_NOERR) {return ret;}
 	for (size_t i = 0; i < len; ++i) {
-	  list->push_back(QVariant((T)tmpbuffer[i]));
+		list->push_back(QVariant(tmpbuffer[i]));
 	}
 	return NC_NOERR;
 }
@@ -379,13 +379,16 @@ int GeoDataNetcdfImporter::ncGetVariableAsQVariant(int ncid, int varid, size_t l
 	nc_type ncType;
 	list.clear();
 	ret = nc_inq_vartype(ncid, varid, &ncType);
+
+#if (NC_INT != NC_LONG)
+#error NC_INT is not equal to NC_LONG (NC_LONG is deprecated)
+#endif
+
 	if (ncType == NC_BYTE) {
 		return getVariableAsQVariant<signed char>(ncid, varid, len, nc_get_var_schar, &list);
 	} else if (ncType == NC_SHORT) {
 		return getVariableAsQVariant<short int>(ncid, varid, len, nc_get_var_short, &list);
 	} else if (ncType == NC_INT) {
-		return getVariableAsQVariant<int>(ncid, varid, len, nc_get_var_int, &list);
-	} else if (ncType == NC_LONG) {
 		return getVariableAsQVariant<int>(ncid, varid, len, nc_get_var_int, &list);
 	} else if (ncType == NC_FLOAT) {
 		return getVariableAsQVariant<float>(ncid, varid, len, nc_get_var_float, &list);

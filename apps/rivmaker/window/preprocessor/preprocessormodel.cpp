@@ -253,9 +253,9 @@ void PreProcessorModel::setupStandatdItemModel()
 
 	if (proj == nullptr) {return;}
 
-	// buildStandardItems<PreProcessorDataItemI>(proj->rootDataItem(), &(PreProcessorDataItemI::buildPreProcessorStandardItem));
-	// buildDataItemViews<PreProcessorDataItemI>(proj->rootDataItem(), &(PreProcessorDataItemI::buildPreProcessorDataItemView));
-	// buildDataItemControllers<PreProcessorDataItemI>(proj->rootDataItem(), &(PreProcessorDataItemI::buildPreProcessorDataItemController));
+	buildStandardItems<PreProcessorDataItemI>(proj->rootDataItem(), &PreProcessorDataItemI::buildPreProcessorStandardItem);
+	buildDataItemViews<PreProcessorDataItemI>(proj->rootDataItem(), &PreProcessorDataItemI::buildPreProcessorDataItemView);
+	buildDataItemControllers<PreProcessorDataItemI>(proj->rootDataItem(), &PreProcessorDataItemI::buildPreProcessorDataItemController);
 
 	model->appendRow(standardItem(&(proj->elevationPoints())));
 	model->appendRow(standardItem(&(proj->waterSurfaceElevationPoints())));
