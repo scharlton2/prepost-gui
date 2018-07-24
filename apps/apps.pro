@@ -8,4 +8,5 @@ CONFIG += ordered
 
 SUBDIRS = \
 	rivmaker \
-	iricgui
+	iricgui \
+	cgnslink
