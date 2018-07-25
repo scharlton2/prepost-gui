@@ -118,7 +118,6 @@ public:
 	int showCoordinateSystemDialog(bool forceSelect = false);
 
 public slots:
-	void exportCurrentCgnsFile();
 	bool switchCgnsFile(const QString& name);
 
 	void addBackgroundImage();

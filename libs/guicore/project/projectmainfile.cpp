@@ -573,28 +573,6 @@ bool ProjectMainFile::importCgnsFile(const QString& fname, const QString& newnam
 	return true;
 }
 
-void ProjectMainFile::exportCurrentCgnsFile()
-{
-	QString fname = QFileDialog::getSaveFileName(
-										m_projectData->mainWindow(), tr("Export CGNS file"), LastIODirectory::get(), tr("CGNS file (*.cgns)")
-									);
-	if (fname == "") {return;}
-	if (QFile::exists(fname)) {
-		// if the specified file already exests, remove it first.
-		if (! QFile::remove(fname)) {
-			QMessageBox::warning(m_projectData->mainWindow(), tr("Error"), tr("Exporting CGNS file failed. Specified file is locked by other process."));
-			return;
-		}
-	}
-	// save first.
-	saveCgnsFile();
-	// copy to the specified file.
-	QString from = m_projectData->workCgnsFileName(m_cgnsFileList->current()->filename());
-	QFile::copy(from, fname);
-	QFileInfo finfo(fname);
-	LastIODirectory::set(finfo.absolutePath());
-}
-
 QString ProjectMainFile::currentCgnsFileName() const
 {
 	return m_projectData->currentCgnsFileName();
