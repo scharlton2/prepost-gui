@@ -30,7 +30,6 @@ public:
 	PreProcessorGeoDataGroupDataItem(SolverDefinitionGridAttribute* cond, PreProcessorDataItem* parent);
 	virtual ~PreProcessorGeoDataGroupDataItem();
 	void addCustomMenuItems(QMenu* menu) override;
-	void closeCgnsFile() override;
 	SolverDefinitionGridAttribute* condition() override;
 	bool isChildCaptionAvailable(const QString& cap);
 	int mappingCount() const;

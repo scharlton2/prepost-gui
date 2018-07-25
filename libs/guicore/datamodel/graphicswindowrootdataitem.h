@@ -27,7 +27,7 @@ public:
 	GraphicsWindowDataItem* modelItemFromItem(QStandardItem* item);
 
 	void loadFromCgnsFile(const int fn) override;
-	void closeCgnsFile() override;
+	void discardCgnsFileData() override;
 
 protected:
 	bool isAncientChecked() const override;

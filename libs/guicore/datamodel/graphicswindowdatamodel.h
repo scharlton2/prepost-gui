@@ -33,7 +33,7 @@ public:
 
 	void loadFromCgnsFile(const int fn) override;
 	void saveToCgnsFile(const int fn) override;
-	void closeCgnsFile() override;
+	void discardCgnsFileData() override;
 
 	void updateExpandState(ObjectBrowserView* view);
 	void reflectExpandState(ObjectBrowserView* view);

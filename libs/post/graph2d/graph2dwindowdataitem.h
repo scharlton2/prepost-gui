@@ -57,9 +57,9 @@ public:
 	/// Load data from CGNS file
 	virtual void loadFromCgnsFile(const int fn) override;
 	/// Save data into CGNS file
-	virtual void saveToCgnsFile(const int fn) override;
+	void saveToCgnsFile(const int fn) override;
 	/// Discard data loaded from CGNS file.
-	virtual void closeCgnsFile() override;
+	void discardCgnsFileData() override;
 	/// Returns true if this item is deletable.
 	virtual bool isDeletable() const {return m_isDeletable;}
 	/// Returns true if this item can be moved up or down.

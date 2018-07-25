@@ -72,7 +72,7 @@ void ProjectDataItem::loadFromCgnsFile(int)
 void ProjectDataItem::saveToCgnsFile(int)
 {}
 
-void ProjectDataItem::closeCgnsFile()
+void ProjectDataItem::discardCgnsFileData()
 {}
 
 QString ProjectDataItem::filename() const

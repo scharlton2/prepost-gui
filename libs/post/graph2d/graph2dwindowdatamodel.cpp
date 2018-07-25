@@ -64,9 +64,9 @@ void Graph2dWindowDataModel::saveToCgnsFile(const int fn)
 	m_rootDataItem->saveToCgnsFile(fn);
 }
 
-void Graph2dWindowDataModel::closeCgnsFile()
+void Graph2dWindowDataModel::discardCgnsFileData()
 {
-	m_rootDataItem->closeCgnsFile();
+	m_rootDataItem->discardCgnsFileData();
 }
 
 void Graph2dWindowDataModel::handleObjectBrowserPress(const QModelIndex& index, const QPoint& globalPos)

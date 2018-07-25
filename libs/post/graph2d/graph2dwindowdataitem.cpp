@@ -131,22 +131,22 @@ void Graph2dWindowDataItem::handleStandardItemChange()
 
 void Graph2dWindowDataItem::loadFromCgnsFile(const int fn)
 {
-	for (auto it = m_childItems.begin(); it != m_childItems.end(); ++it) {
-		(*it)->loadFromCgnsFile(fn);
+	for (auto child : m_childItems) {
+		child->loadFromCgnsFile(fn);
 	}
 }
 
 void Graph2dWindowDataItem::saveToCgnsFile(const int fn)
 {
-	for (auto it = m_childItems.begin(); it != m_childItems.end(); ++it) {
-		(*it)->saveToCgnsFile(fn);
+	for (auto child : m_childItems) {
+		child->saveToCgnsFile(fn);
 	}
 }
 
-void Graph2dWindowDataItem::closeCgnsFile()
+void Graph2dWindowDataItem::discardCgnsFileData()
 {
-	for (auto it = m_childItems.begin(); it != m_childItems.end(); ++it) {
-		(*it)->closeCgnsFile();
+	for (auto child : m_childItems) {
+		child->discardCgnsFileData();
 	}
 }
 

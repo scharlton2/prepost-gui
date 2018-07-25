@@ -35,7 +35,7 @@ public:
 	bool setGrid(Grid* newGrid) override;
 	void loadFromCgnsFile(const int fn) override;
 	void saveToCgnsFile(const int fn) override;
-	void closeCgnsFile() override;
+	void discardCgnsFileData() override;
 	void addCustomMenuItems(QMenu* menu) override;
 
 	// Standard mouse event handlers

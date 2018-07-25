@@ -153,8 +153,8 @@ void Graph2dWindowRootDataItem::loadFromCgnsFile(const int fn)
 	updateItemMap();
 }
 
-void Graph2dWindowRootDataItem::closeCgnsFile()
+void Graph2dWindowRootDataItem::discardCgnsFileData()
 {
-	Graph2dWindowDataItem::closeCgnsFile();
+	Graph2dWindowDataItem::discardCgnsFileData();
 	updateItemMap();
 }

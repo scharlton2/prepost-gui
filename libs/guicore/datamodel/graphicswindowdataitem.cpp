@@ -171,10 +171,10 @@ void GraphicsWindowDataItem::saveToCgnsFile(const int fn)
 	}
 }
 
-void GraphicsWindowDataItem::closeCgnsFile()
+void GraphicsWindowDataItem::discardCgnsFileData()
 {
 	for (GraphicsWindowDataItem* child : m_childItems) {
-		child->closeCgnsFile();
+		child->discardCgnsFileData();
 	}
 }
 

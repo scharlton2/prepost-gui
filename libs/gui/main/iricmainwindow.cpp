@@ -2279,10 +2279,10 @@ void iRICMainWindow::saveToCgnsFile(const int fn)
 	pre->projectDataItem()->saveToCgnsFile(fn);
 }
 
-void iRICMainWindow::closeCgnsFile()
+void iRICMainWindow::discardCgnsFileData()
 {
 	PreProcessorWindow* pre = dynamic_cast<PreProcessorWindow*>(m_preProcessorWindow);
-	pre->projectDataItem()->closeCgnsFile();
+	pre->projectDataItem()->discardCgnsFileData();
 }
 
 void iRICMainWindow::toggleGridEditFlag()

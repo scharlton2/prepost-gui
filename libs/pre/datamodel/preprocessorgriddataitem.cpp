@@ -213,7 +213,7 @@ void PreProcessorGridDataItem::saveToCgnsFile(const int fn)
 	impl->m_gridIsDeleted = false;
 }
 
-void PreProcessorGridDataItem::closeCgnsFile()
+void PreProcessorGridDataItem::discardCgnsFileData()
 {
 	if (impl->m_grid != nullptr) {
 		delete impl->m_grid;

@@ -141,9 +141,9 @@ void PreProcessorWindowProjectDataItem::saveToCgnsFile(const int fn)
 	m_preProcessorWindow->m_dataModel->saveToCgnsFile(fn);
 }
 
-void PreProcessorWindowProjectDataItem::closeCgnsFile()
+void PreProcessorWindowProjectDataItem::discardCgnsFileData()
 {
-	m_preProcessorWindow->m_dataModel->closeCgnsFile();
+	m_preProcessorWindow->m_dataModel->discardCgnsFileData();
 }
 
 QStringList PreProcessorWindowProjectDataItem::containedFiles()

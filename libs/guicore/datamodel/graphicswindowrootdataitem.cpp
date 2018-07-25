@@ -91,9 +91,9 @@ void GraphicsWindowRootDataItem::loadFromCgnsFile(const int fn)
 	updateItemMap();
 }
 
-void GraphicsWindowRootDataItem::closeCgnsFile()
+void GraphicsWindowRootDataItem::discardCgnsFileData()
 {
-	GraphicsWindowDataItem::closeCgnsFile();
+	GraphicsWindowDataItem::discardCgnsFileData();
 	updateItemMap();
 }
 

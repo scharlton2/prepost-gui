@@ -63,9 +63,9 @@ void GraphicsWindowDataModel::saveToCgnsFile(const int fn)
 	m_rootDataItem->saveToCgnsFile(fn);
 }
 
-void GraphicsWindowDataModel::closeCgnsFile()
+void GraphicsWindowDataModel::discardCgnsFileData()
 {
-	m_rootDataItem->closeCgnsFile();
+	m_rootDataItem->discardCgnsFileData();
 }
 
 void GraphicsWindowDataModel::updateExpandState(ObjectBrowserView* view)

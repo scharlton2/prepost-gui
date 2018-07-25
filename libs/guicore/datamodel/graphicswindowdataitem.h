@@ -57,9 +57,9 @@ public:
 
 	QMainWindow* mainWindow() const;
 	/// Load data from project main file
-	virtual void loadFromProjectMainFile(const QDomNode& node) override;
+	void loadFromProjectMainFile(const QDomNode& node) override;
 	/// Save data into project main file
-	virtual void saveToProjectMainFile(QXmlStreamWriter& writer) override;
+	void saveToProjectMainFile(QXmlStreamWriter& writer) override;
 	/// The QStandardItem that corresponds to this item.
 	QStandardItem* standardItem() const {return m_standardItem;}
 	/// The QStandardItem that corresponds to this item.
@@ -74,11 +74,11 @@ public:
 	/// Handle the event that the corresponding standardItem is double-clicked.
 	virtual void handleStandardItemDoubleClicked() {}
 	/// Load data from CGNS file
-	virtual void loadFromCgnsFile(const int fn) override;
+	void loadFromCgnsFile(const int fn) override;
 	/// Save data into CGNS file
-	virtual void saveToCgnsFile(const int fn) override;
+	void saveToCgnsFile(const int fn) override;
 	/// Discard data loaded from CGNS file.
-	virtual void closeCgnsFile() override;
+	void discardCgnsFileData() override;
 	/// Returns true if this item is deletable.
 	virtual bool isDeletable() const {return m_isDeletable;}
 	/// Returns true if this item can be moved up or down.

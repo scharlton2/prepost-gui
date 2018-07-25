@@ -37,7 +37,7 @@ public:
 	/// Emit signal cgnsStepsUpdated().
 	void informCgnsSteps();
 	void loadFromCgnsFile(const int fn) override;
-	void closeCgnsFile() override;
+	void discardCgnsFileData() override;
 	const QList<PostZoneDataContainer*>& zoneContainers1D() const;
 	const QList<PostZoneDataContainer*>& zoneContainers2D() const;
 	const QList<PostZoneDataContainer*>& zoneContainers3D() const;

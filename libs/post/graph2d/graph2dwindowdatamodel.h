@@ -38,7 +38,7 @@ public:
 	~Graph2dWindowDataModel();
 	void loadFromCgnsFile(const int fn) override;
 	void saveToCgnsFile(const int fn) override;
-	void closeCgnsFile() override;
+	void discardCgnsFileData() override;
 
 	/// The view to display pre-processor main region
 	Graph2dWindowView* view() const {return m_view;}

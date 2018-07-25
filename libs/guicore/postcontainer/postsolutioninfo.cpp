@@ -487,7 +487,7 @@ void PostSolutionInfo::loadFromCgnsFile(const int fn)
 	setCurrentStep(currentStep(), fn);
 }
 
-void PostSolutionInfo::closeCgnsFile()
+void PostSolutionInfo::discardCgnsFileData()
 {
 	// clear the current zone containers first.
 	clearContainers(&m_zoneContainers1D);

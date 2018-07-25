@@ -150,9 +150,6 @@ void PreProcessorGeoDataGroupDataItem::addCustomMenuItems(QMenu* menu)
 	menu->addAction(m_setupScalarBarAction);
 }
 
-void PreProcessorGeoDataGroupDataItem::closeCgnsFile()
-{}
-
 SolverDefinitionGridAttribute* PreProcessorGeoDataGroupDataItem::condition()
 {
 	return m_condition;

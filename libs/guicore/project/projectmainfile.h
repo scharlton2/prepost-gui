@@ -89,7 +89,7 @@ public:
 	void loadFromCgnsFile(const int fn) override;
 	void saveToCgnsFile(const int fn) override;
 	void toggleGridEditFlag();
-	void closeCgnsFile() override;
+	void discardCgnsFileData() override;
 	/// Background images
 	const std::vector<BackgroundImageInfo*>& backgroundImages() const;
 	/// Measured data

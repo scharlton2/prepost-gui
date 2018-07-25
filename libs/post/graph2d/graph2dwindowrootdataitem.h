@@ -27,7 +27,7 @@ public:
 	void updateItemMap() override;
 	Graph2dWindowDataItem* modelItemFromItem(QStandardItem* item);
 	void loadFromCgnsFile(const int fn) override;
-	void closeCgnsFile() override;
+	void discardCgnsFileData() override;
 
 protected:
 	bool isAncientChecked() const override {return true;}

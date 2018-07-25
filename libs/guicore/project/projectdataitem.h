@@ -52,7 +52,7 @@ public:
 	/// Save data into CGNS file
 	virtual void saveToCgnsFile(const int fn);
 	/// Discard data loaded from CGNS file.
-	virtual void closeCgnsFile();
+	virtual void discardCgnsFileData();
 	//@}
 
 	/// @name I/O interface against external files

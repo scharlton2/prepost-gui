@@ -80,7 +80,7 @@ public:
 	QStringList containedFiles() const override;
 	void loadFromCgnsFile(const int fn) override;
 	void saveToCgnsFile(const int fn) override;
-	void closeCgnsFile() override;
+	void discardCgnsFileData() override;
 	void toggleGridEditFlag() override;
 	void clearResults() override;
 	bool clearResultsIfGridIsEdited() override;

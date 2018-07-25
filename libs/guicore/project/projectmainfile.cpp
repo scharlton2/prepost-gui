@@ -274,7 +274,7 @@ bool ProjectMainFile::switchCgnsFile(const QString& name)
 	}
 
 	// discard data loaded from cgns file.
-	closeCgnsFile();
+	discardCgnsFileData();
 
 	// load data from the new cgns file.
 	bool ok = loadCgnsFile(name);
@@ -702,10 +702,10 @@ void ProjectMainFile::toggleGridEditFlag()
 	m_projectData->mainWindow()->toggleGridEditFlag();
 }
 
-void ProjectMainFile::closeCgnsFile()
+void ProjectMainFile::discardCgnsFileData()
 {
-	m_projectData->mainWindow()->closeCgnsFile();
-	impl->m_postSolutionInfo->closeCgnsFile();
+	m_projectData->mainWindow()->discardCgnsFileData();
+	impl->m_postSolutionInfo->discardCgnsFileData();
 }
 
 
