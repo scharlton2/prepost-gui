@@ -725,7 +725,7 @@ void ProjectMainFile::clearResults()
 	saveToCgnsFile(fn);
 	cg_close(fn);
 	impl->m_postSolutionInfo->checkCgnsStepsUpdate();
-	projectData()->mainWindow()->clearResults();
+	projectData()->mainWindow()->clearSolverConsoleLog();
 	return;
 
 ERROR:

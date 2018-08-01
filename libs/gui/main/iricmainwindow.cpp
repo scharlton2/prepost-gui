@@ -2280,7 +2280,7 @@ void iRICMainWindow::toggleGridEditFlag()
 	pre->projectDataItem()->setGridEdited();
 }
 
-void iRICMainWindow::clearResults()
+void iRICMainWindow::clearSolverConsoleLog()
 {
 	m_solverConsoleWindow->clear();
 }

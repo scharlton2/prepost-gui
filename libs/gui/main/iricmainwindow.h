@@ -82,7 +82,7 @@ public:
 	void saveToCgnsFile(const int fn) override;
 	void discardCgnsFileData() override;
 	void toggleGridEditFlag() override;
-	void clearResults() override;
+	void clearSolverConsoleLog() override;
 	bool clearResultsIfGridIsEdited() override;
 	void setProjectData(ProjectData* projectData) override;
 	/// Check whether work folder is set to a good folder. If it is good returns true.
