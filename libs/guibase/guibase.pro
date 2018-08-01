@@ -69,6 +69,7 @@ win32 {
 HEADERS += arrowsettingcontainer.h \
            colortool.h \
            comboboxtool.h \
+           currentpathchanger.h \
            cursorchanger.h \
            graphicsmisc.h \
            guibase_global.h \
@@ -175,6 +176,7 @@ FORMS += scalarbardialog.ui \
 SOURCES += arrowsettingcontainer.cpp \
            colortool.cpp \
            comboboxtool.cpp \
+           currentpathchanger.cpp \
            cursorchanger.cpp \
            graphicsmisc.cpp \
            iricactivecellfilter.cpp \
