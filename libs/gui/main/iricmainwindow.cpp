@@ -269,7 +269,7 @@ void iRICMainWindow::newProject(SolverDefinitionAbstract* solver)
 	m_projectData->mainfile()->createDefaultCgnsFile();
 	setupForNewProjectData();
 
-	m_projectData->switchToDefaultCgnsFile();
+	m_projectData->loadCgnsFile();
 	connect(m_projectData->mainfile()->postSolutionInfo(), SIGNAL(allPostProcessorsUpdated()), this, SIGNAL(allPostProcessorsUpdated()));
 	connect(m_projectData->mainfile()->postSolutionInfo(), SIGNAL(updated()), this, SLOT(updatePostActionStatus()));
 	connect(m_actionManager->openWorkFolderAction, SIGNAL(triggered()), m_projectData, SLOT(openWorkDirectory()));
@@ -402,7 +402,7 @@ void iRICMainWindow::openProject(const QString& filename)
 	m_projectData->setVersion(m_versionNumber);
 	setupForNewProjectData();
 
-	bool ok = m_projectData->switchToDefaultCgnsFile();
+	bool ok = m_projectData->loadCgnsFile();
 	if (! ok) {
 		closeProject();
 		return;

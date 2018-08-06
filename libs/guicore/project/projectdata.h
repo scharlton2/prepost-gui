@@ -68,7 +68,7 @@ public:
 	/// Setter function for solver definition
 	void setSolverDefinition(SolverDefinition* def);
 	/// Switch to the default cgns file.
-	bool switchToDefaultCgnsFile();
+	bool loadCgnsFile();
 	/// Set iRIC version number
 	void setVersion(const VersionNumber& v);
 	/// Get iRIC version number that created this project.

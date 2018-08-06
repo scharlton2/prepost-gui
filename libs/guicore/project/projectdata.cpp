@@ -234,7 +234,7 @@ QString ProjectData::newWorkfolderName(const QDir& workspace)
 	return iRIC::getTempFileName(workspace.absolutePath());
 }
 
-bool ProjectData::switchToDefaultCgnsFile()
+bool ProjectData::loadCgnsFile()
 {
 	QString current = m_mainfile->cgnsFileList()->current()->filename();
 	return m_mainfile->switchCgnsFile(current);
