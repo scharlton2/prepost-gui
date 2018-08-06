@@ -983,11 +983,6 @@ void ProjectMainFile::updateActorVisibility(int idx, bool vis)
 	emit backgroundActorVisibilityChanged(idx, vis);
 }
 
-bool ProjectMainFile::clearResultsIfGridIsEdited()
-{
-	return m_projectData->mainWindow()->clearResultsIfGridIsEdited();
-}
-
 void ProjectMainFile::addMeasuredData()
 {
 	QString dir = LastIODirectory::get();

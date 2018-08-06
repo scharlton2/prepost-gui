@@ -2271,20 +2271,6 @@ void iRICMainWindow::clearSolverConsoleLog()
 	m_solverConsoleWindow->clear();
 }
 
-bool iRICMainWindow::clearResultsIfGridIsEdited()
-{
-	PreProcessorWindow* pre = dynamic_cast<PreProcessorWindow*>(m_preProcessorWindow);
-	bool gridEdited = pre->projectDataItem()->isGridEdited();
-	bool hasResult = m_projectData->mainfile()->postSolutionInfo()->hasResults();
-	if (gridEdited && hasResult) {
-		// grid is edited, and the CGNS has calculation result.
-		int ret = QMessageBox::warning(m_preProcessorWindow, tr("Warning"), tr("The grids are edited or deleted. When you save, the calculation result is discarded."), QMessageBox::Ok | QMessageBox::Cancel, QMessageBox::Cancel);
-		if (ret == QMessageBox::Cancel) {return false;}
-		m_projectData->mainfile()->clearResults();
-	}
-	return true;
-}
-
 void iRICMainWindow::setProjectData(ProjectData* projectData)
 {
 	projectData->mainfile()->postProcessors()->setFactory(m_postWindowFactory);

@@ -155,8 +155,6 @@ private:
 	ProjectData* projectData() const override;
 	QString relativeSubPath() const override;
 
-	bool clearResultsIfGridIsEdited();
-
 	/// Cgns file list
 	CgnsFileList* m_cgnsFileList;
 	/// ProjectData
