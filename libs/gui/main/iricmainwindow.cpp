@@ -1245,20 +1245,6 @@ bool iRICMainWindow::isSolverRunning() const
 	return m_solverConsoleWindow->isSolverRunning();
 }
 
-void iRICMainWindow::switchCgnsFile(const QString& newcgns)
-{
-	if (isSolverRunning()) {
-		warnSolverRunning();
-		return;
-	}
-	// clear animation tool bar steps.
-	AnimationController* ac = dynamic_cast<AnimationController*>(m_animationController);
-	ac->clearSteps();
-	// switch cgns file.
-	m_projectData->mainfile()->switchCgnsFile(newcgns);
-	updatePostActionStatus();
-}
-
 void iRICMainWindow::setupAnimationToolbar()
 {
 	connect(m_projectData->mainfile()->postSolutionInfo(), SIGNAL(cgnsStepsUpdated(QList<QString>)), m_animationController, SLOT(updateStepList(QList<QString>)));
