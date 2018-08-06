@@ -136,7 +136,7 @@ public slots:
 	void setupOffset();
 
 signals:
-	void cgnsFileSwitched();
+	void cgnsFileLoaded();
 	void backgroundImageAdded();
 	void backgroundImageDeleted(int i);
 	void backgroundImageMovedUp(int i);

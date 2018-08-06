@@ -280,7 +280,7 @@ bool ProjectMainFile::switchCgnsFile(const QString& name)
 	bool ok = loadCgnsFile(name);
 	if (! ok) {return false;}
 
-	emit cgnsFileSwitched();
+	emit cgnsFileLoaded();
 	return true;
 }
 

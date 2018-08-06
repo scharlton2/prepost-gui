@@ -57,7 +57,7 @@ ProjectData::ProjectData(const QString& workdir, iRICMainWindowInterface* parent
 		parent.mkdir(wdir.dirName());
 	}
 	lock();
-	connect(m_mainfile, SIGNAL(cgnsFileSwitched()), parent, SLOT(handleCgnsLoaded()));
+	connect(m_mainfile, SIGNAL(cgnsFileLoaded()), parent, SLOT(handleCgnsLoaded()));
 
 	if (parent == nullptr) {
 		// this project data should not attatched to mainwindow.
