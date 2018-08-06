@@ -71,7 +71,6 @@ public:
 	void applyOffset(double x_diff, double y_diff);
 
 protected:
-	void timerEvent(QTimerEvent*) override;
 	bool innerSetupZoneDataContainers(int fn, int dimiension, std::vector<std::string>* zoneNames, QList<PostZoneDataContainer*>* containers, QMap<std::string, PostZoneDataContainer*>* containerNameMap);
 //	bool innerSetupDummy3DZoneDataContainers(int fn, std::vector<std::string>* zoneNames, QList<PostZoneDataContainer*>* containers, QMap<std::string, PostZoneDataContainer*>* containerNameMap);
 	virtual void doLoadFromProjectMainFile(const QDomNode& node) override;
@@ -80,8 +79,6 @@ protected:
 	static void clearContainers(QList<PostZoneDataContainer*>* conts);
 
 public slots:
-	void informSolverStart();
-	void informSolverFinish();
 	bool setCurrentStep(unsigned int step, int fn = 0);
 	void checkCgnsStepsUpdate();
 	void exportCalculationResult();
@@ -114,7 +111,6 @@ private:
 	QList<PostZoneDataContainer*> m_zoneContainers3D;
 	bool m_baseIterativeDataExists;
 	QList<PostDataContainer*> m_otherContainers;
-	int m_timerId;
 	CgnsFileOpener* m_opener;
 
 	std::vector<std::string> m_zoneNames1D;

@@ -46,7 +46,6 @@ PostSolutionInfo::PostSolutionInfo(ProjectDataItem* parent) :
 	m_currentStep {0},
 	m_iterationSteps {nullptr},
 	m_timeSteps {nullptr},
-	m_timerId {0},
 	m_opener {nullptr},
 	m_iterationType {SolverDefinition::NoIteration},
 	m_exportFormat {PostDataExportDialog::Format::VTKASCII},
@@ -532,26 +531,6 @@ PostZoneDataContainer* PostSolutionInfo::zoneContainer2D(const std::string& zone
 PostZoneDataContainer* PostSolutionInfo::zoneContainer3D(const std::string& zoneName) const
 {
 	return m_zoneContainerNameMap3D.value(zoneName, 0);
-}
-
-void PostSolutionInfo::informSolverStart()
-{
-//	m_timerId = startTimer(TIMERINTERVAL);
-//	informStepsUpdated();
-}
-
-void PostSolutionInfo::informSolverFinish()
-{
-//	killTimer(m_timerId);
-}
-
-void PostSolutionInfo::timerEvent(QTimerEvent* /*e*/)
-{
-	/*
-		if (e->timerId() == m_timerId){
-			checkCgnsStepsUpdate();
-		}
-	*/
 }
 
 bool PostSolutionInfo::isDataAvailable() const
