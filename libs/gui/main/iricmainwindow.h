@@ -159,7 +159,7 @@ public slots:
 	void checkCgnsStepsUpdate();
 	void ActiveSubwindowChanged(QMdiSubWindow* newActiveWindow);
 	/// Do the tasks to do when the CGNS file is switched.
-	void handleCgnsSwitch();
+	void handleCgnsLoaded();
 	void focusPreProcessorWindow();
 	void focusSolverConsoleWindow();
 

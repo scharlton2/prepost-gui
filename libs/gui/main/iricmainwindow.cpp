@@ -1251,7 +1251,7 @@ void iRICMainWindow::setupAnimationToolbar()
 	m_projectData->mainfile()->postSolutionInfo()->informCgnsSteps();
 }
 
-void iRICMainWindow::handleCgnsSwitch()
+void iRICMainWindow::handleCgnsLoaded()
 {
 	setupAnimationToolbar();
 
