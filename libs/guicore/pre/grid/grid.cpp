@@ -99,9 +99,6 @@ void Grid::loadFromCgnsFile(const int fn)
 
 void Grid::saveToCgnsFile(const int fn)
 {
-	// if not modified, do nothing.
-	if (! impl->m_isModified) {return;}
-
 	int B;
 	// goto Base.
 	cg_iRIC_GotoBase(fn, &B);
