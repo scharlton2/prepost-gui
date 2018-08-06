@@ -56,7 +56,6 @@ public:
 	bool importInputCondition(const QString& filename);
 	bool exportInputCondition(const QString& filename);
 	bool isGridEdited() const;
-	void setGridEdited();
 	bool isInputConditionSet();
 	MouseBoundingBox* mouseBoundingBox() override {return m_mouseBoundingBox;}
 	const QList<QMenu*>& additionalMenus() const {

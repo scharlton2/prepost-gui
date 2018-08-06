@@ -23,7 +23,6 @@ public:
 	void discardCgnsFileData() override;
 	QStringList containedFiles() override;
 	bool isGridEdited() const;
-	void setGridEdited();
 
 private:
 	void doLoadFromProjectMainFile(const QDomNode& node) override;

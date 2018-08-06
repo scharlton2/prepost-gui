@@ -622,11 +622,6 @@ void ProjectMainFile::saveToCgnsFile(const int fn)
 	m_projectData->mainWindow()->saveToCgnsFile(fn);
 }
 
-void ProjectMainFile::toggleGridEditFlag()
-{
-	m_projectData->mainWindow()->toggleGridEditFlag();
-}
-
 void ProjectMainFile::discardCgnsFileData()
 {
 	m_projectData->mainWindow()->discardCgnsFileData();

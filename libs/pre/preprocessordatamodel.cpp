@@ -1250,12 +1250,6 @@ bool PreProcessorDataModel::isGridEdited() const
 	return root->isGridEdited();
 }
 
-void PreProcessorDataModel::setGridEdited()
-{
-	PreProcessorRootDataItem* root = dynamic_cast<PreProcessorRootDataItem*>(m_rootDataItem);
-	root->setGridEdited();
-}
-
 void PreProcessorDataModel::informUnfocusRiverCrosssectionWindows()
 {
 	PreProcessorRootDataItem* r = dynamic_cast<PreProcessorRootDataItem*>(m_rootDataItem);

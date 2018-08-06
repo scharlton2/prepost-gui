@@ -157,9 +157,3 @@ bool PreProcessorWindowProjectDataItem::isGridEdited() const
 	PreProcessorDataModel* model = dynamic_cast<PreProcessorDataModel*>(m_preProcessorWindow->m_dataModel);
 	return model->isGridEdited();
 }
-
-void PreProcessorWindowProjectDataItem::setGridEdited()
-{
-	PreProcessorDataModel* model = dynamic_cast<PreProcessorDataModel*>(m_preProcessorWindow->m_dataModel);
-	model->setGridEdited();
-}

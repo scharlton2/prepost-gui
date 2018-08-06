@@ -45,7 +45,6 @@ public:
 	QAction* editGridAttributeMappingSettingAction() const;
 
 	bool isGridEdited() const;
-	void setGridEdited();
 
 	void deleteItem(QStandardItem* item, bool noDraw = false) override;
 	void saveToCgnsFile(const int fn) override;

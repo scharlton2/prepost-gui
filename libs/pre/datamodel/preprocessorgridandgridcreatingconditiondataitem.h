@@ -33,7 +33,6 @@ public:
 	bool isDeletable() const override;
 	void handleStandardItemChange() override;
 	bool isGridEdited() const  override;
-	void setGridEdited() override;
 	void setupGridDataItem(Grid* grid);
 	void loadFromCgnsFile(const int fn);
 

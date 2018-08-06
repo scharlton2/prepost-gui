@@ -380,10 +380,3 @@ bool PreProcessorGridTypeDataItem::isGridEdited() const
 	}
 	return false;
 }
-
-void PreProcessorGridTypeDataItem::setGridEdited()
-{
-	for (auto cit = m_conditions.begin(); cit != m_conditions.end(); ++cit) {
-		(*cit)->setGridEdited();
-	}
-}

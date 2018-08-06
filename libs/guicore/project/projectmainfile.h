@@ -91,7 +91,6 @@ public:
 	/// PostProcessors.
 	ProjectPostProcessors* postProcessors() const;
 	void saveToCgnsFile(const int fn) override;
-	void toggleGridEditFlag();
 	void discardCgnsFileData() override;
 	/// Background images
 	const std::vector<BackgroundImageInfo*>& backgroundImages() const;

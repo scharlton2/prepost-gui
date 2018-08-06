@@ -305,13 +305,6 @@ bool PreProcessorRootDataItem::isGridEdited() const
 	return false;
 }
 
-void PreProcessorRootDataItem::setGridEdited()
-{
-	for (auto it = m_gridTypeDataItems.begin(); it != m_gridTypeDataItems.end(); ++it) {
-		(*it)->setGridEdited();
-	}
-}
-
 void PreProcessorRootDataItem::deleteItem(QStandardItem* item, bool noDraw)
 {
 	GraphicsWindowDataItem* dataItem = modelItemFromItem(item);

@@ -170,13 +170,6 @@ bool PreProcessorGridAndGridCreatingConditionDataItem::isGridEdited() const
 	return g->isModified();
 }
 
-void PreProcessorGridAndGridCreatingConditionDataItem::setGridEdited()
-{
-	Grid* g = m_gridDataItem->grid();
-	if (g == nullptr) {return;}
-	g->setModified();
-}
-
 void PreProcessorGridAndGridCreatingConditionDataItem::setupGridDataItem(Grid* grid)
 {
 	if (grid == nullptr) {return;}

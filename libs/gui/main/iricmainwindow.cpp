@@ -2263,12 +2263,6 @@ void iRICMainWindow::discardCgnsFileData()
 	pre->projectDataItem()->discardCgnsFileData();
 }
 
-void iRICMainWindow::toggleGridEditFlag()
-{
-	PreProcessorWindow* pre = dynamic_cast<PreProcessorWindow*>(m_preProcessorWindow);
-	pre->projectDataItem()->setGridEdited();
-}
-
 void iRICMainWindow::clearSolverConsoleLog()
 {
 	m_solverConsoleWindow->clear();
