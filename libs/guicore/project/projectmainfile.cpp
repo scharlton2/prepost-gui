@@ -651,11 +651,19 @@ const std::vector<vtkRenderer*>& ProjectMainFile::renderers() const
 void ProjectMainFile::clearResults()
 {
 	bool ok = saveCgnsFile(true);
-	if (! ok) {return;}
+	if (! ok) {
+		QMessageBox::critical(iricMainWindow(), tr("Error"), tr("Saving CGNS file failed."));
+		return;
+	}
 
 	ok = impl->m_cgnsManager->copyInputToOutput();
 	if (! ok) {
 		QMessageBox::critical(iricMainWindow(), tr("Error"), tr("Saving CGNS file failed."));
+		return;
+	}
+	ok = impl->m_cgnsManager->deleteResultFolder();
+	if (! ok) {
+		QMessageBox::critical(iricMainWindow(), tr("Error"), tr("Deleting \"result\" folder failed."));
 		return;
 	}
 
