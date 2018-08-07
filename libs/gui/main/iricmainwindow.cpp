@@ -36,6 +36,7 @@
 #include <guicore/postcontainer/posttimesteps.h>
 #include <guicore/project/cgnsfilelist.h>
 #include <guicore/project/projectcgnsfile.h>
+#include <guicore/project/projectcgnsmanager.h>
 #include <guicore/project/projectdata.h>
 #include <guicore/project/projectmainfile.h>
 #include <guicore/project/projectpostprocessors.h>
@@ -2115,13 +2116,15 @@ QString iRICMainWindow::tmpFileName(int len) const
 void iRICMainWindow::checkCgnsStepsUpdate()
 {
 	if (m_projectData == nullptr) {return;}
-	if (! m_projectData->isSolverRunning()) {return;}
+	if (! isSolverRunning()) {return;}
+
 	CursorChanger cursorChanger(QCursor(Qt::WaitCursor), this);
 	m_projectData->mainfile()->postSolutionInfo()->close();
-	QFile::remove(m_projectData->flushCopyCgnsFileName());
 
-	m_projectData->incrementFlushIndex();
-	bool ok = FlushRequester::requestFlush(m_projectData->workDirectory(), m_projectData->flushIndex(), this);
+	auto cgnsManager = m_projectData->mainfile()->cgnsManager();
+	cgnsManager->deleteCopyFile();
+	cgnsManager->incrementCopyIndex();
+	bool ok = FlushRequester::requestFlush(m_projectData->workDirectory(), cgnsManager->copyIndex(), this);
 	if (! ok) {return;}
 
 	m_projectData->mainfile()->postSolutionInfo()->checkCgnsStepsUpdate();
