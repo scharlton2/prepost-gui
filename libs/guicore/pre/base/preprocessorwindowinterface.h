@@ -18,6 +18,9 @@ public:
 	virtual bool checkMappingStatus() = 0;
 	virtual void checkCalculationConditionImportSourceUpdate() = 0;
 	virtual QString checkGrid(bool detail) = 0;
+
+public slots:
+	virtual void cameraFit() = 0;
 };
 
 #endif // PREPROCESSORWINDOWINTERFACE_H

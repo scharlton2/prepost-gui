@@ -269,14 +269,17 @@ void iRICMainWindow::newProject(SolverDefinitionAbstract* solver)
 	m_mousePositionWidget->setProjectData(m_projectData);
 	m_projectData->mainfile()->createInputCgnsFile();
 	setupForNewProjectData();
+	handleCgnsLoaded();
 
-	m_projectData->loadCgnsFile();
+	auto pre = dynamic_cast<PreProcessorWindow*>(m_preProcessorWindow);
+	pre->projectDataItem()->discardCgnsFileData();
+	pre->cameraFit();
+
 	connect(m_projectData->mainfile()->postSolutionInfo(), SIGNAL(allPostProcessorsUpdated()), this, SIGNAL(allPostProcessorsUpdated()));
 	connect(m_projectData->mainfile()->postSolutionInfo(), SIGNAL(updated()), this, SLOT(updatePostActionStatus()));
 	connect(m_actionManager->openWorkFolderAction, SIGNAL(triggered()), m_projectData, SLOT(openWorkDirectory()));
 
 	// show pre-processor window first.
-	auto pre = dynamic_cast<PreProcessorWindow*>(m_preProcessorWindow);
 	pre->setupDefaultGeometry();
 	focusPreProcessorWindow();
 	m_actionManager->informSubWindowChange(pre);
