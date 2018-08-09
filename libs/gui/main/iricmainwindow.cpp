@@ -1269,7 +1269,7 @@ void iRICMainWindow::handleCgnsLoaded()
 	// the calculation, the the cgns file automatically
 	// checks wheter the steps stored in the CGNS file
 	// is updated.
-	connect(m_solverConsoleWindow, SIGNAL(solverFinished()), m_projectData->mainfile()->postSolutionInfo(), SLOT(checkCgnsStepsUpdate()));
+	connect(m_solverConsoleWindow, SIGNAL(solverFinished()), m_projectData->mainfile()->postSolutionInfo(), SLOT(handleSolverFinished()));
 }
 
 void iRICMainWindow::setCurrentStep(unsigned int newstep)
