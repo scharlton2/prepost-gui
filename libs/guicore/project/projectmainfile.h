@@ -90,7 +90,6 @@ public:
 	bool isModified() const;
 	/// PostProcessors.
 	ProjectPostProcessors* postProcessors() const;
-	void loadFromCgnsFile(const int fn) override;
 	void saveToCgnsFile(const int fn) override;
 	void toggleGridEditFlag();
 	void discardCgnsFileData() override;
@@ -155,6 +154,9 @@ signals:
 private:
 	void doLoadFromProjectMainFile(const QDomNode& node) override;
 	void doSaveToProjectMainFile(QXmlStreamWriter& writer) override;
+
+	bool loadInputCgnsFile();
+	bool loadOutputCgnsFile();
 
 	ProjectData* projectData() const override;
 	QString relativeSubPath() const override;

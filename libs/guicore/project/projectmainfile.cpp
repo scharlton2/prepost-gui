@@ -526,18 +526,38 @@ std::string ProjectMainFile::resultCgnsFileName() const
 
 bool ProjectMainFile::loadCgnsFile()
 {
-	bool ret = false;
+	if (! impl->m_cgnsManager->renameOldOutputToInput()) {return false;}
+	if (! loadInputCgnsFile()) {return false;}
+	if (! loadOutputCgnsFile()) {return false;}
+
+	emit cgnsFileLoaded();
+	return true;
+}
+
+bool ProjectMainFile::loadInputCgnsFile()
+{
 	try {
-		auto fname = impl->m_cgnsManager->importFileName();
+		auto fname = impl->m_cgnsManager->importFileFullName();
 		CgnsFileOpener opener(fname, CG_MODE_READ);
-		// load data.
-		ret = true;
-		loadFromCgnsFile(opener.fileId());
-		emit cgnsFileLoaded();
+		m_projectData->mainWindow()->loadFromCgnsFile(opener.fileId());
+		return true;
 	} catch (const std::runtime_error&) {
-		QMessageBox::critical(m_projectData->mainWindow(), tr("Error"), tr("Error occured while opening CGNS file in project file."));
+		QMessageBox::critical(m_projectData->mainWindow(), tr("Error"), tr("Error occured while opening %1 in project file.").arg(impl->m_cgnsManager->importFileName().c_str()));
+		return false;
 	}
-	return ret;
+}
+
+bool ProjectMainFile::loadOutputCgnsFile()
+{
+	try {
+		auto fname = impl->m_cgnsManager->resultFileFullName();
+		CgnsFileOpener opener(fname, CG_MODE_READ);
+		impl->m_postSolutionInfo->loadFromCgnsFile(opener.fileId());
+		return true;
+	} catch (const std::runtime_error&) {
+		QMessageBox::critical(m_projectData->mainWindow(), tr("Error"), tr("Error occured while opening %1 in project file.").arg(impl->m_cgnsManager->resultFileName().c_str()));
+		return false;
+	}
 }
 
 bool ProjectMainFile::isModified() const
@@ -594,14 +614,6 @@ bool ProjectMainFile::saveCgnsFile(bool inhibitWarning)
 	// impl->m_cgnsManager->deleteInputTmpFile();
 
 	return true;
-}
-
-void ProjectMainFile::loadFromCgnsFile(const int fn)
-{
-	// Init iriclib for reading
-	cg_iRIC_InitRead(fn);
-	m_projectData->mainWindow()->loadFromCgnsFile(fn);
-	impl->m_postSolutionInfo->loadFromCgnsFile(fn);
 }
 
 void ProjectMainFile::saveToCgnsFile(const int fn)
