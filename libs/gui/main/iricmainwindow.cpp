@@ -275,7 +275,7 @@ void iRICMainWindow::newProject(SolverDefinitionAbstract* solver)
 	connect(m_actionManager->openWorkFolderAction, SIGNAL(triggered()), m_projectData, SLOT(openWorkDirectory()));
 
 	// show pre-processor window first.
-	PreProcessorWindow* pre = dynamic_cast<PreProcessorWindow*>(m_preProcessorWindow);
+	auto pre = dynamic_cast<PreProcessorWindow*>(m_preProcessorWindow);
 	pre->setupDefaultGeometry();
 	focusPreProcessorWindow();
 	m_actionManager->informSubWindowChange(pre);
@@ -448,13 +448,13 @@ void iRICMainWindow::openProject(const QString& filename)
 
 void iRICMainWindow::importCalcCondition()
 {
-	PreProcessorWindow* pre = dynamic_cast<PreProcessorWindow*> (m_preProcessorWindow);
+	auto pre = dynamic_cast<PreProcessorWindow*> (m_preProcessorWindow);
 	pre->importCalcCondition();
 }
 
 void iRICMainWindow::exportCalcCondition()
 {
-	PreProcessorWindow* pre = dynamic_cast<PreProcessorWindow*> (m_preProcessorWindow);
+	auto pre = dynamic_cast<PreProcessorWindow*> (m_preProcessorWindow);
 	pre->exportCalcCondition();
 }
 
@@ -524,7 +524,7 @@ void iRICMainWindow::importCalculationResult(const QString& fname)
 	// show pre-processor window first.
 	if (! m_projectData->isPostOnlyMode()) {
 		// show pre-processor window first.
-		PreProcessorWindow* pre = dynamic_cast<PreProcessorWindow*> (m_preProcessorWindow);
+		auto pre = dynamic_cast<PreProcessorWindow*> (m_preProcessorWindow);
 		pre->setupDefaultGeometry();
 		pre->parentWidget()->show();
 		m_actionManager->informSubWindowChange(m_preProcessorWindow);
@@ -2187,7 +2187,7 @@ void iRICMainWindow::tileSubWindows()
 void iRICMainWindow::initForSolverDefinition()
 {
 	// initializes pre-processor for the specified solver definition.
-	PreProcessorWindow* pre = dynamic_cast<PreProcessorWindow*>(m_preProcessorWindow);
+	auto pre = dynamic_cast<PreProcessorWindow*>(m_preProcessorWindow);
 	pre->projectDataItem()->initForSolverDefinition();
 	// initializes solver console window for the specified solver definition.
 	m_solverConsoleWindow->projectDataItem()->initForSolverDefinition();
@@ -2198,7 +2198,7 @@ void iRICMainWindow::loadSubWindowsFromProjectMainFile(const QDomNode& node)
 	// read setting about PreProcessor
 	QDomNode tmpNode = iRIC::getChildNode(node, "PreProcessorWindow");
 	if (! tmpNode.isNull()) {
-		PreProcessorWindow* pre = dynamic_cast<PreProcessorWindow*>(m_preProcessorWindow);
+		auto pre = dynamic_cast<PreProcessorWindow*>(m_preProcessorWindow);
 		pre->projectDataItem()->loadFromProjectMainFile(tmpNode);
 	}
 	// read setting about Console Window
@@ -2219,7 +2219,7 @@ void iRICMainWindow::saveSubWindowsToProjectMainFile(QXmlStreamWriter& writer)
 	// write setting about PreProcessor
 	writer.writeStartElement("PreProcessorWindow");
 	// delegate to PreProcessorWindowProjectDataItem
-	PreProcessorWindow* pre = dynamic_cast<PreProcessorWindow*>(m_preProcessorWindow);
+	auto pre = dynamic_cast<PreProcessorWindow*>(m_preProcessorWindow);
 	pre->projectDataItem()->saveToProjectMainFile(writer);
 	writer.writeEndElement();
 
@@ -2236,25 +2236,25 @@ void iRICMainWindow::saveSubWindowsToProjectMainFile(QXmlStreamWriter& writer)
 
 QStringList iRICMainWindow::containedFiles() const
 {
-	PreProcessorWindow* pre = dynamic_cast<PreProcessorWindow*>(m_preProcessorWindow);
+	auto pre = dynamic_cast<PreProcessorWindow*>(m_preProcessorWindow);
 	return pre->projectDataItem()->containedFiles();
 }
 
 void iRICMainWindow::loadFromCgnsFile(const int fn)
 {
-	PreProcessorWindow* pre = dynamic_cast<PreProcessorWindow*>(m_preProcessorWindow);
+	auto pre = dynamic_cast<PreProcessorWindow*>(m_preProcessorWindow);
 	pre->projectDataItem()->loadFromCgnsFile(fn);
 }
 
 void iRICMainWindow::saveToCgnsFile(const int fn)
 {
-	PreProcessorWindow* pre = dynamic_cast<PreProcessorWindow*>(m_preProcessorWindow);
+	auto pre = dynamic_cast<PreProcessorWindow*>(m_preProcessorWindow);
 	pre->projectDataItem()->saveToCgnsFile(fn);
 }
 
 void iRICMainWindow::discardCgnsFileData()
 {
-	PreProcessorWindow* pre = dynamic_cast<PreProcessorWindow*>(m_preProcessorWindow);
+	auto pre = dynamic_cast<PreProcessorWindow*>(m_preProcessorWindow);
 	pre->projectDataItem()->discardCgnsFileData();
 }
 
@@ -2272,7 +2272,7 @@ void iRICMainWindow::clearSolverConsoleLog()
 void iRICMainWindow::setProjectData(ProjectData* projectData)
 {
 	projectData->mainfile()->postProcessors()->setFactory(m_postWindowFactory);
-	PreProcessorWindow* pre = dynamic_cast<PreProcessorWindow*>(m_preProcessorWindow);
+	auto pre = dynamic_cast<PreProcessorWindow*>(m_preProcessorWindow);
 	pre->setProjectData(projectData);
 	m_solverConsoleWindow->setProjectData(projectData);
 	m_actionManager->setProjectData(projectData);
