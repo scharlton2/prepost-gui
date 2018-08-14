@@ -174,7 +174,7 @@ void SolverConsoleWindow::startSolver()
 
 	ok = impl->m_projectData->mainfile()->cgnsManager()->copyInputToOutput();
 	if (! ok) {
-		QMessageBox::warning(this, tr("Warning"), tr("Saving Case1.cgn failed. Please make sure you are not opening Case1.cgn, and storage has space for saving."));
+		QMessageBox::warning(this, tr("Warning"), tr("Saving output.cgn failed. Please make sure you are not opening output.cgn, and storage has space for saving."));
 		return;
 	}
 	startSolverSilently();
