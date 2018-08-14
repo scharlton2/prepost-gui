@@ -317,7 +317,7 @@ void ProjectMainFile::initForSolverDefinition()
 	impl->m_postSolutionInfo->setIterationType(def->iterationType());
 }
 
-QString ProjectMainFile::filename()
+QString ProjectMainFile::filename() const
 {
 	return m_projectData->absoluteFileName(ProjectMainFile::FILENAME);
 }

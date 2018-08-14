@@ -54,7 +54,7 @@ public:
 	/// Save data contained in files except for CGNS files.
 	bool saveExceptCGNS();
 	/// Returns the filename of project main file as an absolute path.
-	QString filename();
+	QString filename() const;
 	/// Set information about the solver used for the calculation in this project
 	void setSolverInformation(const SolverDefinitionAbstract&);
 	/// Solver name
