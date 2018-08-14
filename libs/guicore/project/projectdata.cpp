@@ -157,11 +157,6 @@ void ProjectData::load()
 	mainfile()->load();
 }
 
-void ProjectData::loadCgnsList()
-{
-	mainfile()->loadCgnsList();
-}
-
 bool ProjectData::save()
 {
 	mainWindow()->enterModelessDialogMode();

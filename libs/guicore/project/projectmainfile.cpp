@@ -289,30 +289,6 @@ void ProjectMainFile::load()
 	loadFromProjectMainFile(doc.documentElement());
 }
 
-void ProjectMainFile::loadCgnsList()
-{
-	QString fname = filename();
-	QFile f(fname);
-	QDomDocument doc;
-	QString errorStr;
-	int errorLine;
-	int errorColumn;
-	QString errorHeader = "Error occured while loading %1\n";
-	bool ok = doc.setContent(&f, &errorStr, &errorLine, &errorColumn);
-
-	if (! ok) {
-		QString msg = errorHeader;
-		msg.append("Parse error %2 at line %3, column %4");
-		msg = msg.arg(fname).arg(errorStr).arg(errorLine).arg(errorColumn);
-		throw ErrorMessage(msg);
-	}
-	// read cgns file list
-	QDomNode tmpNode = iRIC::getChildNode(doc.documentElement(), "CgnsFileList");
-	if (! tmpNode.isNull()) {
-		m_cgnsFileList->loadFromProjectMainFile(tmpNode);
-	}
-}
-
 bool ProjectMainFile::save()
 {
 	// save cgns file.

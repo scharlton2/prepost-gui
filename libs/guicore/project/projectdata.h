@@ -55,8 +55,6 @@ public:
 	void loadSolverInformation();
 	/// Load project data from a project file.
 	void load();
-	/// Load only CGNS file list from a project file.
-	void loadCgnsList();
 	/// Compress the workfolder content to specified zip file..
 	bool zipTo(const QString& filename);
 	/// Save project data into the work folder.

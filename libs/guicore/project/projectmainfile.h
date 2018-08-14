@@ -46,8 +46,6 @@ public:
 	void loadSolverInformation();
 	/// Load data from file
 	void load();
-	/// Load only CGNS file list from a project file.
-	void loadCgnsList();
 	/// Load Post-processor settings from a project file.
 	void openPostProcessors();
 	/// Save data into file
