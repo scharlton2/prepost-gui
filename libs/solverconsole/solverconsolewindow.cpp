@@ -8,6 +8,7 @@
 #include <guicore/pre/base/preprocessorwindowinterface.h>
 #include <guicore/project/cgnsfileentry.h>
 #include <guicore/project/cgnsfilelist.h>
+#include <guicore/project/projectcgnsmanager.h>
 #include <guicore/project/projectdata.h>
 #include <guicore/project/projectmainfile.h>
 #include <guicore/solverdef/solverdefinition.h>
@@ -171,7 +172,11 @@ void SolverConsoleWindow::startSolver()
 
 	impl->m_projectDataItem->open();
 
-	impl->m_projectData->setIsSolverRunning(true);
+	ok = impl->m_projectData->mainfile()->cgnsManager()->copyInputToOutput();
+	if (! ok) {
+		QMessageBox::warning(this, tr("Warning"), tr("Saving Case1.cgn failed. Please make sure you are not opening Case1.cgn, and storage has space for saving."));
+		return;
+	}
 	startSolverSilently();
 
 	updateWindowTitle();
@@ -222,7 +227,6 @@ void SolverConsoleWindow::handleSolverFinish(int, QProcess::ExitStatus status)
 	delete impl->m_process;
 	impl->m_process = nullptr;
 	impl->m_projectDataItem->close();
-	impl->m_projectData->setIsSolverRunning(false);
 
 	impl->removeCancelFile();
 	impl->removeCancelOkFile();
@@ -295,8 +299,7 @@ void SolverConsoleWindow::startSolverSilently()
 {
 	impl->m_projectData->mainfile()->postSolutionInfo()->close();
 
-	QString cgnsname = impl->m_projectData->mainfile()->cgnsFileList()->current()->filename();
-	cgnsname.append(".cgn");
+	QString cgnsname = impl->m_projectData->mainfile()->cgnsManager()->outputFileName().c_str();
 
 	impl->m_process = new QProcess(this);
 	QString wd = impl->m_projectData->workDirectory();
