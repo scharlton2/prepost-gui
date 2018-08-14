@@ -16,6 +16,7 @@ class PostIterationSteps;
 class PostTimeSteps;
 class PostDataContainer;
 class PostZoneDataContainer;
+class ProjectMainFile;
 
 class GUICOREDLL_EXPORT PostSolutionInfo : public ProjectDataItem
 {
@@ -23,8 +24,8 @@ class GUICOREDLL_EXPORT PostSolutionInfo : public ProjectDataItem
 
 public:
 	enum Dimension {dim1D, dim2D, dim3D};
-	/// Constructor
-	PostSolutionInfo(ProjectDataItem* parent);
+
+	PostSolutionInfo(ProjectMainFile* parent);
 	~PostSolutionInfo();
 	SolverDefinition::IterationType iterationType() const;
 	void setIterationType(SolverDefinition::IterationType type);
@@ -56,6 +57,7 @@ public:
 	static int toIntDimension(Dimension dim);
 	static Dimension fromIntDimension(int dim);
 	bool open();
+	bool openForStep();
 	void close();
 
 	const PostExportSetting& exportSetting() const;
@@ -80,6 +82,8 @@ protected:
 
 public slots:
 	bool setCurrentStep(unsigned int step, int fn = 0);
+
+	void handleSolverFinished();
 	void checkCgnsStepsUpdate();
 	void exportCalculationResult();
 
@@ -101,6 +105,8 @@ private:
 	bool stepsExist() const;
 	void setupZoneDataContainers(int fn);
 	void checkBaseIterativeDataExist(int fn);
+	ProjectMainFile* mainFile() const;
+
 	static const int TIMERINTERVAL = 500;
 	SolverDefinition::IterationType m_iterationType;
 	PostIterationSteps* m_iterationSteps;
@@ -112,6 +118,7 @@ private:
 	bool m_baseIterativeDataExists;
 	QList<PostDataContainer*> m_otherContainers;
 	CgnsFileOpener* m_opener;
+	CgnsFileOpener* m_openerForStep;
 
 	std::vector<std::string> m_zoneNames1D;
 	std::vector<std::string> m_zoneNames2D;
@@ -125,6 +132,9 @@ private:
 
 	PostExportSetting m_exportSetting;
 	QString m_particleExportPrefix;
+
+	class BuildTmpFileAndOpenThread;
+	class CopyResultToOutputAndOpenThread;
 };
 
 #endif // POSTSOLUTIONINFO_H

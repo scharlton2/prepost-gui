@@ -1,6 +1,8 @@
 #include "../base/iricmainwindowinterface.h"
 #include "../misc/cgnsfileopener.h"
 #include "../project/projectdata.h"
+#include "../project/projectmainfile.h"
+#include "../project/projectcgnsmanager.h"
 #include "../solverdef/solverdefinition.h"
 #include "../solverdef/solverdefinitiongridtype.h"
 #include "../solverdef/solverdefinitiongridtype.h"
@@ -17,6 +19,7 @@
 #include "postzonedatacontainer.h"
 
 #include <guibase/widget/itemselectingdialog.h>
+#include <guibase/widget/waitdialog.h>
 #include <misc/lastiodirectory.h>
 #include <misc/mathsupport.h>
 #include <misc/stringtool.h>
@@ -41,12 +44,13 @@
 #include <cgnslib.h>
 #include <iriclib.h>
 
-PostSolutionInfo::PostSolutionInfo(ProjectDataItem* parent) :
+PostSolutionInfo::PostSolutionInfo(ProjectMainFile* parent) :
 	ProjectDataItem {parent},
 	m_currentStep {0},
 	m_iterationSteps {nullptr},
 	m_timeSteps {nullptr},
 	m_opener {nullptr},
+	m_openerForStep {nullptr},
 	m_iterationType {SolverDefinition::NoIteration},
 	m_exportFormat {PostDataExportDialog::Format::VTKASCII},
 	m_particleExportPrefix {"Particle_"}
@@ -111,19 +115,11 @@ bool PostSolutionInfo::setCurrentStep(unsigned int step, int fn)
 	QTime time, wholetime;
 	wholetime.start();
 
-	int tmpfn = 0;
-	if (fn == 0) {
-		bool ok = open();
-		if (ok) {
-			tmpfn = m_opener->fileId();
-		}
-	} else {
-		tmpfn = fn;
-	}
-	if (tmpfn == 0) {
-		// opening failed.
-		return false;
-	}
+	bool ok = openForStep();
+	if (! ok) {return false;}
+
+	int tmpfn = m_openerForStep->fileId();
+
 	time.start();
 	setupZoneDataContainers(tmpfn);
 	checkBaseIterativeDataExist(tmpfn);
@@ -162,10 +158,17 @@ bool PostSolutionInfo::setCurrentStep(unsigned int step, int fn)
 
 void PostSolutionInfo::informStepsUpdated()
 {
-	bool ok = open();
-	if (!ok) {return;}
-	setupZoneDataContainers(m_opener->fileId());
-	checkBaseIterativeDataExist(m_opener->fileId());
+	if (m_timeSteps->dataExists()) {
+		bool ok = openForStep();
+		if (! ok) {return;}
+		setupZoneDataContainers(m_openerForStep->fileId());
+		checkBaseIterativeDataExist(m_openerForStep->fileId());
+	} else {
+		bool ok = open();
+		if (! ok) {return;}
+		setupZoneDataContainers(m_opener->fileId());
+		checkBaseIterativeDataExist(m_opener->fileId());
+	}
 	emit updated();
 	emit allPostProcessorsUpdated();
 }
@@ -211,7 +214,7 @@ bool PostSolutionInfo::innerSetupZoneDataContainers(int fn, int dim, std::vector
 		int narrays;
 		ier = cg_narrays(&narrays);
 		if (ier != 0) {return false;}
-		if (narrays == 0) {continue;}
+		// if (narrays == 0) {continue;}
 		tmpZoneNames.push_back(std::string(zoneName));
 	}
 	if (*zoneNames == tmpZoneNames) {
@@ -386,6 +389,11 @@ void PostSolutionInfo::checkBaseIterativeDataExist(int fn)
 	}
 }
 
+ProjectMainFile* PostSolutionInfo::mainFile() const
+{
+	return dynamic_cast<ProjectMainFile*> (parent());
+}
+
 bool PostSolutionInfo::hasResults()
 {
 	if (m_timeSteps != 0) {
@@ -395,6 +403,14 @@ bool PostSolutionInfo::hasResults()
 	} else {
 		return false;
 	}
+}
+
+void PostSolutionInfo::handleSolverFinished()
+{
+	close();
+	mainFile()->cgnsManager()->deleteCopyFile();
+
+	checkCgnsStepsUpdate();
 }
 
 void PostSolutionInfo::checkCgnsStepsUpdate()
@@ -639,6 +655,9 @@ void PostSolutionInfo::close()
 {
 	delete m_opener;
 	m_opener = nullptr;
+
+	delete m_openerForStep;
+	m_openerForStep = nullptr;
 }
 
 const PostExportSetting& PostSolutionInfo::exportSetting() const
@@ -887,6 +906,19 @@ bool PostSolutionInfo::open()
 		return false;
 	}
 
+	return true;
+}
+
+bool PostSolutionInfo::openForStep()
+{
+	delete m_openerForStep;
+	m_openerForStep = nullptr;
+
+	try {
+		m_openerForStep = new CgnsFileOpener(resultCgnsFileNameForStep(currentStep()), CG_MODE_READ);
+	} catch (const std::runtime_error&) {
+		return false;
+	}
 	return true;
 }
 
