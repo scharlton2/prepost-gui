@@ -5,6 +5,7 @@
 #include <guicore/postcontainer/postsolutioninfo.h>
 #include <guicore/project/inputcond/inputconditiondialog.h>
 #include <guicore/project/inputcond/inputconditionwidgetfilename.h>
+#include <guicore/project/projectcgnsmanager.h>
 #include <guicore/project/projectdata.h>
 #include <guicore/project/projectmainfile.h>
 #include <misc/errormessage.h>
@@ -64,16 +65,14 @@ void PreProcessorInputConditionDataItem::saveToCgnsFile(const int fn)
 
 void PreProcessorInputConditionDataItem::showDialog(bool readonly)
 {
-	projectData()->mainfile()->postSolutionInfo()->close();
-
-	auto fname = projectData()->currentCgnsFileName();
-	auto opener = new CgnsFileOpener(iRIC::toStr(fname), CG_MODE_READ);
+	auto fname = projectData()->mainfile()->cgnsManager()->inputFileFullName();
+	auto opener = new CgnsFileOpener(fname, CG_MODE_READ);
 	loadFromCgnsFile(opener->fileId());
 	delete opener;
 
 	// set default folder for filename input conditions.
 	InputConditionWidgetFilename::defaultFolder = LastIODirectory::get();
-	m_dialog->setFileName(fname);
+	m_dialog->setFileName(fname.c_str());
 	// show dialog
 	m_dialog->setReadOnly(readonly);
 	m_dialog->exec();
@@ -100,8 +99,9 @@ void PreProcessorInputConditionDataItem::checkImportSourceUpdate()
 bool PreProcessorInputConditionDataItem::importInputCondition(const QString& filename)
 {
 	projectData()->mainfile()->postSolutionInfo()->close();
-	QString fname = projectData()->currentCgnsFileName();
-	m_dialog->setFileName(fname);
+
+	auto fname = projectData()->mainfile()->cgnsManager()->importFileFullName();
+	m_dialog->setFileName(fname.c_str());
 
 	bool ret;
 	QFileInfo finfo(filename);
@@ -116,8 +116,8 @@ bool PreProcessorInputConditionDataItem::importInputCondition(const QString& fil
 
 bool PreProcessorInputConditionDataItem::exportInputCondition(const QString& filename)
 {
-	QString fname = projectData()->currentCgnsFileName();
-	m_dialog->setFileName(fname);
+	auto fname = projectData()->mainfile()->cgnsManager()->inputFileFullName();
+	m_dialog->setFileName(fname.c_str());
 
 	QFileInfo finfo(filename);
 	if (finfo.suffix() == "yml") {
