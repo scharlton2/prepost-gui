@@ -322,6 +322,11 @@ QString ProjectMainFile::filename() const
 	return m_projectData->absoluteFileName(ProjectMainFile::FILENAME);
 }
 
+QString ProjectMainFile::workDirectory() const
+{
+	return m_projectData->workDirectory();
+}
+
 void ProjectMainFile::load()
 {
 	QDomDocument doc;
