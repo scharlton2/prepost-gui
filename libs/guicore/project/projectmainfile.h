@@ -20,6 +20,7 @@ class iRICMainWindowInterface;
 class MeasuredData;
 class PostSolutionInfo;
 class ProjectData;
+class ProjectCgnsManager;
 class ProjectPostProcessors;
 class SolverDefinitionAbstract;
 class VersionNumber;
@@ -38,7 +39,7 @@ public:
 	ProjectMainFile(ProjectData* parent);
 	virtual ~ProjectMainFile();
 	/// Create first Cgns file.
-	void createDefaultCgnsFile();
+	void createInputCgnsFile();
 	/// Initializes for the specified solver definition.
 	void initForSolverDefinition();
 	/// Load solver information from file
@@ -72,17 +73,19 @@ public:
 	const VersionNumber& iRICVersion() const;
 	void setIRICVersion(const VersionNumber& v);
 
+	/// CGNS file manager
+	ProjectCgnsManager* cgnsManager() const;
 	/// Cgns file list
 	CgnsFileList* cgnsFileList() const {return m_cgnsFileList;}
 	/// Solution information
 	PostSolutionInfo* postSolutionInfo() const;
 	bool hasResults();
 	QStringList containedFiles() override;
-	QString currentCgnsFileName() const override;
+	std::string resultCgnsFileName() const override;
 	/// Clear the results stored in the current CGNS file.
 	void clearResults();
 	/// Save current cgns file.
-	bool saveCgnsFile();
+	bool saveCgnsFile(bool inhibitWarning = false);
 	/// Return true when the work data is modified.
 	bool isModified() const;
 	/// PostProcessors.
@@ -99,7 +102,7 @@ public:
 	const std::vector<vtkRenderer*>& renderers() const;
 
 	void updateActorVisibility(int idx, bool vis);
-	bool importCgnsFile(const QString& filename, const QString& newname);
+	bool importCgnsFile(const QString& filename);
 	/// Import Measured data from CSV files.
 	void addMeasuredData();
 	virtual void setModified(bool modified = true) override;
@@ -113,14 +116,14 @@ public:
 	QPointF offset() const;
 	void setOffset(double x, double y);
 
+	bool loadCgnsFile();
+
 	bool mkdirBGDIR();
 	/// Create background image
 	void addBackgroundImage(BackgroundImageInfo* image);
 	int showCoordinateSystemDialog(bool forceSelect = false);
 
 public slots:
-	bool switchCgnsFile(const QString& name);
-
 	void addBackgroundImage();
 	void moveUpImage(const QModelIndex& index);
 	void moveDownImage(const QModelIndex& index);
@@ -162,10 +165,6 @@ private:
 	ProjectData* m_projectData;
 	/// Renderers for background images
 	std::vector<vtkRenderer*> m_renderers;
-	/// Load data from CGNS file
-	bool loadCgnsFile(const QString& name);
-	/// Soad data from CGNS file
-	bool saveCgnsFile(const QString& name);
 	void checkVersionCompatibility();
 	/// Load DOM document
 	void loadDom(QDomDocument& doc);

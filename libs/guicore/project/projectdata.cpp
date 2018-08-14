@@ -236,8 +236,7 @@ QString ProjectData::newWorkfolderName(const QDir& workspace)
 
 bool ProjectData::loadCgnsFile()
 {
-	QString current = m_mainfile->cgnsFileList()->current()->filename();
-	return m_mainfile->switchCgnsFile(current);
+	return m_mainfile->loadCgnsFile();
 }
 
 QString ProjectData::workCgnsFileName(const QString& name) const

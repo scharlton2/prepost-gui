@@ -11,6 +11,7 @@
 #include "measured/measureddatacsvimporter.h"
 #include "offsetsettingdialog.h"
 #include "projectcgnsfile.h"
+#include "projectcgnsmanager.h"
 #include "projectdata.h"
 #include "projectdataitem.h"
 #include "projectmainfile.h"
@@ -59,32 +60,12 @@
 
 namespace {
 
-void deleteCgnsFile(const QString& filename)
-{
-	// delete the CGNS itself
-	QFile(filename).remove();
-
-	// delete linked file like Case1_Solution1.cgn, Case1_Solution2.cgn, ...
-	QFileInfo finfo(filename);
-	QStringList nameFilters;
-	nameFilters.append("*.cgn");
-	nameFilters.append("*.cgns");
-	QRegExp re(finfo.baseName() + "_Solution[\\d]+");
-	auto files = finfo.absoluteDir().entryList(nameFilters, QDir::Files);
-	for (auto f : files) {
-		QFileInfo f_info(f);
-		if (re.indexIn(f_info.baseName()) != -1) {
-			QFile(finfo.absoluteDir().filePath(f)).remove();
-		}
-	}
-}
-
 void copyCgnsFile(const QString& from, const QString& to)
 {
 	// copy the CGNS itself
 	QFile::copy(from, to);
 
-	// copy linked file like Case1_Solution1.cgn, Case1_Solution2.cgn, ...
+	// copy linked file like Solution1.cgn, Solution2.cgn, ...
 	QFileInfo from_finfo(from);
 	QFileInfo to_finfo(to);
 
@@ -107,6 +88,7 @@ const QString ProjectMainFile::FILENAME = "project.xml";
 const QString ProjectMainFile::BGDIR = "backgroundimages";
 
 ProjectMainFile::Impl::Impl(ProjectMainFile *parent) :
+	m_cgnsManager {new ProjectCgnsManager(parent)},
 	m_postSolutionInfo {new PostSolutionInfo(parent)},
 	m_postProcessors {new ProjectPostProcessors(parent)},
 	m_coordinateSystem {nullptr},
@@ -120,6 +102,7 @@ ProjectMainFile::Impl::~Impl()
 	if (m_coordinateSystem != nullptr) {
 		m_coordinateSystem->free();
 	}
+	delete m_cgnsManager;
 	delete m_postSolutionInfo;
 	delete m_postProcessors;
 }
@@ -248,40 +231,11 @@ void ProjectMainFile::setModified(bool modified)
 	impl->m_isModified = modified;
 }
 
-void ProjectMainFile::createDefaultCgnsFile()
+void ProjectMainFile::createInputCgnsFile()
 {
-	QString defaultName = m_cgnsFileList->proposeFilename();
-	m_cgnsFileList->add(defaultName);
-	// create template CGNS file.
-	QString fname = m_projectData->workCgnsFileName(defaultName);
-	// @todo currently, cell_dim, phys_dim are hard-coded to be 2 fore each.
-	// we must read it from Solver definition file in the future.
-	ProjectCgnsFile::createNewFile(fname, 2, 2);
-	ProjectCgnsFile::writeSolverInfo(fname, &(projectData()->solverDefinition()->abstract()));
-
-	m_cgnsFileList->setCurrent(defaultName);
-}
-
-bool ProjectMainFile::switchCgnsFile(const QString& name)
-{
-	CgnsFileEntry* c = m_cgnsFileList->current();
-	m_cgnsFileList->setCurrent(name);
-
-	// save data to the old cgns file.
-	if (c != nullptr && c->filename() != name) {
-		bool ret = saveCgnsFile(c->filename());
-		if (! ret) {return false;}
-	}
-
-	// discard data loaded from cgns file.
-	discardCgnsFileData();
-
-	// load data from the new cgns file.
-	bool ok = loadCgnsFile(name);
-	if (! ok) {return false;}
-
-	emit cgnsFileLoaded();
-	return true;
+	auto fname = impl->m_cgnsManager->inputFileFullName();
+	ProjectCgnsFile::createNewFile(fname.c_str(), 2, 2);
+	ProjectCgnsFile::writeSolverInfo(fname.c_str(), &(projectData()->solverDefinition()->abstract()));
 }
 
 void ProjectMainFile::loadSolverInformation()
@@ -528,7 +482,7 @@ QStringList ProjectMainFile::containedFiles()
 		ret << filename;
 	}
 	// Add CGNS files.
-	ret << m_cgnsFileList->containedFiles();
+	ret << impl->m_cgnsManager->containedFiles();
 
 	// Add External files in MainWindow
 	ret << m_projectData->mainWindow()->containedFiles();
@@ -539,22 +493,9 @@ QStringList ProjectMainFile::containedFiles()
 	return ret;
 }
 
-bool ProjectMainFile::importCgnsFile(const QString& fname, const QString& newname)
+bool ProjectMainFile::importCgnsFile(const QString& fname)
 {
-	QString fnamebody = QFileInfo(newname).baseName();
-	if (m_cgnsFileList->exists(fnamebody)) {
-		QMessageBox::critical(m_projectData->mainWindow(), tr("Error"), QString(tr("Solution %1 already exists.").arg(fnamebody)));
-		return false;
-	}
-	QRegExp rx(ProjectCgnsFile::acceptablePattern());
-	if (rx.indexIn(fnamebody) == - 1) {
-		QMessageBox::critical(m_projectData->mainWindow(), tr("Error"), QString(tr("CGNS file whose name contains characters other than alphabets and numbers can not be imported.")));
-		return false;
-	}
-
-	m_cgnsFileList->add(fnamebody);
-	QString to = m_projectData->workCgnsFileName(fnamebody);
-
+	QString to = impl->m_cgnsManager->resultFileFullName().c_str();
 	copyCgnsFile(fname, to);
 
 	std::string solverName;
@@ -571,40 +512,32 @@ bool ProjectMainFile::importCgnsFile(const QString& fname, const QString& newnam
 	}
 	QFileInfo finfo(fname);
 	LastIODirectory::set(finfo.absolutePath());
-	switchCgnsFile(fnamebody);
+	loadCgnsFile();
 
 	// CGNS file import is not undo-able.
 	iRICUndoStack::instance().clear();
 	return true;
 }
 
-QString ProjectMainFile::currentCgnsFileName() const
+std::string ProjectMainFile::resultCgnsFileName() const
 {
-	return m_projectData->currentCgnsFileName();
+	return impl->m_cgnsManager->resultFileFullName();
 }
 
-bool ProjectMainFile::loadCgnsFile(const QString& name)
+bool ProjectMainFile::loadCgnsFile()
 {
 	bool ret = false;
 	try {
-		// CGNS file name
-		QString fname = m_projectData->workCgnsFileName(name);
-		CgnsFileOpener opener(iRIC::toStr(fname), CG_MODE_READ);
+		auto fname = impl->m_cgnsManager->importFileName();
+		CgnsFileOpener opener(fname, CG_MODE_READ);
 		// load data.
 		ret = true;
 		loadFromCgnsFile(opener.fileId());
-	}
-	catch (const std::runtime_error&) {
-		QString shortFilename = name;
-		shortFilename.append(".cgn");
-		QMessageBox::critical(m_projectData->mainWindow(), tr("Error"), tr("Error occured while opening CGNS file in project file : %1").arg(shortFilename));
+		emit cgnsFileLoaded();
+	} catch (const std::runtime_error&) {
+		QMessageBox::critical(m_projectData->mainWindow(), tr("Error"), tr("Error occured while opening CGNS file in project file."));
 	}
 	return ret;
-}
-
-bool ProjectMainFile::saveCgnsFile()
-{
-	return saveCgnsFile(m_cgnsFileList->current()->filename());
 }
 
 bool ProjectMainFile::isModified() const
@@ -617,53 +550,50 @@ ProjectPostProcessors* ProjectMainFile::postProcessors() const
 	return impl->m_postProcessors;
 }
 
-bool ProjectMainFile::saveCgnsFile(const QString& name)
+bool ProjectMainFile::saveCgnsFile(bool inhibitWarning)
 {
-	QTime time;
 	// close CGNS file when the solution opened it.
 	impl->m_postSolutionInfo->close();
 
+	auto mainW = iricMainWindow();
 	// check grid status
-	try {
-		if (! clearResultsIfGridIsEdited()) {
+	if (mainW->isGridEdited() && impl->m_postSolutionInfo->hasResults() && ! inhibitWarning) {
+		int ret = QMessageBox::warning(mainW, tr("Warning"), tr("The grids are edited. When you save, the calculation result is discarded."), QMessageBox::Ok | QMessageBox::Cancel, QMessageBox::Cancel);
+		if (ret == QMessageBox::Cancel) {return false;}
+		bool ok = impl->m_cgnsManager->deleteOutputFile();
+		if (! ok) {
+			QMessageBox::warning(mainW, tr("Warning"), tr("Deleting output.cgn failed. Maybe it is opened from other programs."));
 			return false;
 		}
+	}
+
+	try {
+		CgnsFileOpener opener(impl->m_cgnsManager->inputFileFullName(), CG_MODE_MODIFY);
+		saveToCgnsFile(opener.fileId());
+		cg_configure(CG_CONFIG_COMPRESS, reinterpret_cast<void*>(1));
 	} catch (ErrorMessage& m) {
-		QMessageBox::warning(iricMainWindow(), tr("Warning"), tr("%1 Saving project file failed.").arg(m));
+		QMessageBox::warning(mainW, tr("Error"), tr("%1 Saving project file failed.").arg(m));
+		return false;
+	} catch (...) {
+		QMessageBox::warning(mainW, tr("Error"), tr("Saving project file failed."));
 		return false;
 	}
-	// close CGNS file when the solution opened it, again.
-	impl->m_postSolutionInfo->close();
 
-	// CGNS file name
-	QString fname = m_projectData->workCgnsFileName(name);
-	// save to current cgns file.
-	int fn, ier;
-	time.start();
-	ier = cg_open(iRIC::toStr(fname).c_str(), CG_MODE_MODIFY, &fn);
-	qDebug("cg_open(): %d", time.elapsed());
-	if (ier != 0) {return false;}
-	// write solver information
-	bool ret = ProjectCgnsFile::writeSolverInfo(fn, &(m_projectData->solverDefinition()->abstract()));
-	if (ret == false) {goto ERROR;}
-	// save data.
-	time.start();
-	try {
-		saveToCgnsFile(fn);
-	} catch (ErrorMessage& m) {
-		QMessageBox::warning(iricMainWindow(), tr("Warning"), tr("%1 Saving project file failed.").arg(m));
-		goto ERROR;
+	if (! impl->m_cgnsManager->outputFileExists()) {
+		bool ret = impl->m_cgnsManager->copyInputToOutput();
+		if (! ret) {
+			QMessageBox::warning(mainW, tr("Error"), tr("Saving output.cgn failed."));
+			return false;
+		}
 	}
-	qDebug("saveToCgnsFile(): %d", time.elapsed());
-	time.start();
-	ier = cg_configure(CG_CONFIG_COMPRESS, reinterpret_cast<void*>(0));
-	if (ier != 0) {goto ERROR;}
-	cg_close(fn);
-	qDebug("cg_close(): %d", time.elapsed());
+	if (! impl->m_cgnsManager->deleteOldOutputFile()) {
+		QMessageBox::warning(mainW, tr("Error"), tr("Deleting Case1.cgn failed."));
+		return false;
+	}
+
+	impl->m_cgnsManager->deleteInputTmpFile();
+
 	return true;
-ERROR:
-	cg_close(fn);
-	return false;
 }
 
 void ProjectMainFile::loadFromCgnsFile(const int fn)
@@ -691,7 +621,6 @@ void ProjectMainFile::discardCgnsFileData()
 	impl->m_postSolutionInfo->discardCgnsFileData();
 }
 
-
 const std::vector<BackgroundImageInfo*>& ProjectMainFile::backgroundImages() const
 {
 	return impl->m_backgroundImages;
@@ -709,33 +638,23 @@ const std::vector<vtkRenderer*>& ProjectMainFile::renderers() const
 
 void ProjectMainFile::clearResults()
 {
-	// close CGNS file when the solution opened it.
-	impl->m_postSolutionInfo->close();
+	bool ok = saveCgnsFile(true);
+	if (! ok) {return;}
 
-	// CGNS file name
-	QString fname = currentCgnsFileName();
-	// delete old file
-	deleteCgnsFile(fname);
+	ok = impl->m_cgnsManager->copyInputToOutput();
+	if (! ok) {
+		QMessageBox::critical(iricMainWindow(), tr("Error"), tr("Saving CGNS file failed."));
+		return;
+	}
 
-	// save to current cgns file, with write mode.
-	ProjectCgnsFile::createNewFile(fname, 2, 2);
-	int fn, ier;
-	ier = cg_open(iRIC::toStr(fname).c_str(), CG_MODE_MODIFY, &fn);
-	if (ier != 0) {return;}
-	// write solver information
-	bool ret = ProjectCgnsFile::writeSolverInfo(fn, &(m_projectData->solverDefinition()->abstract()));
-	if (ret == false) {goto ERROR;}
-	// save data.
-	toggleGridEditFlag();
-	saveToCgnsFile(fn);
-	cg_close(fn);
 	impl->m_postSolutionInfo->checkCgnsStepsUpdate();
+	impl->m_postSolutionInfo->close();
 	projectData()->mainWindow()->clearSolverConsoleLog();
-	return;
+}
 
-ERROR:
-	cg_close(fn);
-	return;
+ProjectCgnsManager* ProjectMainFile::cgnsManager() const
+{
+	return impl->m_cgnsManager;
 }
 
 PostSolutionInfo* ProjectMainFile::postSolutionInfo() const
