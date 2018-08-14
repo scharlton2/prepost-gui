@@ -26,7 +26,7 @@ CgnsFileOpener::~CgnsFileOpener()
 {
 	cg_close(impl->m_fileId);
 #ifdef _MSC_VER
-	// force linked files to close like Case1_Solution1.cgn, Case1_Solution2.cgn, ...
+	// force linked files to close like Solution1.cgn, Solution2.cgn, ...
 	herr_t err = H5close();
 	Q_ASSERT(err == 0);
 #endif
