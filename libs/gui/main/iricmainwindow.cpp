@@ -545,6 +545,12 @@ const QProcessEnvironment& iRICMainWindow::processEnvironment() const
 	return m_processEnvironment;
 }
 
+bool iRICMainWindow::isGridEdited() const
+{
+	auto pre = dynamic_cast<PreProcessorWindow*>(m_preProcessorWindow);
+	return pre->projectDataItem()->isGridEdited();
+}
+
 ExecuterWatcher* iRICMainWindow::buildExecuteWatcher(ExecuterI* executer)
 {
 	if (m_cuiMode) {
