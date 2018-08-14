@@ -2,7 +2,7 @@
 #include "projectgridimporter.h"
 
 #include <guicore/base/iricmainwindowinterface.h>
-#include <guicore/project/projectdata.h>
+#include <guicore/project/projectcgnsmanager.h>
 #include <guicore/project/projectdata.h>
 #include <guicore/project/projectmainfile.h>
 #include <guicore/project/projectworkspace.h>
@@ -49,8 +49,7 @@ bool ProjectGridImporter::import(Grid* grid, const QString& filename, const QStr
 	} catch (ErrorMessage& /*m*/) {
 		return false;
 	}
-	tmpProj.loadCgnsList();
-	QString cgnsFile = tmpProj.currentCgnsFileName();
+	QString cgnsFile = tmpProj.mainfile()->cgnsManager()->importFileFullName().c_str();
 
 	CgnsGridImporter* importer = getCgnsImporter();
 	// load grid from CGNS file.
