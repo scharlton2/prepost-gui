@@ -266,7 +266,7 @@ void iRICMainWindow::newProject(SolverDefinitionAbstract* solver)
 	}
 
 	m_mousePositionWidget->setProjectData(m_projectData);
-	m_projectData->mainfile()->createDefaultCgnsFile();
+	m_projectData->mainfile()->createInputCgnsFile();
 	setupForNewProjectData();
 
 	m_projectData->loadCgnsFile();
@@ -513,8 +513,7 @@ void iRICMainWindow::importCalculationResult(const QString& fname)
 
 	setupForNewProjectData();
 
-	QString newname = m_projectData->mainfile()->cgnsFileList()->proposeFilename();
-	bret = m_projectData->mainfile()->importCgnsFile(fname, newname);
+	bret = m_projectData->mainfile()->importCgnsFile(fname);
 	if (! bret) {return;}
 
 	connect(m_projectData->mainfile()->postSolutionInfo(), SIGNAL(allPostProcessorsUpdated()), this, SIGNAL(allPostProcessorsUpdated()));
