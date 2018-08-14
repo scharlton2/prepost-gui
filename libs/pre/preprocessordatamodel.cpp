@@ -37,6 +37,7 @@
 #include <guicore/pre/hydraulicdata/hydraulicdataimporter.h>
 #include <guicore/project/cgnsfileentry.h>
 #include <guicore/project/cgnsfilelist.h>
+#include <guicore/project/projectcgnsmanager.h>
 #include <guicore/project/projectdata.h>
 #include <guicore/project/projectmainfile.h>
 #include <guicore/project/projectworkspace.h>
@@ -164,35 +165,14 @@ void PreProcessorDataModel::importCalcConditionFromOtherProject(const QString& f
 	QString tmpWorkfolder = ProjectData::newWorkfolderName(w->workspace());
 	ProjectData tmpProj(tmpWorkfolder, nullptr);
 	tmpProj.unzipFrom(fname);
-	tmpProj.loadCgnsList();
 
 	PreProcessorWindow* pre = dynamic_cast<PreProcessorWindow*>(projectData()->mainWindow()->preProcessorWindow());
-	// now it's loaded. find how many cgns files are included.
-	QList<CgnsFileEntry*> list = tmpProj.mainfile()->cgnsFileList()->cgnsFiles();
-	if (list.count() == 1) {
-		// automatically use the only cgns file.
-		QString fullname = tmpProj.workCgnsFileName(list.first()->filename());
-		bool ret = pre->importInputCondition(fullname);
-		if (! ret) {
-			// not imported.
-			goto ERROR;
-		}
-	} else {
-		QStringList items;
-		for (auto it = list.begin(); it != list.end(); ++it) {
-			items << (*it)->filename();
-		}
-		QFileInfo tmpp(fname);
-		QString projname = tmpp.fileName();
-		bool ok;
-		QString solname = QInputDialog::getItem(projectData()->mainWindow(), tr("Select case"), tr("Please select from which case in %1 to import calculation conditions.").arg(projname), items, 0, false, &ok);
-		if (! ok) {goto ERROR;}
-		QString fullname = tmpProj.workCgnsFileName(solname);
-		bool ret = pre->importInputCondition(fullname);
-		if (! ret) {
-			// not imported.
-			goto ERROR;
-		}
+	auto cgnsName = tmpProj.mainfile()->cgnsManager()->importFileFullName();
+
+	bool ret = pre->importInputCondition(cgnsName.c_str());
+	if (! ret) {
+		// not imported.
+		goto ERROR;
 	}
 	iRIC::rmdirRecursively(tmpWorkfolder);
 	QMessageBox::information(projectData()->mainWindow(), tr("Success"), tr("Calculation Condition is successfully imported from the specified file."));
