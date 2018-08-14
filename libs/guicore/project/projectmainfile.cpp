@@ -5,8 +5,6 @@
 #include "../pre/base/preprocessorwindowinterface.h"
 #include "../solverdef/solverdefinitionabstract.h"
 #include "backgroundimageinfo.h"
-#include "cgnsfileentry.h"
-#include "cgnsfilelist.h"
 #include "measured/measureddata.h"
 #include "measured/measureddatacsvimporter.h"
 #include "offsetsettingdialog.h"
@@ -215,7 +213,6 @@ ProjectMainFile::ProjectMainFile(ProjectData* parent) :
 	m_projectData = parent;
 	// @todo we should get iRIC version through parent->mainWindow(),
 	// and set it to m_iRICVersion.
-	m_cgnsFileList = new CgnsFileList(this);
 }
 
 ProjectMainFile::~ProjectMainFile()
@@ -379,14 +376,8 @@ void ProjectMainFile::doLoadFromProjectMainFile(const QDomNode& node)
 	impl->m_offset.setX(offsetX);
 	impl->m_offset.setY(offsetY);
 
-	// read cgns file list
-	QDomNode tmpNode = iRIC::getChildNode(node, "CgnsFileList");
-	if (! tmpNode.isNull()) {
-		m_cgnsFileList->loadFromProjectMainFile(tmpNode);
-	}
-
 	// read measured data
-	tmpNode = iRIC::getChildNode(node, "MeasuredDatas");
+	auto tmpNode = iRIC::getChildNode(node, "MeasuredDatas");
 	if (! tmpNode.isNull()) {
 		impl->loadMeasuredDatas(tmpNode);
 	}
@@ -411,12 +402,6 @@ void ProjectMainFile::doSaveToProjectMainFile(QXmlStreamWriter& writer)
 
 	iRIC::setDoubleAttribute(writer, "offsetX", impl->m_offset.x());
 	iRIC::setDoubleAttribute(writer, "offsetY", impl->m_offset.y());
-
-	// write cgns file list
-	writer.writeStartElement("CgnsFileList");
-	// delegate to CgnsFileList
-	m_cgnsFileList->saveToProjectMainFile(writer);
-	writer.writeEndElement();
 
 	// write measured data
 	writer.writeStartElement("MeasuredDatas");

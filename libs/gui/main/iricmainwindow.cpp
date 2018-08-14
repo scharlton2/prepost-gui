@@ -34,7 +34,6 @@
 #include <guicore/postcontainer/postdataexportdialog.h>
 #include <guicore/postcontainer/postsolutioninfo.h>
 #include <guicore/postcontainer/posttimesteps.h>
-#include <guicore/project/cgnsfilelist.h>
 #include <guicore/project/projectcgnsfile.h>
 #include <guicore/project/projectcgnsmanager.h>
 #include <guicore/project/projectdata.h>

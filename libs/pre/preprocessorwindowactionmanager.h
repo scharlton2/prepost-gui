@@ -4,7 +4,6 @@
 #include <QList>
 #include <QObject>
 
-class CgnsFileEntry;
 class PreProcessorWindow;
 
 class QAction;
@@ -26,9 +25,6 @@ public:
 	QAction* calcCondExportAction;
 	QMenu* calcCondMenu() const;
 	void connectWithDataModel();
-
-private slots:
-	void informCgnsListUpdate(const QList<CgnsFileEntry*>& list);
 
 private:
 	/// Initialization

@@ -73,10 +73,6 @@ public:
 	const VersionNumber version();
 	/// Get new workfolder name to create
 	static QString newWorkfolderName(const QDir& workspace);
-	QString workCgnsFileName(const QString& name) const;
-	QString currentCgnsFileName() const;
-	QString masterCgnsFileName() const;
-	QString flushCopyCgnsFileName() const;
 	/// iRIC Main Window.
 	iRICMainWindowInterface* mainWindow() const {return m_mainWindow;}
 	QString tmpFileName() const;
@@ -94,12 +90,6 @@ public:
 	void openPostProcessors();
 	/// Project data work directory is inside workspace.
 	bool isInWorkspace() const;
-
-	void setIsSolverRunning(bool running);
-	bool isSolverRunning() const;
-
-	int flushIndex() const;
-	void incrementFlushIndex();
 
 public slots:
 	/// Open work directory with Explorer.
@@ -133,10 +123,6 @@ private:
 	iRICMainWindowInterface* m_mainWindow;
 	/// Post only mode (i. e. solver definition does not exist);
 	bool m_isPostOnlyMode;
-	/// True when solver is running
-	bool m_isSolverRunning;
-	/// Flush index
-	int m_flushIndex;
 };
 
 #endif // PROJECTDATA_H

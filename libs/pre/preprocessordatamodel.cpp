@@ -35,8 +35,6 @@
 #include <guicore/pre/base/preprocessorgraphicsviewinterface.h>
 #include <guicore/pre/gridcreatingcondition/gridcreatingcondition.h>
 #include <guicore/pre/hydraulicdata/hydraulicdataimporter.h>
-#include <guicore/project/cgnsfileentry.h>
-#include <guicore/project/cgnsfilelist.h>
 #include <guicore/project/projectcgnsmanager.h>
 #include <guicore/project/projectdata.h>
 #include <guicore/project/projectmainfile.h>

@@ -14,7 +14,6 @@ class QDomDocument;
 class QPointF;
 
 class BackgroundImageInfo;
-class CgnsFileList;
 class CoordinateSystem;
 class iRICMainWindowInterface;
 class MeasuredData;
@@ -73,8 +72,6 @@ public:
 
 	/// CGNS file manager
 	ProjectCgnsManager* cgnsManager() const;
-	/// Cgns file list
-	CgnsFileList* cgnsFileList() const {return m_cgnsFileList;}
 	/// Solution information
 	PostSolutionInfo* postSolutionInfo() const;
 	bool hasResults();
@@ -158,8 +155,6 @@ private:
 	ProjectData* projectData() const override;
 	QString relativeSubPath() const override;
 
-	/// Cgns file list
-	CgnsFileList* m_cgnsFileList;
 	/// ProjectData
 	ProjectData* m_projectData;
 	/// Renderers for background images

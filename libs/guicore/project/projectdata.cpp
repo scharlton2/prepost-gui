@@ -3,8 +3,7 @@
 #include "../pre/base/preprocessorwindowinterface.h"
 #include "../solverdef/solverdefinitiongridattribute.h"
 #include "../solverdef/solverdefinitiongridtype.h"
-#include "cgnsfileentry.h"
-#include "cgnsfilelist.h"
+#include "projectcgnsmanager.h"
 #include "projectdata.h"
 #include "projectmainfile.h"
 #include "projectworkspace.h"
@@ -45,9 +44,7 @@ ProjectData::ProjectData(const QString& workdir, iRICMainWindowInterface* parent
 	m_folderProject {false},
 	m_isPostOnlyMode {false},
 	m_lockFile {nullptr},
-	m_mainfile {new ProjectMainFile(this)},
-	m_isSolverRunning {false},
-	m_flushIndex {1}
+	m_mainfile {new ProjectMainFile(this)}
 {
 	// if the workdirectory doesn't exists, make it.
 	QDir wdir(m_workDirectory);
@@ -232,39 +229,6 @@ QString ProjectData::newWorkfolderName(const QDir& workspace)
 bool ProjectData::loadCgnsFile()
 {
 	return m_mainfile->loadCgnsFile();
-}
-
-QString ProjectData::workCgnsFileName(const QString& name) const
-{
-	QString tmpstr = name;
-	return QDir(m_workDirectory).absoluteFilePath(tmpstr.append(".cgn"));
-}
-
-QString ProjectData::currentCgnsFileName() const
-{
-	if (isSolverRunning()) {
-		return flushCopyCgnsFileName();
-	} else {
-		return masterCgnsFileName();
-	}
-}
-
-QString ProjectData::masterCgnsFileName() const
-{
-	QString filename = m_mainfile->cgnsFileList()->current()->filename();
-	return workCgnsFileName(filename);
-}
-
-QString ProjectData::flushCopyCgnsFileName() const
-{
-	QDir wdir(m_workDirectory);
-	wdir.mkdir("tmp");
-
-	QString tmpstr = m_mainfile->cgnsFileList()->current()->filename();
-	QString fname = QDir(m_workDirectory).absoluteFilePath(QString("tmp/").append(tmpstr).append(".cgn"));
-	fname.append(".copy");
-	fname.append(QString::number(m_flushIndex));
-	return fname;
 }
 
 void ProjectData::openWorkDirectory()
@@ -454,16 +418,10 @@ ERROR:
 
 bool ProjectData::hasHugeCgns() const
 {
-	QList<CgnsFileEntry*> cgnsFiles = m_mainfile->cgnsFileList()->cgnsFiles();
-	for (int i = 0; i < cgnsFiles.count(); ++i) {
-		CgnsFileEntry* entry = cgnsFiles.at(i);
-		QString filename = workCgnsFileName(entry->filename());
-		QFileInfo finfo(filename);
-		if (finfo.size() > 2000000000) {
-			return true;
-		}
-	}
-	return false;
+	auto outputName = m_mainfile->cgnsManager()->outputFileFullName();
+	QFileInfo finfo(outputName.c_str());
+
+	return (finfo.size() > 2000000000);
 }
 
 bool ProjectData::hasTooManyInnerFiles()
@@ -482,37 +440,4 @@ bool ProjectData::isInWorkspace() const
 	if (m_mainWindow == nullptr) {return false;}
 	QString wsPath = m_mainWindow->workspace()->workspace().absolutePath();
 	return m_workDirectory.contains(wsPath);
-}
-
-void ProjectData::setIsSolverRunning(bool running)
-{
-	if (running) {
-		// copy CGNS file.
-		QString from = masterCgnsFileName();
-		QString to = flushCopyCgnsFileName();
-		// copy current CGNS file to file with prefix ".copy".
-		QFile::copy(from, to);
-	} else {
-		mainfile()->postSolutionInfo()->close();
-		// remove Copyed CGNS file.
-		QFile::remove(flushCopyCgnsFileName());
-		m_flushIndex = 1;
-	}
-
-	m_isSolverRunning = running;
-}
-
-bool ProjectData::isSolverRunning() const
-{
-	return m_isSolverRunning;
-}
-
-int ProjectData::flushIndex() const
-{
-	return m_flushIndex;
-}
-
-void ProjectData::incrementFlushIndex()
-{
-	++ m_flushIndex;
 }

@@ -7,7 +7,6 @@
 #include <QMap>
 
 #include <guicore/solverdef/solverdefinition.h>
-#include <guicore/project/cgnsfilelist.h>
 
 class QMenu;
 class QMenuBar;
