@@ -358,7 +358,7 @@ void Graph2dScatteredWindowDataModel::updateData()
 	if (fn == 0) {
 		// file not opened.
 		try {
-			opener = new CgnsFileOpener(iRIC::toStr(currentCgnsFileName()), CG_MODE_READ);
+			opener = new CgnsFileOpener(resultCgnsFileName(), CG_MODE_READ);
 			fn = opener->fileId();
 		} catch (const std::runtime_error&) {
 			return;

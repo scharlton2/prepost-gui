@@ -61,9 +61,9 @@ void ProjectDataItem::saveToProjectMainFile(QXmlStreamWriter& writer)
 	}
 }
 
-QString ProjectDataItem::currentCgnsFileName() const
+std::string ProjectDataItem::resultCgnsFileName() const
 {
-	return parent()->currentCgnsFileName();
+	return parent()->resultCgnsFileName();
 }
 
 void ProjectDataItem::loadFromCgnsFile(int)

@@ -882,7 +882,7 @@ bool PostSolutionInfo::open()
 	}
 
 	try {
-		m_opener = new CgnsFileOpener(iRIC::toStr(currentCgnsFileName()), CG_MODE_READ);
+		m_opener = new CgnsFileOpener(resultCgnsFileName(), CG_MODE_READ);
 	} catch (const std::runtime_error&) {
 		return false;
 	}

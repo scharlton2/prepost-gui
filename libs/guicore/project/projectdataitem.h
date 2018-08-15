@@ -6,6 +6,8 @@
 #include <QObject>
 #include <QDataStream>
 
+#include <string>
+
 class iRICMainWindowInterface;
 class ProjectData;
 
@@ -46,7 +48,7 @@ public:
 	/// @name I/O interface against CGNS file
 	//@{
 	/// Currently opened CGNS file name
-	virtual QString currentCgnsFileName() const;
+	virtual std::string resultCgnsFileName() const;
 	/// Load data from CGNS file
 	virtual void loadFromCgnsFile(const int fn);
 	/// Save data into CGNS file
