@@ -591,7 +591,7 @@ bool ProjectMainFile::saveCgnsFile(bool inhibitWarning)
 		return false;
 	}
 
-	impl->m_cgnsManager->deleteInputTmpFile();
+	// impl->m_cgnsManager->deleteInputTmpFile();
 
 	return true;
 }
