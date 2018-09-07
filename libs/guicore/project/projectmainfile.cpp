@@ -485,6 +485,11 @@ std::string ProjectMainFile::resultCgnsFileName() const
 	return impl->m_cgnsManager->resultFileFullName();
 }
 
+std::string ProjectMainFile::resultCgnsFileNameForStep(int step) const
+{
+	return impl->m_cgnsManager->resultFileForStep(step);
+}
+
 bool ProjectMainFile::loadCgnsFile()
 {
 	if (! impl->m_cgnsManager->renameOldOutputToInput()) {return false;}

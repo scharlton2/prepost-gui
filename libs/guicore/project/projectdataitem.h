@@ -49,6 +49,8 @@ public:
 	//@{
 	/// Currently opened CGNS file name
 	virtual std::string resultCgnsFileName() const;
+	/// CGNS file name for a certain time step
+	virtual std::string resultCgnsFileNameForStep(int step) const;
 	/// Load data from CGNS file
 	virtual void loadFromCgnsFile(const int fn);
 	/// Save data into CGNS file

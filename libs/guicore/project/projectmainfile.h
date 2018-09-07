@@ -77,6 +77,7 @@ public:
 	bool hasResults();
 	QStringList containedFiles() override;
 	std::string resultCgnsFileName() const override;
+	std::string resultCgnsFileNameForStep(int step) const override;
 	/// Clear the results stored in the current CGNS file.
 	void clearResults();
 	/// Save current cgns file.

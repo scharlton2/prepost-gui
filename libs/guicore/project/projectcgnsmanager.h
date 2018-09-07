@@ -41,6 +41,8 @@ public:
 	std::string resultFileName() const;
 	std::string resultFileFullName() const;
 
+	std::string resultFileForStep(int step) const;
+
 	bool renameOldOutputToInput();
 	bool copyInputToOutput();
 

@@ -11,6 +11,8 @@
 
 #include <QDir>
 
+#include <sstream>
+
 namespace {
 
 const QString INPUT_FILENAME      = "input.cgn";
@@ -127,6 +129,14 @@ std::string ProjectCgnsManager::resultFileFullName() const
 	} else {
 		return inputFileFullName();
 	}
+}
+
+std::string ProjectCgnsManager::resultFileForStep(int step) const
+{
+	std::ostringstream ss;
+	ss << "result/Solution" << (step + 1) << ".cgn";
+	QDir dir(impl->m_mainFile->workDirectory());
+	return iRIC::toStr(dir.absoluteFilePath(ss.str().c_str()));
 }
 
 bool ProjectCgnsManager::renameOldOutputToInput()

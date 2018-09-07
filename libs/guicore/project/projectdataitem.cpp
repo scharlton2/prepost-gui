@@ -66,6 +66,11 @@ std::string ProjectDataItem::resultCgnsFileName() const
 	return parent()->resultCgnsFileName();
 }
 
+std::string ProjectDataItem::resultCgnsFileNameForStep(int step) const
+{
+	return parent()->resultCgnsFileNameForStep(step);
+}
+
 void ProjectDataItem::loadFromCgnsFile(int)
 {}
 
