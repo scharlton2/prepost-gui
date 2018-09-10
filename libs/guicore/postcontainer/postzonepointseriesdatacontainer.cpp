@@ -1,5 +1,9 @@
+#include "../misc/cgnsfileopener.h"
 #include "../project/projectcgnsfile.h"
+#include "../project/projectdata.h"
+#include "../project/projectmainfile.h"
 #include "postsolutioninfo.h"
+#include "posttimesteps.h"
 #include "postzonepointseriesdatacontainer.h"
 
 #include <misc/stringtool.h>
@@ -43,12 +47,11 @@ bool PostZonePointSeriesDataContainer::loadData(const int fn, GridLocation_t loc
 {
 	bool ret;
 	int ier;
-	int numSols;
 	ret = setZoneId(fn);
 	if (! ret) {return false;}
 
-	ier = cg_nsols(fn, m_baseId, m_zoneId, &numSols);
-	if (ier != 0) {return false;}
+	int numSols = projectData()->mainfile()->postSolutionInfo()->timeSteps()->timesteps().length();
+
 	m_data.clear();
 	QRegExp rx("^(.+) \\(magnitude\\)$");
 	bool magnitude = (rx.indexIn(m_physName) != -1);
@@ -59,10 +62,12 @@ bool PostZonePointSeriesDataContainer::loadData(const int fn, GridLocation_t loc
 	}
 	GridLocation_t loc;
 	char solname[32];
-	for (int i = 1; i <= numSols; ++i) {
-		ier = cg_goto(fn, m_baseId, "Zone_t", m_zoneId, "FlowSolution_t", i, "end");
+	for (int i = 0; i < numSols; ++i) {
+		CgnsFileOpener o(resultCgnsFileNameForStep(i), CG_MODE_READ);
+
+		ier = cg_goto(o.fileId(), m_baseId, "Zone_t", m_zoneId, "FlowSolution_t", 1, "end");
 		if (ier != 0) {return false;}
-		ier = cg_sol_info(fn, m_baseId, m_zoneId, i, solname, &loc);
+		ier = cg_sol_info(o.fileId(), m_baseId, m_zoneId, 1, solname, &loc);
 		if (ier != 0) {return false;}
 		if (location != loc) {continue;}
 		int numArrays;
