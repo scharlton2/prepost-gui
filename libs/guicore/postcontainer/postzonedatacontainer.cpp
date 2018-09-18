@@ -246,16 +246,8 @@ bool PostZoneDataContainer::loadStructuredGrid(const int fn, const int currentSt
 			cgsize_t dimVector[3];
 			cg_array_info(i, arrayname, &dataType, &dimension, dimVector);
 			if (QString(arrayname) == "GridCoordinatesPointers") {
-				// GridCoordinatesPointers found.
-				std::vector<char> pointers(dimVector[0] * dimVector[1]);
-				cg_array_read(i, pointers.data());
-				char currentCoordinates[32];
-				memcpy(currentCoordinates, &(pointers[32 * currentStep]), 32);
-				// currentCoordinates is not null terminated.
-				currentCoordinates[31] = '\0';
-				QString curCoord = QString(currentCoordinates).trimmed();
 				// now, goto the specified coordinates node.
-				ier = cg_goto(fn, m_baseId, "Zone_t", m_zoneId, iRIC::toStr(curCoord).c_str(), 0, "end");
+				ier = cg_goto(fn, m_baseId, "Zone_t", m_zoneId, "GridCoordinates_t", 2, "end");
 				iterativeCoordinates = true;
 			}
 		}
@@ -566,12 +558,18 @@ bool PostZoneDataContainer::findSolutionId(const int fn, const int currentStep, 
 
 bool PostZoneDataContainer::getSolutionId(const int fn, const int currentStep, int* solId)
 {
-	return findSolutionId(fn, currentStep, solId, "FlowSolutionPointers");
+	*solId = 1;
+	return true;
+
+	// return findSolutionId(fn, currentStep, solId, "FlowSolutionPointers");
 }
 
 bool PostZoneDataContainer::getCellSolutionId(const int fn, const int currentStep, int* solId)
 {
-	return findSolutionId(fn, currentStep, solId, "FlowCellSolutionPointers");
+	*solId = 2;
+	return true;
+
+	// return findSolutionId(fn, currentStep, solId, "FlowCellSolutionPointers");
 }
 
 template<class T, class DA>
