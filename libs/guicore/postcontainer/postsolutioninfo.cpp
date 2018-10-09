@@ -53,7 +53,8 @@ PostSolutionInfo::PostSolutionInfo(ProjectMainFile* parent) :
 	m_openerForStep {nullptr},
 	m_iterationType {SolverDefinition::NoIteration},
 	m_exportFormat {PostDataExportDialog::Format::VTKASCII},
-	m_particleExportPrefix {"Particle_"}
+	m_particleExportPrefix {"Particle_"},
+	m_resultSeparated {true}
 {}
 
 PostSolutionInfo::~PostSolutionInfo()
@@ -115,10 +116,13 @@ bool PostSolutionInfo::setCurrentStep(unsigned int step, int fn)
 	QTime time, wholetime;
 	wholetime.start();
 
-	bool ok = openForStep();
-	if (! ok) {return false;}
+	int tmpfn = fn;
+	if (fn == 0 || m_resultSeparated) {
+		bool ok = openForStep();
+		if (! ok) {return false;}
 
-	int tmpfn = m_openerForStep->fileId();
+		tmpfn = m_openerForStep->fileId();
+	}
 
 	time.start();
 	setupZoneDataContainers(tmpfn);
@@ -214,7 +218,8 @@ bool PostSolutionInfo::innerSetupZoneDataContainers(int fn, int dim, std::vector
 		int narrays;
 		ier = cg_narrays(&narrays);
 		if (ier != 0) {return false;}
-		// if (narrays == 0) {continue;}
+		// if ZoneIterativeData contains data, it means that calculation results
+		// are saved in the output.cgn.
 		tmpZoneNames.push_back(std::string(zoneName));
 	}
 	if (*zoneNames == tmpZoneNames) {
@@ -394,6 +399,20 @@ ProjectMainFile* PostSolutionInfo::mainFile() const
 	return dynamic_cast<ProjectMainFile*> (parent());
 }
 
+void PostSolutionInfo::checkIfResultSeparated(int fn)
+{
+	int ier;
+	int narrays;
+
+	ier = cg_goto(fn, 1, "Zone_t", 1, "ZoneIterativeData", 0, "end");
+	if (ier != 0) {return;}
+
+	ier = cg_narrays(&narrays);
+	if (ier != 0) {return;}
+
+	m_resultSeparated = ! (narrays > 0);
+}
+
 bool PostSolutionInfo::hasResults()
 {
 	if (m_timeSteps != 0) {
@@ -430,6 +449,7 @@ void PostSolutionInfo::checkCgnsStepsUpdate()
 		QMessageBox::warning(projectData()->mainWindow(), tr("Warning"), tr("Loading calculation result for visualization failed. Please try again later, or wait until end of calculation."));
 		return;
 	}
+	checkIfResultSeparated(m_opener->fileId());
 	if (m_timeSteps != nullptr) {
 		m_timeSteps->checkStepsUpdate(m_opener->fileId());
 	}
@@ -499,6 +519,8 @@ void PostSolutionInfo::loadFromCgnsFile(const int fn)
 		m_iterationSteps->loadFromCgnsFile(fn);
 		m_iterationSteps->blockSignals(false);
 	}
+	checkIfResultSeparated(fn);
+
 	setCurrentStep(currentStep(), fn);
 }
 
@@ -656,7 +678,9 @@ void PostSolutionInfo::close()
 	delete m_opener;
 	m_opener = nullptr;
 
-	delete m_openerForStep;
+	if (m_resultSeparated) {
+		delete m_openerForStep;
+	}
 	m_openerForStep = nullptr;
 }
 
@@ -678,6 +702,11 @@ void PostSolutionInfo::setExportSetting(const PostExportSetting& setting)
 void PostSolutionInfo::setParticleExportPrefix(const QString& prefix)
 {
 	m_particleExportPrefix = prefix;
+}
+
+bool PostSolutionInfo::resultSeparated() const
+{
+	return m_resultSeparated;
 }
 
 int PostSolutionInfo::fileId() const
@@ -911,6 +940,13 @@ bool PostSolutionInfo::open()
 
 bool PostSolutionInfo::openForStep()
 {
+	if (! m_resultSeparated) {
+		bool ok = open();
+		if (! ok) {return false;}
+
+		m_openerForStep = m_opener;
+		return true;
+	}
 	delete m_openerForStep;
 	m_openerForStep = nullptr;
 

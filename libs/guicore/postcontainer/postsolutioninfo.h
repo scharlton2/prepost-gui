@@ -64,6 +64,7 @@ public:
 	const QString& particleExportPrefix() const;
 	void setExportSetting(const PostExportSetting& setting);
 	void setParticleExportPrefix(const QString& prefix);
+	bool resultSeparated() const;
 
 	/// File ID that can be used with cgnslib functions.
 	int fileId() const;
@@ -107,6 +108,8 @@ private:
 	void checkBaseIterativeDataExist(int fn);
 	ProjectMainFile* mainFile() const;
 
+	void checkIfResultSeparated(int fn);
+
 	static const int TIMERINTERVAL = 500;
 	SolverDefinition::IterationType m_iterationType;
 	PostIterationSteps* m_iterationSteps;
@@ -132,6 +135,7 @@ private:
 
 	PostExportSetting m_exportSetting;
 	QString m_particleExportPrefix;
+	bool m_resultSeparated;
 
 	class BuildTmpFileAndOpenThread;
 	class CopyResultToOutputAndOpenThread;

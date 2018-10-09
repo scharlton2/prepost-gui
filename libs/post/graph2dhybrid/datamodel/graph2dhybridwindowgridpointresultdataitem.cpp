@@ -6,10 +6,13 @@
 #include "graph2dhybridwindowresultcopydataitem.h"
 #include "graph2dhybridwindowresultgroupdataitem.h"
 
+#include <guicore/postcontainer/postsolutioninfo.h>
 #include <guicore/postcontainer/posttimesteps.h>
 #include <guicore/postcontainer/posttimesteps.h>
 #include <guicore/postcontainer/postzonedatacontainer.h>
 #include <guicore/postcontainer/postzonepointseriesdatacontainer.h>
+#include <guicore/project/projectdata.h>
+#include <guicore/project/projectmainfile.h>
 #include <misc/stringtool.h>
 
 #include <QPen>
@@ -25,16 +28,17 @@
 #include <cmath>
 #include <qwt_plot_curve.h>
 
-Graph2dHybridWindowGridPointResultDataItem::Graph2dHybridWindowGridPointResultDataItem(const Graph2dHybridWindowResultSetting::Setting& setting, int index, Graph2dWindowDataItem* parent)
-	: Graph2dHybridWindowResultDataItem(setting.name(), index, setting, parent)
+Graph2dHybridWindowGridPointResultDataItem::Graph2dHybridWindowGridPointResultDataItem(const Graph2dHybridWindowResultSetting::Setting& setting, int index, Graph2dWindowDataItem* parent) :
+	Graph2dHybridWindowResultDataItem(setting.name(), index, setting, parent)
 {
 	const Graph2dHybridWindowResultSetting& s = dataModel()->setting();
 	Graph2dHybridWindowResultSetting::DataTypeInfo* info = s.targetDataTypeInfo();
-	m_dataContainer = new PostZonePointSeriesDataContainer(info->dimension, info->zoneName, setting.name(), s.gridIndex(), info->gridLocation, this);
+	m_dataContainer = new PostZonePointSeriesDataContainer(info->dimension, info->zoneName, setting.name(), s.gridIndex(), info->gridLocation, projectData()->mainfile()->postSolutionInfo());
 }
 
 Graph2dHybridWindowGridPointResultDataItem::~Graph2dHybridWindowGridPointResultDataItem()
 {
+	delete m_dataContainer;
 }
 
 void Graph2dHybridWindowGridPointResultDataItem::doLoadFromProjectMainFile(const QDomNode& /*node*/)

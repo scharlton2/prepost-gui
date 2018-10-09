@@ -38,17 +38,16 @@ public:
 	void setGridLocation(GridLocation_t location) { m_gridLocation = location; }
 	GridLocation_t gridLocation() const { return m_gridLocation; }
 
-protected:
+private:
 	bool loadData(const int fn) override;
 	void doLoadFromProjectMainFile(const QDomNode& /*node*/) override {}
 	void doSaveToProjectMainFile(QXmlStreamWriter& /*writer*/) override {}
 
+	double loadData(const QString& physName, bool magnitude);
 	bool loadData(const int fn, GridLocation_t location);
 
-private:
 	bool setZoneId(const int fn);
 
-protected:
 	QList<double> m_data;
 	std::string m_zoneName;
 	int m_zoneId;

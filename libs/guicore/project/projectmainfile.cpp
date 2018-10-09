@@ -492,9 +492,21 @@ std::string ProjectMainFile::resultCgnsFileNameForStep(int step) const
 
 bool ProjectMainFile::loadCgnsFile()
 {
-	if (! impl->m_cgnsManager->renameOldOutputToInput()) {return false;}
+	bool buildInputFile = false;
+
 	if (! loadInputCgnsFile()) {return false;}
+	if (! impl->m_cgnsManager->renameOldOutputToOutput()) {return false;}
+
+	if (! impl->m_cgnsManager->inputFileExists()) {
+		buildInputFile = true;
+		ProjectCgnsFile::createNewFile(impl->m_cgnsManager->inputFileFullName().c_str(), 2, 2);
+	}
 	if (! loadOutputCgnsFile()) {return false;}
+
+	if (buildInputFile) {
+		CgnsFileOpener opener(impl->m_cgnsManager->inputFileFullName(), CG_MODE_MODIFY);
+		saveToCgnsFile(opener.fileId());
+	}
 
 	emit cgnsFileLoaded();
 	return true;
@@ -622,6 +634,7 @@ void ProjectMainFile::clearResults()
 		QMessageBox::critical(iricMainWindow(), tr("Error"), tr("Saving CGNS file failed."));
 		return;
 	}
+	impl->m_postSolutionInfo->close();
 	ok = impl->m_cgnsManager->deleteResultFolder();
 	if (! ok) {
 		QMessageBox::critical(iricMainWindow(), tr("Error"), tr("Deleting \"result\" folder failed."));

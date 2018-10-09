@@ -43,7 +43,7 @@ public:
 
 	std::string resultFileForStep(int step) const;
 
-	bool renameOldOutputToInput();
+	bool renameOldOutputToOutput();
 	bool copyInputToOutput();
 
 	// Copy calculation result from result/Solution1.cgn etc. to result.cgn

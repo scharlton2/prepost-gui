@@ -14,6 +14,34 @@
 #define cgsize_t int
 #endif
 
+namespace {
+
+bool buildCC(int fn)
+{
+	int ret;
+
+	ret = cg_gopath(fn, "/iRIC");
+	if (ret != 0) {return false;}
+
+	ret = cg_user_data_write("CalculationConditions");
+	if (ret != 0) {return false;}
+
+	return true;
+}
+
+bool buildBaseAndCC(int fn, int cell_dim, int phys_dim)
+{
+	int ret;
+	int base;
+
+	ret = cg_base_write(fn, "iRIC", cell_dim, phys_dim, &base);
+	if (ret != 0) {return false;}
+
+	return buildCC(fn);
+}
+
+} // namespace
+
 bool ProjectCgnsFile::createNewFile(const QString& filename, int cell_dim, int phys_dim)
 {
 	int fn;
@@ -21,16 +49,10 @@ bool ProjectCgnsFile::createNewFile(const QString& filename, int cell_dim, int p
 	// open cgns file with write mode.
 	ret = cg_open(iRIC::toStr(filename).c_str(), CG_MODE_WRITE, &fn);
 	if (ret != 0) {goto ERROR_OPENING;}
-	// create "iRIC" base.
-	int base;
-	ret = cg_base_write(fn, "iRIC", cell_dim, phys_dim, &base);
-	if (ret != 0) {goto ERROR_AFTER_OPENING;}
-	// create "CalculationConditions" node just under iRIC base.
-	ret = cg_gopath(fn, "/iRIC");
-	if (ret != 0) {goto ERROR_AFTER_OPENING;}
-	ret = cg_user_data_write("CalculationConditions");
-	if (ret != 0) {goto ERROR_AFTER_OPENING;}
-	// That's all, for initialization. so close it.
+
+	bool ok = buildBaseAndCC(fn, cell_dim, phys_dim);
+	if (! ok) {goto ERROR_AFTER_OPENING;}
+
 	ret = cg_close(fn);
 	return (ret == 0);
 

@@ -9,6 +9,7 @@ void ScalarsToColorsContainerUtil::setValueRange(ScalarsToColorsContainer* c, co
 	min = 0; max = 0;
 	bool first = true;
 	for (auto d : data) {
+		if (d == nullptr) {continue;}
 		d->GetRange(range);
 		if (first || range[0] < min) {min = range[0];}
 		if (first || range[1] > max) {max = range[1];}

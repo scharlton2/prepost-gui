@@ -139,13 +139,14 @@ std::string ProjectCgnsManager::resultFileForStep(int step) const
 	return iRIC::toStr(dir.absoluteFilePath(ss.str().c_str()));
 }
 
-bool ProjectCgnsManager::renameOldOutputToInput()
+bool ProjectCgnsManager::renameOldOutputToOutput()
 {
 	if (inputFileExists()) {return true;}
 	if (! oldOutputFileExists()) {return false;}
 
 	QFile f(oldOutputFileFullName().c_str());
-	return f.rename(inputFileFullName().c_str());
+
+	return f.rename(outputFileFullName().c_str());
 }
 
 bool ProjectCgnsManager::copyInputToOutput()

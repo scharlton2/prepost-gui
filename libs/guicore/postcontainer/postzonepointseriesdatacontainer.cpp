@@ -43,71 +43,101 @@ bool PostZonePointSeriesDataContainer::setZoneId(const int fn)
 	return false;
 }
 
+double PostZonePointSeriesDataContainer::loadData(const QString& physName, bool magnitude)
+{
+	int ier, numArrays;
+	ier = cg_narrays(&numArrays);
+	if (ier != 0) {return false;}
+
+	double value = 0;
+
+	for (int j = 1; j <= numArrays; ++j) {
+		DataType_t datatype;
+		int dimension;
+		cgsize_t dimVector[3];
+		char arrayname[30];
+
+		ier = cg_array_info(j, arrayname, &datatype, &dimension, dimVector);
+		if (ier != 0) {return false;}
+
+		QString name(arrayname);
+		int dataLen = 1;
+		for (int dim = 1; dim <= dimension; ++dim) {
+			dataLen = dataLen * dimVector[dim - 1];
+		}
+
+		setPointIndex(std::min(m_pointIndex, dataLen - 1));
+		std::vector<double> buffer(dataLen);
+		ier = cg_array_read_as(j, RealDouble, buffer.data());
+		if (magnitude) {
+			if (
+				name == QString(physName).append("X") ||
+				name == QString(physName).append("Y") ||
+				name == QString(physName).append("Z")
+			) {
+				double currVal = buffer[m_pointIndex];
+				value += currVal * currVal;
+			}
+		} else {
+			if (physName == name) {
+				value = buffer[m_pointIndex];
+			}
+		}
+	}
+	if (magnitude) {
+		value = std::sqrt(value);
+	}
+	return value;
+}
+
 bool PostZonePointSeriesDataContainer::loadData(const int fn, GridLocation_t location)
 {
 	bool ret;
 	int ier;
+	int numSols;
+	char solname[32];
+	GridLocation_t loc;
+
 	ret = setZoneId(fn);
 	if (! ret) {return false;}
 
-	int numSols = projectData()->mainfile()->postSolutionInfo()->timeSteps()->timesteps().length();
-
-	m_data.clear();
 	QRegExp rx("^(.+) \\(magnitude\\)$");
 	bool magnitude = (rx.indexIn(m_physName) != -1);
-	QString tmpPhysName = m_physName;
+	QString physName = m_physName;
 	if (magnitude) {
 		// shortname
-		tmpPhysName = rx.cap(1);
+		physName = rx.cap(1);
 	}
-	GridLocation_t loc;
-	char solname[32];
-	for (int i = 0; i < numSols; ++i) {
-		CgnsFileOpener o(resultCgnsFileNameForStep(i), CG_MODE_READ);
+	m_data.clear();
 
-		ier = cg_goto(o.fileId(), m_baseId, "Zone_t", m_zoneId, "FlowSolution_t", 1, "end");
-		if (ier != 0) {return false;}
-		ier = cg_sol_info(o.fileId(), m_baseId, m_zoneId, 1, solname, &loc);
-		if (ier != 0) {return false;}
-		if (location != loc) {continue;}
-		int numArrays;
-		ier = cg_narrays(&numArrays);
-		if (ier != 0) {return false;}
-		double value = 0;
-		for (int j = 1; j <= numArrays; ++j) {
-			DataType_t datatype;
-			int dimension;
-			cgsize_t dimVector[3];
-			char arrayname[30];
-			ier = cg_array_info(j, arrayname, &datatype, &dimension, dimVector);
+	if (solutionInfo()->resultSeparated()) {
+		int numTimes = projectData()->mainfile()->postSolutionInfo()->timeSteps()->timesteps().length();
+		for (int i = 0; i < numTimes; ++i) {
+			CgnsFileOpener o(resultCgnsFileNameForStep(i), CG_MODE_READ);
+			ier = cg_nsols(o.fileId(), m_baseId, m_zoneId, &numSols);
 			if (ier != 0) {return false;}
-			QString name(arrayname);
-			int dataLen = 1;
-			for (int dim = 1; dim <= dimension; ++dim) {
-				dataLen = dataLen * dimVector[dim - 1];
-			}
-			setPointIndex(std::min(m_pointIndex, dataLen - 1));
-			std::vector<double> buffer(dataLen);
-			ier = cg_array_read_as(j, RealDouble, buffer.data());
-			if (magnitude) {
-				if (
-					name == QString(tmpPhysName).append("X") ||
-					name == QString(tmpPhysName).append("Y") ||
-					name == QString(tmpPhysName).append("Z")
-				) {
-					double currVal = buffer[m_pointIndex];
-					value += currVal * currVal;
-				}
-			} else {
-				if (tmpPhysName == name) {
-					value = buffer[m_pointIndex];
-				}
+
+			for (int j = 1; j <= numSols; ++j) {
+				ier = cg_sol_info(o.fileId(), m_baseId, m_zoneId, j, solname, &loc);
+				if (ier != 0) {return false;}
+				if (location != loc) {continue;}
+				ier = cg_goto(o.fileId(), m_baseId, "Zone_t", m_zoneId, "FlowSolution_t", j, "end");
+				double value = loadData(physName, magnitude);
+				m_data.push_back(value);
 			}
 		}
-		if (magnitude) {
-			value = std::sqrt(value);
+	} else {
+		ier = cg_nsols(fn, m_baseId, m_zoneId, &numSols);
+		if (ier != 0) {return false;}
+
+		for (int i = 1; i <= numSols; ++i) {
+			ier = cg_sol_info(fn, m_baseId, m_zoneId, i, solname, &loc);
+			if (ier != 0) {return false;}
+			if (location != loc) {continue;}
+			ier = cg_goto(fn, m_baseId, "Zone_t", m_zoneId, "FlowSolution_t", i, "end");
+			double value = loadData(physName, magnitude);
+			m_data.push_back(value);
 		}
-		m_data.append(value);
 	}
 	return true;
 }
