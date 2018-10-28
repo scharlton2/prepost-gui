@@ -99,7 +99,7 @@ public:
 	bool getValueRange(double* min, double* max) override;
 	QDialog* propertyDialog(QWidget* parent) override;
 	void handlePropertyDialogAccepted(QDialog* d) override;
-	QColor doubleToColor(double d);
+
 	void setupScalarArray();
 	void updateInterpolators();
 	void updateShapeData();
