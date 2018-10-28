@@ -1,5 +1,6 @@
 #include "hydraulicdatariversurveywaterelevationimporter.h"
 
+#include <geodata/riversurvey/geodatariverpathpoint.h>
 #include <geodata/riversurvey/geodatariversurvey.h>
 
 #include <QFile>

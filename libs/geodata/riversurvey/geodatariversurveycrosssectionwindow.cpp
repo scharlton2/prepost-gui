@@ -1,6 +1,7 @@
 #include "ui_geodatariversurveycrosssectionwindow.h"
 
 #include "geodatarivercrosssection.h"
+#include "geodatariverpathpoint.h"
 #include "geodatariversurvey.h"
 #include "geodatariversurveycrosssectionwindow.h"
 #include "geodatariversurveycrosssectionwindowdelegate.h"

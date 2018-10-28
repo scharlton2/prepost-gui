@@ -1,4 +1,5 @@
 #include "geodatarivercrosssection.h"
+#include "geodatariverpathpoint.h"
 #include "geodatariverpathpointexpanddialog.h"
 #include "geodatariverpathpointextensionadddialog.h"
 #include "geodatariverpathpointinsertdialog.h"
@@ -67,8 +68,8 @@
 
 #include <iriclib_riversurvey.h>
 
-GeoDataRiverSurvey::GeoDataRiverSurvey(ProjectDataItem* d, GeoDataCreator* creator, SolverDefinitionGridAttribute* att)
-	: GeoData(d, creator, att)
+GeoDataRiverSurvey::GeoDataRiverSurvey(ProjectDataItem* d, GeoDataCreator* creator, SolverDefinitionGridAttribute* att) :
+	GeoData(d, creator, att)
 {
 	m_headPoint = new GeoDataRiverPathPoint("Dummy", 0, 0);
 

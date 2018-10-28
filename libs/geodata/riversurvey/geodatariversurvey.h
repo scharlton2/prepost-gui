@@ -3,7 +3,6 @@
 
 #include "gd_riversurvey_global.h"
 #include <guicore/pre/geodata/geodata.h>
-#include "geodatariverpathpoint.h"
 #include "geodatarivershapeinterpolator.h"
 #include "geodatariversurveydisplaysetting.h"
 
@@ -22,11 +21,9 @@
 
 #include <iriclib.h>
 
-class vtkProperty;
-class QAction;
-class QPolygonF;
-
-class GeoDataRiverSurveyCrosssectionWindow;
+class GridCreatingConditionRiverSurveyInterface;
+class GeoDataRiverCrosssectionAltitudeMoveDialog;
+class GeoDataRiverPathPoint;
 class GeoDataRiverPathPointMoveDialog;
 class GeoDataRiverPathPointShiftDialog;
 class GeoDataRiverPathPointRenameDialog;
@@ -35,10 +32,13 @@ class GeoDataRiverPathPointExtensionAddDialog;
 class GeoDataRiverPathPointExpandDialog;
 class GeoDataRiverPathPointInsertDialog;
 class GeoDataRiverSurveyBackgroundGridCreateThread;
-class GeoDataRiverCrosssectionAltitudeMoveDialog;
+class GeoDataRiverSurveyCrosssectionWindow;
 class GeoDataRiverSurveyCrosssectionWindowGraphicsView;
-class GridCreatingConditionRiverSurveyInterface;
 class GeoDataRiverSurveyProxy;
+
+class vtkProperty;
+
+class QAction;
 
 /// Polygon container.
 /**
