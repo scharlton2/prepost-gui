@@ -83,6 +83,7 @@ public:
 	void setupActors() override;
 	void setupMenu() override;
 	void setupDataItem() override;
+
 	bool addToolBarButtons(QToolBar* parent) override;
 	void informSelection(PreProcessorGraphicsViewInterface* v) override;
 	void informDeselection(PreProcessorGraphicsViewInterface* v) override;
@@ -97,6 +98,7 @@ public:
 	void updateZDepthRangeItemCount(ZDepthRange& range) override;
 	void assignActorZValues(const ZDepthRange& range) override;
 	bool getValueRange(double* min, double* max) override;
+
 	QDialog* propertyDialog(QWidget* parent) override;
 	void handlePropertyDialogAccepted(QDialog* d) override;
 
@@ -108,6 +110,7 @@ public:
 	vtkStructuredGrid* backgroundGrid() const;
 	void updateCrossectionWindows();
 	void setColoredPoints(GeoDataRiverPathPoint* black, GeoDataRiverPathPoint* red, GeoDataRiverPathPoint* blue);
+
 	void setGridCreatingCondition(GridCreatingConditionRiverSurveyInterface* cond);
 	GridCreatingConditionRiverSurveyInterface* gridCreatingCondition() const;
 	void useDivisionPointsForBackgroundGrid(bool use);
@@ -140,7 +143,7 @@ private slots:
 signals:
 	void dataUpdated();
 
-protected:
+private:
 	const static int LINEDIVS = 36;
 	void updateMouseCursor(PreProcessorGraphicsViewInterface* v);
 	void doLoadFromProjectMainFile(const QDomNode& node) override;
@@ -200,7 +203,6 @@ protected:
 	vtkSmartPointer<vtkLabeledDataMapper> m_labelMapper;
 	vtkSmartPointer<vtkActor2D> m_labelActor;
 
-private:
 	GeoDataRiverPathPoint* selectedPoint();
 	void setupLine(vtkUnstructuredGrid* grid, GeoDataRiverPathPoint* p);
 
