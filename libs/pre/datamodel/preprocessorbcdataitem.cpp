@@ -140,7 +140,7 @@ void PreProcessorBCDataItem::loadExternalData(const QString& filename)
 
 void PreProcessorBCDataItem::saveExternalData(const QString& filename)
 {
-	ProjectCgnsFile::createNewFile(filename, 2, 2);
+	ProjectCgnsFile::createNewFile(filename, 2, 2, true);
 	int fn;
 	cg_open(iRIC::toStr(filename).c_str(), CG_MODE_MODIFY, &fn);
 	cg_iRIC_Init(fn);

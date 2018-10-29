@@ -42,16 +42,24 @@ bool buildBaseAndCC(int fn, int cell_dim, int phys_dim)
 
 } // namespace
 
-bool ProjectCgnsFile::createNewFile(const QString& filename, int cell_dim, int phys_dim)
+bool ProjectCgnsFile::createNewFile(const QString& filename, int cell_dim, int phys_dim, bool adf)
 {
 	int fn;
 	int ret;
+	if (adf) {
+		cg_set_file_type(CG_FILE_ADF);
+	}
+
 	// open cgns file with write mode.
 	ret = cg_open(iRIC::toStr(filename).c_str(), CG_MODE_WRITE, &fn);
 	if (ret != 0) {goto ERROR_OPENING;}
 
 	bool ok = buildBaseAndCC(fn, cell_dim, phys_dim);
 	if (! ok) {goto ERROR_AFTER_OPENING;}
+
+	if (adf) {
+		cg_set_file_type(CG_FILE_NONE);
+	}
 
 	ret = cg_close(fn);
 	return (ret == 0);
