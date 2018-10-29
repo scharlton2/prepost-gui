@@ -140,10 +140,10 @@ void PreProcessorBCDataItem::loadExternalData(const QString& filename)
 
 void PreProcessorBCDataItem::saveExternalData(const QString& filename)
 {
-	ProjectCgnsFile::createNewFile(filename, 2, 2);
 	int fn;
-	cg_open(iRIC::toStr(filename).c_str(), CG_MODE_MODIFY, &fn);
-	cg_iRIC_Init(fn);
+	cg_open(iRIC::toStr(filename).c_str(), CG_MODE_WRITE, &fn);
+	cg_iRIC_WriteBase(fn);
+
 	// add dummy grid.
 	cgsize_t size[6];
 	int Z;
