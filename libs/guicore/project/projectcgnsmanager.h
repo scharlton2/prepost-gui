@@ -45,10 +45,11 @@ public:
 
 	bool renameOldOutputToOutput();
 	bool copyInputToOutput();
+	bool copyInputToCopy();
 
 	// Copy calculation result from result/Solution1.cgn etc. to result.cgn
 	bool copyResultToOutput(int* progress, int* invalidDataId);
-	bool buildTmpFile(int* progress, int* invalidDataId);
+	bool buildCopyFile(int* progress, int* invalidDataId);
 
 	bool deleteInputFile();
 	bool deleteInputTmpFile();

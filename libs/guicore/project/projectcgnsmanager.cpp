@@ -158,6 +158,15 @@ bool ProjectCgnsManager::copyInputToOutput()
 	return f.copy(outputFileFullName().c_str());
 }
 
+bool ProjectCgnsManager::copyInputToCopy()
+{
+	bool ok = deleteCopyFile();
+	if (! ok) {return false;}
+
+	QFile f(inputFileFullName().c_str());
+	return f.copy(copyFileFullName().c_str());
+}
+
 bool ProjectCgnsManager::copyResultToOutput(int* progress, int* invalidDataId)
 {
 	CurrentPathChanger pathChanger(impl->m_mainFile->workDirectory());
@@ -173,17 +182,18 @@ bool ProjectCgnsManager::copyResultToOutput(int* progress, int* invalidDataId)
 	}
 }
 
-bool ProjectCgnsManager::buildTmpFile(int* progress, int* invalidDataId)
+bool ProjectCgnsManager::buildCopyFile(int* progress, int* invalidDataId)
 {
-	return true;
-	/*
 	CurrentPathChanger pathChanger(impl->m_mainFile->workDirectory());
 
-	bool ok = copyInputToTmp();
+	deleteCopyFile();
+	incrementCopyIndex();
+
+	bool ok = copyInputToCopy();
 	if (! ok) {return false;}
 
 	try {
-		CgnsFileOpener opener(tmpFileFullName(), CG_MODE_MODIFY);
+		CgnsFileOpener opener(copyFileFullName(), CG_MODE_MODIFY);
 		int ier = cg_iRIC_Init(opener.fileId());
 		if (ier != 0) {return false;}
 		ier = cg_iRIC_Combine_Solutions(opener.fileId(), progress, invalidDataId, -1);
@@ -191,7 +201,6 @@ bool ProjectCgnsManager::buildTmpFile(int* progress, int* invalidDataId)
 	} catch (...) {
 		return false;
 	}
-	*/
 }
 
 bool ProjectCgnsManager::deleteInputFile()
