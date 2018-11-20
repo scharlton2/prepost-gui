@@ -85,6 +85,7 @@ public slots:
 	bool setCurrentStep(unsigned int step, int fn = 0);
 
 	void handleSolverFinished();
+	void handleReloadCalculationResult();
 	void checkCgnsStepsUpdate();
 	void exportCalculationResult();
 
@@ -137,7 +138,7 @@ private:
 	QString m_particleExportPrefix;
 	bool m_resultSeparated;
 
-	class BuildTmpFileAndOpenThread;
+	class BuildCopyFileAndOpenThread;
 	class CopyResultToOutputAndOpenThread;
 };
 

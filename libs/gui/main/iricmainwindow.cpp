@@ -2121,15 +2121,8 @@ void iRICMainWindow::checkCgnsStepsUpdate()
 	if (! isSolverRunning()) {return;}
 
 	CursorChanger cursorChanger(QCursor(Qt::WaitCursor), this);
-	m_projectData->mainfile()->postSolutionInfo()->close();
 
-	auto cgnsManager = m_projectData->mainfile()->cgnsManager();
-	cgnsManager->deleteCopyFile();
-	cgnsManager->incrementCopyIndex();
-	bool ok = FlushRequester::requestFlush(m_projectData->workDirectory(), cgnsManager->copyIndex(), this);
-	if (! ok) {return;}
-
-	m_projectData->mainfile()->postSolutionInfo()->checkCgnsStepsUpdate();
+	m_projectData->mainfile()->postSolutionInfo()->handleReloadCalculationResult();
 }
 
 void iRICMainWindow::importMeasuredData()

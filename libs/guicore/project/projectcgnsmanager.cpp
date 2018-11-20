@@ -70,6 +70,12 @@ int ProjectCgnsManager::copyIndex() const
 	return impl->m_copyIndex;
 }
 
+std::string ProjectCgnsManager::copyFileName() const
+{
+	QString name("result/output.copy%1.cgn");
+	return iRIC::toStr(name.arg(impl->m_copyIndex));
+}
+
 std::string ProjectCgnsManager::copyFileFullName() const
 {
 	QString fullName("%1/result/output.copy%2.cgn");

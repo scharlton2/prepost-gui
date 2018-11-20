@@ -17,6 +17,8 @@
 #include "postsolutioninfo.h"
 #include "posttimesteps.h"
 #include "postzonedatacontainer.h"
+#include "private/postsolutioninfo_buildcopyfileandopenthread.h"
+#include "private/postsolutioninfo_copyresulttooutputandopenthread.h"
 
 #include <guibase/widget/itemselectingdialog.h>
 #include <guibase/widget/waitdialog.h>
@@ -427,7 +429,66 @@ bool PostSolutionInfo::hasResults()
 void PostSolutionInfo::handleSolverFinished()
 {
 	close();
+
 	mainFile()->cgnsManager()->deleteCopyFile();
+
+	CopyResultToOutputAndOpenThread openThread(this);
+	openThread.start();
+
+	WaitDialog dialog(iricMainWindow());
+	dialog.setMessage(tr("Reading time values..."));
+	dialog.showProgressBar();
+	dialog.setProgress(0);
+	dialog.show();
+
+	while (! openThread.isFinished()) {
+		dialog.setProgress(openThread.progress());
+		QThread::msleep(100);
+		qApp->processEvents();
+	}
+
+	int invalidDataId = openThread.invalidDataId();
+	if (invalidDataId != 0) {
+		QMessageBox::warning(iricMainWindow(), tr("Warning"), tr("Reading time value from result/Solution%1.cgn failed. You can visualize calculation result in Solution1.cgn to Solution%2.cgn.").arg(invalidDataId).arg(invalidDataId - 1));
+		return;
+	}
+	if (openThread.result() == CopyResultToOutputAndOpenThread::OpenError) {
+		QMessageBox::critical(iricMainWindow(), tr("Error"), tr("Opening output.cgn failed."));
+		return;
+	}
+
+	checkCgnsStepsUpdate();
+}
+
+void PostSolutionInfo::handleReloadCalculationResult()
+{
+	close();
+
+	BuildCopyFileAndOpenThread openThread(this);
+	openThread.start();
+
+	WaitDialog dialog(iricMainWindow());
+	dialog.setMessage(tr("Reading time values..."));
+	dialog.showProgressBar();
+	dialog.setProgress(0);
+	dialog.show();
+
+	while (! openThread.isFinished()) {
+		dialog.setProgress(openThread.progress());
+		QThread::msleep(100);
+		qApp->processEvents();
+	}
+
+	int invalidDataId = openThread.invalidDataId();
+	if (invalidDataId != 0) {
+		QMessageBox::warning(iricMainWindow(), tr("Warning"), tr("Reading time value from result/Solution%1.cgn failed. You can visualize calculation result in Solution1.cgn to Solution%2.cgn.").arg(invalidDataId).arg(invalidDataId - 1));
+		return;
+	}
+	if (openThread.result() == CopyResultToOutputAndOpenThread::OpenError) {
+		auto cgnsManager = mainFile()->cgnsManager();
+		QMessageBox::critical(iricMainWindow(), tr("Error"), tr("Opening %1 failed.").arg(cgnsManager->copyFileName().c_str()));
+		return;
+	}
 
 	checkCgnsStepsUpdate();
 }
@@ -439,9 +500,7 @@ void PostSolutionInfo::checkCgnsStepsUpdate()
 		return;
 	}
 	checking = true;
-	close();
 
-	QThread::msleep(1000);
 	bool ok = open();
 	if (! ok) {
 		// error occured while opening.

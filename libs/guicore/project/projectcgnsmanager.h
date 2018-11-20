@@ -28,6 +28,7 @@ public:
 	// The name of CGNS file that contains calculation result data. It is a temp file that exists only when solver is running.
 	void incrementCopyIndex();
 	int copyIndex() const;
+	std::string copyFileName() const;
 	std::string copyFileFullName() const;
 
 	// Case1.cgn
