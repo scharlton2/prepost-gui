@@ -10,22 +10,22 @@ class GUICOREDLL_EXPORT PostIterationSteps : public PostAbstractSteps
 	Q_OBJECT
 
 public:
-	/// Constructor
-	PostIterationSteps(ProjectDataItem* parent) : PostAbstractSteps(parent) {}
+	PostIterationSteps(PostSolutionInfo* parent);
+
 	void loadFromCgnsFile(const int fn) override;
-	const QList<int>& iterationsteps() const {return m_iterationsteps;}
-	bool dataExists() const override {return m_iterationsteps.count() > 0;}
+	const QList<int>& iterationsteps() const;
+	bool dataExists() const override;
 	void checkStepsUpdate(int fn);
 	void informSteps();
-
-protected:
-	void clearArray() override {m_iterationsteps.clear();}
+	void clearSteps();
 
 signals:
 	void stepsUpdated(QList<int> steps);
 	void stepsUpdated(int fn);
 
 private:
+	void clearArray() override;
+
 	QList<int> m_iterationsteps;
 };
 

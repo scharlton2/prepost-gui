@@ -110,7 +110,7 @@ bool PostZonePointSeriesDataContainer::loadData(const int fn, GridLocation_t loc
 	}
 	m_data.clear();
 
-	if (solutionInfo()->resultSeparated()) {
+	if (postSolutionInfo()->resultSeparated()) {
 		int numTimes = projectData()->mainfile()->postSolutionInfo()->timeSteps()->timesteps().length();
 		for (int i = 0; i < numTimes; ++i) {
 			CgnsFileOpener o(resultCgnsFileNameForStep(i), CG_MODE_READ);

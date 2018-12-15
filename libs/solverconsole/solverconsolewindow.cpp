@@ -145,6 +145,7 @@ void SolverConsoleWindow::startSolver()
 	// discard result, and save now.
 	try {
 		impl->m_projectData->mainfile()->clearResults();
+		impl->m_projectData->mainfile()->saveCgnsFile();
 	} catch (ErrorMessage& m) {
 		QMessageBox::warning(this, tr("Warning"), tr("Error occured. %1").arg(m));
 		return;
@@ -170,11 +171,6 @@ void SolverConsoleWindow::startSolver()
 
 	impl->m_projectDataItem->open();
 
-	ok = impl->m_projectData->mainfile()->cgnsManager()->copyInputToOutput();
-	if (! ok) {
-		QMessageBox::warning(this, tr("Warning"), tr("Saving output.cgn failed. Please make sure you are not opening output.cgn, and storage has space for saving."));
-		return;
-	}
 	startSolverSilently();
 
 	updateWindowTitle();
@@ -297,7 +293,7 @@ void SolverConsoleWindow::startSolverSilently()
 {
 	impl->m_projectData->mainfile()->postSolutionInfo()->close();
 
-	QString cgnsname = impl->m_projectData->mainfile()->cgnsManager()->outputFileName().c_str();
+	QString cgnsname = impl->m_projectData->mainfile()->cgnsManager()->inputFileName().c_str();
 
 	impl->m_process = new QProcess(this);
 	QString wd = impl->m_projectData->workDirectory();

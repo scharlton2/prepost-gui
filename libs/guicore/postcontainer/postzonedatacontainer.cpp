@@ -246,7 +246,7 @@ bool PostZoneDataContainer::loadStructuredGrid(const int fn, const int currentSt
 			cgsize_t dimVector[3];
 			cg_array_info(i, arrayname, &dataType, &dimension, dimVector);
 			if (QString(arrayname) == "GridCoordinatesPointers") {
-				if (solutionInfo()->resultSeparated()) {
+				if (postSolutionInfo()->resultSeparated()) {
 					ier = cg_goto(fn, m_baseId, "Zone_t", m_zoneId, "GridCoordinates_t", 2, "end");
 					iterativeCoordinates = true;
 				} else {
@@ -571,7 +571,7 @@ bool PostZoneDataContainer::findSolutionId(const int fn, const int currentStep, 
 
 bool PostZoneDataContainer::getSolutionId(const int fn, const int currentStep, int* solId)
 {
-	if (solutionInfo()->resultSeparated()) {
+	if (postSolutionInfo()->resultSeparated()) {
 		*solId = 1;
 		return true;
 	} else {
@@ -581,7 +581,7 @@ bool PostZoneDataContainer::getSolutionId(const int fn, const int currentStep, i
 
 bool PostZoneDataContainer::getCellSolutionId(const int fn, const int currentStep, int* solId)
 {
-	if (solutionInfo()->resultSeparated()) {
+	if (postSolutionInfo()->resultSeparated()) {
 		*solId = 2;
 		return true;
 	} else {
@@ -936,6 +936,8 @@ bool PostZoneDataContainer::setupIndexData()
 
 void PostZoneDataContainer::loadFromCgnsFile(const int fn)
 {
+	if (fn == 0) {return;}
+
 	m_loadOK = true;
 	int currentStep = dynamic_cast<PostSolutionInfo*>(parent())->currentStep();
 

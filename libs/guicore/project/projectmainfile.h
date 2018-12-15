@@ -166,6 +166,8 @@ private:
 
 	class Impl;
 	Impl* impl;
+
+	class ResultRemover;
 };
 
 #ifdef _DEBUG

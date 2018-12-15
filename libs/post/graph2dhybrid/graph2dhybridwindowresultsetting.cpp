@@ -83,13 +83,8 @@ bool Graph2dHybridWindowResultSetting::init(PostSolutionInfo* sol, const QString
 	int fn, ier;
 	CgnsFileOpener* opener = nullptr;
 
-	if (sol->fileId() == 0) {
-		try {
-			opener = new CgnsFileOpener(iRIC::toStr(cgnsFilename), CG_MODE_READ);
-			fn = opener->fileId();
-		} catch (std::runtime_error&) {
-			return false;
-		}
+	if (sol->resultSeparated()) {
+		fn = sol->fileIdForStep();
 	} else {
 		fn = sol->fileId();
 	}

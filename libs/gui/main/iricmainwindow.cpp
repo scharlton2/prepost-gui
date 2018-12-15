@@ -2118,7 +2118,6 @@ QString iRICMainWindow::tmpFileName(int len) const
 void iRICMainWindow::checkCgnsStepsUpdate()
 {
 	if (m_projectData == nullptr) {return;}
-	if (! isSolverRunning()) {return;}
 
 	CursorChanger cursorChanger(QCursor(Qt::WaitCursor), this);
 

@@ -25,12 +25,6 @@ public:
 	std::string outputFileName() const;
 	std::string outputFileFullName() const;
 
-	// The name of CGNS file that contains calculation result data. It is a temp file that exists only when solver is running.
-	void incrementCopyIndex();
-	int copyIndex() const;
-	std::string copyFileName() const;
-	std::string copyFileFullName() const;
-
 	// Case1.cgn
 	std::string oldOutputFileName() const;
 	std::string oldOutputFileFullName() const;
@@ -45,24 +39,17 @@ public:
 	std::string resultFileForStep(int step) const;
 
 	bool renameOldOutputToOutput();
-	bool copyInputToOutput();
-	bool copyInputToCopy();
-
-	// Copy calculation result from result/Solution1.cgn etc. to result.cgn
-	bool copyResultToOutput(int* progress, int* invalidDataId);
-	bool buildCopyFile(int* progress, int* invalidDataId);
+	bool copyOutputToInput();
 
 	bool deleteInputFile();
 	bool deleteInputTmpFile();
 	bool deleteOutputFile();
-	bool deleteCopyFile();
 	bool deleteOldOutputFile();
 	bool deleteResultFolder();
 
 	bool inputFileExists() const;
 	bool inputTmpFileExists() const;
 	bool outputFileExists() const;
-	bool copyFileExists() const;
 	bool oldOutputFileExists() const;
 
 	QStringList containedFiles() const;

@@ -1,5 +1,8 @@
 #include "../project/projectcgnsfile.h"
 #include "postbaseiterativeseriesdatacontainer.h"
+#include "postbaseiterativevaluescontainer.h"
+#include "private/postbaseiterativevaluescontainer_basecontainer.h"
+#include "private/postbaseiterativevaluescontainer_valuecontainer.h"
 #include "postsolutioninfo.h"
 
 #include <misc/stringtool.h>
@@ -18,9 +21,21 @@ PostBaseIterativeSeriesDataContainer::PostBaseIterativeSeriesDataContainer(PostS
 
 bool PostBaseIterativeSeriesDataContainer::loadData(const int fn)
 {
+	m_data.clear();
+	if (postSolutionInfo()->resultSeparated()) {
+		auto cont = postSolutionInfo()->baseIterativeValuesContainer();
+		auto bcontainer = cont->baseContainer(m_baseId);
+		if (bcontainer == nullptr) {return false;}
+		auto vcontainer = bcontainer->container(iRIC::toStr(m_baseIterativeName));
+		if (vcontainer == nullptr) {return false;}
+		for (auto v : vcontainer->doubleValues()) {
+			m_data.push_back(v);
+		}
+		return true;
+	}
+
 	int ier, nSteps;
 	char iterName[32];
-	m_data.clear();
 
 	ier = cg_biter_read(fn, m_baseId, iterName, &nSteps);
 	if (ier != 0) {return false;}

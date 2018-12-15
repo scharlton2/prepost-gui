@@ -10,15 +10,16 @@
 #include "exporter/postzonedatashapeexporter.h"
 #include "exporter/postzonedatatpoexporter.h"
 #include "exporter/postzonedatavtkexporter.h"
+#include "postbaseiterativevaluescontainer.h"
 #include "postbaseselectingdialog.h"
 #include "postdataexportdialog.h"
-//#include "postdummy3dzonedatacontainer.h"
 #include "postiterationsteps.h"
 #include "postsolutioninfo.h"
 #include "posttimesteps.h"
 #include "postzonedatacontainer.h"
-#include "private/postsolutioninfo_buildcopyfileandopenthread.h"
-#include "private/postsolutioninfo_copyresulttooutputandopenthread.h"
+// #include "private/postsolutioninfo_buildcopyfileandopenthread.h"
+// #include "private/postsolutioninfo_copyresulttooutputandopenthread.h"
+#include "private/postsolutioninfo_updateifneededthread.h"
 
 #include <guibase/widget/itemselectingdialog.h>
 #include <guibase/widget/waitdialog.h>
@@ -48,12 +49,13 @@
 
 PostSolutionInfo::PostSolutionInfo(ProjectMainFile* parent) :
 	ProjectDataItem {parent},
-	m_currentStep {0},
+	m_iterationType {SolverDefinition::NoIteration},
 	m_iterationSteps {nullptr},
 	m_timeSteps {nullptr},
+	m_currentStep {0},
 	m_opener {nullptr},
 	m_openerForStep {nullptr},
-	m_iterationType {SolverDefinition::NoIteration},
+	m_baseIterativeValuesContainer {nullptr},
 	m_exportFormat {PostDataExportDialog::Format::VTKASCII},
 	m_particleExportPrefix {"Particle_"},
 	m_resultSeparated {true}
@@ -62,6 +64,7 @@ PostSolutionInfo::PostSolutionInfo(ProjectMainFile* parent) :
 PostSolutionInfo::~PostSolutionInfo()
 {
 	close();
+	delete m_baseIterativeValuesContainer;
 }
 
 SolverDefinition::IterationType PostSolutionInfo::iterationType() const
@@ -96,6 +99,15 @@ void PostSolutionInfo::setIterationType(SolverDefinition::IterationType type)
 	}
 }
 
+QStringList PostSolutionInfo::containedFiles()
+{
+	QStringList ret;
+	if (m_baseIterativeValuesContainer != nullptr) {
+		ret << m_baseIterativeValuesContainer->filename();
+	}
+	return ret;
+}
+
 PostIterationSteps* PostSolutionInfo::iterationSteps() const
 {
 	return m_iterationSteps;
@@ -121,9 +133,11 @@ bool PostSolutionInfo::setCurrentStep(unsigned int step, int fn)
 	int tmpfn = fn;
 	if (fn == 0 || m_resultSeparated) {
 		bool ok = openForStep();
-		if (! ok) {return false;}
-
-		tmpfn = m_openerForStep->fileId();
+		if (ok) {
+			tmpfn = m_openerForStep->fileId();
+		} else {
+			tmpfn = 0;
+		}
 	}
 
 	time.start();
@@ -164,11 +178,12 @@ bool PostSolutionInfo::setCurrentStep(unsigned int step, int fn)
 
 void PostSolutionInfo::informStepsUpdated()
 {
-	if (m_timeSteps->dataExists()) {
+	if (resultSeparated()) {
+		int fid = 0;
 		bool ok = openForStep();
-		if (! ok) {return;}
-		setupZoneDataContainers(m_openerForStep->fileId());
-		checkBaseIterativeDataExist(m_openerForStep->fileId());
+		if (ok) {fid = m_openerForStep->fileId();}
+		setupZoneDataContainers(fid);
+		checkBaseIterativeDataExist(fid);
 	} else {
 		bool ok = open();
 		if (! ok) {return;}
@@ -181,6 +196,12 @@ void PostSolutionInfo::informStepsUpdated()
 
 bool PostSolutionInfo::innerSetupZoneDataContainers(int fn, int dim, std::vector<std::string>* zoneNames, QList<PostZoneDataContainer*>* containers, QMap<std::string, PostZoneDataContainer*>* containerNameMap)
 {
+	if (fn == 0) {
+		zoneNames->clear();
+		containers->clear();
+		containerNameMap->clear();
+		return true;
+	}
 	int ier, nbases;
 	ier = cg_nbases(fn, &nbases);
 	if (ier != 0) {return false;}
@@ -361,6 +382,8 @@ void PostSolutionInfo::setupZoneDataContainers(int fn)
 void PostSolutionInfo::checkBaseIterativeDataExist(int fn)
 {
 	m_baseIterativeDataExists = false;
+	if (fn == 0) {return;}
+
 	int nbases, ier;
 	ier = cg_nbases(fn, &nbases);
 	if (ier != 0) {
@@ -403,16 +426,45 @@ ProjectMainFile* PostSolutionInfo::mainFile() const
 
 void PostSolutionInfo::checkIfResultSeparated(int fn)
 {
-	int ier;
-	int narrays;
+	if (fn != 0) {
+		int ier;
+		int narrays = 0;
 
-	ier = cg_goto(fn, 1, "Zone_t", 1, "ZoneIterativeData", 0, "end");
-	if (ier != 0) {return;}
+		ier = cg_goto(fn, 1, "Zone_t", 1, "ZoneIterativeData", 0, "end");
+		if (ier == 0) {
+			ier = cg_narrays(&narrays);
+		}
 
-	ier = cg_narrays(&narrays);
-	if (ier != 0) {return;}
+		m_resultSeparated = ! (narrays > 0);
+	} else {
+		m_resultSeparated = true;
+	}
 
-	m_resultSeparated = ! (narrays > 0);
+	if (m_resultSeparated) {
+		if (m_baseIterativeValuesContainer == nullptr) {
+			m_baseIterativeValuesContainer = new PostBaseIterativeValuesContainer(projectData());
+			m_baseIterativeValuesContainer->load();
+		}
+		UpdateIfNeededThread thread(m_baseIterativeValuesContainer);
+		thread.start();
+
+		WaitDialog dialog(iricMainWindow());
+		dialog.setMessage(tr("Reading time values..."));
+		dialog.showProgressBar();
+		dialog.setProgress(0);
+		dialog.show();
+
+		while (! thread.isFinished()) {
+			dialog.setProgress(thread.progress());
+			QThread::msleep(100);
+			qApp->processEvents();
+		}
+
+		int invalidDataId = thread.invalidDataId();
+		if (invalidDataId != -1) {
+			QMessageBox::warning(iricMainWindow(), tr("Warning"), tr("Reading time value from result/Solution%1.cgn failed. You can visualize calculation result in Solution1.cgn to Solution%2.cgn.").arg(invalidDataId + 1).arg(invalidDataId));
+		}
+	}
 }
 
 bool PostSolutionInfo::hasResults()
@@ -430,6 +482,7 @@ void PostSolutionInfo::handleSolverFinished()
 {
 	close();
 
+	/*
 	mainFile()->cgnsManager()->deleteCopyFile();
 
 	CopyResultToOutputAndOpenThread openThread(this);
@@ -456,14 +509,15 @@ void PostSolutionInfo::handleSolverFinished()
 		QMessageBox::critical(iricMainWindow(), tr("Error"), tr("Opening output.cgn failed."));
 		return;
 	}
+	*/
 
-	checkCgnsStepsUpdate();
+	load(false);
 }
 
 void PostSolutionInfo::handleReloadCalculationResult()
 {
 	close();
-
+/*
 	BuildCopyFileAndOpenThread openThread(this);
 	openThread.start();
 
@@ -489,33 +543,51 @@ void PostSolutionInfo::handleReloadCalculationResult()
 		QMessageBox::critical(iricMainWindow(), tr("Error"), tr("Opening %1 failed.").arg(cgnsManager->copyFileName().c_str()));
 		return;
 	}
-
-	checkCgnsStepsUpdate();
+*/
+	load(false);
 }
 
-void PostSolutionInfo::checkCgnsStepsUpdate()
+bool PostSolutionInfo::load(bool moveToFirst)
 {
-	static bool checking = false;
-	if (checking) {
-		return;
+	static bool loading = false;
+	if (loading) {
+		return true;
 	}
-	checking = true;
+	loading = true;
 
-	bool ok = open();
-	if (! ok) {
-		// error occured while opening.
-		checking = false;
-		QMessageBox::warning(projectData()->mainWindow(), tr("Warning"), tr("Loading calculation result for visualization failed. Please try again later, or wait until end of calculation."));
-		return;
+	QFile f(resultCgnsFileName().c_str());
+	int fid = 0;
+	if (f.exists()) {
+		bool ok = open();
+		if (! ok) {
+			// error occured while opening.
+			loading = false;
+			QMessageBox::warning(projectData()->mainWindow(), tr("Warning"), tr("Loading calculation result for visualization failed."));
+			return false;
+		} else {
+			fid = m_opener->fileId();
+		}
 	}
-	checkIfResultSeparated(m_opener->fileId());
+	PostAbstractSteps* steps = nullptr;
 	if (m_timeSteps != nullptr) {
-		m_timeSteps->checkStepsUpdate(m_opener->fileId());
+		steps = m_timeSteps;
 	}
 	if (m_iterationSteps != nullptr) {
-		m_iterationSteps->checkStepsUpdate(m_opener->fileId());
+		steps = m_iterationSteps;
 	}
-	checking = false;
+
+	checkIfResultSeparated(fid);
+	if (moveToFirst) {
+		steps->blockSignals(true);
+		steps->loadFromCgnsFile(fid);
+		steps->blockSignals(false);
+		setCurrentStep(0);
+	} else {
+		m_timeSteps->checkStepsUpdate(fid);
+	}
+
+	loading = false;
+	return true;
 }
 
 void PostSolutionInfo::handleIterationStepsUpdate(const QList<int>& steps)
@@ -552,6 +624,21 @@ void PostSolutionInfo::informCgnsSteps()
 	}
 }
 
+void PostSolutionInfo::clearResults()
+{
+	if (m_timeSteps != nullptr) {
+		m_timeSteps->clearSteps();
+	}
+	if (m_iterationSteps != nullptr) {
+		m_iterationSteps->clearSteps();
+	}
+	if (m_baseIterativeValuesContainer != nullptr) {
+		int progress, invalidId;
+		m_baseIterativeValuesContainer->updateIfNeeded(&progress, &invalidId);
+	}
+	emit updated();
+}
+
 void PostSolutionInfo::doLoadFromProjectMainFile(const QDomNode& node)
 {
 	QDomElement elem = node.toElement();
@@ -565,9 +652,11 @@ void PostSolutionInfo::doSaveToProjectMainFile(QXmlStreamWriter& writer)
 	writer.writeAttribute("currentStep", cstep);
 }
 
+/*
 void PostSolutionInfo::loadFromCgnsFile(const int fn)
 {
 	m_currentStep = 0;
+	checkIfResultSeparated(fn);
 	if (m_timeSteps != nullptr) {
 		m_timeSteps->blockSignals(true);
 		m_timeSteps->loadFromCgnsFile(fn);
@@ -578,10 +667,10 @@ void PostSolutionInfo::loadFromCgnsFile(const int fn)
 		m_iterationSteps->loadFromCgnsFile(fn);
 		m_iterationSteps->blockSignals(false);
 	}
-	checkIfResultSeparated(fn);
 
 	setCurrentStep(currentStep(), fn);
 }
+*/
 
 void PostSolutionInfo::discardCgnsFileData()
 {
@@ -699,6 +788,11 @@ PostZoneDataContainer* PostSolutionInfo::firstZoneContainer() const
 	return nullptr;
 }
 
+PostBaseIterativeValuesContainer* PostSolutionInfo::baseIterativeValuesContainer() const
+{
+	return m_baseIterativeValuesContainer;
+}
+
 int PostSolutionInfo::toIntDimension(Dimension dim)
 {
 	switch (dim) {
@@ -743,6 +837,12 @@ void PostSolutionInfo::close()
 	m_openerForStep = nullptr;
 }
 
+bool PostSolutionInfo::saveBaseIterativeData()
+{
+	if (m_baseIterativeValuesContainer == nullptr) {return true;}
+	return m_baseIterativeValuesContainer->save();
+}
+
 const PostExportSetting& PostSolutionInfo::exportSetting() const
 {
 	return m_exportSetting;
@@ -773,6 +873,13 @@ int PostSolutionInfo::fileId() const
 	if (m_opener == nullptr) {return 0;}
 
 	return m_opener->fileId();
+}
+
+int PostSolutionInfo::fileIdForStep() const
+{
+	if (m_openerForStep == nullptr) {return 0;}
+
+	return m_openerForStep->fileId();
 }
 
 void PostSolutionInfo::exportCalculationResult()

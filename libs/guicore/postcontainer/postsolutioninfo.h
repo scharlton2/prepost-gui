@@ -12,6 +12,7 @@
 #include <QStringList>
 
 class CgnsFileOpener;
+class PostBaseIterativeValuesContainer;
 class PostIterationSteps;
 class PostTimeSteps;
 class PostDataContainer;
@@ -29,6 +30,9 @@ public:
 	~PostSolutionInfo();
 	SolverDefinition::IterationType iterationType() const;
 	void setIterationType(SolverDefinition::IterationType type);
+
+	QStringList containedFiles() override;
+
 	PostIterationSteps* iterationSteps() const;
 	PostTimeSteps* timeSteps() const;
 	int currentStep() const;
@@ -37,7 +41,8 @@ public:
 	bool hasResults();
 	/// Emit signal cgnsStepsUpdated().
 	void informCgnsSteps();
-	void loadFromCgnsFile(const int fn) override;
+	void clearResults();
+//	void loadFromCgnsFile(const int fn) override;
 	void discardCgnsFileData() override;
 	const QList<PostZoneDataContainer*>& zoneContainers1D() const;
 	const QList<PostZoneDataContainer*>& zoneContainers2D() const;
@@ -48,6 +53,7 @@ public:
 	PostZoneDataContainer* zoneContainer3D(const std::string& zoneName) const;
 	PostZoneDataContainer* zoneContainer(Dimension dim, const std::string& zoneName) const;
 	PostZoneDataContainer* firstZoneContainer() const;
+	PostBaseIterativeValuesContainer* baseIterativeValuesContainer() const;
 
 	bool isDataAvailable() const;
 	bool isDataAvailable1D() const;
@@ -59,6 +65,7 @@ public:
 	bool open();
 	bool openForStep();
 	void close();
+	bool saveBaseIterativeData();
 
 	const PostExportSetting& exportSetting() const;
 	const QString& particleExportPrefix() const;
@@ -68,6 +75,7 @@ public:
 
 	/// File ID that can be used with cgnslib functions.
 	int fileId() const;
+  int fileIdForStep() const;
 
 	void exportCalculationResult(const std::string& folder, const std::string& prefix, const std::vector<int> steps, PostDataExportDialog::Format format);
 
@@ -75,9 +83,8 @@ public:
 
 protected:
 	bool innerSetupZoneDataContainers(int fn, int dimiension, std::vector<std::string>* zoneNames, QList<PostZoneDataContainer*>* containers, QMap<std::string, PostZoneDataContainer*>* containerNameMap);
-//	bool innerSetupDummy3DZoneDataContainers(int fn, std::vector<std::string>* zoneNames, QList<PostZoneDataContainer*>* containers, QMap<std::string, PostZoneDataContainer*>* containerNameMap);
-	virtual void doLoadFromProjectMainFile(const QDomNode& node) override;
-	virtual void doSaveToProjectMainFile(QXmlStreamWriter& writer) override;
+	void doLoadFromProjectMainFile(const QDomNode& node) override;
+	void doSaveToProjectMainFile(QXmlStreamWriter& writer) override;
 	void informStepsUpdated();
 	static void clearContainers(QList<PostZoneDataContainer*>* conts);
 
@@ -86,7 +93,7 @@ public slots:
 
 	void handleSolverFinished();
 	void handleReloadCalculationResult();
-	void checkCgnsStepsUpdate();
+	bool load(bool moveToFirst);
 	void exportCalculationResult();
 
 protected slots:
@@ -123,6 +130,7 @@ private:
 	QList<PostDataContainer*> m_otherContainers;
 	CgnsFileOpener* m_opener;
 	CgnsFileOpener* m_openerForStep;
+	PostBaseIterativeValuesContainer* m_baseIterativeValuesContainer;
 
 	std::vector<std::string> m_zoneNames1D;
 	std::vector<std::string> m_zoneNames2D;
@@ -140,6 +148,7 @@ private:
 
 	class BuildCopyFileAndOpenThread;
 	class CopyResultToOutputAndOpenThread;
+	class UpdateIfNeededThread;
 };
 
 #endif // POSTSOLUTIONINFO_H

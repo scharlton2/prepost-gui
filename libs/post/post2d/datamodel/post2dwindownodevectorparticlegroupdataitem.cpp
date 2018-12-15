@@ -165,7 +165,7 @@ void Post2dWindowNodeVectorParticleGroupDataItem::informGridUpdate()
 	if (zoneContainer == nullptr) {return;}
 	unsigned int currentStep = 0;
 	if (zoneContainer != nullptr) {
-		currentStep = zoneContainer->solutionInfo()->currentStep();
+		currentStep = zoneContainer->postSolutionInfo()->currentStep();
 	}
 	setupActors();
 	if (zoneContainer == nullptr || zoneContainer->data() == nullptr) {
@@ -186,7 +186,7 @@ void Post2dWindowNodeVectorParticleGroupDataItem::informGridUpdate()
 TIMEHANDLING:
 
 	m_previousStep = currentStep;
-	PostTimeSteps* tSteps = zoneContainer->solutionInfo()->timeSteps();
+	PostTimeSteps* tSteps = zoneContainer->postSolutionInfo()->timeSteps();
 	if (m_previousStep < tSteps->timesteps().count()) {
 		m_previousTime = tSteps->timesteps().at(m_previousStep);
 	} else {
@@ -230,7 +230,7 @@ void Post2dWindowNodeVectorParticleGroupDataItem::resetParticles()
 		m_particleGrids.push_back(polyData);
 	}
 	PostZoneDataContainer* zoneContainer = dynamic_cast<Post2dWindowZoneDataItem*>(parent())->dataContainer();
-	unsigned int currentStep = zoneContainer->solutionInfo()->currentStep();
+	unsigned int currentStep = zoneContainer->postSolutionInfo()->currentStep();
 	if (m_setting.timeMode == tmSkip) {
 		m_nextStepToAddParticles = currentStep + m_setting.timeSamplingRate;
 	} else {
@@ -244,9 +244,9 @@ void Post2dWindowNodeVectorParticleGroupDataItem::addParticles()
 	vtkPointSet* ps = zoneContainer->data();
 	ps->GetPointData()->SetActiveVectors(iRIC::toStr(m_setting.target).c_str());
 
-	unsigned int currentStep = zoneContainer->solutionInfo()->currentStep();
+	unsigned int currentStep = zoneContainer->postSolutionInfo()->currentStep();
 
-	PostTimeSteps* tSteps = zoneContainer->solutionInfo()->timeSteps();
+	PostTimeSteps* tSteps = zoneContainer->postSolutionInfo()->timeSteps();
 	QList<double> timeSteps = tSteps->timesteps();
 	double timeDiv = timeSteps[currentStep] - m_previousTime;
 

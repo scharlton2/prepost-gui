@@ -7,7 +7,6 @@ class ProjectCgnsManager::Impl
 {
 public:
 	ProjectMainFile* m_mainFile;
-	int m_copyIndex;
 };
 
 #endif // PROJECTCGNSMANAGER_IMPL_H

@@ -161,7 +161,7 @@ void Post3dWindowNodeVectorParticleGroupDataItem::informGridUpdate()
 	if (zoneContainer == nullptr) {return;}
 	int currentStep = 0;
 	if (zoneContainer != nullptr) {
-		currentStep = zoneContainer->solutionInfo()->currentStep();
+		currentStep = zoneContainer->postSolutionInfo()->currentStep();
 	}
 	setupActors();
 	applyZScale();
@@ -182,7 +182,7 @@ void Post3dWindowNodeVectorParticleGroupDataItem::informGridUpdate()
 TIMEHANDLING:
 
 	m_previousStep = currentStep;
-	PostTimeSteps* tSteps = zoneContainer->solutionInfo()->timeSteps();
+	PostTimeSteps* tSteps = zoneContainer->postSolutionInfo()->timeSteps();
 	if (m_previousStep < tSteps->timesteps().count()) {
 		m_previousTime = tSteps->timesteps().at(m_previousStep);
 	} else {
@@ -227,7 +227,7 @@ void Post3dWindowNodeVectorParticleGroupDataItem::resetParticles()
 		m_particleGrids.push_back(grid);
 	}
 	PostZoneDataContainer* zoneContainer = dynamic_cast<Post3dWindowZoneDataItem*>(parent())->dataContainer();
-	unsigned int currentStep = zoneContainer->solutionInfo()->currentStep();
+	unsigned int currentStep = zoneContainer->postSolutionInfo()->currentStep();
 	if (m_timeMode == tmSkip) {
 		m_nextStepToAddParticles = currentStep + m_timeSamplingRate;
 	} else {
@@ -241,9 +241,9 @@ void Post3dWindowNodeVectorParticleGroupDataItem::addParticles()
 	vtkPointSet* ps = zoneContainer->data();
 	ps->GetPointData()->SetActiveVectors(m_target.c_str());
 
-	int currentStep = zoneContainer->solutionInfo()->currentStep();
+	int currentStep = zoneContainer->postSolutionInfo()->currentStep();
 
-	PostTimeSteps* tSteps = zoneContainer->solutionInfo()->timeSteps();
+	PostTimeSteps* tSteps = zoneContainer->postSolutionInfo()->timeSteps();
 	QList<double> timeSteps = tSteps->timesteps();
 	double timeDiv = timeSteps[currentStep] - m_previousTime;
 

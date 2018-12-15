@@ -1464,21 +1464,15 @@ void Graph2dHybridWindowDataModel::applySettings()
 
 void Graph2dHybridWindowDataModel::updateData()
 {
+	auto sinfo = postSolutionInfo();
 	int fn;
-	CgnsFileOpener* opener = nullptr;
-	fn = postSolutionInfo()->fileId();
-	if (fn == 0) {
-		try {
-			opener = new CgnsFileOpener(resultCgnsFileName(), CG_MODE_READ);
-			fn = opener->fileId();
-		} catch (const std::runtime_error&) {
-			return;
-		}
+	if (sinfo->resultSeparated()) {
+		fn = sinfo->fileIdForStep();
+	} else{
+		fn = sinfo->fileId();
 	}
+
 	updateData(fn);
-
-	delete opener;
-
 	updateTitle();
 }
 

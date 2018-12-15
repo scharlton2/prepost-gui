@@ -230,6 +230,7 @@ HEADERS += guicore_global.h \
            post/postzoneselectingdialog.h \
            postcontainer/postabstractsteps.h \
            postcontainer/postbaseiterativeseriesdatacontainer.h \
+           postcontainer/postbaseiterativevaluescontainer.h \
            postcontainer/postbaseselectingdialog.h \
            postcontainer/postdatacontainer.h \
            postcontainer/postdataexportdialog.h \
@@ -312,8 +313,17 @@ HEADERS += guicore_global.h \
            postcontainer/exporter/postzonedatashapeexporter.h \
            postcontainer/exporter/postzonedatatpoexporter.h \
            postcontainer/exporter/postzonedatavtkexporter.h \
-           postcontainer/private/postsolutioninfo_buildcopyfileandopenthread.h \
-           postcontainer/private/postsolutioninfo_copyresulttooutputandopenthread.h \
+           postcontainer/private/postbaseiterativevaluescontainer_basecontainer.h \
+           postcontainer/private/postbaseiterativevaluescontainer_binaryio.h \
+           postcontainer/private/postbaseiterativevaluescontainer_impl.h \
+           postcontainer/private/postbaseiterativevaluescontainer_integervaluecontainer.h \
+           postcontainer/private/postbaseiterativevaluescontainer_io.h \
+           postcontainer/private/postbaseiterativevaluescontainer_realvaluecontainer.h \
+           postcontainer/private/postbaseiterativevaluescontainer_textio.h \
+           postcontainer/private/postbaseiterativevaluescontainer_valuecontainer.h \
+           postcontainer/private/postbaseiterativevaluescontainer_valuecontainert.h \
+           postcontainer/private/postbaseiterativevaluescontainer_valuecontainert_detail.h \
+           postcontainer/private/postsolutioninfo_updateifneededthread.h \
            pre/base/preprocessordataitem.h \
            pre/base/preprocessordatamodelinterface.h \
            pre/base/preprocessorgeodatacomplexgroupdataiteminterface.h \
@@ -396,6 +406,7 @@ HEADERS += guicore_global.h \
            project/private/projectdataitem_impl.h \
            project/private/projectdatamovethread.h \
            project/private/projectmainfile_impl.h \
+           project/private/projectmainfile_resultremover.h \
            project/private/projectworkspace_impl.h \
            project/private/workfolderinfo_impl.h \
            solverdef/private/enumloadert_detail.h \
@@ -558,6 +569,7 @@ SOURCES += base/iricmainwindowinterface.cpp \
            post/postzoneselectingdialog.cpp \
            postcontainer/postabstractsteps.cpp \
            postcontainer/postbaseiterativeseriesdatacontainer.cpp \
+           postcontainer/postbaseiterativevaluescontainer.cpp \
            postcontainer/postbaseselectingdialog.cpp \
            postcontainer/postdatacontainer.cpp \
            postcontainer/postdataexportdialog.cpp \
@@ -632,8 +644,15 @@ SOURCES += base/iricmainwindowinterface.cpp \
            postcontainer/exporter/postzonedatashapeexporter.cpp \
            postcontainer/exporter/postzonedatatpoexporter.cpp \
            postcontainer/exporter/postzonedatavtkexporter.cpp \
-           postcontainer/private/postsolutioninfo_buildcopyfileandopenthread.cpp \
-           postcontainer/private/postsolutioninfo_copyresulttooutputandopenthread.cpp \
+           postcontainer/private/postbaseiterativevaluescontainer_basecontainer.cpp \
+           postcontainer/private/postbaseiterativevaluescontainer_binaryio.cpp \
+           postcontainer/private/postbaseiterativevaluescontainer_impl.cpp \
+           postcontainer/private/postbaseiterativevaluescontainer_integervaluecontainer.cpp \
+           postcontainer/private/postbaseiterativevaluescontainer_io.cpp \
+           postcontainer/private/postbaseiterativevaluescontainer_realvaluecontainer.cpp \
+           postcontainer/private/postbaseiterativevaluescontainer_textio.cpp \
+           postcontainer/private/postbaseiterativevaluescontainer_valuecontainer.cpp \
+           postcontainer/private/postsolutioninfo_updateifneededthread.cpp \
            pre/base/preprocessordataitem.cpp \
            pre/base/preprocessordatamodelinterface.cpp \
            pre/base/preprocessorgeodatatopdataiteminterface.cpp \
@@ -694,6 +713,7 @@ SOURCES += base/iricmainwindowinterface.cpp \
            project/private/backgroundimageinfo_setactorpropertycommand.cpp \
            project/private/projectdatacopythread.cpp \
            project/private/projectdatamovethread.cpp \
+           project/private/projectmainfile_resultremover.cpp \
            pre/geodatabackground/private/geodatabackground_editvaluecommand.cpp \
            pre/grid/structured15dgrid/structured15dgridwithcrosssectioncrosssection.cpp \
            pre/gridcond/base/gridattributebaseobject.cpp \

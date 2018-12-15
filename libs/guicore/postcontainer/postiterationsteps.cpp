@@ -2,6 +2,7 @@
 #include "../project/projectcgnsfile.h"
 #include "../project/projectdata.h"
 #include "postiterationsteps.h"
+#include "postsolutioninfo.h"
 
 #include <QMessageBox>
 #include <QString>
@@ -13,6 +14,10 @@
 #if CGNS_VERSION < 3100
 #define cgsize_t int
 #endif
+
+PostIterationSteps::PostIterationSteps(PostSolutionInfo* parent) :
+	PostAbstractSteps(parent)
+{}
 
 void PostIterationSteps::loadFromCgnsFile(const int fn)
 {
@@ -80,6 +85,16 @@ ERRORMSG:
 	QMessageBox::critical(projectData()->mainWindow(), tr("Error"), tr("Error occured while loading calculation result."));
 }
 
+const QList<int>& PostIterationSteps::iterationsteps() const
+{
+	return m_iterationsteps;
+}
+
+bool PostIterationSteps::dataExists() const
+{
+	return m_iterationsteps.count() > 0;
+}
+
 void PostIterationSteps::checkStepsUpdate(int fn)
 {
 	loadFromCgnsFile(fn);
@@ -88,4 +103,15 @@ void PostIterationSteps::checkStepsUpdate(int fn)
 void PostIterationSteps::informSteps()
 {
 	emit stepsUpdated(m_iterationsteps);
+}
+
+void PostIterationSteps::clearSteps()
+{
+	clearArray();
+	informSteps();
+}
+
+void PostIterationSteps::clearArray()
+{
+	m_iterationsteps.clear();
 }
