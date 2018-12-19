@@ -74,6 +74,7 @@ public:
 	void informUnfocusRiverCrosssectionWindows();
 	bool isSetupCorrectly() const;
 	bool checkMappingStatus();
+	PreProcessorGeoDataTopDataItemInterface* geoDataTopDataItem() const override;
 	PreProcessorGeoDataTopDataItemInterface* geoDataTopDataItem(const std::string& type) const override;
 	PreProcessorGridAndGridCreatingConditionDataItemInterface* getGridAndGridCreatingConditionDataItem(const std::string& typeName, const std::string& zoneName) const override;
 	void applyOffset(double x, double y) override;
