@@ -1,5 +1,6 @@
 #include "geodatapolygon.h"
 #include "geodatapolygonholepolygon.h"
+#include "geodatapolygonregionpolygon.h"
 #include "geodatapolygonimporter.h"
 #include "geodatapolygonimportersettingdialog.h"
 
@@ -162,7 +163,7 @@ bool GeoDataPolygonImporter::doInit(const QString& filename, const QString& /*se
 	DBFClose(dbfh);
 
 	m_shapeInfos = buildPolygonShapeInfos(fname);
-	*count = m_shapeInfos.size();
+	*count = static_cast<int>(m_shapeInfos.size());
 
 	GridAttributeEditWidget* widget = condition->editWidget(0);
 	item->setupEditWidget(widget);
@@ -210,7 +211,7 @@ bool GeoDataPolygonImporter::importData(GeoData* data, int index, QWidget* w)
 				).arg(index + 1);
 
 	try {
-		poly->setPolygon(region);
+		poly->regionPolygon()->setPolygon(region);
 		for (int i = 0; i < holes.size(); ++i){
 			poly->addHolePolygon(holes.at(i));
 		}

@@ -156,6 +156,21 @@ HEADERS += gd_pointmap_global.h \
            geodatapointmapwebimportersetting.h \
            geodatapointmapwebimportersettingmanager.h \
            geodatapointmapwebimporterzoomleveldialog.h \
+           private/geodatapointmap_addinterpolatepointscommand.h \
+           private/geodatapointmap_addpointcommand.h \
+           private/geodatapointmap_addpointscommand.h \
+           private/geodatapointmap_addpointsetreferencecommand.h \
+           private/geodatapointmap_breaklineaddcommand.h \
+           private/geodatapointmap_breaklineaddpointcommand.h \
+           private/geodatapointmap_breaklinecanceldefinitioncommand.h \
+           private/geodatapointmap_breaklinefinishdefinitioncommand.h \
+           private/geodatapointmap_deletepointscommand.h \
+           private/geodatapointmap_editpointscommand.h \
+           private/geodatapointmap_editsinglepointcommand.h \
+           private/geodatapointmap_interpolatelineaddpointcommand.h \
+           private/geodatapointmap_removetrianglescommand.h \
+           private/geodatapointmap_triangleswithlongedgeremover.h \
+           private/geodatapointmap_triangleswithlongedgeremover_dialog.h \
            private/geodatapointmapcellmappert_detail.h \
            private/geodatapointmapnodemappert_detail.h \
            private/geodatapointmapt_detail.h \
@@ -169,7 +184,8 @@ FORMS += geodatapointmapaddpointdialog.ui \
          geodatapointmaprealimporterfilterdialog.ui \
          geodatapointmaprepresentationdialog.ui \
          geodatapointmapwebimporterregionselectdialog.ui \
-         geodatapointmapwebimporterzoomleveldialog.ui
+         geodatapointmapwebimporterzoomleveldialog.ui \
+         private/geodatapointmap_triangleswithlongedgeremover_dialog.ui
 SOURCES += geodatapointmap.cpp \
            geodatapointmapaddpointdialog.cpp \
            geodatapointmapbreakline.cpp \
@@ -191,7 +207,22 @@ SOURCES += geodatapointmap.cpp \
            geodatapointmapwebimporterregionselectdialog.cpp \
            geodatapointmapwebimportersetting.cpp \
            geodatapointmapwebimportersettingmanager.cpp \
-           geodatapointmapwebimporterzoomleveldialog.cpp
+           geodatapointmapwebimporterzoomleveldialog.cpp \
+           private/geodatapointmap_addinterpolatepointscommand.cpp \
+           private/geodatapointmap_addpointcommand.cpp \
+           private/geodatapointmap_addpointscommand.cpp \
+           private/geodatapointmap_addpointsetreferencecommand.cpp \
+           private/geodatapointmap_breaklineaddcommand.cpp \
+           private/geodatapointmap_breaklineaddpointcommand.cpp \
+           private/geodatapointmap_breaklinecanceldefinitioncommand.cpp \
+           private/geodatapointmap_breaklinefinishdefinitioncommand.cpp \
+           private/geodatapointmap_deletepointscommand.cpp \
+           private/geodatapointmap_editpointscommand.cpp \
+           private/geodatapointmap_editsinglepointcommand.cpp \
+           private/geodatapointmap_interpolatelineaddpointcommand.cpp \
+           private/geodatapointmap_removetrianglescommand.cpp \
+           private/geodatapointmap_triangleswithlongedgeremover.cpp \
+           private/geodatapointmap_triangleswithlongedgeremover_dialog.cpp
 RESOURCES += pointmap.qrc
 TRANSLATIONS += languages/iricGdPointmap_es_ES.ts \
                 languages/iricGdPointmap_fr_FR.ts \

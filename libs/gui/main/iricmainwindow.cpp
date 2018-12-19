@@ -72,9 +72,6 @@
 #include <QDesktopServices>
 #include <QDesktopWidget>
 #include <QFileDialog>
-#include <QInputDialog>
-#include <QLabel>
-#include <QMap>
 #include <QMdiArea>
 #include <QMdiSubWindow>
 #include <QMenu>
@@ -89,12 +86,7 @@
 #include <QStatusBar>
 #include <QThread>
 #include <QTime>
-#include <QVector2D>
 #include <QXmlStreamWriter>
-
-#include <vtkGL2PSExporter.h>
-#include <vtkObject.h>
-#include <vtkSmartPointer.h>
 
 const int iRICMainWindow::MAX_RECENT_PROJECTS = 10;
 const int iRICMainWindow::MAX_RECENT_SOLVERS = 10;
@@ -382,7 +374,7 @@ void iRICMainWindow::openProject(const QString& filename)
 		return;
 	}
 	// make sure whether supporting solver exists.
-	QString folder = m_solverDefinitionList->supportingSolverFolder(m_projectData);
+	QString folder = m_solverDefinitionList->supportingSolverFolder(m_projectData, this);
 	QString solFolder;
 	if (folder.isNull()){
 		m_projectData->setPostOnlyMode();
@@ -501,7 +493,7 @@ void iRICMainWindow::importCalculationResult(const QString& fname)
 		m_projectData->mainfile()->setSolverVersion(versionNumber);
 
 		// make sure whether supporting solver exists.
-		QString folder = m_solverDefinitionList->supportingSolverFolder(m_projectData);
+		QString folder = m_solverDefinitionList->supportingSolverFolder(m_projectData, this);
 		if (folder.isNull()){
 			m_projectData->setPostOnlyMode();
 			solFolder = ":/data/unknownsolver";

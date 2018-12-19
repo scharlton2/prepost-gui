@@ -8,7 +8,6 @@
 #include <vtkPolyData.h>
 #include <vtkSmartPointer.h>
 #include <vtkPolygon.h>
-#include <vtkDoubleArray.h>
 #include <vtkActor.h>
 #include <vtkLODActor.h>
 #include <vtkDataSetMapper.h>
@@ -34,6 +33,9 @@ class GeoDataPointmapBreakLine;
 class GeoDataPointmap : public GeoData
 {
 	Q_OBJECT
+
+private:
+	static const char* VALUES;
 
 public:
 	enum MappingMode {
@@ -64,7 +66,9 @@ public:
 		meBreakLineAddNotPossible,
 		meBreakLineAdd,
 		meBreakLineRemoveNotPossible,
-		meBreakLineRemove
+		meBreakLineRemove,
+
+		meLongEdgeRemoveDialog,
 	};
 	GeoDataPointmap(ProjectDataItem* d, GeoDataCreator* creator, SolverDefinitionGridAttribute* att);
 	virtual ~GeoDataPointmap();
@@ -160,6 +164,8 @@ private slots:
 	void addBreakLine();
 	void removeBreakLine();
 	void removeAllBreakLines();
+	void removeTrianglesWithLongEdgeStart();
+	void removeTrianglesWithLongEdgeEnd();
 
 	void editPoints();
 	void editPointsDelete();
@@ -236,8 +242,7 @@ protected:
 	QAction* m_selectionModePolygon;
 	QAction* m_addPointAction;
 	QAction* m_interpolatePointAction;
-	//QAction* m_editAction;
-	QAction* m_mappingModeAction;
+	QAction* m_removeTrianglesWithLongEdgeAction;
 	QAction* m_displaySettingAction;
 
 	QAction* m_editPointsAction;
@@ -260,18 +265,11 @@ protected:
 	ZDepthRange m_zDepthRange;
 
 private:
-	class EditCommand;
 	class AddPointCommand;
-	class FinishDefiningCommand;
-	class EditPointsLessThanCommand;
-	class EditPointsGreaterThanCommand;
-	class EditPointsValueCommand;
 	class InterpolateLineAddPointCommand;
 	class AddPointsCommand;
 	class AddInterpolatePointsCommand;
 	class DeletePointsCommand;
-	class DeletePointsCommand;
-	class InsertNewPointsCommand;
 	class EditPointsCommand;
 	class EditSinglePointCommand;
 	class BreakLineAddCommand;
@@ -279,6 +277,11 @@ private:
 	class BreakLineFinishDefinitionCommand;
 	class BreakLineCancelDefinitionCommand;
 	class AddPointSetReferenceCommand;
+	class RemoveTrianglesCommand;
+
+	class TrianglesWithLongEdgeRemover;
+
+	TrianglesWithLongEdgeRemover* m_longEdgeRemover;
 
 public:
 	friend class GeoDataPointmapBreakLine;

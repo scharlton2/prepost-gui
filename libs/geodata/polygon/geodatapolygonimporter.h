@@ -1,8 +1,13 @@
 #ifndef GEODATAPOLYGONIMPORTER_H
 #define GEODATAPOLYGONIMPORTER_H
 
-#include <guicore/pre/geodata/geodataimporter.h>
 #include "geodatapolygonimportersettingdialog.h"
+
+#include <guicore/pre/geodata/geodataimporter.h>
+
+#include <QVariant>
+
+#include <vector>
 
 class GeoDataPolygonImporter : public GeoDataImporter
 {
@@ -22,10 +27,9 @@ public:
 	const QStringList acceptableExtensions() override;
 	bool importData(GeoData* data, int index, QWidget* w) override;
 
-protected:
-	bool doInit(const QString& filename, const QString& /*selectedFilter*/, int* count, SolverDefinitionGridAttribute* condition, PreProcessorGeoDataGroupDataItemInterface* item, QWidget* w) override;
-
 private:
+	bool doInit(const QString& filename, const QString& selectedFilter, int* count, SolverDefinitionGridAttribute* condition, PreProcessorGeoDataGroupDataItemInterface* item, QWidget* w) override;
+
 	static std::vector<PolygonShapeInfo> buildPolygonShapeInfos(const std::string& shpFileName);
 
 	GeoDataPolygonImporterSettingDialog::NameSetting m_nameSetting;

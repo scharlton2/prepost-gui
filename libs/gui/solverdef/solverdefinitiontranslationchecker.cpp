@@ -10,6 +10,7 @@
 #include <QDomElement>
 #include <QDomNode>
 #include <QTextStream>
+#include <QXmlStreamWriter>
 
 void SolverDefinitionTranslationChecker::TranslationMessage::save(QXmlStreamWriter& writer) const
 {
@@ -133,7 +134,7 @@ void SolverDefinitionTranslationChecker::scanDefinition(const QDomNode& node)
 		}
 	}
 	QDomNodeList cnodes = node.childNodes();
-	for (uint i = 0; i < cnodes.length(); ++i) {
+	for (int i = 0; i < cnodes.length(); ++i) {
 		scanDefinition(cnodes.item(i));
 	}
 }

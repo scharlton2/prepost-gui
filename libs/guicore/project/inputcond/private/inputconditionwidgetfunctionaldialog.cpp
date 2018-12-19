@@ -549,6 +549,25 @@ bool InputConditionWidgetFunctionalDialog::checkImportSourceUpdate()
 	return ok;
 }
 
+void InputConditionWidgetFunctionalDialog::toggleReadOnly(bool readonly)
+{
+	std::vector<QWidget*> widgets;
+	widgets.push_back(ui->addButton);
+	widgets.push_back(ui->importButton);
+	widgets.push_back(ui->clearButton);
+	widgets.push_back(ui->buttonBox->button(QDialogButtonBox::Ok));
+
+	for (QWidget* w : widgets) {
+		w->setDisabled(readonly);
+	}
+
+	if (readonly) {
+		ui->tableView->setEditTriggers(QTableView::NoEditTriggers);
+	} else {
+		ui->tableView->setEditTriggers(QTableView::DoubleClicked | QTableView::AnyKeyPressed | QTableView::EditKeyPressed);
+	}
+}
+
 void InputConditionWidgetFunctionalDialog::accept()
 {
 	bool ok = checkValues();
@@ -630,7 +649,7 @@ void InputConditionWidgetFunctionalDialog::updateGraph()
 		} else {
 			setupXYStandard(j, &x, &y);
 		}
-		pc->setSamples(x.data(), y.data(), x.size());
+		pc->setSamples(x.data(), y.data(), static_cast<int>(x.size()));
 
 		if (m_axisSettings[j] == asLeft) {
 			pc->setAxes(QwtPlot::xBottom, QwtPlot::yLeft);
