@@ -1462,6 +1462,15 @@ void PreProcessorDataModel::importHydraulicData()
 	}
 }
 
+PreProcessorGeoDataTopDataItemInterface* PreProcessorDataModel::geoDataTopDataItem() const
+{
+	PreProcessorRootDataItem* root = dynamic_cast<PreProcessorRootDataItem*>(m_rootDataItem);
+	auto items = root->gridTypeDataItems();
+	if (items.size() == 0) {return nullptr;}
+	auto tItem = items.at(0);
+	return tItem->geoDataTop();
+}
+
 PreProcessorGeoDataTopDataItemInterface* PreProcessorDataModel::geoDataTopDataItem(const std::string& type) const
 {
 	PreProcessorRootDataItem* root = dynamic_cast<PreProcessorRootDataItem*>(m_rootDataItem);
