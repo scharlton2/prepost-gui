@@ -20,7 +20,7 @@ ObjectBrowserView::ObjectBrowserView(QWidget* parent) :
 	m_addAction = new QAction(QIcon(":/libs/guibase/images/iconProperty.png"),tr("&Add..."), this);
 	connect(m_addAction, SIGNAL(triggered()), this, SLOT(showAddForCurrentItem()));
 
-	m_deleteAction = new QAction(QIcon(":/libs/guibase/images/iconDeleteItem.png"),tr("&Delete..."), this);
+	m_deleteAction = new QAction(QIcon(":/libs/guibase/images/iconDeleteItem.png"),tr("&DDDelete..."), this);
 	connect(m_deleteAction, SIGNAL(triggered()), this, SLOT(deleteCurrentItem()));
 
 	m_undoableDeleteAction = new QAction(QIcon(":/libs/guibase/images/iconDeleteItem.png"),tr("&Delete..."), this);

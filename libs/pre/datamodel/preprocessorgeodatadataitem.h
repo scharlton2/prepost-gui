@@ -53,6 +53,10 @@ public:
 	void setDeleteSilently(bool silent);
 	void removeFile();
 
+	//{{
+	bool isDeletable() const override;
+	//}}
+
 signals:
 	void captionChanged(const QString& newcaption);
 

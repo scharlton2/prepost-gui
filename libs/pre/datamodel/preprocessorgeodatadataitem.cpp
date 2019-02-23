@@ -72,6 +72,19 @@ void PreProcessorGeoDataDataItem::setGeoData(GeoData* geodata)
 	m_exportAction->setEnabled(isExportAvailable());
 
 	updateZDepthRangeItemCount();
+	//{{
+	//if (dynamic_cast<GeoDataPolyLine*>(geodata) != nullptr)
+	//m_isDeletable = geodata->isDeletable();
+	//{
+	//	m_isDeletable = false;
+	//}
+	//}}
+}
+
+bool PreProcessorGeoDataDataItem::isDeletable() const
+{
+	// if (m_geoData) return m_geoData->isDeleteable(m_isDeletable);
+	return m_isDeletable;
 }
 
 void PreProcessorGeoDataDataItem::handleStandardItemChange()

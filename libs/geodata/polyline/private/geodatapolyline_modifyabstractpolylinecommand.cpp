@@ -32,10 +32,17 @@ void GeoDataPolyLine::ModifyAbstractPolyLineCommand::redo()
 {
 	m_polyline->setMapped(false);
 	m_targetPolyLine->setPolyLine(m_newPolyLine);
+	//////emit m_polyline->modified();
+	//{{
+	//m_polyline->emitModified();
+	// or
+	//m_targetPolyLine->emitModified();
+	//}}
 }
 
 void GeoDataPolyLine::ModifyAbstractPolyLineCommand::undo()
 {
 	m_polyline->setMapped(m_wasMapped);
 	m_targetPolyLine->setPolyLine(m_oldPolyLine);
+	//////emit m_polyline->modified();
 }

@@ -1410,6 +1410,11 @@ void Graph2dHybridWindowDataModel::sliderChanged()
 	view()->replot();
 }
 
+void Graph2dHybridWindowDataModel::applySettingsSlot()
+{
+	this->applySettings();
+}
+
 void Graph2dHybridWindowDataModel::applySettings()
 {
 	// update axis setting.
@@ -1581,6 +1586,8 @@ CONDITIONERROR:
 
 }
 
+#include "geodata/polyline/geodatapolyline.h"
+
 void Graph2dHybridWindowDataModel::doLoadFromProjectMainFile(const QDomNode& node)
 {
 	bool ok = m_setting.init(postSolutionInfo(), currentCgnsFileName());
@@ -1590,6 +1597,10 @@ void Graph2dHybridWindowDataModel::doLoadFromProjectMainFile(const QDomNode& nod
 	QDomNode sNode = iRIC::getChildNode(node, "Setting");
 	if (! sNode.isNull()) {
 		m_setting.loadFromProjectMainFile(sNode);
+		if (m_setting.targetPolyLine() != nullptr) {
+			connect(m_setting.targetPolyLine(), SIGNAL(destroyed()), this, SLOT(targetPolyLineDestroyed()));
+		}
+		// connect here
 	}
 	Graph2dWindowDataModel::doLoadFromProjectMainFile(node);
 
@@ -1607,4 +1618,13 @@ void Graph2dHybridWindowDataModel::doSaveToProjectMainFile(QXmlStreamWriter& wri
 	writer.writeStartElement("Setting");
 	m_setting.saveToProjectMainFile(writer);
 	writer.writeEndElement();
+}
+
+void Graph2dHybridWindowDataModel::targetPolyLineDestroyed()
+{
+	//if (m_setting.polyLines().size() == 0) {
+	//	m_setting = Graph2dHybridWindowResultSetting();
+	//}
+	//m_setting.setTargetPolyLine(nullptr);
+	m_setting.targetPolyLineDestroyed();
 }
