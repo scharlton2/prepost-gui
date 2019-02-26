@@ -21,10 +21,6 @@ protected:
 	void doLoadFromProjectMainFile(const QDomNode& node) override;
 	void doSaveToProjectMainFile(QXmlStreamWriter& writer) override;
 	void updateValues(int fn) override;
-	//void updateValuesVertex(vtkStructuredGrid* grid);
-	//void updateValuesCellCenter(vtkStructuredGrid* grid);
-
-	//void updateValuesVertex(vtkPointSet* grid);
 
 	void updateValuesVertex(vtkPointSet* grid);
 	void updateValuesCellCenter(vtkPointSet* grid);

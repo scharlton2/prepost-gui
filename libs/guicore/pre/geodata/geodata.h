@@ -116,10 +116,6 @@ public:
 	ScalarsToColorsContainer* scalarsToColorsContainer();
 	virtual void update2Ds();
 
-	//{{
-	virtual bool isDeletable(bool defval) const { return defval; }
-	//}}
-
 	bool isVisible() const;
 	bool isMapped() const;
 	void setMapped(bool mapped = true);

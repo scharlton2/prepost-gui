@@ -783,7 +783,6 @@ void Graph2dHybridWindowResultSetting::loadFromProjectMainFile(const QDomNode& n
 		}
 	}
 
-	//{{
 	m_targetPolyLine = nullptr;
 	QDomNode targetPolyLineNode = iRIC::getChildNode(node, "TargetPolyLine");
 	if (! targetPolyLineNode.isNull()) {
@@ -792,22 +791,13 @@ void Graph2dHybridWindowResultSetting::loadFromProjectMainFile(const QDomNode& n
 		for (auto &line : m_polyLines) {
 			if (line->name() == name) {
 				m_targetPolyLine = line;
-				////{{
-				//QObject::connect(m_targetPolyLine, SIGNAL(destroyed(QObject*)), (const QObject *)this, SLOT(polyLineDestroyed()));
-				////}}
 				break;
 			}
 		}
 		if (name == "nullptr") Q_ASSERT(m_targetPolyLine == nullptr);
 		Q_ASSERT(m_targetPolyLine == nullptr || name != "nullptr");
 	}
-	//}}
 }
-
-//void Graph2dHybridWindowResultSetting::polyLineDestroyed()
-//{
-//	m_targetPolyLine = nullptr;
-//}
 
 void Graph2dHybridWindowResultSetting::saveToProjectMainFile(QXmlStreamWriter& writer)
 {
@@ -866,22 +856,6 @@ void Graph2dHybridWindowResultSetting::saveToProjectMainFile(QXmlStreamWriter& w
 	writer.writeEndElement();
 }
 
-void Graph2dHybridWindowResultSetting::targetPolyLineDestroyed()
-{
-	// consider changing 'm_polyLines' to set
-	for (int i = 0; i < m_polyLines.size(); ++i) {
-		if (m_targetPolyLine == m_polyLines.at(i)) {
-			m_polyLines.removeAt(i);
-			break;
-		}
-	}
-	m_targetPolyLine = nullptr;
-	if (m_polyLines.size() == 0) {
-		*this = Graph2dHybridWindowResultSetting();
-		Q_ASSERT(m_polyLines.size() == 0);
-	}
-}
-
 void Graph2dHybridWindowResultSetting::DataTypeInfo::loadFromProjectMainFile(const QDomNode& node)
 {
 	QDomElement elem = node.toElement();	// targetDataType
@@ -903,7 +877,7 @@ void Graph2dHybridWindowResultSetting::DataTypeInfo::loadFromProjectMainFile(con
 				QString name = elem.attribute("name");
 				dataNamesMap[loc].append(name);
 			}
-		} 
+		}
 		namesNode = namesNode.nextSibling();
 	}
 }

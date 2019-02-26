@@ -187,6 +187,7 @@ void GeoDataPolyLine::mouseDoubleClickEvent(QMouseEvent* /*event*/, PreProcessor
 	}
 }
 
+
 void GeoDataPolyLine::mouseMoveEvent(QMouseEvent* event, PreProcessorGraphicsViewInterface* v)
 {
 	switch (impl->m_mouseEventMode) {
@@ -216,7 +217,6 @@ void GeoDataPolyLine::mouseMoveEvent(QMouseEvent* event, PreProcessorGraphicsVie
 	case meMoveVertex:
 		pushRenderCommand(new MoveVertexCommand(false, impl->m_currentPoint, event->pos(), impl->m_polyLine->selectedVertexId(), this));
 		impl->m_currentPoint = event->pos();
-		//emit modified();
 		break;
 	case meAddVertex:
 		pushRenderCommand(new AddVertexCommand(false, impl->m_polyLine->selectedEdgeId(), event->pos(), this));
@@ -226,7 +226,6 @@ void GeoDataPolyLine::mouseMoveEvent(QMouseEvent* event, PreProcessorGraphicsVie
 	case meEditVerticesDialog:
 		break;
 	}
-	qDebug("GeoDataPolyLine::mouseMoveEvent  m_mouseEventMode = %d", impl->m_mouseEventMode);
 }
 
 void GeoDataPolyLine::mousePressEvent(QMouseEvent* event, PreProcessorGraphicsViewInterface* v)
@@ -276,7 +275,6 @@ void GeoDataPolyLine::mousePressEvent(QMouseEvent* event, PreProcessorGraphicsVi
 			} else {
 				impl->m_mouseEventMode = meNormal;
 				pushRenderCommand(new RemoveVertexCommand(impl->m_polyLine->selectedVertexId(), this));
-				//emit modified();
 			}
 			impl->m_inhibitSelect = true;
 			break;
@@ -303,7 +301,6 @@ void GeoDataPolyLine::mousePressEvent(QMouseEvent* event, PreProcessorGraphicsVi
 		// right click
 		impl->m_dragStartPoint = event->pos();
 	}
-	qDebug("GeoDataPolyLine::mousePressEvent  m_mouseEventMode = %d", impl->m_mouseEventMode);
 }
 
 void GeoDataPolyLine::mouseReleaseEvent(QMouseEvent* event, PreProcessorGraphicsViewInterface* v)
@@ -341,7 +338,6 @@ void GeoDataPolyLine::mouseReleaseEvent(QMouseEvent* event, PreProcessorGraphics
 			impl->m_rightClickingMenu->show();
 		}
 	}
-	qDebug("GeoDataPolyLine::mouseReleaseEvent  m_mouseEventMode = %d", impl->m_mouseEventMode);
 }
 
 void GeoDataPolyLine::updateMouseCursor(PreProcessorGraphicsViewInterface* v)
@@ -376,7 +372,6 @@ void GeoDataPolyLine::updateMouseCursor(PreProcessorGraphicsViewInterface* v)
 		v->setCursor(Qt::ClosedHandCursor);
 		break;
 	}
-	qDebug("GeoDataPolyLine::updateMouseCursor  m_mouseEventMode = %d", impl->m_mouseEventMode);
 }
 
 void GeoDataPolyLine::addCustomMenuItems(QMenu* menu)
@@ -523,7 +518,6 @@ void GeoDataPolyLine::updateMouseEventMode()
 	switch (impl->m_mouseEventMode) {
 	case meAddVertexNotPossible:
 	case meAddVertexPrepare:
-		qDebug("GeoDataPolyLine::updateMouseEventMode radius = %f", graphicsView()->stdRadius(iRIC::nearRadius()));
 		if (impl->m_polyLine->isEdgeSelectable(worldPos, graphicsView()->stdRadius(iRIC::nearRadius()))) {
 			impl->m_mouseEventMode = meAddVertexPrepare;
 		} else {

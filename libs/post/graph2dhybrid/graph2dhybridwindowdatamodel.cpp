@@ -6,12 +6,14 @@
 #include "datamodel/graph2dhybridwindowresultdataitem.h"
 #include "datamodel/graph2dhybridwindowresultgroupdataitem.h"
 #include "datamodel/graph2dhybridwindowrootdataitem.h"
+#include "geodata/polyline/geodatapolyline.h"
 #include "graph2dhybridsettingdialog.h"
 #include "graph2dhybridwindow.h"
 #include "graph2dhybridwindowcontinuousexportdialog.h"
 #include "graph2dhybridwindowcontrolwidget.h"
 #include "graph2dhybridwindowdatamodel.h"
 #include "graph2dhybridwindowdatasourcedialog.h"
+#include "graph2dhybridwindowprojectdataitem.h"
 #include "graph2dhybridwindowview.h"
 
 #define _USE_MATH_DEFINES
@@ -1412,7 +1414,7 @@ void Graph2dHybridWindowDataModel::sliderChanged()
 
 void Graph2dHybridWindowDataModel::applySettingsSlot()
 {
-	this->applySettings();
+	applySettings();
 }
 
 void Graph2dHybridWindowDataModel::applySettings()
@@ -1586,8 +1588,6 @@ CONDITIONERROR:
 
 }
 
-#include "geodata/polyline/geodatapolyline.h"
-
 void Graph2dHybridWindowDataModel::doLoadFromProjectMainFile(const QDomNode& node)
 {
 	bool ok = m_setting.init(postSolutionInfo(), currentCgnsFileName());
@@ -1597,10 +1597,6 @@ void Graph2dHybridWindowDataModel::doLoadFromProjectMainFile(const QDomNode& nod
 	QDomNode sNode = iRIC::getChildNode(node, "Setting");
 	if (! sNode.isNull()) {
 		m_setting.loadFromProjectMainFile(sNode);
-		if (m_setting.targetPolyLine() != nullptr) {
-			connect(m_setting.targetPolyLine(), SIGNAL(destroyed()), this, SLOT(targetPolyLineDestroyed()));
-		}
-		// connect here
 	}
 	Graph2dWindowDataModel::doLoadFromProjectMainFile(node);
 
@@ -1622,9 +1618,7 @@ void Graph2dHybridWindowDataModel::doSaveToProjectMainFile(QXmlStreamWriter& wri
 
 void Graph2dHybridWindowDataModel::targetPolyLineDestroyed()
 {
-	//if (m_setting.polyLines().size() == 0) {
-	//	m_setting = Graph2dHybridWindowResultSetting();
-	//}
-	//m_setting.setTargetPolyLine(nullptr);
-	m_setting.targetPolyLineDestroyed();
+	Graph2dHybridWindowProjectDataItem* item = dynamic_cast<Graph2dHybridWindowProjectDataItem*>(parent());
+	QWidget* widget = dynamic_cast<QWidget*>(item->window()->parent());
+	widget->close();
 }

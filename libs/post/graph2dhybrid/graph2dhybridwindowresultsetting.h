@@ -267,8 +267,6 @@ public:
 	void loadFromProjectMainFile(const QDomNode& node);
 	void saveToProjectMainFile(QXmlStreamWriter& writer);
 
-	void targetPolyLineDestroyed();
-
 private:
 	static DimType dimTypeFromDataType(DataType dt);
 	void setupMap();

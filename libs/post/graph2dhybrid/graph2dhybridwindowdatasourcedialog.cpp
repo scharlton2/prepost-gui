@@ -7,7 +7,6 @@
 #include "graph2dhybridwindowresultsetting.h"
 
 #include "../../../geodata/polyline/geodatapolyline.h"
-///#include "../../../geodata/polyline/geodatapolylineimplpolyline.h"
 
 #include <guicore/base/iricmainwindowinterface.h>
 #include <misc/lastiodirectory.h>
@@ -108,8 +107,6 @@ void Graph2dHybridWindowDataSourceDialog::selectedFocus()
 	ui->threeDimDataListWidget->clearSelection();
 	updateButtonStatus();
 }
-
-
 
 void Graph2dHybridWindowDataSourceDialog::setSetting(const Graph2dHybridWindowResultSetting& setting)
 {
@@ -424,13 +421,9 @@ void Graph2dHybridWindowDataSourceDialog::changeAxis(int index)
 	ui->threeDimGridLocationComboBox->blockSignals(false);
 
 	if (axis == Graph2dHybridWindowResultSetting::xaPolyline && m_setting.polyLines().size() > 0) {
-		//Q_ASSERT(m_setting.polyLines().size() > 0);
-		//ui->polyLineLabel->setVisible(true);
-		//ui->polyLineComboBox->setVisible(true);
 		ui->polyLineLabel->show();
 		ui->polyLineComboBox->show();
 	} else {
-		Q_ASSERT(axis != Graph2dHybridWindowResultSetting::xaPolyline);  // TODO
 		ui->polyLineLabel->hide();
 		ui->polyLineComboBox->hide();
 		m_setting.setTargetPolyLine(nullptr);
