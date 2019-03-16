@@ -11,7 +11,6 @@
 #include <vtkWidgetCallbackMapper.h>
 #include <vtkWidgetEvent.h>
 
-vtkCxxRevisionMacro(vtkLegendBoxWidget, "$Revision: 1.8 $");
 vtkStandardNewMacro(vtkLegendBoxWidget);
 
 //-------------------------------------------------------------------------

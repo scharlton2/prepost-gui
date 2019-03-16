@@ -13,7 +13,6 @@
 #include <QUndoCommand>
 #include <QXmlStreamWriter>
 
-#include <QVTKWidget.h>
 #include <vtkRenderWindow.h>
 
 GraphicsWindowRootDataItem::GraphicsWindowRootDataItem(QMainWindow* window, ProjectDataItem* parent) :

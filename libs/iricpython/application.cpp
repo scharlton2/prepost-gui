@@ -29,10 +29,8 @@ void myMessageOutput(QtMsgType type, const QMessageLogContext& context, const QS
 
 }
 
-VTK_MODULE_INIT(vtkRenderingOpenGL);
 VTK_MODULE_INIT(vtkInteractionStyle);
 VTK_MODULE_INIT(vtkRenderingFreeType);
-VTK_MODULE_INIT(vtkRenderingFreeTypeOpenGL);
 
 Application::Impl::Impl() :
 	m_mainWindow {true},

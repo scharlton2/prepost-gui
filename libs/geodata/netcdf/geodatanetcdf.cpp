@@ -103,7 +103,6 @@ void GeoDataNetcdf::setupActors()
 	m_mapper->SetUseLookupTableScalarRange(true);
 	m_mapper->SetScalarVisibility(true);
 	m_mapper->SetScalarModeToUseCellData();
-	m_mapper->ImmediateModeRenderingOn();
 
 	m_actor = vtkSmartPointer<vtkActor>::New();
 	m_actor->SetMapper(m_mapper);

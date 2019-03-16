@@ -3,7 +3,6 @@
 #include "graph2dwindowview.h"
 
 #include <guibase/objectbrowserview.h>
-#include <guicore/datamodel/vtkgraphicsview.h>
 #include <guicore/project/projectdata.h>
 #include <misc/iricundostack.h>
 #include <misc/xmlsupport.h>
@@ -11,9 +10,6 @@
 #include <QStandardItemModel>
 #include <QUndoCommand>
 #include <QXmlStreamWriter>
-
-#include <QVTKWidget.h>
-#include <vtkRenderWindow.h>
 
 Graph2dWindowRootDataItem::Graph2dWindowRootDataItem(QMainWindow* window, ProjectDataItem* parent)
 	: Graph2dWindowDataItem(parent)

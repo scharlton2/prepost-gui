@@ -10,12 +10,6 @@
 #include <QStandardItem>
 #include <QVector3D>
 
-#include <vtkDoubleArray.h>
-#include <vtkExtractGrid.h>
-#include <vtkPointData.h>
-#include <vtkSmartPointer.h>
-#include <vtkStructuredGrid.h>
-
 #include <cmath>
 #include <qwt_plot.h>
 

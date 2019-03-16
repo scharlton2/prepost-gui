@@ -61,18 +61,18 @@ LIBS += -liricMisc
 # VTK
 
 LIBS += \
-	-lvtkCommonCore-6.1 \
-	-lvtkCommonDataModel-6.1 \
-	-lvtkCommonExecutionModel-6.1 \
-	-lvtkCommonMisc-6.1 \
-	-lvtkFiltersCore-6.1 \
-	-lvtkFiltersGeneral-6.1 \
-	-lvtkFiltersGeometry-6.1 \
-	-lvtkFiltersSources-6.1 \
-	-lvtkInteractionWidgets-6.1 \
-	-lvtkRenderingCore-6.1 \
-	-lvtkRenderingFreeType-6.1 \
-	-lvtkRenderingLOD-6.1
+	-lvtkCommonCore-8.2 \
+	-lvtkCommonDataModel-8.2 \
+	-lvtkCommonExecutionModel-8.2 \
+	-lvtkCommonMisc-8.2 \
+	-lvtkFiltersCore-8.2 \
+	-lvtkFiltersGeneral-8.2 \
+	-lvtkFiltersGeometry-8.2 \
+	-lvtkFiltersSources-8.2 \
+	-lvtkInteractionWidgets-8.2 \
+	-lvtkRenderingCore-8.2 \
+	-lvtkRenderingFreeType-8.2 \
+	-lvtkRenderingLOD-8.2
 
 # Post-Build Event
 win32 {

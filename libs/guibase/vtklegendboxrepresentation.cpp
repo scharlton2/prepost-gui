@@ -7,7 +7,6 @@
 #include <vtkTextProperty.h>
 
 //=============================================================================
-vtkCxxRevisionMacro(vtkLegendBoxRepresentation, "$Revision: 1.2 $");
 vtkStandardNewMacro(vtkLegendBoxRepresentation);
 //-----------------------------------------------------------------------------
 vtkLegendBoxRepresentation::vtkLegendBoxRepresentation()

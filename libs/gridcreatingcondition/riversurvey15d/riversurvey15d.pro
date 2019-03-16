@@ -79,14 +79,14 @@ LIBS += -liricGdRiversurvey
 # VTK
 
 LIBS += \
-	-lvtkCommonCore-6.1 \
-	-lvtkCommonDataModel-6.1 \
-	-lvtkCommonExecutionModel-6.1 \
-	-lvtkFiltersCore-6.1 \
-	-lvtkFiltersExtraction-6.1 \
-	-lvtkFiltersGeometry-6.1 \
-	-lvtkRenderingCore-6.1 \
-	-lvtkRenderingLOD-6.1
+	-lvtkCommonCore-8.2 \
+	-lvtkCommonDataModel-8.2 \
+	-lvtkCommonExecutionModel-8.2 \
+	-lvtkFiltersCore-8.2 \
+	-lvtkFiltersExtraction-8.2 \
+	-lvtkFiltersGeometry-8.2 \
+	-lvtkRenderingCore-8.2 \
+	-lvtkRenderingLOD-8.2
 
 # Post-Build Event
 win32 {

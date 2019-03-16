@@ -23,7 +23,7 @@ LIBS += -liricGuicore
 # VTK
 
 LIBS += \
-	-lvtkCommonCore-6.1
+	-lvtkCommonCore-8.2
 
 # Input
 HEADERS += structured2dgridnaysgridimporter.h

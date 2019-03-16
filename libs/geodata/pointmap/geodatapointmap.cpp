@@ -1,5 +1,4 @@
 #define REAL double
-#define VOID void
 
 #include "geodatapointmap.h"
 #include "geodatapointmapaddpointdialog.h"
@@ -845,7 +844,6 @@ void GeoDataPointmap::setupActors()
 	m_vtkMapper->SetLookupTable(scalarsToColorsContainer()->vtkObj());
 	m_vtkMapper->SetUseLookupTableScalarRange(true);
 	m_vtkMapper->SetScalarVisibility(true);
-	m_vtkMapper->ImmediateModeRenderingOn();
 
 	m_actor = vtkSmartPointer<vtkLODActor>::New();
 	vtkProperty* p = m_actor->GetProperty();
@@ -859,7 +857,6 @@ void GeoDataPointmap::setupActors()
 	m_pointsMapper->SetUseLookupTableScalarRange(true);
 	m_pointsMapper->SetScalarVisibility(true);
 	m_pointsMapper->SetScalarModeToUsePointData();
-	m_pointsMapper->ImmediateModeRenderingOn();
 
 	m_pointsActor = vtkSmartPointer<vtkLODActor>::New();
 //	m_pointsActor = vtkSmartPointer<vtkActor>::New();
@@ -885,7 +882,6 @@ void GeoDataPointmap::setupActors()
 
 	m_maskPoints10kMapper = vtkSmartPointer<vtkPolyDataMapper>::New();
 	m_maskPoints10kMapper->SetInputConnection(m_maskPoints10k->GetOutputPort());
-	m_maskPoints10kMapper->ImmediateModeRenderingOn();
 	m_maskPoints10kMapper->SetLookupTable(scalarsToColorsContainer()->vtkObj());
 	m_maskPoints10kMapper->SetUseLookupTableScalarRange(true);
 	m_maskPoints10kMapper->SetScalarVisibility(true);
@@ -893,7 +889,6 @@ void GeoDataPointmap::setupActors()
 
 	m_maskPoints40kMapper = vtkSmartPointer<vtkPolyDataMapper>::New();
 	m_maskPoints40kMapper->SetInputConnection(m_maskPoints40k->GetOutputPort());
-	m_maskPoints40kMapper->ImmediateModeRenderingOn();
 	m_maskPoints40kMapper->SetLookupTable(scalarsToColorsContainer()->vtkObj());
 	m_maskPoints40kMapper->SetUseLookupTableScalarRange(true);
 	m_maskPoints40kMapper->SetScalarVisibility(true);
@@ -908,22 +903,18 @@ void GeoDataPointmap::setupActors()
 	m_selectedMapper = vtkSmartPointer<vtkPolyDataMapper>::New();
 	m_selectedMapper->SetScalarVisibility(false);
 	m_selectedMapper->SetInputData(this->m_selectedVerticesGrid);
-	m_selectedMapper->ImmediateModeRenderingOn();
 
 	m_InterpLineMapper = vtkSmartPointer<vtkDataSetMapper>::New();
 	m_InterpLineMapper->SetScalarVisibility(false);
 	m_InterpLineMapper->SetInputData(this->m_InterpLineGrid);
-	m_InterpLineMapper->ImmediateModeRenderingOn();
 
 	m_polyEdgeMapper = vtkSmartPointer<vtkDataSetMapper>::New();
 	m_polyEdgeMapper->SetScalarVisibility(false);
 	m_polyEdgeMapper->SetInputData(this->m_polyEdgeGrid);
-	m_polyEdgeMapper->ImmediateModeRenderingOn();
 
 	m_polyVertexMapper = vtkSmartPointer<vtkDataSetMapper>::New();
 	m_polyVertexMapper->SetScalarVisibility(false);
 	m_polyVertexMapper->SetInputData(this->m_polyEdgeGrid);
-	m_polyVertexMapper->ImmediateModeRenderingOn();
 
 	m_selectedActor = vtkSmartPointer<vtkActor>::New();
 	m_selectedActor->GetProperty()->SetPointSize(9.);

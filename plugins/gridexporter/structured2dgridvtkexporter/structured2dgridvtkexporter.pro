@@ -42,10 +42,10 @@ LIBS += -liricMisc
 # VTK
 
 LIBS += \
-	-lvtkCommonCore-6.1 \
-	-lvtkCommonDataModel-6.1 \
-	-lvtkIOCore-6.1 \
-	-lvtkIOLegacy-6.1
+	-lvtkCommonCore-8.2 \
+	-lvtkCommonDataModel-8.2 \
+	-lvtkIOCore-8.2 \
+	-lvtkIOLegacy-8.2
 
 # Input
 HEADERS += structured2dgridvtkexporter.h

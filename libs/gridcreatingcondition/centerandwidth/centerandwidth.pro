@@ -75,11 +75,11 @@ LIBS += -liricGuicore
 # VTK
 
 LIBS += \
-	-lvtkCommonComputationalGeometry-6.1 \
-	-lvtkCommonCore-6.1 \
-	-lvtkCommonDataModel-6.1 \
-	-lvtkRenderingCore-6.1 \
-	-lvtkRenderingLabel-6.1
+	-lvtkCommonComputationalGeometry-8.2 \
+	-lvtkCommonCore-8.2 \
+	-lvtkCommonDataModel-8.2 \
+	-lvtkRenderingCore-8.2 \
+	-lvtkRenderingLabel-8.2
 
 # Post-Build Event
 win32 {

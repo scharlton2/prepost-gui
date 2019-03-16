@@ -62,18 +62,18 @@ unix {
 # VTK
 
 LIBS += \
-	-lvtkCommonComputationalGeometry-6.1 \
-	-lvtkCommonCore-6.1 \
-	-lvtkCommonDataModel-6.1 \
-	-lvtkCommonExecutionModel-6.1 \
-	-lvtkCommonMath-6.1 \
-	-lvtkFiltersFlowPaths-6.1 \
-	-lvtkInteractionStyle-6.1 \
-	-lvtkInteractionWidgets-6.1 \
-	-lvtkRenderingAnnotation-6.1 \
-	-lvtkRenderingCore-6.1 \
-	-lvtkRenderingFreeType-6.1 \
-	-lvtkRenderingLabel-6.1
+	-lvtkCommonComputationalGeometry-8.2 \
+	-lvtkCommonCore-8.2 \
+	-lvtkCommonDataModel-8.2 \
+	-lvtkCommonExecutionModel-8.2 \
+	-lvtkCommonMath-8.2 \
+	-lvtkFiltersFlowPaths-8.2 \
+	-lvtkInteractionStyle-8.2 \
+	-lvtkInteractionWidgets-8.2 \
+	-lvtkRenderingAnnotation-8.2 \
+	-lvtkRenderingCore-8.2 \
+	-lvtkRenderingFreeType-8.2 \
+	-lvtkRenderingLabel-8.2
 
 # Post-Build Event
 win32 {
@@ -108,7 +108,6 @@ HEADERS += arrowsettingcontainer.h \
            tooltiplabel.h \
            vtk2dinteractorstyle.h \
            vtkCustomScalarBarActor.h \
-           vtkCustomStreamPoints.h \
            vtkCustomStreamTracer.h \
            vtkdatasetattributestool.h \
            vtklegendboxrepresentation.h \
@@ -245,7 +244,6 @@ SOURCES += arrowsettingcontainer.cpp \
            tooltiplabel.cpp \
            vtk2dinteractorstyle.cpp \
            vtkCustomScalarBarActor.cxx \
-           vtkCustomStreamPoints.cxx \
            vtkCustomStreamTracer.cxx \
            vtkdatasetattributestool.cpp \
            vtklegendboxrepresentation.cpp \

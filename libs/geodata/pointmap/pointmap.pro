@@ -95,20 +95,20 @@ LIBS += -liricGuicore
 # VTK
 
 LIBS += \
-	-lvtkCommonComputationalGeometry-6.1 \
-	-lvtkCommonCore-6.1 \
-	-lvtkCommonDataModel-6.1 \
-	-lvtkCommonExecutionModel-6.1 \
-	-lvtkCommonTransforms-6.1 \
-	-lvtkFiltersCore-6.1 \
-	-lvtkFiltersGeneral-6.1 \
-	-lvtkIOCore-6.1 \
-	-lvtkIOExport-6.1 \
-	-lvtkIOGeometry-6.1 \
-	-lvtkIOLegacy-6.1 \
-	-lvtkRenderingCore-6.1 \
-	-lvtkRenderingLabel-6.1 \
-	-lvtkRenderingLOD-6.1
+	-lvtkCommonComputationalGeometry-8.2 \
+	-lvtkCommonCore-8.2 \
+	-lvtkCommonDataModel-8.2 \
+	-lvtkCommonExecutionModel-8.2 \
+	-lvtkCommonTransforms-8.2 \
+	-lvtkFiltersCore-8.2 \
+	-lvtkFiltersGeneral-8.2 \
+	-lvtkIOCore-8.2 \
+	-lvtkIOExport-8.2 \
+	-lvtkIOGeometry-8.2 \
+	-lvtkIOLegacy-8.2 \
+	-lvtkRenderingCore-8.2 \
+	-lvtkRenderingLabel-8.2 \
+	-lvtkRenderingLOD-8.2
 
 # iriclib
 

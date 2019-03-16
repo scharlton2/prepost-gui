@@ -61,12 +61,12 @@ LIBS += -liricGuicore
 # VTK
 
 LIBS += \
-	-lvtkCommonCore-6.1 \
-	-lvtkCommonDataModel-6.1 \
-	-lvtkCommonExecutionModel-6.1 \
-	-lvtkRenderingCore-6.1 \
-	-lvtkRenderingFreeType-6.1 \
-	-lvtkRenderingQt-6.1
+	-lvtkCommonCore-8.2 \
+	-lvtkCommonDataModel-8.2 \
+	-lvtkCommonExecutionModel-8.2 \
+	-lvtkRenderingCore-8.2 \
+	-lvtkRenderingFreeType-8.2
+	-lvtkRenderingQt-8.2
 
 # Post-Build Event
 win32 {

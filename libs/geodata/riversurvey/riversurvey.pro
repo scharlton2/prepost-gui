@@ -117,16 +117,16 @@ LIBS += -liricHdRiversurveywaterelevation
 # VTK
 
 LIBS += \
-	-lvtkCommonCore-6.1 \
-	-lvtkCommonDataModel-6.1 \
-	-lvtkCommonExecutionModel-6.1 \
-	-lvtkFiltersExtraction-6.1 \
-	-lvtkFiltersGeometry-6.1 \
-	-lvtkIOCore-6.1 \
-	-lvtkIOLegacy-6.1 \
-	-lvtkRenderingCore-6.1 \
-	-lvtkRenderingLabel-6.1 \
-	-lvtkRenderingLOD-6.1
+	-lvtkCommonCore-8.2 \
+	-lvtkCommonDataModel-8.2 \
+	-lvtkCommonExecutionModel-8.2 \
+	-lvtkFiltersExtraction-8.2 \
+	-lvtkFiltersGeometry-8.2 \
+	-lvtkIOCore-8.2 \
+	-lvtkIOLegacy-8.2 \
+	-lvtkRenderingCore-8.2 \
+	-lvtkRenderingLabel-8.2 \
+	-lvtkRenderingLOD-8.2
 
 # iriclib
 

@@ -12,7 +12,7 @@ class GUIBASEDLL_EXPORT vtkLegendBoxRepresentation : public vtkBorderRepresentat
 {
 
 public:
-	vtkTypeRevisionMacro(vtkLegendBoxRepresentation, vtkBorderRepresentation);
+	vtkTypeMacro(vtkLegendBoxRepresentation, vtkBorderRepresentation);
 	virtual void PrintSelf(ostream& os, vtkIndent indent) override;
 	static vtkLegendBoxRepresentation* New();
 

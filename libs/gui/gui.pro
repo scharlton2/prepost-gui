@@ -279,13 +279,11 @@ unix {
 # VTK
 
 LIBS += \
-	-lvtkCommonCore-6.1 \
-	-lvtkCommonDataModel-6.1 \
-	-lvtkInteractionStyle-6.1 \
-	-lvtkIOExport-6.1 \
-	-lvtkRenderingFreeType-6.1 \
-	-lvtkRenderingFreeTypeOpenGL-6.1 \
-	-lvtkRenderingOpenGL-6.1
+	-lvtkCommonCore-8.2 \
+	-lvtkCommonDataModel-8.2 \
+	-lvtkInteractionStyle-8.2 \
+	-lvtkIOExport-8.2 \
+	-lvtkRenderingFreeType-8.2 \
 
 INCLUDEPATH += ../../libs
 

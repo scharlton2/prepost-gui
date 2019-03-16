@@ -13,7 +13,7 @@ class GUIBASEDLL_EXPORT vtkLegendBoxWidget : public vtkBorderWidget
 
 public:
 	static vtkLegendBoxWidget* New();
-	vtkTypeRevisionMacro(vtkLegendBoxWidget, vtkBorderWidget);
+	vtkTypeMacro(vtkLegendBoxWidget, vtkBorderWidget);
 	void PrintSelf(ostream& os, vtkIndent indent) override;
 
 	// Description:

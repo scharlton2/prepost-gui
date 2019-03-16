@@ -47,10 +47,10 @@ LIBS += -liricGuicore
 # VTK
 
 LIBS += \
-	-lvtkCommonCore-6.1 \
-	-lvtkInteractionWidgets-6.1 \
-	-lvtkRenderingAnnotation-6.1 \
-	-lvtkRenderingCore-6.1
+	-lvtkCommonCore-8.2 \
+	-lvtkInteractionWidgets-8.2 \
+	-lvtkRenderingAnnotation-8.2 \
+	-lvtkRenderingCore-8.2
 
 # Post-Build Event
 win32 {

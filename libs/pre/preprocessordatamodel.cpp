@@ -179,7 +179,7 @@ void PreProcessorDataModel::importCalcConditionFromOtherProject(const QString& f
 		bool ret = pre->importInputCondition(fullname);
 		if (! ret) {
 			// not imported.
-			goto ERROR;
+			goto IMPORT_ERROR;
 		}
 	} else {
 		QStringList items;
@@ -190,12 +190,12 @@ void PreProcessorDataModel::importCalcConditionFromOtherProject(const QString& f
 		QString projname = tmpp.fileName();
 		bool ok;
 		QString solname = QInputDialog::getItem(projectData()->mainWindow(), tr("Select case"), tr("Please select from which case in %1 to import calculation conditions.").arg(projname), items, 0, false, &ok);
-		if (! ok) {goto ERROR;}
+		if (! ok) {goto IMPORT_ERROR;}
 		QString fullname = tmpProj.workCgnsFileName(solname);
 		bool ret = pre->importInputCondition(fullname);
 		if (! ret) {
 			// not imported.
-			goto ERROR;
+			goto IMPORT_ERROR;
 		}
 	}
 	iRIC::rmdirRecursively(tmpWorkfolder);
@@ -204,7 +204,7 @@ void PreProcessorDataModel::importCalcConditionFromOtherProject(const QString& f
 	setModified();
 	return;
 
-ERROR:
+IMPORT_ERROR:
 	iRIC::rmdirRecursively(tmpWorkfolder);
 }
 

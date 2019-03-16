@@ -1,7 +1,7 @@
 #include "vtkCustomScalarBarActor.h"
 #include "vtkScalarBarActorInternal.h"
 
-#if (VTK_MAJOR_VERSION != 6) || (VTK_MINOR_VERSION != 1) || (VTK_BUILD_VERSION != 0)
+#if (VTK_MAJOR_VERSION != 8) || (VTK_MINOR_VERSION != 2) || (VTK_BUILD_VERSION != 0)
 #error May need to update local vtkScalarBarActorInternal.h
 #endif
 

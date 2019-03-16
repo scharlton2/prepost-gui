@@ -42,7 +42,7 @@ LIBS += -liricMisc
 # VTK
 
 LIBS += \
-	-lvtkCommonCore-6.1
+	-lvtkCommonCore-8.2
 
 # Input
 HEADERS += structured2dgridnayscsvimporter.h

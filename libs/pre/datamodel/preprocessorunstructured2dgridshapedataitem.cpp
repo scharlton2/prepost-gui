@@ -38,7 +38,6 @@ void PreProcessorUnstructured2dGridShapeDataItem::setupActors()
 
 	m_wireframeMapper = vtkSmartPointer<vtkDataSetMapper>::New();
 	m_wireframeMapper->SetScalarVisibility(false);
-	m_wireframeMapper->ImmediateModeRenderingOn();
 	m_wireframeActor->SetMapper(m_wireframeMapper);
 	m_wireframeActor->GetProperty()->SetRepresentationToWireframe();
 
