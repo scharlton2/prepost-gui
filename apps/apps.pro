@@ -9,4 +9,5 @@ CONFIG += ordered
 SUBDIRS = \
 	rivmaker \
 	iricgui \
+	cgnsmerge \
 	cgnslink
