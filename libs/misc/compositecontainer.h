@@ -5,6 +5,7 @@
 #include "xmlattributecontainer.h"
 
 #include <initializer_list>
+#include <vector>
 
 class MISCDLL_EXPORT CompositeContainer : public XmlAttributeContainer
 {
@@ -15,8 +16,8 @@ public:
 
 	/// @name XML file I/O functions
 	//@{
-	void load(const QDomNode&);
-	virtual void save(QXmlStreamWriter&) const;
+	virtual void load(const QDomNode& node);
+	virtual void save(QXmlStreamWriter& writer) const;
 	//@}
 
 	/// @name Property setting functions
@@ -29,12 +30,14 @@ protected:
 	/// @name Protected constructors
 	//@{
 	CompositeContainer(std::initializer_list<XmlAttributeContainer*> list);
+	CompositeContainer() = delete;
 	CompositeContainer(const CompositeContainer& c) = delete;
 	//@}
 
 	void copyValue(const XmlAttributeContainer& c) override;
 
 	void addContainer(XmlAttributeContainer* c);
+	const std::vector<XmlAttributeContainer*>& containers() const;
 
 private:
 	class Impl;

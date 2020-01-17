@@ -68,7 +68,7 @@ public:
 	void setPosition(SolverDefinitionGridAttribute::Position pos);
 
 	QString caption() const;
-	void setCaption(const QString& cap);
+	virtual void setCaption(const QString& cap);
 
 	SolverDefinitionGridAttribute* gridAttribute() const;
 	GeoDataCreator* creator() const;
@@ -94,7 +94,6 @@ public:
 	QMenu* menu() const;
 
 	virtual void handleStandardItemChange();
-	virtual void handleStandardItemClicked();
 	virtual void handleStandardItemDoubleClicked();
 	virtual void informSelection(PreProcessorGraphicsViewInterface* v);
 	virtual void informDeselection(PreProcessorGraphicsViewInterface* v);

@@ -100,7 +100,6 @@ ERRORMSG:
 	QMessageBox::critical(projectData()->mainWindow(), tr("Error"), tr("Error occured while loading calculation result."));
 }
 
-
 const QList<double>& PostTimeSteps::timesteps() const
 {
 	return m_timesteps;
@@ -108,7 +107,7 @@ const QList<double>& PostTimeSteps::timesteps() const
 
 bool PostTimeSteps::dataExists() const
 {
-	return m_timesteps.count() > 0;
+	return m_timesteps.size() > 0;
 }
 
 void PostTimeSteps::checkStepsUpdate(int fn)

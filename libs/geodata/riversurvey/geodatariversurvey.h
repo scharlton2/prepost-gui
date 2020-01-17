@@ -35,6 +35,7 @@ class GeoDataRiverPathPointExtensionAddDialog;
 class GeoDataRiverPathPointExpandDialog;
 class GeoDataRiverPathPointInsertDialog;
 class GeoDataRiverSurveyBackgroundGridCreateThread;
+class GeoDataRiverSurveyCrossSectionEditFromPointDialog;
 class GeoDataRiverCrosssectionAltitudeMoveDialog;
 class GeoDataRiverSurveyCrosssectionWindowGraphicsView;
 class GridCreatingConditionRiverSurveyInterface;
@@ -82,6 +83,7 @@ public:
 	GeoDataRiverSurvey(ProjectDataItem* d, GeoDataCreator* creator, SolverDefinitionGridAttribute* att);
 	~GeoDataRiverSurvey();
 
+	void setCaption(const QString& cap) override;
 	void setupActors() override;
 	void setupMenu() override;
 	void setupDataItem() override;
@@ -108,7 +110,7 @@ public:
 	void updateSelectionShapeData();
 	GeoDataRiverPathPoint* headPoint() const;
 	vtkStructuredGrid* backgroundGrid() const;
-	void updateCrossectionWindows();
+	void updateCrosssectionWindows();
 	void setColoredPoints(GeoDataRiverPathPoint* black, GeoDataRiverPathPoint* red, GeoDataRiverPathPoint* blue);
 	void setGridCreatingCondition(GridCreatingConditionRiverSurveyInterface* cond);
 	GridCreatingConditionRiverSurveyInterface* gridCreatingCondition() const;
@@ -270,7 +272,6 @@ private:
 	class ChangeSelectionCommand;
 	class DeleteRiverPathPointCommand;
 	class EditCrosssectionCommand;
-	class EditDisplaySettingCommand;
 	class ExpandCrosssectionCommand;
 	class InsertRiverPathPointCommand;
 	class MouseEditCrosssectionCommand;
@@ -296,6 +297,7 @@ public:
 	friend class GeoDataRiverPathPointInsertDialog;
 	friend class GeoDataRiverPathPointExpandDialog;
 	friend class GeoDataRiverCrosssectionAltitudeMoveDialog;
+	friend class GeoDataRiverSurveyCrossSectionEditFromPointDialog;
 	friend class GeoDataRiverSurveyCrosssectionWindow;
 	friend class GeoDataRiverSurveyCrosssectionWindowGraphicsView;
 

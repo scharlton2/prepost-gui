@@ -27,6 +27,7 @@ class QXmlStreamWriter;
 class QDomNode;
 class iRICMetaData;
 
+class AnimationController;
 class SolverConsoleWindow;
 class PostProcessorWindow;
 class SolverDefinitionList;
@@ -61,27 +62,32 @@ public:
 	/// The SolverConsoleWindow
 	SolverConsoleWindow* solverConsoleWindow() const;
 
-	const QLocale locale() const override {return m_locale;}
+	const QLocale locale() const override;
 	bool isSolverRunning() const override;
 	void warnSolverRunning() const override;
-	ProjectWorkspace* workspace() override {return m_workspace;}
-	const VersionNumber versionNumber() const override {return m_versionNumber;}
+	ProjectWorkspace* workspace() override;
+	const VersionNumber& versionNumber() const override;
 	void setDebugMode(bool debug);
-	bool isDebugMode() {return m_debugMode;}
-	bool continuousSnapshotInProgress() const override {return m_continuousSnapshotInProgress;}
-	void setContinuousSnapshotInProgress(bool prog) override {m_continuousSnapshotInProgress = prog;}
+	bool isDebugMode() const;
+	bool continuousSnapshotInProgress() const override;
+	void setContinuousSnapshotInProgress(bool prog) override;
 	QString tmpFileName(int len = 0) const;
-	AnimationControllerInterface* animationController() const override {return m_animationController;}
-	CoordinateSystemBuilder* coordinateSystemBuilder() const override {return m_coordinateSystemBuilder;}
+	AnimationControllerInterface* animationController() const override;
+	CoordinateSystemBuilder* coordinateSystemBuilder() const override;
 	void initForSolverDefinition() override;
+
 	void loadSubWindowsFromProjectMainFile(const QDomNode& node) override;
 	void saveSubWindowsToProjectMainFile(QXmlStreamWriter& writer) override;
+
 	QStringList containedFiles() const override;
 	void loadFromCgnsFile(const int fn) override;
 	void saveToCgnsFile(const int fn) override;
 	void discardCgnsFileData() override;
 	void clearSolverConsoleLog() override;
+
+	ProjectData* projectData() const;
 	void setProjectData(ProjectData* projectData) override;
+
 	/// Check whether work folder is set to a good folder. If it is good returns true.
 	bool checkWorkFolderWorks();
 	bool isPostOnlyMode() const;
@@ -150,8 +156,8 @@ public slots:
 	void exportParticles();
 	/// Export Coutour figure as ESRI Shape files.
 	void exportCfShape();
-	/// Export Google Earth KML for street view
-	void exportStKML();
+	/// Export Google Earth KMZ for street view
+	void exportStKMZ();
 	/// Import Visualization/Graph settings.
 	void importVisGraphSetting();
 	/// Export Visualization/Graph settings.
@@ -274,7 +280,7 @@ private:
 	/// The definition information of the solver currently used
 	SolverDefinition* m_solverDefinition;
 
-	AnimationControllerInterface* m_animationController;
+	AnimationController* m_animationController;
 
 	// This value is true only when opening a project file.
 	bool m_isOpening {false};
@@ -305,12 +311,6 @@ private:
 	bool m_continuousSnapshotInProgress;
 
 	bool m_googleEarth;
-	double m_leftLatitude;
-	double m_leftLongitude;
-	double m_rightLatitude;
-	double m_rightLongitude;
-	QPoint bottomLeft;
-	QPoint bottomRight;
 	QString m_kmlFilename;
 	double m_angle;
 	double m_north;

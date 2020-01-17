@@ -218,6 +218,7 @@ HEADERS += guicore_global.h \
            executer/iricmainwindowexecuterwatcher.h \
            misc/cgnsfileopener.h \
            misc/cgnslinkfollower.h \
+           misc/cgnsutil.h \
            misc/iricmetadata.h \
            misc/mouseboundingbox.h \
            misc/mousepositionwidget.h \
@@ -246,9 +247,14 @@ HEADERS += guicore_global.h \
            postcontainer/posttimesteps.h \
            postcontainer/postzonedatacontainer.h \
            postcontainer/postzonepointseriesdatacontainer.h \
+           project/addiblegcptablemodel.h \
            project/backgroundimageinfo.h \
            project/backgroundimageinfodialog.h \
+           project/backgroundimageinfogeoreferencedialog.h \
            project/colorsource.h \
+           project/gcptablemodel.h \
+           project/gcptablerow.h \
+           project/georeferenceview.h \
            project/offsetsettingdialog.h \
            project/projectcgnsfile.h \
            project/projectcgnsmanager.h \
@@ -256,6 +262,7 @@ HEADERS += guicore_global.h \
            project/projectdataitem.h \
            project/projectmainfile.h \
            project/projectpostprocessors.h \
+           project/projecttimesettingdialog.h \
            project/projectworkspace.h \
            project/workfolderinfo.h \
            scalarstocolors/colortransferfunctioncontainer.h \
@@ -310,6 +317,7 @@ HEADERS += guicore_global.h \
            datamodel/private/vtkgraphicsview_impl.h \
            misc/private/cgnsfileopener_impl.h \
            misc/private/cgnslinkfollower_impl.h \
+           misc/private/cgnsutil_detail.h \
            misc/targeted/targeteditemi.h \
            misc/targeted/targeteditemsettargetcommand.h \
            misc/targeted/targeteditemsettargetcommandtool.h \
@@ -330,6 +338,9 @@ HEADERS += guicore_global.h \
            postcontainer/private/postbaseiterativevaluescontainer_valuecontainert_detail.h \
            postcontainer/private/postcalculatedresulteditdialog_tabledelegate.h \
            postcontainer/private/postsolutioninfo_updateifneededthread.h \
+           postcontainer/private/postzonedatacontainer_particlegrouploader.h \
+           postcontainer/private/postzonedatacontainer_particleloader.h \
+           postcontainer/private/postzonedatacontainer_polydataloader.h \
            pre/base/preprocessordataitem.h \
            pre/base/preprocessordatamodelinterface.h \
            pre/base/preprocessorgeodatacomplexgroupdataiteminterface.h \
@@ -413,7 +424,9 @@ HEADERS += guicore_global.h \
            project/measured/measureddataexporteri.h \
            project/measured/measureddataimporteri.h \
            project/private/backgroundimageinfo_setactorpropertycommand.h \
+           project/private/backgroundimageinfogeoreferencedialog_styleditemdelegate.h \
            project/private/colorsource_impl.h \
+           project/private/georeferenceview_imageinfo.h \
            project/private/projectcgnsmanager_impl.h \
            project/private/projectdatacopythread.h \
            project/private/projectdataitem_impl.h \
@@ -422,6 +435,27 @@ HEADERS += guicore_global.h \
            project/private/projectmainfile_resultremover.h \
            project/private/projectworkspace_impl.h \
            project/private/workfolderinfo_impl.h \
+           project/util/gcptablegeoreferenceviewhelper.h \
+           project/util/georeferenceview_imageinfo_destinationoperationwaitingselectionhelper.h \
+           project/util/georeferenceview_imageinfo_initselectionhelper.h \
+           project/util/georeferenceview_imageinfo_pointsinrectangleselectionhelper.h \
+           project/util/georeferenceview_imageinfo_selectionhelper.h \
+           project/util/georeferenceview_imageinfo_translationselectionhelper.h \
+           project/util/georeferenceview_imageinfo_voidselectionhelper.h \
+           project/util/georeferenceview_imageinfo_waitingselectionhelper.h \
+           project/util/georeferenceviewhelper.h \
+           project/util/georeferenceviewselectionhelper.h \
+           project/util/georeferenceviewselectionhelpert.h \
+           project/util/georeferenceviewselectionhelpert_detail.h \
+           project/util/pointsgeoreferenceviewhelper.h \
+           project/util/polygongeoreferenceviewhelper.h \
+           project/util/rectgeoreferenceviewhelper.h \
+           project/util/selectionhelper.h \
+           project/util/selectionhelpert.h \
+           project/util/selectionhelpert_detail.h \
+           project/util/selectionhelpert_impl.h \
+           project/util/viewhelpert.h \
+           project/util/viewhelpert_detail.h \
            solverdef/private/enumloadert_detail.h \
            solverdef/private/solverdefinition_impl.h \
            solverdef/private/solverdefinitionabstract_impl.h \
@@ -496,6 +530,7 @@ HEADERS += guicore_global.h \
            project/inputcond/private/inputconditioncontainerinteger_impl.h \
            project/inputcond/private/inputconditioncontainerreal_impl.h \
            project/inputcond/private/inputconditioncontainerstring_impl.h \
+           project/inputcond/private/inputconditiondependencychecksubcaptions.h \
            project/inputcond/private/inputconditiondependencychecksubimages.h \
            project/inputcond/private/inputconditiondependencyconditionalways.h \
            project/inputcond/private/inputconditiondependencyconditionand.h \
@@ -506,6 +541,7 @@ HEADERS += guicore_global.h \
            project/inputcond/private/inputconditiondependencyconditionislessthan.h \
            project/inputcond/private/inputconditiondependencyconditionnot.h \
            project/inputcond/private/inputconditiondependencyconditionor.h \
+           project/inputcond/private/inputconditiondependencysetsubcaptionaction.h \
            project/inputcond/private/inputconditiondependencysetsubimageaction.h \
            project/inputcond/private/inputconditionwidgetfoldername.h \
            project/inputcond/private/inputconditionwidgetfunctional.h \
@@ -515,6 +551,7 @@ HEADERS += guicore_global.h \
            project/inputcond/private/inputconditionwidgetimage.h \
            project/inputcond/private/inputconditionwidgetinteger.h \
            project/inputcond/private/inputconditionwidgetintegeroption.h \
+           project/inputcond/private/inputconditionwidgetlabel.h \
            project/inputcond/private/inputconditionwidgetreal.h \
            project/inputcond/private/inputconditionwidgetrealoption.h \
            project/inputcond/private/inputconditionwidgetstring.h \
@@ -538,7 +575,9 @@ FORMS += datamodel/propertybrowserview.ui \
          postcontainer/postcalculatedresultlistdialog.ui \
          postcontainer/postdataexportdialog.ui \
          project/backgroundimageinfodialog.ui \
+         project/backgroundimageinfogeoreferencedialog.ui \
          project/offsetsettingdialog.ui \
+         project/projecttimesettingdialog.ui \
          scalarstocolors/colortransferfunctioneditwidget.ui \
          scalarstocolors/lookuptableeditwidget.ui \
          scalarstocolors/scalarstocolorseditdialog.ui \
@@ -578,6 +617,7 @@ SOURCES += base/iricmainwindowinterface.cpp \
            executer/iricmainwindowexecuterwatcher.cpp \
            misc/cgnsfileopener.cpp \
            misc/cgnslinkfollower.cpp \
+           misc/cgnsutil.cpp \
            misc/iricmetadata.cpp \
            misc/mouseboundingbox.cpp \
            misc/mousepositionwidget.cpp \
@@ -606,9 +646,13 @@ SOURCES += base/iricmainwindowinterface.cpp \
            postcontainer/posttimesteps.cpp \
            postcontainer/postzonedatacontainer.cpp \
            postcontainer/postzonepointseriesdatacontainer.cpp \
+           project/addiblegcptablemodel.cpp \
            project/backgroundimageinfo.cpp \
            project/backgroundimageinfodialog.cpp \
+           project/backgroundimageinfogeoreferencedialog.cpp \
            project/colorsource.cpp \
+           project/gcptablemodel.cpp \
+           project/georeferenceview.cpp \
            project/offsetsettingdialog.cpp \
            project/projectcgnsfile.cpp \
            project/projectcgnsmanager.cpp \
@@ -616,6 +660,7 @@ SOURCES += base/iricmainwindowinterface.cpp \
            project/projectdataitem.cpp \
            project/projectmainfile.cpp \
            project/projectpostprocessors.cpp \
+           project/projecttimesettingdialog.cpp \
            project/projectworkspace.cpp \
            project/workfolderinfo.cpp \
            scalarstocolors/colortransferfunctioncontainer.cpp \
@@ -680,6 +725,9 @@ SOURCES += base/iricmainwindowinterface.cpp \
            postcontainer/private/postbaseiterativevaluescontainer_valuecontainer.cpp \
            postcontainer/private/postcalculatedresulteditdialog_tabledelegate.cpp \
            postcontainer/private/postsolutioninfo_updateifneededthread.cpp \
+           postcontainer/private/postzonedatacontainer_particlegrouploader.cpp \
+           postcontainer/private/postzonedatacontainer_particleloader.cpp \
+           postcontainer/private/postzonedatacontainer_polydataloader.cpp \
            pre/base/preprocessordataitem.cpp \
            pre/base/preprocessordatamodelinterface.cpp \
            pre/base/preprocessorgeodatatopdataiteminterface.cpp \
@@ -746,9 +794,25 @@ SOURCES += base/iricmainwindowinterface.cpp \
            project/measured/measureddatacsvexporter.cpp \
            project/measured/measureddatacsvimporter.cpp \
            project/private/backgroundimageinfo_setactorpropertycommand.cpp \
+           project/private/backgroundimageinfogeoreferencedialog_styleditemdelegate.cpp \
+           project/private/georeferenceview_imageinfo.cpp \
            project/private/projectdatacopythread.cpp \
            project/private/projectdatamovethread.cpp \
            project/private/projectmainfile_resultremover.cpp \
+           project/util/gcptablegeoreferenceviewhelper.cpp \
+           project/util/georeferenceview_imageinfo_destinationoperationwaitingselectionhelper.cpp \
+           project/util/georeferenceview_imageinfo_initselectionhelper.cpp \
+           project/util/georeferenceview_imageinfo_pointsinrectangleselectionhelper.cpp \
+           project/util/georeferenceview_imageinfo_selectionhelper.cpp \
+           project/util/georeferenceview_imageinfo_translationselectionhelper.cpp \
+           project/util/georeferenceview_imageinfo_voidselectionhelper.cpp \
+           project/util/georeferenceview_imageinfo_waitingselectionhelper.cpp \
+           project/util/georeferenceviewhelper.cpp \
+           project/util/georeferenceviewselectionhelper.cpp \
+           project/util/pointsgeoreferenceviewhelper.cpp \
+           project/util/polygongeoreferenceviewhelper.cpp \
+           project/util/rectgeoreferenceviewhelper.cpp \
+           project/util/selectionhelper.cpp \
            pre/geodatabackground/private/geodatabackground_editvaluecommand.cpp \
            pre/grid/structured15dgrid/structured15dgridwithcrosssectioncrosssection.cpp \
            pre/gridcond/base/gridattributebaseobject.cpp \
@@ -775,6 +839,7 @@ SOURCES += base/iricmainwindowinterface.cpp \
            pre/gridcond/editwidget/gridattributerealeditwidget.cpp \
            pre/gridcond/editwidget/gridattributerealoptioneditwidget.cpp \
            pre/gridcond/editwidget/gridattributerealvariationeditwidget.cpp \
+           project/inputcond/private/inputconditiondependencychecksubcaptions.cpp \
            project/inputcond/private/inputconditiondependencychecksubimages.cpp \
            project/inputcond/private/inputconditiondependencyconditionalways.cpp \
            project/inputcond/private/inputconditiondependencyconditionand.cpp \
@@ -785,6 +850,7 @@ SOURCES += base/iricmainwindowinterface.cpp \
            project/inputcond/private/inputconditiondependencyconditionislessthan.cpp \
            project/inputcond/private/inputconditiondependencyconditionnot.cpp \
            project/inputcond/private/inputconditiondependencyconditionor.cpp \
+           project/inputcond/private/inputconditiondependencysetsubcaptionaction.cpp \
            project/inputcond/private/inputconditiondependencysetsubimageaction.cpp \
            project/inputcond/private/inputconditionwidgetfoldername.cpp \
            project/inputcond/private/inputconditionwidgetfunctional.cpp \
@@ -794,6 +860,7 @@ SOURCES += base/iricmainwindowinterface.cpp \
            project/inputcond/private/inputconditionwidgetimage.cpp \
            project/inputcond/private/inputconditionwidgetinteger.cpp \
            project/inputcond/private/inputconditionwidgetintegeroption.cpp \
+           project/inputcond/private/inputconditionwidgetlabel.cpp \
            project/inputcond/private/inputconditionwidgetreal.cpp \
            project/inputcond/private/inputconditionwidgetrealoption.cpp \
            project/inputcond/private/inputconditionwidgetstring.cpp \

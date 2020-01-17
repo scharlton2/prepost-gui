@@ -12,15 +12,17 @@
 class QAction;
 class QSignalMapper;
 
+class Post2dWindowCellFlagGroupDataItem;
+class Post2dWindowCellScalarGroupTopDataItem;
 class Post2dWindowGraphGroupDataItem;
 class Post2dWindowGridShapeDataItem;
 class Post2dWindowNodeScalarGroupTopDataItem;
-class Post2dWindowCellScalarGroupTopDataItem;
 class Post2dWindowNodeVectorArrowGroupDataItem;
 class Post2dWindowNodeVectorStreamlineGroupDataItem;
 class Post2dWindowNodeVectorParticleGroupDataItem;
-class Post2dWindowCellFlagGroupDataItem;
+class Post2dWindowParticleGroupRootDataItem;
 class Post2dWindowParticlesTopDataItem;
+class Post2dWindowPolyDataTopDataItem;
 class PostZoneDataContainer;
 
 class Post2dWindowZoneDataItem : public Post2dWindowDataItem
@@ -53,6 +55,7 @@ public:
 	Post2dWindowCellFlagGroupDataItem* cellFlagGroupDataItem() const;
 	Post2dWindowCellScalarGroupTopDataItem* cellScalarGroupTopDataItem() const;
 	Post2dWindowParticlesTopDataItem* particlesDataItem() const;
+	Post2dWindowPolyDataTopDataItem* polyDataDataItem() const;
 	Post2dWindowGraphGroupDataItem* graphGroupDataItem() const;
 
 	void initCellInputAttributeBrowser();
@@ -70,22 +73,27 @@ public:
 	void fixCellResultAttributeBrowser(const QPoint& p, VTKGraphicsView* v);
 	void updateCellResultAttributeBrowser(const QPoint& p, VTKGraphicsView* v);
 
-	void initParticleResultAttributeBrowser();
+	void initParticleResultAttributeBrowser(vtkPolyData* data);
 	void clearParticleResultAttributeBrowser();
 	void fixParticleResultAttributeBrowser(const QPoint& p, VTKGraphicsView* v);
 	void updateParticleResultAttributeBrowser(const QPoint& p, VTKGraphicsView* v);
+
+	void initPolyDataResultAttributeBrowser();
+	void clearPolyDataResultAttributeBrowser();
+	void fixPolyDataResultAttributeBrowser(const std::string& name, const QPoint& p, VTKGraphicsView* v);
+	void updatePolyDataResultAttributeBrowser(const std::string& name, const QPoint& p, VTKGraphicsView* v);
 
 	void updateRegionPolyData();
 
 	QAction* showAttributeBrowserActionForCellInput() const;
 	QAction* showAttributeBrowserActionForNodeResult() const;
 	QAction* showAttributeBrowserActionForCellResult() const;
-	QAction* showAttributeBrowserActionForParticleResult() const;
+	QAction* showAttributeBrowserActionForPolyDataResult() const;
 
 public slots:
 	void showNodeAttributeBrowser();
 	void showCellAttributeBrowser();
-	void showParticleBrowser();
+	void showPolyDataBrowser();
 
 private:
 	void assignActorZValues(const ZDepthRange& range) override;
@@ -97,11 +105,13 @@ private:
 
 	vtkIdType findVertex(const QPoint& p, VTKGraphicsView* v);
 	vtkIdType findCell(const QPoint& p, VTKGraphicsView* v);
+	vtkIdType findParticle(const QPoint& p, VTKGraphicsView* v);
+	int findPolyDataCell(const std::string& name, const QPoint& p, VTKGraphicsView* v);
 	void updateCellInputAttributeBrowser(vtkIdType cellid, VTKGraphicsView* v);
 	void updateNodeResultAttributeBrowser(vtkIdType vid, double x, double y, VTKGraphicsView* v);
 	void updateCellResultAttributeBrowser(vtkIdType cellid, VTKGraphicsView* v);
-	vtkIdType findParticle(const QPoint& p, VTKGraphicsView* v);
 	void updateParticleResultAttributeBrowser(vtkIdType particleid, double x, double y, VTKGraphicsView* v);
+	void updatePolyDataResultAttributeBrowser(const std::string& name, int cellid, VTKGraphicsView* v);
 
 	Post2dWindowGridShapeDataItem* m_shapeDataItem;
 	Post2dWindowNodeScalarGroupTopDataItem* m_scalarGroupTopDataItem;
@@ -111,6 +121,8 @@ private:
 	Post2dWindowNodeVectorParticleGroupDataItem* m_particleGroupDataItem;
 	Post2dWindowCellFlagGroupDataItem* m_cellFlagGroupDataItem;
 	Post2dWindowParticlesTopDataItem* m_particlesDataItem;
+	Post2dWindowParticleGroupRootDataItem* m_particleGroupRootDataItem;
+	Post2dWindowPolyDataTopDataItem* m_polyDataDataItem;
 	Post2dWindowGraphGroupDataItem* m_graphGroupDataItem;
 
 	vtkSmartPointer<vtkPolyData> m_regionPolyData;
@@ -122,7 +134,9 @@ private:
 	QAction* m_showAttributeBrowserActionForCellInput;
 	QAction* m_showAttributeBrowserActionForNodeResult;
 	QAction* m_showAttributeBrowserActionForCellResult;
-	QAction* m_showAttributeBrowserActionForParticleResult;
+	QAction* m_showAttributeBrowserActionForPolyDataResult;
+
+	vtkPolyData* m_currentParticlesData;
 
 	std::string m_zoneName;
 	int m_zoneNumber;

@@ -3,6 +3,12 @@
 #include "postprocessorwindow.h"
 #include "postprocessorwindowprojectdataitem.h"
 
+#include <guicore/base/iricmainwindowinterface.h>
+#include <guicore/postcontainer/postsolutioninfo.h>
+#include <guicore/pre/base/preprocessordatamodelinterface.h>
+#include <guicore/pre/base/preprocessorwindowinterface.h>
+#include <guicore/pre/base/preprocessorgeodatatopdataiteminterface.h>
+
 #include <QMdiSubWindow>
 
 const int PostProcessorWindow::MINWIDTH = 120;
@@ -24,4 +30,14 @@ PostProcessorWindow::~PostProcessorWindow()
 PostSolutionInfo* PostProcessorWindow::postSolutionInfo()
 {
 	return m_projectDataItem->projectData()->mainfile()->postSolutionInfo();
+}
+
+PreProcessorGeoDataGroupDataItemInterface* PostProcessorWindow::refDataGroupDataItem()
+{
+	auto preModel = postSolutionInfo()->iricMainWindow()->preProcessorWindow()->dataModel();
+	if (preModel->geoDataTopDataItem() == nullptr) {
+		// Post Only mode
+		return nullptr;
+	}
+	return preModel->geoDataTopDataItem()->groupDataItem(std::string("_referenceinformation"));
 }

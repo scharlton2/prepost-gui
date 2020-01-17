@@ -12,6 +12,20 @@ include( ../../paths.pri )
 # Internal libraries #
 ######################
 
+# iricCs
+
+win32 {
+	CONFIG(debug, debug|release) {
+		LIBS += -L"../cs/debug"
+	} else {
+		LIBS += -L"../cs/release"
+	}
+}
+unix {
+	LIBS += -L"../cs"
+}
+LIBS += -liricCs
+
 # iricMisc
 
 win32 {
@@ -48,6 +62,7 @@ unix {
 # VTK
 
 LIBS += \
+	-lvtkCommonComputationalGeometry-6.1 \
 	-lvtkCommonCore-6.1 \
 	-lvtkCommonDataModel-6.1 \
 	-lvtkCommonExecutionModel-6.1 \
@@ -75,11 +90,14 @@ HEADERS += arrowsettingcontainer.h \
            guibase_global.h \
            iricactivecellfilter.h \
            irictoolbar.h \
+           landxmlutil.h \
            linestyleinformation.h \
            objectbrowser.h \
            objectbrowserview.h \
            overridecursorchanger.h \
            pointstyleinformation.h \
+           qpainterpenbrushchanger.h \
+           qpainterpenbrushrestorer.h \
            qwtplotcustomcurve.h \
            qwtplotcustommarker.h \
            scalarbardialog.h \
@@ -88,6 +106,9 @@ HEADERS += arrowsettingcontainer.h \
            scalarsettingcontainer.h \
            structuredgridregion.h \
            structuredgridregionselectwidget.h \
+           timeformat/timeformat.h \
+           timeformat/timeformateditwidget.h \
+           timeformat/timeformatutil.h \
            tooltiplabel.h \
            vtk2dinteractorstyle.h \
            vtkCustomScalarBarActor.h \
@@ -102,6 +123,7 @@ HEADERS += arrowsettingcontainer.h \
            vtksubdividegrid.h \
            vtktextpropertysettingcontainer.h \
            vtktextpropertysettingdialog.h \
+           vtktextpropertysettingwidget.h \
            xyaxisdisplaysettingdialog.h \
            colormap/colormapcustomsetting.h \
            colormap/colormapcustomsettingcolor.h \
@@ -124,6 +146,7 @@ HEADERS += arrowsettingcontainer.h \
            vtktool/vtklabel2dactor.h \
            vtktool/vtklineactor.h \
            vtktool/vtklinesactor.h \
+           vtktool/vtkparametricsplineutil.h \
            vtktool/vtkpointsutil.h \
            vtktool/vtkpolydatalinesactor.h \
            vtktool/vtkpolydatapaintactor.h \
@@ -165,8 +188,10 @@ HEADERS += arrowsettingcontainer.h \
 FORMS += scalarbardialog.ui \
          scalarbarwidget.ui \
          structuredgridregionselectwidget.ui \
+         timeformat/timeformateditwidget.ui \
          vtklinestylewidget.ui \
          vtktextpropertysettingdialog.ui \
+         vtktextpropertysettingwidget.ui \
          xyaxisdisplaysettingdialog.ui \
          colormap/colormapcustomsettingdialog.ui \
          colormap/colormapsettingwidget.ui \
@@ -187,11 +212,14 @@ SOURCES += arrowsettingcontainer.cpp \
            graphicsmisc.cpp \
            iricactivecellfilter.cpp \
            irictoolbar.cpp \
+           landxmlutil.cpp \
            linestyleinformation.cpp \
            objectbrowser.cpp \
            objectbrowserview.cpp \
            overridecursorchanger.cpp \
            pointstyleinformation.cpp \
+           qpainterpenbrushchanger.cpp \
+           qpainterpenbrushrestorer.cpp \
            qwtplotcustomcurve.cpp \
            qwtplotcustommarker.cpp \
            scalarbardialog.cpp \
@@ -200,6 +228,8 @@ SOURCES += arrowsettingcontainer.cpp \
            scalarsettingcontainer.cpp \
            structuredgridregion.cpp \
            structuredgridregionselectwidget.cpp \
+           timeformat/timeformateditwidget.cpp \
+           timeformat/timeformatutil.cpp \
            tooltiplabel.cpp \
            vtk2dinteractorstyle.cpp \
            vtkCustomScalarBarActor.cxx \
@@ -213,6 +243,7 @@ SOURCES += arrowsettingcontainer.cpp \
            vtksubdividegrid.cpp \
            vtktextpropertysettingcontainer.cpp \
            vtktextpropertysettingdialog.cpp \
+           vtktextpropertysettingwidget.cpp \
            xyaxisdisplaysettingdialog.cpp \
            colormap/colormapcustomsetting.cpp \
            colormap/colormapcustomsettingcolor.cpp \
@@ -234,6 +265,7 @@ SOURCES += arrowsettingcontainer.cpp \
            vtktool/vtklabel2dactor.cpp \
            vtktool/vtklineactor.cpp \
            vtktool/vtklinesactor.cpp \
+           vtktool/vtkparametricsplineutil.cpp \
            vtktool/vtkpointsutil.cpp \
            vtktool/vtkpolydatalinesactor.cpp \
            vtktool/vtkpolydatapaintactor.cpp \

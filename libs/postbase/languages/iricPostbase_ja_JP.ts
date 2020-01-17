@@ -2,6 +2,34 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="ja_JP">
 <context>
+    <name>ParticleArbitraryTimeEditDialog</name>
+    <message>
+        <location filename="../particle/particlearbitrarytimeeditdialog.ui" line="14"/>
+        <source>Particle generate time setting</source>
+        <translation>パーティクル生成時刻設定</translation>
+    </message>
+    <message>
+        <location filename="../particle/particlearbitrarytimeeditdialog.ui" line="32"/>
+        <source>&amp;Add...</source>
+        <translation>追加 (&amp;A) ...</translation>
+    </message>
+    <message>
+        <location filename="../particle/particlearbitrarytimeeditdialog.ui" line="39"/>
+        <source>&amp;Delete</source>
+        <translation>削除 (&amp;D)</translation>
+    </message>
+    <message>
+        <location filename="../particle/particlearbitrarytimeeditdialog.cpp" line="66"/>
+        <source>Add time step</source>
+        <translation>タイムステップの追加</translation>
+    </message>
+    <message>
+        <location filename="../particle/particlearbitrarytimeeditdialog.cpp" line="66"/>
+        <source>Select Time step to add</source>
+        <translation>追加するタイムステップを選択してください</translation>
+    </message>
+</context>
+<context>
     <name>PostAllZoneSelectingDialog</name>
     <message>
         <location filename="../postallzoneselectingdialog.ui" line="14"/>
@@ -205,9 +233,60 @@
     </message>
 </context>
 <context>
+    <name>PostPolyDataBasicSettingDialog</name>
+    <message>
+        <location filename="../polydata/postpolydatabasicsettingdialog.ui" line="14"/>
+        <source>Polygon Setting</source>
+        <translation>ポリゴン設定</translation>
+    </message>
+    <message>
+        <location filename="../polydata/postpolydatabasicsettingdialog.ui" line="22"/>
+        <source>Color:</source>
+        <translation>色:</translation>
+    </message>
+    <message>
+        <location filename="../polydata/postpolydatabasicsettingdialog.ui" line="53"/>
+        <source>Line Width:</source>
+        <translation>線の幅:</translation>
+    </message>
+</context>
+<context>
+    <name>PostPolyDataScalarPropertyDialog</name>
+    <message>
+        <location filename="../polydata/postpolydatascalarpropertydialog.ui" line="14"/>
+        <source>Polygon Setting</source>
+        <translation>ポリゴン設定</translation>
+    </message>
+    <message>
+        <location filename="../polydata/postpolydatascalarpropertydialog.ui" line="26"/>
+        <source>Custom Color</source>
+        <translation>色を指定</translation>
+    </message>
+    <message>
+        <location filename="../polydata/postpolydatascalarpropertydialog.ui" line="64"/>
+        <source>Color by attribute value</source>
+        <translation>属性値により自動設定</translation>
+    </message>
+    <message>
+        <location filename="../polydata/postpolydatascalarpropertydialog.ui" line="89"/>
+        <source>Attribute:</source>
+        <translation>属性:</translation>
+    </message>
+    <message>
+        <location filename="../polydata/postpolydatascalarpropertydialog.ui" line="127"/>
+        <source>Line Width</source>
+        <translation>線の幅:</translation>
+    </message>
+    <message>
+        <location filename="../polydata/postpolydatascalarpropertydialog.ui" line="171"/>
+        <source>&amp;Color Bar Setting</source>
+        <translation>カラーバー設定(&amp;C)</translation>
+    </message>
+</context>
+<context>
     <name>PostTimeDataItem</name>
     <message>
-        <location filename="../time/posttimedataitem.cpp" line="35"/>
+        <location filename="../time/posttimedataitem.cpp" line="70"/>
         <source>Time</source>
         <translation>時刻</translation>
     </message>
@@ -226,33 +305,37 @@
     </message>
     <message>
         <location filename="../time/posttimeeditdialog.ui" line="20"/>
+        <source>Use project setting</source>
+        <translation>プロジェクトの設定を使用</translation>
+    </message>
+    <message>
+        <location filename="../time/posttimeeditdialog.ui" line="30"/>
+        <source>Time Format</source>
+        <translation>時間の書式</translation>
+    </message>
+    <message>
         <source>Format</source>
-        <translation>表示形式</translation>
+        <translation type="vanished">表示形式</translation>
     </message>
     <message>
-        <location filename="../time/posttimeeditdialog.ui" line="26"/>
         <source>ss sec</source>
-        <translation>ss sec</translation>
+        <translation type="vanished">ss sec</translation>
     </message>
     <message>
-        <location filename="../time/posttimeeditdialog.ui" line="33"/>
         <source>mm:ss</source>
-        <translation>mm:ss</translation>
+        <translation type="vanished">mm:ss</translation>
     </message>
     <message>
-        <location filename="../time/posttimeeditdialog.ui" line="40"/>
         <source>hh:mm:ss</source>
-        <translation>hh:mm:ss</translation>
+        <translation type="vanished">hh:mm:ss</translation>
     </message>
     <message>
-        <location filename="../time/posttimeeditdialog.ui" line="47"/>
         <source>dd:hh:mm:ss</source>
-        <translation>dd:hh:mm:ss</translation>
+        <translation type="vanished">dd:hh:mm:ss</translation>
     </message>
     <message>
-        <location filename="../time/posttimeeditdialog.ui" line="59"/>
         <source>Color:</source>
-        <translation>色:</translation>
+        <translation type="vanished">色:</translation>
     </message>
 </context>
 <context>
@@ -285,14 +368,12 @@
         <translation>警告: タイトルには、英数字と記号のみ利用することができます。</translation>
     </message>
     <message>
-        <location filename="../title/posttitleeditdialog.ui" line="65"/>
         <source>Color:</source>
-        <translation>色:</translation>
+        <translation type="vanished">色:</translation>
     </message>
     <message>
-        <location filename="../title/posttitleeditdialog.ui" line="96"/>
         <source>Font size:</source>
-        <translation>フォントサイズ:</translation>
+        <translation type="vanished">フォントサイズ:</translation>
     </message>
 </context>
 </TS>

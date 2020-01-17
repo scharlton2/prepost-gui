@@ -13,16 +13,19 @@ win32 {
 }
 
 # Input
-HEADERS += boolcontainer.h \
+HEADERS += anms.h \
+           boolcontainer.h \
            colorcontainer.h \
            compositecontainer.h \
            doublecontainer.h \
            doublemappingsetting.h \
+           dvector.h \
            edge.h \
            enumcontainert.h \
            errormessage.h \
            filesystemfunction.h \
            informationdialog.h \
+           intarraycontainer.h \
            intcontainer.h \
            integerrangecontainer.h \
            interpolator.h \
@@ -36,18 +39,21 @@ HEADERS += boolcontainer.h \
            linearinterpolator.h \
            mathsupport.h \
            misc_global.h \
+           multicelloperabletableview.h \
            networksetting.h \
            numericvaluecontainert.h \
            opacitycontainer.h \
+           primitiveview.h \
            qpointfcontainer.h \
            qttool.h \
            simplevaluecontainert.h \
            slowmotionspeededitdialog.h \
+           splineinterpolator.h \
            standarderrormessages.h \
            stringcontainer.h \
            stringtool.h \
            threadwithprogressinfo.h \
-           timeformat.h \
+           valuearraycontainert.h \
            valuechangert.h \
            valuerestorert.h \
            versionnumber.h \
@@ -66,21 +72,25 @@ HEADERS += boolcontainer.h \
            private/numericvaluecontainert_detail.h \
            private/qpointfcontainer_impl.h \
            private/simplevaluecontainert_detail.h \
+           private/valuearraycontainert_detail.h \
            private/valuechangert_detail.h \
            private/valuerestorert_detail.h \
            private/versionnumber_impl.h \
            private/xmlattributecontainer_impl.h \
            private/zdepthrange_impl.h
-FORMS += informationdialog.ui slowmotionspeededitdialog.ui
-SOURCES += boolcontainer.cpp \
+FORMS += informationdialog.ui primitiveview.ui slowmotionspeededitdialog.ui
+SOURCES += anms.cpp \
+           boolcontainer.cpp \
            colorcontainer.cpp \
            compositecontainer.cpp \
            doublecontainer.cpp \
            errormessage.cpp \
            filesystemfunction.cpp \
            informationdialog.cpp \
+           intarraycontainer.cpp \
            intcontainer.cpp \
            integerrangecontainer.cpp \
+           interpolator.cpp \
            intvectorcontainer.cpp \
            iricrootpath.cpp \
            iricundostack.cpp \
@@ -90,16 +100,18 @@ SOURCES += boolcontainer.cpp \
            latitudelongitudeangle.cpp \
            linearinterpolator.cpp \
            mathsupport.cpp \
+           multicelloperabletableview.cpp \
            networksetting.cpp \
            opacitycontainer.cpp \
+           primitiveview.cpp \
            qpointfcontainer.cpp \
            qttool.cpp \
            slowmotionspeededitdialog.cpp \
+           splineinterpolator.cpp \
            standarderrormessages.cpp \
            stringcontainer.cpp \
            stringtool.cpp \
            threadwithprogressinfo.cpp \
-           timeformat.cpp \
            versionnumber.cpp \
            windowgeometrycontainer.cpp \
            xmlattributecontainer.cpp \

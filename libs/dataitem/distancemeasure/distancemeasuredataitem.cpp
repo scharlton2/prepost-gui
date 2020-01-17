@@ -1,4 +1,5 @@
 #include "distancemeasuredataitem.h"
+#include "distancemeasurepropertydialog.h"
 #include "private/distancemeasuredataitem_definecommand.h"
 #include "private/distancemeasuredataitem_impl.h"
 #include "private/distancemeasuredataitem_movevertexcommand.h"
@@ -36,15 +37,6 @@
 #include <vtkVertex.h>
 
 #define LABEL "Label"
-
-namespace {
-
-QVector2D toVec(const QPointF v)
-{
-	return QVector2D(v.x(), v.y());
-}
-
-} // namespace
 
 DistanceMeasureDataItem::Impl::Impl(DistanceMeasureDataItem* parent) :
 	m_dragPointTarget {0},
@@ -276,7 +268,7 @@ void DistanceMeasureDataItem::updateActorSettings()
 	impl->m_labelActor.setLabelPosition(impl->m_setting.labelPosition);
 
 	vtkTextProperty* txtProp = impl->m_labelActor.labelTextProperty();
-	txtProp->SetFontSize(impl->m_setting.labelFontSize);
+	impl->m_setting.labelFontSetting.applySetting(txtProp);
 	txtProp->SetColor(impl->m_setting.color);
 
 	impl->m_lineActor.pointsActor()->GetProperty()->SetColor(impl->m_setting.color);
@@ -308,10 +300,13 @@ QDialog* DistanceMeasureDataItem::propertyDialog(QWidget* parent)
 	QVector2D v1, v2;
 
 	std::vector<QPointF> line = impl->m_lineActor.line();
+	if (line.size() < 2) {
+		return nullptr;
+	}
 	v1 = QVector2D(line.at(0).x(), line.at(0).y());
 	v2 = QVector2D(line.at(1).x(), line.at(1).y());
 
-	DistanceMeasureCopyPropertyDialog* dialog = new DistanceMeasureCopyPropertyDialog(parent);
+	auto dialog = new DistanceMeasurePropertyDialog(parent);
 	dialog->setName(m_standardItem->text().trimmed());
 	dialog->setSetting(impl->m_setting);
 
@@ -320,13 +315,13 @@ QDialog* DistanceMeasureDataItem::propertyDialog(QWidget* parent)
 
 void DistanceMeasureDataItem::handlePropertyDialogAccepted(QDialog* propDialog)
 {
-	DistanceMeasureCopyPropertyDialog* dialog = dynamic_cast<DistanceMeasureCopyPropertyDialog*>(propDialog);
+	auto dialog = dynamic_cast<DistanceMeasurePropertyDialog*>(propDialog);
 	iRICUndoStack::instance().push(new SetSettingCommand(dialog->name(), dialog->setting(), this));
 }
 
 QString DistanceMeasureDataItem::autoLabel() const
 {
-	return QString::number(toVec(impl->m_setting.point2 - impl->m_setting.point1).length());
+	return QString::number(iRIC::length(impl->m_setting.point2 - impl->m_setting.point1));
 }
 
 void DistanceMeasureDataItem::showPropDialog()
@@ -426,20 +421,20 @@ void DistanceMeasureDataItem::updateMouseEventMode(const QPointF& v, VTKGraphics
 	case Impl::meNormal:
 	case Impl::meMoveVertexPrepare:
 	case Impl::meTranslatePrepare:
-		if (toVec(impl->m_setting.point1 - v).length() < view2->stdRadius(iRIC::nearRadius())) {
+		if (iRIC::length(impl->m_setting.point1 - v) < view2->stdRadius(iRIC::nearRadius())) {
 			impl->m_mouseEventMode = Impl::meMoveVertexPrepare;
 			impl->m_dragPointTarget = 1;
-		} else if (toVec(impl->m_setting.point2 - v).length() < view2->stdRadius(iRIC::nearRadius())) {
+		} else if (iRIC::length(impl->m_setting.point2 - v) < view2->stdRadius(iRIC::nearRadius())) {
 			impl->m_mouseEventMode = Impl::meMoveVertexPrepare;
 			impl->m_dragPointTarget = 2;
 		} else {
-			QVector2D horizontal = toVec(impl->m_setting.point2 - impl->m_setting.point1);
-			QVector2D vertical = horizontal.normalized();
+			QPointF horizontal = impl->m_setting.point2 - impl->m_setting.point1;
+			QPointF vertical = iRIC::normalize(horizontal);
 			iRIC::rotateVector90(vertical);
 			double width = view2->stdRadius(iRIC::nearRadius());
 			vertical *= width;
-			QVector2D posv = toVec(impl->m_setting.point1) - vertical * 0.5;
-			if (iRIC::isInsideParallelogram(toVec(v), posv, horizontal, vertical)) {
+			QPointF posv = impl->m_setting.point1 - vertical * 0.5;
+			if (iRIC::isInsideParallelogram(v, posv, horizontal, vertical)) {
 				impl->m_mouseEventMode = Impl::meTranslatePrepare;
 			} else {
 				impl->m_mouseEventMode = Impl::meNormal;

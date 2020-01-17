@@ -5,6 +5,7 @@
 #include "geodatariverpathpoint.h"
 #include "geodatariversurvey.h"
 #include "geodatariversurveycrosssectionwindow.h"
+#include "private/geodatariversurvey_editcrosssectioncommand.h"
 
 #include <misc/iricundostack.h>
 
@@ -78,7 +79,7 @@ void GeoDataRiverCrosssectionAltitudeMoveDialog::reject()
 		iRICUndoStack::instance().undo();
 		m_rs->updateShapeData();
 		m_rs->renderGraphicsView();
-		m_rs->updateCrossectionWindows();
+		m_rs->updateCrosssectionWindows();
 	}
 	QDialog::reject();
 }
@@ -92,7 +93,7 @@ void GeoDataRiverCrosssectionAltitudeMoveDialog::doReset()
 		iRICUndoStack::instance().undo();
 		m_rs->updateShapeData();
 		m_rs->renderGraphicsView();
-		m_rs->updateCrossectionWindows();
+		m_rs->updateCrosssectionWindows();
 	}
 	m_applyed = false;
 }

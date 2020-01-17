@@ -143,6 +143,20 @@ unix {
 }
 LIBS += -liricGdPolygon
 
+# iricGdPolygonGroup
+
+win32 {
+        CONFIG(debug, debug|release) {
+                LIBS += -L"../geodata/polygongroup/debug"
+        } else {
+                LIBS += -L"../geodata/polygongroup/release"
+        }
+}
+unix {
+        LIBS += -L"../geodata/polygongroup"
+}
+LIBS += -liricGdPolygonGroup
+
 # iricGdPolyline
 
 win32 {
@@ -239,6 +253,20 @@ unix {
 	LIBS += -L"../gridcreatingcondition/gridgenerator"
 }
 LIBS += -liricGccGridgenerator
+
+# iricGccLaplace
+
+win32 {
+	CONFIG(debug, debug|release) {
+		LIBS += -L"../gridcreatingcondition/laplace/debug"
+	} else {
+		LIBS += -L"../gridcreatingcondition/laplace/release"
+	}
+}
+unix {
+	LIBS += -L"../gridcreatingcondition/laplace"
+}
+LIBS += -liricGccLaplace
 
 # iricGccRectangularregion
 

@@ -49,6 +49,8 @@
 #include <geodata/pointmap/geodatapointmap.h>
 #include <geodata/polygon/geodatapolygon.h>
 #include <geodata/polygon/geodatapolygoncreator.h>
+#include <geodata/polygongroup/geodatapolygongroup.h>
+#include <geodata/polygongroup/geodatapolygongroupcreator.h>
 #include <geodata/polyline/geodatapolyline.h>
 #include <geodata/polyline/geodatapolylinecreator.h>
 #include <geodata/riversurvey/geodatariversurvey.h>
@@ -274,6 +276,7 @@ void PreProcessorDataModel::setupGeoDataMenus()
 	m_geographicDataMenu->addSeparator();
 
 	GeoDataCreator* polygonCreator = nullptr;
+	GeoDataCreator* polygonGroupCreator = nullptr;
 	GeoDataCreator* polylineCreator = nullptr;
 
 	if (item != nullptr) {
@@ -282,6 +285,9 @@ void PreProcessorDataModel::setupGeoDataMenus()
 		for (auto creator : creators) {
 			if (dynamic_cast<GeoDataPolygonCreator*>(creator) != nullptr) {
 				polygonCreator = creator;
+			}
+			if (dynamic_cast<GeoDataPolygonGroupCreator*>(creator) != nullptr) {
+				polygonGroupCreator = creator;
 			}
 			if (dynamic_cast<GeoDataPolyLineCreator*>(creator) != nullptr) {
 				polylineCreator = creator;
@@ -318,6 +324,15 @@ void PreProcessorDataModel::setupGeoDataMenus()
 		}
 		m_geographicDataMenu->addMenu(dummy);
 
+		GeoDataPolygonGroup* polGroup = dynamic_cast<GeoDataPolygonGroup*>(raw);
+		dummy = new QMenu(tr("Polygon&Group"), m_geographicDataMenu);
+		if (polGroup != nullptr) {
+			connect(dummy, SIGNAL(aboutToShow()), this, SLOT(setupGeoDataSubMenu()));
+		} else {
+			dummy->addAction(m_geoDataAddActions.value(polygonGroupCreator));
+		}
+		m_geographicDataMenu->addMenu(dummy);
+
 		GeoDataPolyLine* line = dynamic_cast<GeoDataPolyLine*>(raw);
 		dummy = new QMenu(tr("Poly&line"), m_geographicDataMenu);
 		dummy->addAction(m_geoDataAddActions.value(polylineCreator));
@@ -338,6 +353,9 @@ void PreProcessorDataModel::setupGeoDataMenus()
 				if (dynamic_cast<GeoDataPolygonCreator*>(creator) != nullptr) {
 					polygonCreator = creator;
 				}
+				if (dynamic_cast<GeoDataPolygonGroupCreator*>(creator) != nullptr) {
+					polygonGroupCreator = creator;
+				}
 				if (dynamic_cast<GeoDataPolyLineCreator*>(creator) != nullptr) {
 					polylineCreator = creator;
 				}
@@ -352,6 +370,9 @@ void PreProcessorDataModel::setupGeoDataMenus()
 			m_geographicDataMenu->addMenu(dummy);
 			dummy = new QMenu(tr("&Polygon"), m_geographicDataMenu);
 			dummy->addAction(m_geoDataAddActions.value(polygonCreator));
+			m_geographicDataMenu->addMenu(dummy);
+			dummy = new QMenu(tr("Polygon&Group"), m_geographicDataMenu);
+			dummy->addAction(m_geoDataAddActions.value(polygonGroupCreator));
 			m_geographicDataMenu->addMenu(dummy);
 			dummy = new QMenu(tr("Poly&line"), m_geographicDataMenu);
 			dummy->addAction(m_geoDataAddActions.value(polylineCreator));
@@ -375,6 +396,9 @@ void PreProcessorDataModel::setupGeoDataMenus()
 			dummy->setDisabled(true);
 			m_geographicDataMenu->addMenu(dummy);
 			dummy = new QMenu(tr("&Polygon"), mainWindow());
+			dummy->setDisabled(true);
+			m_geographicDataMenu->addMenu(dummy);
+			dummy = new QMenu(tr("Polygon&Group"), mainWindow());
 			dummy->setDisabled(true);
 			m_geographicDataMenu->addMenu(dummy);
 			dummy = new QMenu(tr("Poly&line"), mainWindow());
@@ -1248,6 +1272,22 @@ void PreProcessorDataModel::setupBoundaryConditionSettingMenuContent()
 	}
 }
 
+void PreProcessorDataModel::setupGeoDataSubMenu()
+{
+	QMenu* menu = dynamic_cast<QMenu*> (sender());
+	menu->clear();
+	PreProcessorGeoDataDataItem* item = dynamic_cast<PreProcessorGeoDataDataItem*>(m_selectedItem);
+	auto geoData = item->geoData();
+	auto geoDataCreator = geoData->creator();
+	auto addAction = m_geoDataAddActions.value(geoDataCreator, nullptr);
+
+	if (addAction != nullptr) {
+		menu->addAction(addAction);
+		menu->addSeparator();
+	}
+	menu->addActions(item->geoData()->menu()->actions());
+}
+
 void PreProcessorDataModel::disableGridMenu()
 {
 	m_gridMenu->setDisabled(true);
@@ -1369,6 +1409,15 @@ bool PreProcessorDataModel::checkMappingStatus()
 		QMessageBox::information(mainWindow(), tr("Information"), tr("Mapping geographic data, boundary condition finished successfully."));
 	}
 	return ! mapExexuted;
+}
+
+PreProcessorGeoDataTopDataItemInterface* PreProcessorDataModel::geoDataTopDataItem() const
+{
+	PreProcessorRootDataItem* root = dynamic_cast<PreProcessorRootDataItem*>(m_rootDataItem);
+	auto items = root->gridTypeDataItems();
+	if (items.size() == 0) {return nullptr;}
+	auto tItem = items.at(0);
+	return tItem->geoDataTop();
 }
 
 PreProcessorGeoDataTopDataItemInterface* PreProcessorDataModel::geoDataTopDataItem(const std::string& type) const

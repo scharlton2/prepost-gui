@@ -3,7 +3,9 @@
 
 #include "../guicore_global.h"
 #include "postabstractsteps.h"
+
 #include <QList>
+
 /// This class stores the iterationsteps included in cgns file.
 class GUICOREDLL_EXPORT PostIterationSteps : public PostAbstractSteps
 {
@@ -20,13 +22,13 @@ public:
 	void clearSteps();
 
 signals:
-	void stepsUpdated(QList<int> steps);
+	void stepsUpdated(const QList<int>& steps);
 	void stepsUpdated(int fn);
 
 private:
 	void clearArray() override;
 
-	QList<int> m_iterationsteps;
+	QList<int> m_iterationSteps;
 };
 
 #endif // POSTITERATIONSTEPS_H

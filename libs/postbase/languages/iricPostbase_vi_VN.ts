@@ -2,6 +2,34 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="vi_VN">
 <context>
+    <name>ParticleArbitraryTimeEditDialog</name>
+    <message>
+        <location filename="../particle/particlearbitrarytimeeditdialog.ui" line="14"/>
+        <source>Particle generate time setting</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../particle/particlearbitrarytimeeditdialog.ui" line="32"/>
+        <source>&amp;Add...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../particle/particlearbitrarytimeeditdialog.ui" line="39"/>
+        <source>&amp;Delete</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../particle/particlearbitrarytimeeditdialog.cpp" line="66"/>
+        <source>Add time step</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../particle/particlearbitrarytimeeditdialog.cpp" line="66"/>
+        <source>Select Time step to add</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>PostAllZoneSelectingDialog</name>
     <message>
         <location filename="../postallzoneselectingdialog.ui" line="14"/>
@@ -190,9 +218,60 @@
     </message>
 </context>
 <context>
+    <name>PostPolyDataBasicSettingDialog</name>
+    <message>
+        <location filename="../polydata/postpolydatabasicsettingdialog.ui" line="14"/>
+        <source>Polygon Setting</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../polydata/postpolydatabasicsettingdialog.ui" line="22"/>
+        <source>Color:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../polydata/postpolydatabasicsettingdialog.ui" line="53"/>
+        <source>Line Width:</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>PostPolyDataScalarPropertyDialog</name>
+    <message>
+        <location filename="../polydata/postpolydatascalarpropertydialog.ui" line="14"/>
+        <source>Polygon Setting</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../polydata/postpolydatascalarpropertydialog.ui" line="26"/>
+        <source>Custom Color</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../polydata/postpolydatascalarpropertydialog.ui" line="64"/>
+        <source>Color by attribute value</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../polydata/postpolydatascalarpropertydialog.ui" line="89"/>
+        <source>Attribute:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../polydata/postpolydatascalarpropertydialog.ui" line="127"/>
+        <source>Line Width</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../polydata/postpolydatascalarpropertydialog.ui" line="171"/>
+        <source>&amp;Color Bar Setting</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>PostTimeDataItem</name>
     <message>
-        <location filename="../time/posttimedataitem.cpp" line="35"/>
+        <location filename="../time/posttimedataitem.cpp" line="70"/>
         <source>Time</source>
         <translation type="unfinished"></translation>
     </message>
@@ -211,32 +290,12 @@
     </message>
     <message>
         <location filename="../time/posttimeeditdialog.ui" line="20"/>
-        <source>Format</source>
+        <source>Use project setting</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../time/posttimeeditdialog.ui" line="26"/>
-        <source>ss sec</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../time/posttimeeditdialog.ui" line="33"/>
-        <source>mm:ss</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../time/posttimeeditdialog.ui" line="40"/>
-        <source>hh:mm:ss</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../time/posttimeeditdialog.ui" line="47"/>
-        <source>dd:hh:mm:ss</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../time/posttimeeditdialog.ui" line="59"/>
-        <source>Color:</source>
+        <location filename="../time/posttimeeditdialog.ui" line="30"/>
+        <source>Time Format</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -263,16 +322,6 @@
     <message>
         <location filename="../title/posttitleeditdialog.ui" line="56"/>
         <source>Note: Only English Characters can be used for title.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../title/posttitleeditdialog.ui" line="65"/>
-        <source>Color:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../title/posttitleeditdialog.ui" line="96"/>
-        <source>Font size:</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

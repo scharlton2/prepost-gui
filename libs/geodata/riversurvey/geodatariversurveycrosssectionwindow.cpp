@@ -2,13 +2,16 @@
 
 #include "geodatarivercrosssection.h"
 #include "geodatariversurvey.h"
+#include "geodatariversurveycrosssectioneditfrompointdialog.h"
 #include "geodatariversurveycrosssectionwindow.h"
 #include "geodatariversurveycrosssectionwindowprojectdataitem.h"
 #include "private/geodatariversurveycrosssectionwindow_datatabledelegate.h"
 #include "private/geodatariversurveycrosssectionwindow_impl.h"
+#include "private/geodatariversurvey_editcrosssectioncommand.h"
 #include "private/geodatariversurveycrosssectionwindow_riversurveytabledelegate.h"
 #include "private/geodatariversurveycrosssectionwindow_wsetabledelegate.h"
 
+#include <guibase/widget/realnumbereditwidget.h>
 #include <guicore/pre/base/preprocessorgeodatadataiteminterface.h>
 #include <guicore/pre/base/preprocessorgeodatagroupdataiteminterface.h>
 #include <guicore/pre/base/preprocessorhydraulicdatadataiteminterface.h>
@@ -26,6 +29,7 @@
 #include <QMenu>
 #include <QMessageBox>
 #include <QPainter>
+#include <QPushButton>
 #include <QStandardItemModel>
 
 #include <set>
@@ -106,7 +110,7 @@ GeoDataRiverSurveyCrosssectionWindow::GeoDataRiverSurveyCrosssectionWindow(PrePr
 	ui->vSplitter->setSizes(vSizes);
 
 	setupActions();
-	setupToolBar();
+	setupToolBars();
 	setupModel();
 	setupView();
 	setupMenu();
@@ -120,6 +124,7 @@ GeoDataRiverSurveyCrosssectionWindow::GeoDataRiverSurveyCrosssectionWindow(PrePr
 	connect(ui->surveysTableWidget, SIGNAL(currentCellChanged(int,int,int,int)), this, SLOT(handleSurveyTablecurrentCellChange(int,int,int,int)));
 	connect(ui->wsesTableWidget, SIGNAL(itemClicked(QTableWidgetItem*)), this, SLOT(handleWseTableItemClick(QTableWidgetItem*)));
 	connect(ui->wsesTableWidget, SIGNAL(itemChanged(QTableWidgetItem*)), this, SLOT(handleWseTableItemEdit(QTableWidgetItem*)));
+	connect(ui->graphicsView, SIGNAL(drawnRegionChanged()), this, SLOT(handleDrawnRegionChanged()));
 }
 
 
@@ -134,8 +139,12 @@ void GeoDataRiverSurveyCrosssectionWindow::setupActions()
 {
 	impl->m_inactivateByWEOnlyThisAction = new QAction(tr("&This cross-section only"), this);
 	impl->m_inactivateByWEAllAction = new QAction(tr("All cross-sections"), this);
+	impl->m_editFromSelectedPointAction = new QAction(tr("&Edit cross section from the selected point"), this);
+	impl->m_editFromSelectedPointWithDialogAction = new QAction(tr("&Edit from Dialog..."), this);
 	impl->m_deleteAction = new QAction(tr("&Delete"), this);
 
+	connect(impl->m_editFromSelectedPointAction, SIGNAL(triggered()), this, SLOT(editFromSelectedPoint()));
+	connect(impl->m_editFromSelectedPointWithDialogAction, SIGNAL(triggered()), this, SLOT(editFromSelectedPointWithDialog()));
 	connect(impl->m_inactivateByWEOnlyThisAction, SIGNAL(triggered()), this, SLOT(inactivateByWEOnlyThis()));
 	connect(impl->m_inactivateByWEAllAction, SIGNAL(triggered()), this, SLOT(inactivateByWEAll()));
 	connect(impl->m_deleteAction, SIGNAL(triggered()), this, SLOT(deleteSelectedRows()));
@@ -144,7 +153,7 @@ void GeoDataRiverSurveyCrosssectionWindow::setupActions()
 void GeoDataRiverSurveyCrosssectionWindow::setupMenu()
 {
 	impl->m_elevationPointMenu = new QMenu(tr("&Elevation Point"));
-	GeoDataRiverSurveyCrosssectionWindowGraphicsView* gview = ui->graphicsView;
+	auto gview = ui->graphicsView;
 	impl->m_elevationPointMenu->addAction(gview->activateAction());
 	impl->m_elevationPointMenu->addAction(gview->inactivateAction());
 
@@ -154,32 +163,105 @@ void GeoDataRiverSurveyCrosssectionWindow::setupMenu()
 	submenu->addAction(impl->m_inactivateByWEAllAction);
 
 	impl->m_elevationPointMenu->addSeparator();
+	impl->m_elevationPointMenu->addAction(impl->m_editFromSelectedPointWithDialogAction);
 	impl->m_elevationPointMenu->addAction(gview->moveAction());
 	impl->m_elevationPointMenu->addAction(impl->m_deleteAction);
 }
 
-void GeoDataRiverSurveyCrosssectionWindow::setupToolBar()
+void GeoDataRiverSurveyCrosssectionWindow::setupToolBars()
 {
-	ui->toolBar->setFloatable(false);
+	ui->crossSectionToolBar->setFloatable(false);
+	ui->viewToolBar->setFloatable(false);
+	ui->displayToolBar->setFloatable(false);
 
-	QLabel* l;
-	QWidget* spacer;
-	l = new QLabel(tr("Crosssection: "), ui->toolBar);
-	ui->toolBar->addWidget(l);
+	// crossSectionToolBar
+	QLabel* l = nullptr;
+	QWidget* spacer = nullptr;
+	l = new QLabel(tr("Crosssection: "), ui->crossSectionToolBar);
+	ui->crossSectionToolBar->addWidget(l);
 	impl->m_crosssectionComboBox = new QComboBox(this);
 	impl->m_crosssectionComboBox->setMinimumWidth(100);
-	ui->toolBar->addWidget(impl->m_crosssectionComboBox);
+	ui->crossSectionToolBar->addWidget(impl->m_crosssectionComboBox);
 
-	spacer = new QWidget(ui->toolBar);
+	spacer = new QWidget(ui->crossSectionToolBar);
 	spacer->setFixedWidth(10);
-	ui->toolBar->addWidget(spacer);
+	ui->crossSectionToolBar->addWidget(spacer);
 
+	impl->m_referenceCheckBox = new QCheckBox(this);
+	impl->m_referenceCheckBox->setText(tr("Reference"));
+	impl->m_referenceCheckBox->setChecked(false);
+	ui->crossSectionToolBar->addWidget(impl->m_referenceCheckBox);
+
+	impl->m_referenceComboBox = new QComboBox(this);
+	impl->m_referenceComboBox->setMinimumWidth(100);
+	impl->m_referenceComboBox->setEnabled(false);
+	ui->crossSectionToolBar->addWidget(impl->m_referenceComboBox);
+
+	// viewToolBar
 	impl->m_autoRescaleCheckBox = new QCheckBox(this);
 	impl->m_autoRescaleCheckBox->setText(tr("Auto rescale"));
 	impl->m_autoRescaleCheckBox->setChecked(true);
-	ui->toolBar->addWidget(impl->m_autoRescaleCheckBox);
+	ui->viewToolBar->addWidget(impl->m_autoRescaleCheckBox);
+
+	spacer = new QWidget(this);
+	spacer->setFixedWidth(10);
+	ui->viewToolBar->addWidget(spacer);
+
+	l = new QLabel(tr("Aspect ratio: 1 / "), this);
+	ui->viewToolBar->addWidget(l);
+
+	impl->m_aspectRatioEdit = new RealNumberEditWidget(this);
+	impl->m_aspectRatioEdit->setMaximumWidth(100);
+	ui->viewToolBar->addWidget(impl->m_aspectRatioEdit);
+
+	spacer = new QWidget(this);
+	spacer->setFixedWidth(10);
+	ui->viewToolBar->addWidget(spacer);
+
+	impl->m_fixAspectRatioCheckBox = new QCheckBox(tr("Fix aspect ratio"), this);
+	ui->viewToolBar->addWidget(impl->m_fixAspectRatioCheckBox);
+
+	impl->m_fixRegionCheckBox = new QCheckBox(tr("Fix region"), this);
+	ui->viewToolBar->addWidget(impl->m_fixRegionCheckBox);
+
+	// displayToolBar
+	impl->m_gridDisplayCheckBox = new QCheckBox(this);
+	impl->m_gridDisplayCheckBox->setText(tr("Grid"));
+	impl->m_gridDisplayCheckBox->setChecked(true);
+	ui->displayToolBar->addWidget(impl->m_gridDisplayCheckBox);
+
+	impl->m_scaleDisplayCheckBox = new QCheckBox(this);
+	impl->m_scaleDisplayCheckBox->setText(tr("Scale"));
+	impl->m_scaleDisplayCheckBox->setChecked(true);
+	ui->displayToolBar->addWidget(impl->m_scaleDisplayCheckBox);
+
+	impl->m_markersDisplayCheckBox = new QCheckBox(this);
+	impl->m_markersDisplayCheckBox->setText(tr("Left/right bank markers"));
+	impl->m_markersDisplayCheckBox->setChecked(true);
+	ui->displayToolBar->addWidget(impl->m_markersDisplayCheckBox);
+
+	impl->m_aspectRatioDisplayCheckBox = new QCheckBox(this);
+	impl->m_aspectRatioDisplayCheckBox->setText(tr("Aspect ratio"));
+	impl->m_aspectRatioDisplayCheckBox->setChecked(true);
+	ui->displayToolBar->addWidget(impl->m_aspectRatioDisplayCheckBox);
+
+	auto displaySettingButton = new QPushButton(tr("Display Setting"), this);
+	ui->displayToolBar->addWidget(displaySettingButton);
 
 	connect(impl->m_crosssectionComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(crosssectionComboBoxChange(int)));
+	connect(impl->m_referenceCheckBox, SIGNAL(toggled(bool)), impl->m_referenceComboBox, SLOT(setEnabled(bool)));
+	connect(impl->m_referenceCheckBox, SIGNAL(toggled(bool)), this, SLOT(updateView()));
+	connect(impl->m_referenceComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(updateView()));
+
+	connect(impl->m_aspectRatioEdit, SIGNAL(valueChanged(double)), this, SLOT(handleAspectRatioEdit(double)));
+	connect(impl->m_fixAspectRatioCheckBox, SIGNAL(toggled(bool)), this, SLOT(handleFixAspectRatio(bool)));
+	connect(impl->m_fixRegionCheckBox, SIGNAL(toggled(bool)), this, SLOT(handleFixRegion(bool)));
+
+	connect(impl->m_gridDisplayCheckBox, SIGNAL(toggled(bool)), this, SLOT(updateView()));
+	connect(impl->m_scaleDisplayCheckBox, SIGNAL(toggled(bool)), this, SLOT(updateView()));
+	connect(impl->m_aspectRatioDisplayCheckBox, SIGNAL(toggled(bool)), this, SLOT(updateView()));
+	connect(impl->m_markersDisplayCheckBox, SIGNAL(toggled(bool)), this, SLOT(updateView()));
+	connect(displaySettingButton, SIGNAL(clicked()), this, SLOT(editDisplaySetting()));
 }
 
 void GeoDataRiverSurveyCrosssectionWindow::setupModel()
@@ -194,7 +276,7 @@ void GeoDataRiverSurveyCrosssectionWindow::setupModel()
 	connect(impl->m_selectionModel, SIGNAL(selectionChanged(QItemSelection, QItemSelection)), this, SLOT(updateActionStatus()));
 }
 
-void GeoDataRiverSurveyCrosssectionWindow::updateComboBoxes()
+void GeoDataRiverSurveyCrosssectionWindow::updateCrossSectionComboBox()
 {
 	// update crosssectionNames.
 	impl->m_crosssectionNames = setupCrosssectionNames(impl->m_riverSurveys);
@@ -219,6 +301,33 @@ void GeoDataRiverSurveyCrosssectionWindow::updateComboBoxes()
 			setCrosssection(nullptr);
 		}
 	}
+}
+
+void GeoDataRiverSurveyCrosssectionWindow::updateReferenceComboBox()
+{
+	GeoDataRiverPathPoint* oldPoint = nullptr;
+	if (impl->m_referenceRiverPathPoints.size() > 0 && impl->m_referenceComboBox->currentIndex() >= 0) {
+		oldPoint = impl->m_referenceRiverPathPoints.at(impl->m_referenceComboBox->currentIndex()).point;
+	}
+	int newIndex = 0;
+
+	impl->m_referenceComboBox->clear();
+	impl->m_referenceRiverPathPoints.clear();
+
+	int idx = 0;
+	for (auto survey : impl->m_riverSurveys) {
+		auto point = survey->headPoint()->nextPoint();
+		while (point != nullptr) {
+			auto name = QString("%1 : %2").arg(survey->caption()).arg(point->name());
+			impl->m_referenceComboBox->addItem(name);
+			ReferenceRiverPathPoint rp {idx, point};
+			impl->m_referenceRiverPathPoints.push_back(rp);
+			if (oldPoint == point) {newIndex = impl->m_referenceRiverPathPoints.size() - 1;}
+			point = point->nextPoint();
+		}
+		++ idx;
+	}
+	impl->m_referenceComboBox->setCurrentIndex(newIndex);
 }
 
 void GeoDataRiverSurveyCrosssectionWindow::setRiverSurvey(GeoDataRiverSurvey* rs)
@@ -269,6 +378,16 @@ QAction* GeoDataRiverSurveyCrosssectionWindow::deleteAction() const
 	return impl->m_deleteAction;
 }
 
+QAction* GeoDataRiverSurveyCrosssectionWindow::editFromSelectedPointAction() const
+{
+	return impl->m_editFromSelectedPointAction;
+}
+
+QAction* GeoDataRiverSurveyCrosssectionWindow::editFromSelectedPointWithDialogAction() const
+{
+	return impl->m_editFromSelectedPointWithDialogAction;
+}
+
 QAction* GeoDataRiverSurveyCrosssectionWindow::inactivateByWEOnlyThisAction() const
 {
 	return impl->m_inactivateByWEOnlyThisAction;
@@ -282,8 +401,6 @@ QAction* GeoDataRiverSurveyCrosssectionWindow::inactivateByWEAllAction() const
 void GeoDataRiverSurveyCrosssectionWindow::setupData()
 {
 	impl->m_settingUp = true;
-	// detach table view once.
-	ui->tableView->setModel(nullptr);
 	// keep selection status
 	QItemSelection selection = impl->m_selectionModel->selection();
 	QList<SelectionRange> sel;
@@ -536,6 +653,27 @@ void GeoDataRiverSurveyCrosssectionWindow::deleteSelectedRows()
 	impl->m_selectionModel->clear();
 }
 
+void GeoDataRiverSurveyCrosssectionWindow::editFromSelectedPoint()
+{
+	QModelIndexList rows = impl->m_selectionModel->selectedRows();
+	if (rows.count() != 1) {
+		QMessageBox::information(this, tr("Information"), tr("To use this function, please select only one point."));
+		return;
+	}
+	ui->graphicsView->enterEditCrosssectionMode();
+}
+
+void GeoDataRiverSurveyCrosssectionWindow::editFromSelectedPointWithDialog()
+{
+	QModelIndexList rows = impl->m_selectionModel->selectedRows();
+	int row = rows.at(0).row();
+
+	ui->graphicsView->informModelessDialogOpen();
+	auto dialog = new GeoDataRiverSurveyCrossSectionEditFromPointDialog(row, impl->m_editTargetPoint, impl->m_targetRiverSurvey, this, this);
+	connect(dialog, SIGNAL(destroyed(QObject*)), ui->graphicsView, SLOT(informModelessDialogClose()));
+	dialog->show();
+}
+
 void GeoDataRiverSurveyCrosssectionWindow::inactivateByWEOnlyThis()
 {
 	int index;
@@ -592,48 +730,8 @@ void GeoDataRiverSurveyCrosssectionWindow::inactivateByWEAll()
 void GeoDataRiverSurveyCrosssectionWindow::updateActionStatus()
 {
 	QModelIndexList rows = impl->m_selectionModel->selectedRows();
+	impl->m_editFromSelectedPointWithDialogAction->setEnabled(rows.count() > 0);
 	impl->m_deleteAction->setEnabled(rows.count() > 0);
-}
-
-GeoDataRiverSurvey::EditCrosssectionCommand::EditCrosssectionCommand(bool apply, const QString& title, GeoDataRiverPathPoint* p, const GeoDataRiverCrosssection::AltitudeList& after, const GeoDataRiverCrosssection::AltitudeList& before, GeoDataRiverSurveyCrosssectionWindow* w, GeoDataRiverSurvey* rs, bool tableaction, QUndoCommand* parentcommand)
-	: QUndoCommand(title, parentcommand)
-{
-	m_apply = apply;
-	m_point = p;
-	m_before = before;
-	m_after = after;
-	m_window = w;
-	m_rs = rs;
-	m_tableaction = tableaction;
-	m_first = true;
-}
-
-void GeoDataRiverSurvey::EditCrosssectionCommand::redo()
-{
-	m_point->crosssection().AltitudeInfo() = m_after;
-	m_point->updateXSecInterpolators();
-	m_point->updateRiverShapeInterpolators();
-	if (m_apply || (m_tableaction && m_first)) {
-		m_window->updateView();
-	} else {
-		m_rs->updateShapeData();
-		m_rs->renderGraphicsView();
-		m_rs->updateCrossectionWindows();
-		m_rs->setMapped(false);
-	}
-	m_first = false;
-}
-
-void GeoDataRiverSurvey::EditCrosssectionCommand::undo()
-{
-	m_point->crosssection().AltitudeInfo() = m_before;
-	m_point->updateXSecInterpolators();
-	m_point->updateRiverShapeInterpolators();
-	if (! m_apply) {
-		m_rs->updateShapeData();
-		m_rs->renderGraphicsView();
-		m_rs->updateCrossectionWindows();
-	}
 }
 
 QTableView* GeoDataRiverSurveyCrosssectionWindow::tableView()
@@ -724,6 +822,25 @@ PreProcessorGeoDataGroupDataItemInterface* GeoDataRiverSurveyCrosssectionWindow:
 	return impl->m_groupDataItem;
 }
 
+void GeoDataRiverSurveyCrosssectionWindow::setSelectedRow(int row)
+{
+	QItemSelection sel;
+	auto topLeft = impl->m_model->index(row, 0);
+	auto bottomRight = impl->m_model->index(row, 3);
+	sel.select(topLeft, bottomRight);
+	impl->m_selectionModel->select(sel, QItemSelectionModel::ClearAndSelect);
+}
+
+bool GeoDataRiverSurveyCrosssectionWindow::isAspectRatioFixed() const
+{
+	return impl->m_fixAspectRatioCheckBox->isChecked();
+}
+
+bool GeoDataRiverSurveyCrosssectionWindow::isRegionFixed() const
+{
+	return impl->m_fixRegionCheckBox->isChecked();
+}
+
 void GeoDataRiverSurveyCrosssectionWindow::updateRiverSurveys()
 {
 	QMap <GeoDataRiverSurvey*, bool> enableMap;
@@ -763,7 +880,8 @@ void GeoDataRiverSurveyCrosssectionWindow::updateRiverSurveys()
 	}
 	updateRiverPathPoints();
 	updateSurveysTable();
-	updateComboBoxes();
+	updateCrossSectionComboBox();
+	updateReferenceComboBox();
 }
 
 void GeoDataRiverSurveyCrosssectionWindow::setupSurveyTable()
@@ -937,6 +1055,32 @@ void GeoDataRiverSurveyCrosssectionWindow::handleSurveyTablecurrentCellChange(in
 	updateEditTargetPoint();
 }
 
+void GeoDataRiverSurveyCrosssectionWindow::handleAspectRatioEdit(double ratio)
+{
+	ui->graphicsView->setAspectRatio(ratio);
+}
+
+void GeoDataRiverSurveyCrosssectionWindow::handleFixAspectRatio(bool fix)
+{
+	impl->m_aspectRatioEdit->setDisabled(fix);
+}
+
+void GeoDataRiverSurveyCrosssectionWindow::handleFixRegion(bool fix)
+{
+	if (fix) {
+		impl->m_fixAspectRatioCheckBox->setEnabled(false);
+		impl->m_aspectRatioEdit->setEnabled(false);
+	} else {
+		impl->m_fixAspectRatioCheckBox->setEnabled(true);
+		impl->m_aspectRatioEdit->setEnabled(! impl->m_fixAspectRatioCheckBox->isChecked());
+	}
+}
+
+void GeoDataRiverSurveyCrosssectionWindow::handleDrawnRegionChanged()
+{
+	impl->m_aspectRatioEdit->setValue(ui->graphicsView->aspectRatio());
+}
+
 void GeoDataRiverSurveyCrosssectionWindow::moveUpWse(int index)
 {
 	auto weGroup = waterElevationGroup();
@@ -1008,6 +1152,11 @@ bool GeoDataRiverSurveyCrosssectionWindow::selectWSEIndex(int* index)
 	return true;
 }
 
+void GeoDataRiverSurveyCrosssectionWindow::editDisplaySetting()
+{
+	ui->graphicsView->editDisplaySetting();
+}
+
 GeoDataRiverSurvey* GeoDataRiverSurveyCrosssectionWindow::targetRiverSurvey() const
 {
 	return impl->m_targetRiverSurvey;
@@ -1021,6 +1170,27 @@ GeoDataRiverSurvey* GeoDataRiverSurveyCrosssectionWindow::gridCreatingConditionR
 GeoDataRiverPathPoint* GeoDataRiverSurveyCrosssectionWindow::gridCreatingConditionPoint() const
 {
 	return impl->m_gridCreatingConditionPoint;
+}
+
+GeoDataRiverPathPoint* GeoDataRiverSurveyCrosssectionWindow::referenceRiverPathPoint() const
+{
+	if (! impl->m_referenceCheckBox->isChecked())	{return nullptr;}
+
+	int idx = impl->m_referenceComboBox->currentIndex();
+	auto rp = impl->m_referenceRiverPathPoints.at(idx);
+	return rp.point;
+}
+
+QColor GeoDataRiverSurveyCrosssectionWindow::referenceRiverPathPointColor() const
+{
+	if (! impl->m_referenceCheckBox->isChecked())	{return Qt::black;}
+
+	int idx = impl->m_referenceComboBox->currentIndex();
+	auto rp = impl->m_referenceRiverPathPoints.at(idx);
+
+	QColor color = impl->m_riverSurveyColors.at(rp.dataIndex);
+	color.setAlphaF(0.4);
+	return color;
 }
 
 const QList<bool>& GeoDataRiverSurveyCrosssectionWindow::riverSurveyEnables() const

@@ -53,6 +53,7 @@
 #include <misc/stringtool.h>
 #include <misc/valuechangert.h>
 #include <misc/xmlsupport.h>
+#include <misc/ziparchive.h>
 #include <postbase/cfshapeexportwindowi.h>
 #include <post/graph2dhybrid/graph2dhybridwindowprojectdataitem.h>
 #include <post/graph2dscattered/graph2dscatteredwindowprojectdataitem.h>
@@ -65,6 +66,8 @@
 #include <geodata/riversurvey/geodatariversurveycrosssectionwindow.h>
 #include <solverconsole/solverconsolewindow.h>
 #include <solverconsole/solverconsolewindowprojectdataitem.h>
+
+#include <vtkObject.h>
 
 #include <QApplication>
 #include <QClipboard>
@@ -137,7 +140,7 @@ iRICMainWindow::iRICMainWindow(bool cuiMode, QWidget* parent) :
 
 	setMenuBar(m_actionManager->menuBar());
 	addToolBar(m_actionManager->mainToolBar());
-	addToolBar(Qt::RightToolBarArea, m_actionManager->windowsToolBar());
+	addToolBar(Qt::LeftToolBarArea, m_actionManager->windowsToolBar());
 	addToolBarBreak(Qt::TopToolBarArea);
 
 	// Update "New" submenu using the solver definition list.
@@ -327,7 +330,7 @@ void iRICMainWindow::openProject(const QString& filename)
 			m_projectData = new ProjectData(filename, this);
 			// open project file. copying folder executed.
 			qApp->processEvents();
-			if (! m_projectData->copyTo(wFolder, true)) {
+			if (! m_projectData->copyTo(wFolder, true, true)) {
 				// copying failed or canceled.
 				closeProject();
 				return;
@@ -638,7 +641,7 @@ void iRICMainWindow::setupForNewProjectData()
 	updatePostActionStatus();
 
 	// update animationcontroller
-	AnimationController* ac = dynamic_cast<AnimationController*>(m_animationController);
+	auto ac = m_animationController;
 	ac->setup(m_projectData->solverDefinition()->iterationType());
 	QToolBar* at = ac->animationToolBar();
 	if (at != nullptr) {addToolBar(at);}
@@ -848,6 +851,8 @@ void iRICMainWindow::showProjectPropertyDialog()
 	ProjectPropertyDialog dialog(this);
 	dialog.setProjectData(m_projectData);
 	dialog.exec();
+
+	m_animationController->updateLabelAndPostWindows();
 }
 
 void iRICMainWindow::cut()
@@ -914,6 +919,7 @@ void iRICMainWindow::continuousSnapshot()
 	if (enableWindow != nullptr) {
 		ContinuousSnapshotWizard* wizard = new ContinuousSnapshotWizard(this);
 
+		wizard->setCoordinateSystem(m_projectData->mainfile()->coordinateSystem());
 		wizard->setOutput(m_output);
 		wizard->setLayout(m_layout);
 		wizard->setTransparent(m_transparent);
@@ -930,18 +936,9 @@ void iRICMainWindow::continuousSnapshot()
 		wizard->setStop(m_stop);
 		wizard->setSamplingRate(m_samplingRate);
 		wizard->setGoogleEarth(m_googleEarth);
-		wizard->setLeftLatitude(m_leftLatitude);
-		wizard->setLeftLongitude(m_leftLongitude);
-		wizard->setRightLatitude(m_rightLatitude);
-		wizard->setRightLongitude(m_rightLongitude);
 		wizard->setTargetWindow(0);
 		wizard->setKMLFilename(m_kmlFilename);
 		wizard->setBackgroundList(m_projectData->mainfile()->backgroundImages());
-		wizard->setAngle(m_angle);
-		wizard->setNorth(m_north);
-		wizard->setSouth(m_south);
-		wizard->setEast(m_east);
-		wizard->setWest(m_west);
 
 		if (wizard->exec() == QDialog::Accepted) {
 			handleWizardAccepted(wizard);
@@ -997,10 +994,6 @@ void iRICMainWindow::handleWizardAccepted(ContinuousSnapshotWizard* wizard)
 	m_samplingRate = wizard->samplingRate();
 
 	m_googleEarth = wizard->googleEarth();
-	m_leftLatitude = wizard->leftLatitude();
-	m_leftLongitude = wizard->leftLongitude();
-	m_rightLatitude = wizard->rightLatitude();
-	m_rightLongitude = wizard->rightLongitude();
 	m_kmlFilename = wizard->kmlFilename();
 	m_angle = wizard->angle();
 	m_north = wizard->north();
@@ -1191,16 +1184,16 @@ void iRICMainWindow::addKMLElement(int time, QString url, double north, double s
 
 	writer->writeStartElement("LatLonBox");
 	writer->writeStartElement("north");
-	writer->writeCharacters(QString::number(north));
+	writer->writeCharacters(QString::number(north, 'g', 10));
 	writer->writeEndElement();
 	writer->writeStartElement("south");
-	writer->writeCharacters(QString::number(south));
+	writer->writeCharacters(QString::number(south, 'g', 10));
 	writer->writeEndElement();
 	writer->writeStartElement("east");
-	writer->writeCharacters(QString::number(east));
+	writer->writeCharacters(QString::number(east, 'g', 10));
 	writer->writeEndElement();
 	writer->writeStartElement("west");
-	writer->writeCharacters(QString::number(west));
+	writer->writeCharacters(QString::number(west, 'g', 10));
 	writer->writeEndElement();
 	writer->writeStartElement("rotation");
 	writer->writeCharacters(QString::number(angle));
@@ -1212,15 +1205,15 @@ void iRICMainWindow::addKMLElement(int time, QString url, double north, double s
 
 QString iRICMainWindow::timeString(int time)
 {
-	QString str;
-	int hour = time / 3600;
-	int minutes = time % 3600;
-	int minute = minutes / 60;
-	int second = minutes % 60;
-	str = QString("2011-01-01T%1:%2:%3").arg(hour, 2, 10, QChar('0'))
-				.arg(minute, 2, 10, QChar('0'))
-				.arg(second, 2, 10, QChar('0'));
-	return str;
+	QDateTime datetime(QDate(2011, 1, 1));
+	auto zeroDateTime = projectData()->mainfile()->zeroDateTime();
+	if (! zeroDateTime.isNull()) {
+		datetime = zeroDateTime;
+	}
+	auto secs = m_projectData->mainfile()->postSolutionInfo()->timeSteps()->timesteps().at(time);
+	datetime = datetime.addSecs(static_cast<int>(secs));
+
+	return datetime.toString("yyyy-MM-ddTHH:mm:ssZ");
 }
 
 void iRICMainWindow::updateWindowTitle()
@@ -1252,14 +1245,31 @@ void iRICMainWindow::warnSolverRunning() const
 	QMessageBox::warning(t, tr("Warning"), tr("The solver is running now. Please stop solver, to do this action."), QMessageBox::Ok);
 }
 
+const QLocale iRICMainWindow::locale() const
+{
+	return m_locale;
+}
+
 bool iRICMainWindow::isSolverRunning() const
 {
 	return m_solverConsoleWindow->isSolverRunning();
 }
 
+ProjectWorkspace* iRICMainWindow::workspace()
+{
+	return m_workspace;
+}
+
+const VersionNumber& iRICMainWindow::versionNumber() const
+{
+	return m_versionNumber;
+}
+
 void iRICMainWindow::setupAnimationToolbar()
 {
-	connect(m_projectData->mainfile()->postSolutionInfo(), SIGNAL(cgnsStepsUpdated(QList<QString>)), m_animationController, SLOT(updateStepList(QList<QString>)));
+	connect(m_projectData->mainfile()->postSolutionInfo(), SIGNAL(cgnsTimeStepsUpdated(QList<double>)), m_animationController, SLOT(updateTimeSteps(QList<double>)));
+	connect(m_projectData->mainfile()->postSolutionInfo(), SIGNAL(cgnsIterationStepsUpdated(QList<int>)), m_animationController, SLOT(updateIterationSteps(QList<int>)));
+
 	m_projectData->mainfile()->postSolutionInfo()->informCgnsSteps();
 }
 
@@ -1469,10 +1479,6 @@ void iRICMainWindow::initSetting()
 	m_stop = -1;
 	m_samplingRate = 1;
 	m_googleEarth = false;
-	m_leftLatitude = 0;
-	m_leftLongitude = 0;
-	m_rightLatitude = 0;
-	m_rightLongitude = 0;
 	m_kmlFilename = QString("output.kml");
 	m_angle = 0;
 	m_north = 0;
@@ -1665,6 +1671,21 @@ void iRICMainWindow::setDebugMode(bool debug)
 	} else {
 		vtkObject::GlobalWarningDisplayOff();
 	}
+}
+
+bool iRICMainWindow::isDebugMode() const
+{
+	return m_debugMode;
+}
+
+bool iRICMainWindow::continuousSnapshotInProgress() const
+{
+	return m_continuousSnapshotInProgress;
+}
+
+void iRICMainWindow::setContinuousSnapshotInProgress(bool prog)
+{
+	m_continuousSnapshotInProgress = prog;
 }
 
 void iRICMainWindow::parseArgs()
@@ -1990,12 +2011,12 @@ void iRICMainWindow::exportCfShape()
 	m_continuousSnapshotInProgress = false;
 }
 
-void iRICMainWindow::exportStKML()
+void iRICMainWindow::exportStKMZ()
 {
 	static QString outputFileName;
 	if (outputFileName == "") {
 		QDir dir(LastIODirectory::get());
-		outputFileName = dir.absoluteFilePath("output.kml");
+		outputFileName = dir.absoluteFilePath("output.kmz");
 	}
 
 	if (m_solverConsoleWindow->isSolverRunning()) {
@@ -2018,7 +2039,7 @@ void iRICMainWindow::exportStKML()
 	QString zoneName;
 	if (zones.count() == 0) {
 		// No valid grid.
-		QMessageBox::warning(this, tr("Error"), tr("No contour is drawn now."));
+		QMessageBox::warning(this, tr("Error"), tr("No Contour Figure is drawn now."));
 		return;
 	} else if (zones.count() == 1) {
 		zoneName = zones.at(0);
@@ -2045,7 +2066,7 @@ void iRICMainWindow::exportStKML()
 	PostExportSetting s = pInfo->exportSetting();
 	s.filename = outputFileName;
 	expDialog.setExportSetting(s);
-	expDialog.setWindowTitle(tr("Export Google Earth KML for street view"));
+	expDialog.setWindowTitle(tr("Export Google Earth KMZ for street view"));
 
 	if (expDialog.exec() != QDialog::Accepted) {return;}
 
@@ -2053,7 +2074,16 @@ void iRICMainWindow::exportStKML()
 	pInfo->setExportSetting(s);
 
 	outputFileName = s.filename;
-	QFile mainKML(outputFileName);
+	if (QFile::exists(outputFileName)) {
+		bool ok = QFile(outputFileName).remove();
+		if (! ok) {
+			QMessageBox::critical(this, tr("Error"), tr("%1 can not be overwritten.").arg(QDir::toNativeSeparators(outputFileName)));
+			return;
+		}
+	}
+
+	QString tmpKmlName = m_workspace->workspace().absoluteFilePath("doc.kml");
+	QFile mainKML(tmpKmlName);
 	bool ok = mainKML.open(QFile::WriteOnly);
 	QXmlStreamWriter w(&mainKML);
 	w.setAutoFormatting(true);
@@ -2067,8 +2097,8 @@ void iRICMainWindow::exportStKML()
 	// start exporting.
 	QProgressDialog dialog(this);
 	dialog.setRange(s.startStep, s.endStep);
-	dialog.setWindowTitle(tr("Export Google Earth KML for street view"));
-	dialog.setLabelText(tr("Saving KML files..."));
+	dialog.setWindowTitle(tr("Export Google Earth KMZ for street view"));
+	dialog.setLabelText(tr("Saving KMZ file..."));
 	dialog.setFixedSize(300, 100);
 	dialog.setModal(true);
 	dialog.show();
@@ -2077,6 +2107,7 @@ void iRICMainWindow::exportStKML()
 
 	int step = s.startStep;
 	int fileIndex = 1;
+	bool oneShot = (s.startStep == s.endStep);
 	while (step <= s.endStep) {
 		dialog.setValue(step);
 		qApp->processEvents();
@@ -2086,7 +2117,7 @@ void iRICMainWindow::exportStKML()
 		}
 		m_animationController->setCurrentStepIndex(step);
 		double time = m_projectData->mainfile()->postSolutionInfo()->currentTimeStep();
-		bool ok = ew->exportKMLForTimestep(w, fileIndex, time, zoneName);
+		bool ok = ew->exportKMLForTimestep(w, fileIndex, time, zoneName, oneShot);
 		if (! ok) {
 			QMessageBox::critical(this, tr("Error"), tr("Error occured while saving."));
 			m_continuousSnapshotInProgress = false;
@@ -2101,6 +2132,16 @@ void iRICMainWindow::exportStKML()
 	w.writeEndElement();
 	w.writeEndDocument();
 	mainKML.close();
+
+	QString tmpZipName = m_workspace->tmpFileName();
+	tmpZipName.append(".zip");
+	QStringList list;
+	list << "doc.kml";
+	iRIC::ZipArchive(tmpZipName, m_workspace->workspace().absolutePath(), list);
+	ok = QFile::rename(tmpZipName, outputFileName);
+	mainKML.remove();
+
+	statusBar()->showMessage(tr("Google Earth KMZ is exported to %1 successfully.").arg(QDir::toNativeSeparators(outputFileName)), STATUSBAR_DISPLAYTIME);
 
 	m_continuousSnapshotInProgress = false;
 }
@@ -2122,6 +2163,16 @@ QString iRICMainWindow::tmpFileName(int len) const
 		filename = hash.result().toHex();
 	}
 	return workDir.absoluteFilePath(filename);
+}
+
+AnimationControllerInterface* iRICMainWindow::animationController() const
+{
+	return m_animationController;
+}
+
+CoordinateSystemBuilder* iRICMainWindow::coordinateSystemBuilder() const
+{
+	return m_coordinateSystemBuilder;
 }
 
 void iRICMainWindow::checkCgnsStepsUpdate()
@@ -2272,6 +2323,11 @@ void iRICMainWindow::discardCgnsFileData()
 void iRICMainWindow::clearSolverConsoleLog()
 {
 	m_solverConsoleWindow->clear();
+}
+
+ProjectData* iRICMainWindow::projectData() const
+{
+	return m_projectData;
 }
 
 void iRICMainWindow::setProjectData(ProjectData* projectData)

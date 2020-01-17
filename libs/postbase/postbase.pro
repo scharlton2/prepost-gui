@@ -83,10 +83,14 @@ HEADERS += cfshapeexportwindowi.h \
            postbase_global.h \
            postwindowgridtypedataiteminterface.h \
            svkmlexportwindowi.h \
+           particle/particlearbitrarytimeeditdialog.h \
            particle/postparticlebasicsetting.h \
            particle/postparticlebasicsettingdialog.h \
            particle/postparticlescalarpropertydialog.h \
            particle/postparticlevectorpropertydialog.h \
+           polydata/postpolydatabasicsetting.h \
+           polydata/postpolydatabasicsettingdialog.h \
+           polydata/postpolydatascalarpropertydialog.h \
            time/posttimedataitem.h \
            time/posttimeeditdialog.h \
            title/posttitledataitem.h \
@@ -95,17 +99,24 @@ HEADERS += cfshapeexportwindowi.h \
            time/private/posttimedataitem_setsettingcommand.h \
            title/private/posttitledataitem_setsettingcommand.h
 FORMS += postallzoneselectingdialog.ui \
+         particle/particlearbitrarytimeeditdialog.ui \
          particle/postparticlebasicsettingdialog.ui \
          particle/postparticlescalarpropertydialog.ui \
          particle/postparticlevectorpropertydialog.ui \
+         polydata/postpolydatabasicsettingdialog.ui \
+         polydata/postpolydatascalarpropertydialog.ui \
          time/posttimeeditdialog.ui \
          title/posttitleeditdialog.ui
 SOURCES += post2dwindowcontoursetting.cpp \
            postallzoneselectingdialog.cpp \
+           particle/particlearbitrarytimeeditdialog.cpp \
            particle/postparticlebasicsetting.cpp \
            particle/postparticlebasicsettingdialog.cpp \
            particle/postparticlescalarpropertydialog.cpp \
            particle/postparticlevectorpropertydialog.cpp \
+           polydata/postpolydatabasicsetting.cpp \
+           polydata/postpolydatabasicsettingdialog.cpp \
+           polydata/postpolydatascalarpropertydialog.cpp \
            time/posttimedataitem.cpp \
            time/posttimeeditdialog.cpp \
            title/posttitledataitem.cpp \

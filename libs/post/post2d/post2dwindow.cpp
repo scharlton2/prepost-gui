@@ -243,7 +243,7 @@ bool Post2dWindow::checkKmlExportCondition(const QString& zoneName) const
 	Post2dWindowNodeScalarGroupTopDataItem* sItem = zItem->scalarGroupTopDataItem();
 	QList<QString> scalars = sItem->selectedScalars();
 	if (scalars.count() == 0) {
-		QMessageBox::warning(window(), tr("Error"), tr("No contour is drawn now."));
+		QMessageBox::warning(window(), tr("Error"), tr("No Contour Figure is drawn now."));
 		return false;
 	} else if (scalars.count() == 1) {
 		m_exportScalarName = scalars.at(0);
@@ -276,12 +276,12 @@ bool Post2dWindow::exportKMLFooter(QXmlStreamWriter& writer, const QString& zone
 	return sItem->exportKMLFooter(writer, m_exportScalarName);
 }
 
-bool Post2dWindow::exportKMLForTimestep(QXmlStreamWriter& writer, int index, double time, const QString& zoneName)
+bool Post2dWindow::exportKMLForTimestep(QXmlStreamWriter& writer, int index, double time, const QString& zoneName, bool oneShot)
 {
 	Post2dWindowRootDataItem* rItem = dynamic_cast<Post2dWindowRootDataItem*>(m_dataModel->m_rootDataItem);
 	Post2dWindowZoneDataItem* zItem = rItem->zoneDataItem(iRIC::toStr(zoneName));
 	Post2dWindowNodeScalarGroupTopDataItem* sItem = zItem->scalarGroupTopDataItem();
-	return sItem->exportKMLForTimestep(writer, m_exportScalarName, index, time);
+	return sItem->exportKMLForTimestep(writer, m_exportScalarName, index, time, oneShot);
 }
 
 void Post2dWindow::updateTmsList()

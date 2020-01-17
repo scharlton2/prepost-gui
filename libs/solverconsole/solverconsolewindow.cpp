@@ -21,6 +21,7 @@
 #include <QMessageBox>
 #include <QPlainTextEdit>
 #include <QSettings>
+#include <QTextCodec>
 
 namespace {
 
@@ -200,7 +201,11 @@ void SolverConsoleWindow::terminateSolver()
 
 void SolverConsoleWindow::readStderr()
 {
-	QString data = impl->m_process->readAllStandardError();
+	QTextCodec* codec = QTextCodec::codecForLocale();
+
+	auto byteArray = impl->m_process->readAllStandardError();
+	auto data = codec->toUnicode(byteArray);
+
 	// remove "\r",  "\n"
 	data.replace('\r', "").replace('\n', "");
 	impl->appendLogLine(data);
@@ -208,8 +213,11 @@ void SolverConsoleWindow::readStderr()
 
 void SolverConsoleWindow::readStdout()
 {
+	QTextCodec* codec = QTextCodec::codecForLocale();
+
 	while (impl->m_process->canReadLine()) {
-		QString data = impl->m_process->readLine(200);
+		auto byteArray = impl->m_process->readLine(200);
+		auto data = codec->toUnicode(byteArray);
 		// remove "\r",  "\n"
 		data.replace('\r', "").replace('\n', "");
 		impl->appendLogLine(data);

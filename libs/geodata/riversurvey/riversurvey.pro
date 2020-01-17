@@ -129,6 +129,9 @@ HEADERS += gd_riversurvey_global.h \
            geodatariversurvey.h \
            geodatariversurveybackgroundgridcreatethread.h \
            geodatariversurveycreator.h \
+           geodatariversurveycrosssectiondisplaysetting.h \
+           geodatariversurveycrosssectiondisplaysettingdialog.h \
+           geodatariversurveycrosssectioneditfrompointdialog.h \
            geodatariversurveycrosssectionwindow.h \
            geodatariversurveycrosssectionwindowgraphicsview.h \
            geodatariversurveycrosssectionwindowprojectdataitem.h \
@@ -138,17 +141,40 @@ HEADERS += gd_riversurvey_global.h \
            geodatariversurveydisplaysetting.h \
            geodatariversurveydisplaysettingdialog.h \
            geodatariversurveyexporter.h \
+           geodatariversurveyhonryuexporter.h \
+           geodatariversurveyhonryuexportersettingdialog.h \
            geodatariversurveyimporter.h \
            geodatariversurveyimportersettingdialog.h \
+           geodatariversurveylandxmlexporter.h \
+           geodatariversurveymlitimporter.h \
            geodatariversurveynodemapper.h \
            geodatariversurveyproxy.h \
            geodatariversurveyvtkexporter.h \
            gridcreatingconditionriversurveyinterface.h \
+           private/geodatariversurvey_addextensioncommand.h \
+           private/geodatariversurvey_changeselectioncommand.h \
+           private/geodatariversurvey_deleteriverpathpointcommand.h \
+           private/geodatariversurvey_editcrosssectioncommand.h \
+           private/geodatariversurvey_expandcrosssectioncommand.h \
+           private/geodatariversurvey_insertriverpathpointcommand.h \
+           private/geodatariversurvey_mouseeditcrosssectioncommand.h \
+           private/geodatariversurvey_mousemoveextensioncommand.h \
+           private/geodatariversurvey_mouserotaterivercrosssectioncommand.h \
+           private/geodatariversurvey_mouseshiftriverpathcentercommand.h \
+           private/geodatariversurvey_moveriverpathpointcommand.h \
+           private/geodatariversurvey_removeextensioncommand.h \
+           private/geodatariversurvey_renameriverpathpointcommand.h \
+           private/geodatariversurvey_rotaterivercrosssectioncommand.h \
            private/geodatariversurvey_setdisplaysettingcommand.h \
+           private/geodatariversurvey_shiftriverpathcentercommand.h \
+           private/geodatariversurvey_translateriverpathpointcommand.h \
            private/geodatariversurveycrosssectionwindow_datatabledelegate.h \
            private/geodatariversurveycrosssectionwindow_impl.h \
            private/geodatariversurveycrosssectionwindow_riversurveytabledelegate.h \
            private/geodatariversurveycrosssectionwindow_wsetabledelegate.h \
+           private/geodatariversurveycrosssectionwindowgraphicsview_setdisplaysettingcommand.h \
+           private/geodatariversurveyimporter_problemsdialog.h \
+           private/geodatariversurveymlitimporter_problemsdialog.h \
            private/geodatariversurveyproxy_setsettingcommand.h
 FORMS += geodatarivercrosssectionaltitudemovedialog.ui \
          geodatariverpathpointexpanddialog.ui \
@@ -158,9 +184,14 @@ FORMS += geodatarivercrosssectionaltitudemovedialog.ui \
          geodatariverpathpointrenamedialog.ui \
          geodatariverpathpointrotatedialog.ui \
          geodatariverpathpointshiftdialog.ui \
+         geodatariversurveycrosssectiondisplaysettingdialog.ui \
+         geodatariversurveycrosssectioneditfrompointdialog.ui \
          geodatariversurveycrosssectionwindow.ui \
          geodatariversurveydisplaysettingdialog.ui \
-         geodatariversurveyimportersettingdialog.ui
+         geodatariversurveyhonryuexportersettingdialog.ui \
+         geodatariversurveyimportersettingdialog.ui \
+         private/geodatariversurveyimporter_problemsdialog.ui \
+         private/geodatariversurveymlitimporter_problemsdialog.ui
 SOURCES += geodatarivercrosssection.cpp \
            geodatarivercrosssectionaltitudemovedialog.cpp \
            geodatariverpathpoint.cpp \
@@ -175,6 +206,9 @@ SOURCES += geodatarivercrosssection.cpp \
            geodatariversurvey.cpp \
            geodatariversurveybackgroundgridcreatethread.cpp \
            geodatariversurveycreator.cpp \
+           geodatariversurveycrosssectiondisplaysetting.cpp \
+           geodatariversurveycrosssectiondisplaysettingdialog.cpp \
+           geodatariversurveycrosssectioneditfrompointdialog.cpp \
            geodatariversurveycrosssectionwindow.cpp \
            geodatariversurveycrosssectionwindowgraphicsview.cpp \
            geodatariversurveycrosssectionwindowprojectdataitem.cpp \
@@ -184,15 +218,38 @@ SOURCES += geodatarivercrosssection.cpp \
            geodatariversurveydisplaysetting.cpp \
            geodatariversurveydisplaysettingdialog.cpp \
            geodatariversurveyexporter.cpp \
+           geodatariversurveyhonryuexporter.cpp \
+           geodatariversurveyhonryuexportersettingdialog.cpp \
            geodatariversurveyimporter.cpp \
            geodatariversurveyimportersettingdialog.cpp \
+           geodatariversurveylandxmlexporter.cpp \
+           geodatariversurveymlitimporter.cpp \
            geodatariversurveynodemapper.cpp \
            geodatariversurveyproxy.cpp \
            geodatariversurveyvtkexporter.cpp \
+           private/geodatariversurvey_addextensioncommand.cpp \
+           private/geodatariversurvey_changeselectioncommand.cpp \
+           private/geodatariversurvey_deleteriverpathpointcommand.cpp \
+           private/geodatariversurvey_editcrosssectioncommand.cpp \
+           private/geodatariversurvey_expandcrosssectioncommand.cpp \
+           private/geodatariversurvey_insertriverpathpointcommand.cpp \
+           private/geodatariversurvey_mouseeditcrosssectioncommand.cpp \
+           private/geodatariversurvey_mousemoveextensioncommand.cpp \
+           private/geodatariversurvey_mouserotaterivercrosssectioncommand.cpp \
+           private/geodatariversurvey_mouseshiftriverpathcentercommand.cpp \
+           private/geodatariversurvey_moveriverpathpointcommand.cpp \
+           private/geodatariversurvey_removeextensioncommand.cpp \
+           private/geodatariversurvey_renameriverpathpointcommand.cpp \
+           private/geodatariversurvey_rotaterivercrosssectioncommand.cpp \
            private/geodatariversurvey_setdisplaysettingcommand.cpp \
+           private/geodatariversurvey_shiftriverpathcentercommand.cpp \
+           private/geodatariversurvey_translateriverpathpointcommand.cpp \
            private/geodatariversurveycrosssectionwindow_datatabledelegate.cpp \
            private/geodatariversurveycrosssectionwindow_riversurveytabledelegate.cpp \
            private/geodatariversurveycrosssectionwindow_wsetabledelegate.cpp \
+           private/geodatariversurveycrosssectionwindowgraphicsview_setdisplaysettingcommand.cpp \
+           private/geodatariversurveyimporter_problemsdialog.cpp \
+           private/geodatariversurveymlitimporter_problemsdialog.cpp \
            private/geodatariversurveyproxy_setsettingcommand.cpp
 RESOURCES += riversurvey.qrc
 TRANSLATIONS += languages/iricGdRiversurvey_es_ES.ts \

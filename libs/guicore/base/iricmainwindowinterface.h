@@ -44,7 +44,7 @@ public:
 	virtual void clearSolverConsoleLog() = 0;
 	virtual QStringList containedFiles() const = 0;
 	virtual ProjectWorkspace* workspace() = 0;
-	virtual const VersionNumber versionNumber() const = 0;
+	virtual const VersionNumber& versionNumber() const = 0;
 	virtual void setProjectData(ProjectData* projectData) = 0;
 	virtual const QLocale locale() const = 0;
 	virtual const QProcessEnvironment& processEnvironment() const = 0;
