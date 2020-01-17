@@ -12,6 +12,7 @@
 #define cgsize_t int
 #endif
 
+class PostCalculatedResult;
 class SolverDefinitionGridType;
 class ScalarsToColorsContainer;
 class ScalarsToColorsEditDialog;
@@ -20,33 +21,35 @@ class GUICOREDLL_EXPORT PostZonePointSeriesDataContainer : public PostSeriesData
 {
 
 public:
-	PostZonePointSeriesDataContainer(PostSolutionInfo::Dimension dim, const std::string& zoneName, const QString& pName, int pointIndex, GridLocation_t gridLocation, ProjectDataItem* parent);
-	const QList<double>& data() const {return m_data;}
-	bool handleCurrentStepUpdate(const int /*fn*/) override {
-		// do nothing.
-		return true;
-	}
-	void update(const int fn) {
-		loadFromCgnsFile(fn);
-	}
-	const std::string& zoneName() const {return m_zoneName;}
+	PostZonePointSeriesDataContainer(PostSolutionInfo::Dimension dim, const std::string& zoneName, const QString& pName, int pointIndex, GridLocation_t gridLocation, PostSolutionInfo* sinfo);
+	const QList<double>& data() const;
+
+	bool handleCurrentStepUpdate(const int fn) override;
+	void update(const int fn);
+	const std::string& zoneName() const;
 	/// Caption is the region name in pre-processor.
 	/// Currently, zone name is used instead, temporally.
-	QString caption() const {return zoneName().c_str();}
-	void setPointIndex(int index) {m_pointIndex = index;}
-	int pointIndex() const {return m_pointIndex;}
-	void setGridLocation(GridLocation_t location) { m_gridLocation = location; }
-	GridLocation_t gridLocation() const { return m_gridLocation; }
+	QString caption() const;
+
+	int pointIndex() const;
+	void setPointIndex(int index);
+
+	GridLocation_t gridLocation() const;
+	void setGridLocation(GridLocation_t location);
 
 private:
-	bool loadData(const int fn) override;
-	void doLoadFromProjectMainFile(const QDomNode& /*node*/) override {}
-	void doSaveToProjectMainFile(QXmlStreamWriter& /*writer*/) override {}
-
-	double loadData(const QString& physName, bool magnitude);
-	bool loadData(const int fn, GridLocation_t location);
-
 	bool setZoneId(const int fn);
+
+	bool loadData(const int fn) override;
+	bool loadData(const int fn, GridLocation_t location);
+	bool loadData(const QString& name, bool magnitude, double* value);
+	bool loadCalculatedData(PostCalculatedResult* result, double* value);
+	bool loadResultData(const QString& physName, bool magnitude, double* value);
+
+	PostZoneDataContainer* zoneDataContainer() const;
+
+	void doLoadFromProjectMainFile(const QDomNode& node) override;
+	void doSaveToProjectMainFile(QXmlStreamWriter& writer) override;
 
 	QList<double> m_data;
 	std::string m_zoneName;

@@ -42,14 +42,10 @@ Graph2dHybridWindowGridPointResultDataItem::~Graph2dHybridWindowGridPointResultD
 }
 
 void Graph2dHybridWindowGridPointResultDataItem::doLoadFromProjectMainFile(const QDomNode& /*node*/)
-{
-
-}
+{}
 
 void Graph2dHybridWindowGridPointResultDataItem::doSaveToProjectMainFile(QXmlStreamWriter& /*writer*/)
-{
-
-}
+{}
 
 void Graph2dHybridWindowGridPointResultDataItem::updateValues(int fn)
 {

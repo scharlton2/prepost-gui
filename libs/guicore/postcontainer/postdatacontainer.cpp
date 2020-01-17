@@ -13,7 +13,7 @@ bool PostDataContainer::handleCurrentStepUpdate(const int)
 	return true;
 }
 
-PostSolutionInfo* PostDataContainer::postSolutionInfo()
+PostSolutionInfo* PostDataContainer::postSolutionInfo() const
 {
 	return projectData()->mainfile()->postSolutionInfo();
 }

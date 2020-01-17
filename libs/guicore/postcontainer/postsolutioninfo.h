@@ -13,11 +13,14 @@
 
 class CgnsFileOpener;
 class PostBaseIterativeValuesContainer;
+class PostCalculatedResult;
+class PostDataContainer;
 class PostIterationSteps;
 class PostTimeSteps;
-class PostDataContainer;
 class PostZoneDataContainer;
 class ProjectMainFile;
+
+class QDomElement;
 
 class GUICOREDLL_EXPORT PostSolutionInfo : public ProjectDataItem
 {
@@ -75,14 +78,15 @@ public:
 
 	/// File ID that can be used with cgnslib functions.
 	int fileId() const;
-  int fileIdForStep() const;
+	int fileIdForStep() const;
+	void setCalculatedResultDisabled(bool disabled);
 
 	void exportCalculationResult(const std::string& folder, const std::string& prefix, const std::vector<int> steps, PostDataExportDialog::Format format);
 
 	void applyOffset(double x_diff, double y_diff);
 
 protected:
-	bool innerSetupZoneDataContainers(int fn, int dimiension, std::vector<std::string>* zoneNames, QList<PostZoneDataContainer*>* containers, QMap<std::string, PostZoneDataContainer*>* containerNameMap);
+	bool innerSetupZoneDataContainers(int fn, int dimiension, std::vector<std::string>* zoneNames, QList<PostZoneDataContainer*>* containers, QMap<std::string, PostZoneDataContainer*>* containerNameMap, QMap<std::string, std::vector<PostCalculatedResult*> > *results);
 	void doLoadFromProjectMainFile(const QDomNode& node) override;
 	void doSaveToProjectMainFile(QXmlStreamWriter& writer) override;
 	void informStepsUpdated();
@@ -118,6 +122,9 @@ private:
 
 	void checkIfResultSeparated(int fn);
 
+	void loadCalculatedResult();
+	void clearCalculatedResults(QMap<std::string, std::vector<PostCalculatedResult*> >* results);
+
 	static const int TIMERINTERVAL = 500;
 	SolverDefinition::IterationType m_iterationType;
 	PostIterationSteps* m_iterationSteps;
@@ -140,11 +147,18 @@ private:
 	QMap<std::string, PostZoneDataContainer*> m_zoneContainerNameMap2D;
 	QMap<std::string, PostZoneDataContainer*> m_zoneContainerNameMap3D;
 
+	QMap<std::string, std::vector<PostCalculatedResult*> > m_calculatedResults1D;
+	QMap<std::string, std::vector<PostCalculatedResult*> > m_calculatedResults2D;
+	QMap<std::string, std::vector<PostCalculatedResult*> > m_calculatedResults3D;
+
 	PostDataExportDialog::Format m_exportFormat;
+	bool m_disableCalculatedResult;
 
 	PostExportSetting m_exportSetting;
 	QString m_particleExportPrefix;
 	bool m_resultSeparated;
+
+	QDomElement* m_loadedElement;
 
 	class BuildCopyFileAndOpenThread;
 	class CopyResultToOutputAndOpenThread;
