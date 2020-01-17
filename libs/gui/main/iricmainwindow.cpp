@@ -545,6 +545,17 @@ bool iRICMainWindow::isGridEdited() const
 	return pre->projectDataItem()->isGridEdited();
 }
 
+void iRICMainWindow::updateCrosssectionWindows()
+{
+	for (QMdiSubWindow* w : m_centralWidget->subWindowList()) {
+		auto widget = w->widget();
+		auto csw = dynamic_cast<GeoDataRiverSurveyCrosssectionWindow*> (widget);
+		if (csw == nullptr) {continue;}
+
+		csw->updateRiverSurveys();
+	}
+}
+
 ExecuterWatcher* iRICMainWindow::buildExecuteWatcher(ExecuterI* executer)
 {
 	if (m_cuiMode) {

@@ -88,6 +88,8 @@ public:
 	void importCalculationResult(const QString& filename);
 	const QProcessEnvironment& processEnvironment() const override;
 	bool isGridEdited() const override;
+	void updateCrosssectionWindows() override;
+
 	ExecuterWatcher* buildExecuteWatcher(ExecuterI* executer) override;
 	bool cuiMode() const override;
 

@@ -74,6 +74,7 @@ public:
 	bool isSetupCorrectly() const;
 	bool checkMappingStatus();
 	PreProcessorGeoDataTopDataItemInterface* geoDataTopDataItem(const std::string& type) const override;
+	PreProcessorHydraulicDataTopDataItemInterface* hydraulicDataTopDataItem(const std::string& type) const override;
 	PreProcessorGridAndGridCreatingConditionDataItemInterface* getGridAndGridCreatingConditionDataItem(const std::string& typeName, const std::string& zoneName) const override;
 	void applyOffset(double x, double y) override;
 
@@ -89,7 +90,6 @@ public slots:
 
 	void setupGridCreationMenuContent();
 	void setupBoundaryConditionSettingMenuContent();
-	void importHydraulicData();
 
 signals:
 	void additionalMenusUpdated(const QList<QMenu*>& menus);
