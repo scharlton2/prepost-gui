@@ -176,14 +176,125 @@ QJSValue PostStringResultArgument::cellJsValue() const
 
 QJSValue PostStringResultArgument::edgeIJsValue() const
 {
-	// @todo implement this
-	return 0;
+	auto z = zoneDataContainer();
+	auto pd = z->ifacedata()->GetPointData();
+	int index = arrayIndex();
+	vtkDataArray* da = pd->GetArray(name().c_str());
+#if defined(_DEBUG)
+	//
+	// test with edges.ipro
+	//
+	int ndim[3] = { 11, 11, 1 };
+	for (int j = 0; j < ndim[1]; ++j) {
+		for (int i = 0; i < ndim[0]; ++i) {
+			int idx = PostZoneDataContainer::index(ndim, i, j, 0);
+			Q_ASSERT(idx == zoneDataContainer()->nodeIndex(i, j, 0));
+			int ii, jj, kk;
+			PostZoneDataContainer::getIJKIndex(ndim, idx, &ii, &jj, &kk);
+			Q_ASSERT(i == ii && j == jj && 0 == kk);
+			zoneDataContainer()->getNodeIJKIndex(idx, &ii, &jj, &kk);
+			Q_ASSERT(i == ii && j == jj && 0 == kk);
+		}
+	}
+
+	//
+	// test with edges.ipro
+	//
+	int cdim[3] = { 10, 10, 1 };
+	for (int j = 0; j < cdim[1]; ++j) {
+		for (int i = 0; i < cdim[0]; ++i) {
+			int idx = PostZoneDataContainer::index(cdim, i, j, 0);
+			Q_ASSERT(idx == zoneDataContainer()->cellIndex(i, j, 0));
+			int ii, jj, kk;
+			PostZoneDataContainer::getIJKIndex(cdim, idx, &ii, &jj, &kk);
+			Q_ASSERT(i == ii && j == jj && 0 == kk);
+			zoneDataContainer()->getCellIJKIndex(idx, &ii, &jj, &kk);
+			Q_ASSERT(i == ii && j == jj && 0 == kk);
+		}
+	}
+
+	if (name() == "IFaceI") {
+		Q_ASSERT(*(da->GetTuple(0))  == 1);    // (0, 0, 0)  -> (1, 1, 1)
+		Q_ASSERT(*(da->GetTuple(10)) == 11);   // (10, 0, 0) -> (11, 1, 1)
+		Q_ASSERT(*(da->GetTuple(11)) == 1);    // (0, 1, 0)  -> (1, 2, 1)
+		Q_ASSERT(*(da->GetTuple(12)) == 2);    // (1, 1, 0)  -> (2, 2, 1)
+		Q_ASSERT(*(da->GetTuple(21)) == 11);   // (10, 1, 0) -> (11, 2, 1)
+		Q_ASSERT(*(da->GetTuple(22)) == 1);    // (0, 2, 0)  -> (1, 3, 1)
+		Q_ASSERT(*(da->GetTuple(32)) == 11);   // (10, 2, 0) -> (11, 3, 1)
+
+		int dim[3] = { 11, 10, 1 };
+		for (int j = 0; j < dim[1]; ++j) {
+			for (int i = 0; i < dim[0]; ++i) {
+				int idx = PostZoneDataContainer::index(dim, i, j, 0);
+				Q_ASSERT(idx == zoneDataContainer()->ifaceIndex(i, j, 0));
+				Q_ASSERT(*(da->GetTuple(idx)) == (i + 1));
+				int ii, jj, kk;
+				PostZoneDataContainer::getIJKIndex(dim, idx, &ii, &jj, &kk);
+				Q_ASSERT(i == ii && j == jj && 0 == kk);
+			}
+		}
+	}
+	if (name() == "IFaceJ") {
+		Q_ASSERT(*(da->GetTuple(0)) == 1);     // (0, 0, 0)  -> (1, 1, 1)
+		Q_ASSERT(*(da->GetTuple(10)) == 1);    // (10, 0, 0) -> (11, 1, 1)
+		Q_ASSERT(*(da->GetTuple(11)) == 2);    // (0, 1, 0)  -> (1, 2, 1)
+		Q_ASSERT(*(da->GetTuple(12)) == 2);    // (1, 1, 0)  -> (2, 2, 1)
+		Q_ASSERT(*(da->GetTuple(21)) == 2);    // (10, 1, 0) -> (11, 2, 1)
+		Q_ASSERT(*(da->GetTuple(22)) == 3);    // (0, 2, 0)  -> (1, 3, 1)
+		Q_ASSERT(*(da->GetTuple(32)) == 3);    // (10, 2, 0) -> (11, 3, 1)
+
+		int dim[3] = { 11, 10, 1 };
+		for (int j = 0; j < dim[1]; ++j) {
+			for (int i = 0; i < dim[0]; ++i) {
+				int idx = PostZoneDataContainer::index(dim, i, j, 0);
+				Q_ASSERT(idx == zoneDataContainer()->ifaceIndex(i, j, 0));
+				Q_ASSERT(*(da->GetTuple(idx)) == (j + 1));
+				int ii, jj, kk;
+				PostZoneDataContainer::getIJKIndex(dim, idx, &ii, &jj, &kk);
+				Q_ASSERT(i == ii && j == jj && 0 == kk);
+			}
+		}
+	}
+#endif
+	return *(da->GetTuple(index));
 }
 
 QJSValue PostStringResultArgument::edgeJJsValue() const
 {
-	// @todo implement this
-	return 0;
+	auto z = zoneDataContainer();
+	auto pd = z->jfacedata()->GetPointData();
+	int index = arrayIndex();
+	vtkDataArray* da = pd->GetArray(name().c_str());
+#if defined(_DEBUG)
+	if (name() == "JFaceI") {
+		int dim[3] = { 10, 11, 1 };
+		for (int j = 0; j < dim[1]; ++j) {
+			for (int i = 0; i < dim[0]; ++i) {
+				int idx = PostZoneDataContainer::index(dim, i, j, 0);
+				Q_ASSERT(idx == zoneDataContainer()->jfaceIndex(i, j, 0));
+				Q_ASSERT(*(da->GetTuple(idx)) == (i + 1));
+				int ii, jj, kk;
+				PostZoneDataContainer::getIJKIndex(dim, idx, &ii, &jj, &kk);
+				Q_ASSERT(i == ii && j == jj && 0 == kk);
+			}
+		}
+	}
+	if (name() == "JFaceJ") {
+		int dim[3] = { 10, 11, 1 };
+		for (int j = 0; j < dim[1]; ++j) {
+			for (int i = 0; i < dim[0]; ++i) {
+				int idx = PostZoneDataContainer::index(dim, i, j, 0);
+				Q_ASSERT(idx == zoneDataContainer()->jfaceIndex(i, j, 0));
+				Q_ASSERT(*(da->GetTuple(idx)) == (j + 1));
+				int ii, jj, kk;
+				PostZoneDataContainer::getIJKIndex(dim, idx, &ii, &jj, &kk);
+				Q_ASSERT(i == ii && j == jj && 0 == kk);
+			}
+		}
+	}
+#endif
+	return *(da->GetTuple(index));
+
 }
 
 QJSValue PostStringResultArgument::edgeKJsValue() const
@@ -206,14 +317,12 @@ int PostStringResultArgument::arrayIndex() const
 		auto t = m_setting.type.value();
 		if (t == Type::GridNode) {
 			return z->nodeIndex(m_setting.i, m_setting.j, m_setting.k);
-		} else if (t == Type::GridNode) {
+		} else if (t == Type::GridCell) {
 			return z->cellIndex(m_setting.i, m_setting.j, m_setting.k);
 		} else if (t == Type::GridEdgeI) {
-			// @todo implement this
-			return 0;
+			return z->ifaceIndex(m_setting.i, m_setting.j, m_setting.k);
 		} else if (t == Type::GridEdgeJ) {
-			// @todo implement this
-			return 0;
+			return z->jfaceIndex(m_setting.i, m_setting.j, m_setting.k);
 		} else if (t == Type::GridEdgeK) {
 			// @todo implement this
 			return 0;
