@@ -13,7 +13,6 @@
 
 #include <geodata/polyline/geodatapolyline.h>
 #include <geodata/polyline/geodatapolylineimplpolyline.h>
-#include <guicore/misc/qundocommandhelper.h>
 #include <guicore/pre/base/preprocessorgeodatadataiteminterface.h>
 #include <guicore/pre/base/preprocessorgeodatagroupdataiteminterface.h>
 #include <guicore/pre/base/preprocessorgeodatatopdataiteminterface.h>
@@ -25,6 +24,7 @@
 #include <misc/iricundostack.h>
 #include <misc/keyboardsupport.h>
 #include <misc/mathsupport.h>
+#include <misc/qundocommandhelper.h>
 
 #include <QAction>
 #include <QCheckBox>
@@ -1781,6 +1781,8 @@ double GeoDataRiverSurveyCrosssectionWindowGraphicsView::aspectRatio() const
 
 void GeoDataRiverSurveyCrosssectionWindowGraphicsView::setAspectRatio(double ratio)
 {
+	if (ratio == 0) {ratio = 1;}
+
 	double currentRatio = aspectRatio();
 	double rate = currentRatio / ratio;
 	if (rate > 0.999 && rate < 1.001) {return;}
