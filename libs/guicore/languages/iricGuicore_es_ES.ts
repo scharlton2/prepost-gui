@@ -1325,12 +1325,12 @@ Do you really want to import this file?</source>
 <context>
     <name>PostIterationSteps</name>
     <message>
-        <location filename="../postcontainer/postiterationsteps.cpp" line="89"/>
+        <location filename="../postcontainer/postiterationsteps.cpp" line="85"/>
         <source>Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../postcontainer/postiterationsteps.cpp" line="89"/>
+        <location filename="../postcontainer/postiterationsteps.cpp" line="85"/>
         <source>Error occured while loading calculation result.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1338,71 +1338,71 @@ Do you really want to import this file?</source>
 <context>
     <name>PostSolutionInfo</name>
     <message>
-        <location filename="../postcontainer/postsolutioninfo.cpp" line="209"/>
-        <location filename="../postcontainer/postsolutioninfo.cpp" line="999"/>
-        <location filename="../postcontainer/postsolutioninfo.cpp" line="1098"/>
+        <location filename="../postcontainer/postsolutioninfo.cpp" line="205"/>
+        <location filename="../postcontainer/postsolutioninfo.cpp" line="995"/>
+        <location filename="../postcontainer/postsolutioninfo.cpp" line="1094"/>
         <source>Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../postcontainer/postsolutioninfo.cpp" line="209"/>
+        <location filename="../postcontainer/postsolutioninfo.cpp" line="205"/>
         <source>Error occured while loading calculation result.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../postcontainer/postsolutioninfo.cpp" line="503"/>
+        <location filename="../postcontainer/postsolutioninfo.cpp" line="499"/>
         <source>Reading time values...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../postcontainer/postsolutioninfo.cpp" line="516"/>
-        <location filename="../postcontainer/postsolutioninfo.cpp" line="642"/>
-        <location filename="../postcontainer/postsolutioninfo.cpp" line="973"/>
+        <location filename="../postcontainer/postsolutioninfo.cpp" line="512"/>
+        <location filename="../postcontainer/postsolutioninfo.cpp" line="638"/>
+        <location filename="../postcontainer/postsolutioninfo.cpp" line="969"/>
         <source>Warning</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../postcontainer/postsolutioninfo.cpp" line="516"/>
+        <location filename="../postcontainer/postsolutioninfo.cpp" line="512"/>
         <source>Reading time value from result/Solution%1.cgn failed. You can visualize calculation result in Solution1.cgn to Solution%2.cgn.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../postcontainer/postsolutioninfo.cpp" line="642"/>
+        <location filename="../postcontainer/postsolutioninfo.cpp" line="638"/>
         <source>Loading calculation result for visualization failed.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../postcontainer/postsolutioninfo.cpp" line="973"/>
+        <location filename="../postcontainer/postsolutioninfo.cpp" line="969"/>
         <source>No calculation result exists.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../postcontainer/postsolutioninfo.cpp" line="999"/>
+        <location filename="../postcontainer/postsolutioninfo.cpp" line="995"/>
         <source>Calculation result does not contain grid data.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../postcontainer/postsolutioninfo.cpp" line="1048"/>
+        <location filename="../postcontainer/postsolutioninfo.cpp" line="1044"/>
         <source>Export Calculation Result</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../postcontainer/postsolutioninfo.cpp" line="1052"/>
+        <location filename="../postcontainer/postsolutioninfo.cpp" line="1048"/>
         <source>Saving calculation result as VTK files...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../postcontainer/postsolutioninfo.cpp" line="1055"/>
+        <location filename="../postcontainer/postsolutioninfo.cpp" line="1051"/>
         <source>Saving calculation result as CSV files...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../postcontainer/postsolutioninfo.cpp" line="1058"/>
+        <location filename="../postcontainer/postsolutioninfo.cpp" line="1054"/>
         <source>Saving calculation result as ESRI Shape files...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../postcontainer/postsolutioninfo.cpp" line="1098"/>
+        <location filename="../postcontainer/postsolutioninfo.cpp" line="1094"/>
         <source>Error occured while saving %1</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1410,12 +1410,12 @@ Do you really want to import this file?</source>
 <context>
     <name>PostTimeSteps</name>
     <message>
-        <location filename="../postcontainer/posttimesteps.cpp" line="104"/>
+        <location filename="../postcontainer/posttimesteps.cpp" line="100"/>
         <source>Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../postcontainer/posttimesteps.cpp" line="104"/>
+        <location filename="../postcontainer/posttimesteps.cpp" line="100"/>
         <source>Error occured while loading calculation result.</source>
         <translation type="unfinished"></translation>
     </message>

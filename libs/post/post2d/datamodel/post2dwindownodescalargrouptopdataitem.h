@@ -1,7 +1,7 @@
 #ifndef POST2DWINDOWNODESCALARGROUPTOPDATAITEM_H
 #define POST2DWINDOWNODESCALARGROUPTOPDATAITEM_H
 
-#include "../post2dwindowdataitem.h"
+#include "post2dwindowscalargrouptopdataitem.h"
 
 #include <guicore/misc/targeted/targeteditemi.h>
 #include <postbase/post2dwindowcontoursetting.h>
@@ -23,7 +23,7 @@ class vtkDataSetMapper;
 class vtkPolyDataMapper;
 class vtkContourFilter;
 
-class Post2dWindowNodeScalarGroupTopDataItem : public Post2dWindowDataItem
+class Post2dWindowNodeScalarGroupTopDataItem : public Post2dWindowScalarGroupTopDataItem
 {
 	Q_OBJECT
 public:
@@ -51,8 +51,6 @@ public:
 	bool checkShapeExportCondition(const QString& target);
 	bool exportContourFigureToShape(const QString& target, const QString& filename, double time);
 
-	bool nextScalarBarSetting(ScalarBarSetting& scalarBarSetting);
-
 protected:
 	void addCustomMenuItems(QMenu* menu) override;
 	QDialog* addDialog(QWidget* parent) override;
@@ -61,8 +59,6 @@ protected:
 	void handleAddDialogAccepted(QDialog* propDialog) override;
 
 private:
-	// for scalar bar
-	QMap<std::string, QString> m_colorbarTitleMap;
 	std::map<std::string, Post2dWindowNodeScalarGroupDataItem*> m_scalarmap; // only used by ctor and doLoadFromProjectMainFile
 
 	friend class Post2dWindowNodeScalarGroupDataItem;

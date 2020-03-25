@@ -495,22 +495,22 @@
         <translation>スカラー (セル中心)</translation>
     </message>
     <message>
-        <location filename="../datamodel/post2dwindowcellscalargrouptopdataitem.cpp" line="183"/>
+        <location filename="../datamodel/post2dwindowcellscalargrouptopdataitem.cpp" line="185"/>
         <source>Warning</source>
         <translation>警告</translation>
     </message>
     <message>
-        <location filename="../datamodel/post2dwindowcellscalargrouptopdataitem.cpp" line="183"/>
+        <location filename="../datamodel/post2dwindowcellscalargrouptopdataitem.cpp" line="185"/>
         <source>A maximum of four contours may be defined.</source>
         <translation>コンターは最大で4つまでしか描画できません。</translation>
     </message>
     <message>
-        <location filename="../datamodel/post2dwindowcellscalargrouptopdataitem.cpp" line="377"/>
+        <location filename="../datamodel/post2dwindowcellscalargrouptopdataitem.cpp" line="379"/>
         <source>Error</source>
         <translation>エラー</translation>
     </message>
     <message>
-        <location filename="../datamodel/post2dwindowcellscalargrouptopdataitem.cpp" line="377"/>
+        <location filename="../datamodel/post2dwindowcellscalargrouptopdataitem.cpp" line="379"/>
         <source>To export shape file, switch &quot;Display setting&quot; to &quot;Contour Figure&quot;, not &quot;Color Fringe&quot; or &quot;Isolines&quot;.</source>
         <translation>シェープファイルをエクスポートするには、表示設定を &quot;面塗りコンター&quot; に切り替えてください。</translation>
     </message>
@@ -543,12 +543,12 @@
         <translation>カラーバー設定(&amp;C)</translation>
     </message>
     <message>
-        <location filename="../datamodel/post2dwindowcontoursettingdialog.cpp" line="157"/>
+        <location filename="../datamodel/post2dwindowcontoursettingdialog.cpp" line="174"/>
         <source>Error</source>
         <translation>エラー</translation>
     </message>
     <message>
-        <location filename="../datamodel/post2dwindowcontoursettingdialog.cpp" line="157"/>
+        <location filename="../datamodel/post2dwindowcontoursettingdialog.cpp" line="174"/>
         <source>For value range, max value is smaller than min value.</source>
         <translation>値の範囲で、最大値が最小値より小さくなっています。</translation>
     </message>
@@ -598,6 +598,22 @@
         <location filename="../post2dwindowdatamodel.cpp" line="214"/>
         <source>Contour setting is not available, because this result does not contain cell scalar values.</source>
         <translation>計算結果にセル中心での値が含まれていないため、コンター設定は行なえません。</translation>
+    </message>
+</context>
+<context>
+    <name>Post2dWindowEdgeIScalarGroupTopDataItem</name>
+    <message>
+        <location filename="../datamodel/post2dwindowedgeiscalargrouptopdataitem.cpp" line="30"/>
+        <source>Scalar (edgeI)</source>
+        <translation>スカラー (I方向エッジ)</translation>
+    </message>
+</context>
+<context>
+    <name>Post2dWindowEdgeJScalarGroupTopDataItem</name>
+    <message>
+        <location filename="../datamodel/post2dwindowedgejscalargrouptopdataitem.cpp" line="30"/>
+        <source>Scalar (edgeJ)</source>
+        <translation>スカラー (J方向エッジ)</translation>
     </message>
 </context>
 <context>
@@ -798,17 +814,16 @@
         <translation type="vanished">スカラー</translation>
     </message>
     <message>
-        <location filename="../datamodel/post2dwindownodescalargroupdataitem.cpp" line="67"/>
         <source>Scalar (node)</source>
-        <translation>スカラー (格子点)</translation>
+        <translation type="vanished">スカラー (格子点)</translation>
     </message>
     <message>
-        <location filename="../datamodel/post2dwindownodescalargroupdataitem.cpp" line="433"/>
+        <location filename="../datamodel/post2dwindownodescalargroupdataitem.cpp" line="434"/>
         <source>Update Contour Setting</source>
         <translation>コンターの設定変更</translation>
     </message>
     <message>
-        <location filename="../datamodel/post2dwindownodescalargroupdataitem.cpp" line="656"/>
+        <location filename="../datamodel/post2dwindownodescalargroupdataitem.cpp" line="667"/>
         <source>To export KML for street view, display with Contour Figure.</source>
         <translation>ストリートビュー用のKML をエクスポートするには、コンターを描画して下さい。</translation>
     </message>
@@ -817,9 +832,9 @@
         <translation type="vanished">コンター 物理量変更</translation>
     </message>
     <message>
-        <location filename="../datamodel/post2dwindownodescalargroupdataitem.cpp" line="656"/>
-        <location filename="../datamodel/post2dwindownodescalargroupdataitem.cpp" line="660"/>
-        <location filename="../datamodel/post2dwindownodescalargroupdataitem.cpp" line="665"/>
+        <location filename="../datamodel/post2dwindownodescalargroupdataitem.cpp" line="667"/>
+        <location filename="../datamodel/post2dwindownodescalargroupdataitem.cpp" line="671"/>
+        <location filename="../datamodel/post2dwindownodescalargroupdataitem.cpp" line="676"/>
         <source>Warning</source>
         <translation>警告</translation>
     </message>
@@ -828,12 +843,12 @@
         <translation type="vanished">ストリートビュー用KMLをエクスポートするには、面塗りコンターを表示して下さい。</translation>
     </message>
     <message>
-        <location filename="../datamodel/post2dwindownodescalargroupdataitem.cpp" line="660"/>
+        <location filename="../datamodel/post2dwindownodescalargroupdataitem.cpp" line="671"/>
         <source>To export KML for street view, value range should be set up manually.</source>
         <translation>ストリートビュー用KMLをエクスポートするには、コンターの値の範囲を手動で設定して下さい。</translation>
     </message>
     <message>
-        <location filename="../datamodel/post2dwindownodescalargroupdataitem.cpp" line="665"/>
+        <location filename="../datamodel/post2dwindownodescalargroupdataitem.cpp" line="676"/>
         <source>To export KML for street view, coordinate system should be specified.</source>
         <translation>ストリートビュー用KMLをエクスポートするには、座標系を指定する必要があります。</translation>
     </message>
@@ -854,22 +869,20 @@
         <translation>スカラー (格子点)</translation>
     </message>
     <message>
-        <location filename="../datamodel/post2dwindownodescalargrouptopdataitem.cpp" line="199"/>
         <source>Warning</source>
-        <translation>警告</translation>
+        <translation type="vanished">警告</translation>
     </message>
     <message>
-        <location filename="../datamodel/post2dwindownodescalargrouptopdataitem.cpp" line="199"/>
         <source>A maximum of four contours may be defined.</source>
-        <translation>コンターは最大で4つまでしか描画できません。</translation>
+        <translation type="vanished">コンターは最大で4つまでしか描画できません。</translation>
     </message>
     <message>
-        <location filename="../datamodel/post2dwindownodescalargrouptopdataitem.cpp" line="393"/>
+        <location filename="../datamodel/post2dwindownodescalargrouptopdataitem.cpp" line="371"/>
         <source>Error</source>
         <translation>エラー</translation>
     </message>
     <message>
-        <location filename="../datamodel/post2dwindownodescalargrouptopdataitem.cpp" line="393"/>
+        <location filename="../datamodel/post2dwindownodescalargrouptopdataitem.cpp" line="371"/>
         <source>To export shape file, switch &quot;Display setting&quot; to &quot;Contour Figure&quot;, not &quot;Color Fringe&quot; or &quot;Isolines&quot;.</source>
         <translation>シェープファイルをエクスポートするには、表示設定を &quot;面塗りコンター&quot; に切り替えてください。</translation>
     </message>
@@ -910,12 +923,12 @@
         <translation type="vanished">パーティクル</translation>
     </message>
     <message>
-        <location filename="../datamodel/post2dwindownodevectorparticlegroupdataitem.cpp" line="65"/>
+        <location filename="../datamodel/post2dwindownodevectorparticlegroupdataitem.cpp" line="69"/>
         <source>Particles (auto)</source>
         <translation>パーティクル (自動)</translation>
     </message>
     <message>
-        <location filename="../datamodel/post2dwindownodevectorparticlegroupdataitem.cpp" line="94"/>
+        <location filename="../datamodel/post2dwindownodevectorparticlegroupdataitem.cpp" line="98"/>
         <source>Particle Physical Value Change</source>
         <translation>パーティクル 物理量の変更</translation>
     </message>
@@ -923,7 +936,7 @@
 <context>
     <name>Post2dWindowNodeVectorParticleGroupStructuredDataItem</name>
     <message>
-        <location filename="../datamodel/post2dwindownodevectorparticlegroupstructureddataitem.cpp" line="63"/>
+        <location filename="../datamodel/private/post2dwindownodevectorparticlegroupstructureddataitem_setsettingcommand.cpp" line="4"/>
         <source>Update Particle Setting</source>
         <translation>パーティクル設定</translation>
     </message>
@@ -931,7 +944,7 @@
 <context>
     <name>Post2dWindowNodeVectorParticleGroupUnstructuredDataItem</name>
     <message>
-        <location filename="../datamodel/post2dwindowparticleunstructuredsettingdialog.cpp" line="144"/>
+        <location filename="../datamodel/private/post2dwindownodevectorparticlegroupunstructureddataitem_setsettingcommand.cpp" line="4"/>
         <source>Update Particle Setting</source>
         <translation>パーティクル設定</translation>
     </message>
@@ -958,6 +971,14 @@
     </message>
 </context>
 <context>
+    <name>Post2dWindowParticleGroupRootDataItem</name>
+    <message>
+        <location filename="../datamodel/post2dwindowparticlegrouprootdataitem.cpp" line="12"/>
+        <source>Particles</source>
+        <translation>パーティクル</translation>
+    </message>
+</context>
+<context>
     <name>Post2dWindowParticleStructuredSettingDialog</name>
     <message>
         <location filename="../datamodel/post2dwindowparticlestructuredsettingdialog.ui" line="14"/>
@@ -976,11 +997,16 @@
     </message>
     <message>
         <location filename="../datamodel/post2dwindowparticlestructuredsettingdialog.ui" line="44"/>
+        <source>Generate periodically</source>
+        <translation>一定時間おきに生成</translation>
+    </message>
+    <message>
+        <location filename="../datamodel/post2dwindowparticlestructuredsettingdialog.ui" line="54"/>
         <source>Generation time interval</source>
         <translation>発生する時間間隔</translation>
     </message>
     <message>
-        <location filename="../datamodel/post2dwindowparticlestructuredsettingdialog.ui" line="52"/>
+        <location filename="../datamodel/post2dwindowparticlestructuredsettingdialog.ui" line="62"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap;}
@@ -1002,82 +1028,92 @@ p {margin-top: 3px; margin-bottom: 3px;}
 &lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../datamodel/post2dwindowparticlestructuredsettingdialog.ui" line="90"/>
-        <location filename="../datamodel/post2dwindowparticlestructuredsettingdialog.ui" line="423"/>
+        <location filename="../datamodel/post2dwindowparticlestructuredsettingdialog.ui" line="100"/>
+        <location filename="../datamodel/post2dwindowparticlestructuredsettingdialog.ui" line="467"/>
         <source>-</source>
         <translation>減らす</translation>
     </message>
     <message>
-        <location filename="../datamodel/post2dwindowparticlestructuredsettingdialog.ui" line="107"/>
-        <location filename="../datamodel/post2dwindowparticlestructuredsettingdialog.ui" line="440"/>
+        <location filename="../datamodel/post2dwindowparticlestructuredsettingdialog.ui" line="117"/>
+        <location filename="../datamodel/post2dwindowparticlestructuredsettingdialog.ui" line="484"/>
         <source>+</source>
         <translation>増やす</translation>
     </message>
     <message>
-        <location filename="../datamodel/post2dwindowparticlestructuredsettingdialog.ui" line="152"/>
-        <location filename="../datamodel/post2dwindowparticlestructuredsettingdialog.ui" line="485"/>
+        <location filename="../datamodel/post2dwindowparticlestructuredsettingdialog.ui" line="162"/>
+        <location filename="../datamodel/post2dwindowparticlestructuredsettingdialog.ui" line="529"/>
         <source>min</source>
         <translation>min</translation>
     </message>
     <message>
-        <location filename="../datamodel/post2dwindowparticlestructuredsettingdialog.ui" line="177"/>
-        <location filename="../datamodel/post2dwindowparticlestructuredsettingdialog.ui" line="510"/>
+        <location filename="../datamodel/post2dwindowparticlestructuredsettingdialog.ui" line="187"/>
+        <location filename="../datamodel/post2dwindowparticlestructuredsettingdialog.ui" line="554"/>
         <source>1</source>
         <translation>1</translation>
     </message>
     <message>
-        <location filename="../datamodel/post2dwindowparticlestructuredsettingdialog.ui" line="205"/>
-        <location filename="../datamodel/post2dwindowparticlestructuredsettingdialog.ui" line="538"/>
+        <location filename="../datamodel/post2dwindowparticlestructuredsettingdialog.ui" line="215"/>
+        <location filename="../datamodel/post2dwindowparticlestructuredsettingdialog.ui" line="582"/>
         <source>max</source>
         <translation>max</translation>
     </message>
     <message>
-        <location filename="../datamodel/post2dwindowparticlestructuredsettingdialog.ui" line="245"/>
+        <location filename="../datamodel/post2dwindowparticlestructuredsettingdialog.ui" line="236"/>
+        <source>Generate at arbitrary time</source>
+        <translation>任意のタイミングで生成</translation>
+    </message>
+    <message>
+        <location filename="../datamodel/post2dwindowparticlestructuredsettingdialog.ui" line="246"/>
+        <source>Edit...</source>
+        <translation>編集...</translation>
+    </message>
+    <message>
+        <location filename="../datamodel/post2dwindowparticlestructuredsettingdialog.ui" line="289"/>
         <source>Start Position</source>
         <translation>発生位置</translation>
     </message>
     <message>
-        <location filename="../datamodel/post2dwindowparticlestructuredsettingdialog.ui" line="251"/>
+        <location filename="../datamodel/post2dwindowparticlestructuredsettingdialog.ui" line="295"/>
         <source>Range</source>
         <translation>範囲</translation>
     </message>
     <message>
-        <location filename="../datamodel/post2dwindowparticlestructuredsettingdialog.ui" line="259"/>
+        <location filename="../datamodel/post2dwindowparticlestructuredsettingdialog.ui" line="303"/>
         <source>Specify the area to generate particles.</source>
         <translation>パーティクルを発生させる位置を指定します。</translation>
     </message>
     <message>
-        <location filename="../datamodel/post2dwindowparticlestructuredsettingdialog.ui" line="266"/>
+        <location filename="../datamodel/post2dwindowparticlestructuredsettingdialog.ui" line="310"/>
         <source>Specify the area to generate particles, by grid indices range (I, J).</source>
         <translation>パーティクルを発生させる位置を、格子のインデックス (I, J) の範囲で指定してください。</translation>
     </message>
     <message>
-        <location filename="../datamodel/post2dwindowparticlestructuredsettingdialog.ui" line="294"/>
+        <location filename="../datamodel/post2dwindowparticlestructuredsettingdialog.ui" line="338"/>
         <source>I Min</source>
         <translation>I 最小</translation>
     </message>
     <message>
-        <location filename="../datamodel/post2dwindowparticlestructuredsettingdialog.ui" line="314"/>
+        <location filename="../datamodel/post2dwindowparticlestructuredsettingdialog.ui" line="358"/>
         <source>I Max</source>
         <translation>I 最大</translation>
     </message>
     <message>
-        <location filename="../datamodel/post2dwindowparticlestructuredsettingdialog.ui" line="334"/>
+        <location filename="../datamodel/post2dwindowparticlestructuredsettingdialog.ui" line="378"/>
         <source>J Min</source>
         <translation>J 最小</translation>
     </message>
     <message>
-        <location filename="../datamodel/post2dwindowparticlestructuredsettingdialog.ui" line="354"/>
+        <location filename="../datamodel/post2dwindowparticlestructuredsettingdialog.ui" line="398"/>
         <source>J Max</source>
         <translation>J 最大</translation>
     </message>
     <message>
-        <location filename="../datamodel/post2dwindowparticlestructuredsettingdialog.ui" line="377"/>
+        <location filename="../datamodel/post2dwindowparticlestructuredsettingdialog.ui" line="421"/>
         <source>Generation space interval</source>
         <translation>生成間隔</translation>
     </message>
     <message>
-        <location filename="../datamodel/post2dwindowparticlestructuredsettingdialog.ui" line="385"/>
+        <location filename="../datamodel/post2dwindowparticlestructuredsettingdialog.ui" line="429"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
@@ -1098,17 +1134,17 @@ p {margin-top: 3px; margin-bottom: 3px;}
 &lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../datamodel/post2dwindowparticlestructuredsettingdialog.ui" line="559"/>
+        <location filename="../datamodel/post2dwindowparticlestructuredsettingdialog.ui" line="603"/>
         <source>Color:</source>
         <translation>色:</translation>
     </message>
     <message>
-        <location filename="../datamodel/post2dwindowparticlestructuredsettingdialog.ui" line="586"/>
+        <location filename="../datamodel/post2dwindowparticlestructuredsettingdialog.ui" line="630"/>
         <source>Size:</source>
         <translation>サイズ:</translation>
     </message>
     <message>
-        <location filename="../datamodel/post2dwindowparticlestructuredsettingdialog.ui" line="593"/>
+        <location filename="../datamodel/post2dwindowparticlestructuredsettingdialog.ui" line="637"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
@@ -1121,17 +1157,17 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:3px; margin-bottom:3px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;画面上でのピクセル数を指定します&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../datamodel/post2dwindowparticlestructuredsettingdialog.ui" line="644"/>
+        <location filename="../datamodel/post2dwindowparticlestructuredsettingdialog.ui" line="688"/>
         <source>&amp;Add</source>
         <translation>追加(&amp;A)</translation>
     </message>
     <message>
-        <location filename="../datamodel/post2dwindowparticlestructuredsettingdialog.ui" line="651"/>
+        <location filename="../datamodel/post2dwindowparticlestructuredsettingdialog.ui" line="695"/>
         <source>&amp;Remove</source>
         <translation>削除(&amp;R)</translation>
     </message>
     <message>
-        <location filename="../datamodel/post2dwindowparticlestructuredsettingdialog.ui" line="682"/>
+        <location filename="../datamodel/post2dwindowparticlestructuredsettingdialog.ui" line="739"/>
         <source>&amp;Region Setting</source>
         <translation>領域設定(&amp;R)</translation>
     </message>
@@ -1155,13 +1191,17 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../datamodel/post2dwindowparticleunstructuredsettingdialog.ui" line="44"/>
+        <source>Generate periodically</source>
+        <translation>一定時間おきに生成</translation>
+    </message>
+    <message>
+        <location filename="../datamodel/post2dwindowparticleunstructuredsettingdialog.ui" line="54"/>
         <source>Generation interval</source>
         <translation>発生間隔</translation>
     </message>
     <message>
-        <location filename="../datamodel/post2dwindowparticleunstructuredsettingdialog.ui" line="52"/>
         <source>Specify time interval for particles generation.</source>
-        <translation>パーティクルを発生させる時間間隔を指定します。</translation>
+        <translation type="vanished">パーティクルを発生させる時間間隔を指定します。</translation>
     </message>
     <message>
         <location filename="../datamodel/post2dwindowparticleunstructuredsettingdialog.ui" line="65"/>
@@ -1211,58 +1251,68 @@ p {margin-top: 3px; margin-bottom: 3px;}
         <translation>max</translation>
     </message>
     <message>
-        <location filename="../datamodel/post2dwindowparticleunstructuredsettingdialog.ui" line="256"/>
+        <location filename="../datamodel/post2dwindowparticleunstructuredsettingdialog.ui" line="237"/>
+        <source>Generate at arbitrary time</source>
+        <translation>任意のタイミングで生成</translation>
+    </message>
+    <message>
+        <location filename="../datamodel/post2dwindowparticleunstructuredsettingdialog.ui" line="247"/>
+        <source>Edit...</source>
+        <translation>編集...</translation>
+    </message>
+    <message>
+        <location filename="../datamodel/post2dwindowparticleunstructuredsettingdialog.ui" line="290"/>
         <source>Start Points</source>
         <translation>発生位置</translation>
     </message>
     <message>
-        <location filename="../datamodel/post2dwindowparticleunstructuredsettingdialog.ui" line="262"/>
+        <location filename="../datamodel/post2dwindowparticleunstructuredsettingdialog.ui" line="296"/>
         <source>Specify two points. Particles start from points generated equally separated between these two points.</source>
         <translation>2つの点を指定してください。指定した2つの点の間に、等間隔で粒子が発生します。</translation>
     </message>
     <message>
-        <location filename="../datamodel/post2dwindowparticleunstructuredsettingdialog.ui" line="272"/>
+        <location filename="../datamodel/post2dwindowparticleunstructuredsettingdialog.ui" line="306"/>
         <source>Mouse Drag</source>
         <translation>マウスドラッグで指定</translation>
     </message>
     <message>
-        <location filename="../datamodel/post2dwindowparticleunstructuredsettingdialog.ui" line="282"/>
+        <location filename="../datamodel/post2dwindowparticleunstructuredsettingdialog.ui" line="316"/>
         <source>Coordinate Values</source>
         <translation>座標値を指定</translation>
     </message>
     <message>
-        <location filename="../datamodel/post2dwindowparticleunstructuredsettingdialog.ui" line="309"/>
+        <location filename="../datamodel/post2dwindowparticleunstructuredsettingdialog.ui" line="343"/>
         <source>Point 1:</source>
         <translation>点1:</translation>
     </message>
     <message>
-        <location filename="../datamodel/post2dwindowparticleunstructuredsettingdialog.ui" line="323"/>
-        <location filename="../datamodel/post2dwindowparticleunstructuredsettingdialog.ui" line="351"/>
+        <location filename="../datamodel/post2dwindowparticleunstructuredsettingdialog.ui" line="357"/>
+        <location filename="../datamodel/post2dwindowparticleunstructuredsettingdialog.ui" line="385"/>
         <source>,</source>
         <translation>,</translation>
     </message>
     <message>
-        <location filename="../datamodel/post2dwindowparticleunstructuredsettingdialog.ui" line="337"/>
+        <location filename="../datamodel/post2dwindowparticleunstructuredsettingdialog.ui" line="371"/>
         <source>Point 2:</source>
         <translation>点2:</translation>
     </message>
     <message>
-        <location filename="../datamodel/post2dwindowparticleunstructuredsettingdialog.ui" line="384"/>
+        <location filename="../datamodel/post2dwindowparticleunstructuredsettingdialog.ui" line="418"/>
         <source>Number of points:</source>
         <translation>点の数:</translation>
     </message>
     <message>
-        <location filename="../datamodel/post2dwindowparticleunstructuredsettingdialog.ui" line="420"/>
+        <location filename="../datamodel/post2dwindowparticleunstructuredsettingdialog.ui" line="454"/>
         <source>Color:</source>
         <translation>色:</translation>
     </message>
     <message>
-        <location filename="../datamodel/post2dwindowparticleunstructuredsettingdialog.ui" line="447"/>
+        <location filename="../datamodel/post2dwindowparticleunstructuredsettingdialog.ui" line="481"/>
         <source>Size:</source>
         <translation>サイズ:</translation>
     </message>
     <message>
-        <location filename="../datamodel/post2dwindowparticleunstructuredsettingdialog.ui" line="454"/>
+        <location filename="../datamodel/post2dwindowparticleunstructuredsettingdialog.ui" line="488"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
@@ -1275,38 +1325,75 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:3px; margin-bottom:3px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;画面上でのピクセル数を指定します&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../datamodel/post2dwindowparticleunstructuredsettingdialog.ui" line="505"/>
+        <location filename="../datamodel/post2dwindowparticleunstructuredsettingdialog.ui" line="539"/>
         <source>&amp;Add</source>
         <translation>追加(&amp;A)</translation>
     </message>
     <message>
-        <location filename="../datamodel/post2dwindowparticleunstructuredsettingdialog.ui" line="512"/>
+        <location filename="../datamodel/post2dwindowparticleunstructuredsettingdialog.ui" line="546"/>
         <source>&amp;Remove</source>
         <translation>削除(&amp;R)</translation>
     </message>
     <message>
-        <location filename="../datamodel/post2dwindowparticleunstructuredsettingdialog.ui" line="543"/>
+        <location filename="../datamodel/post2dwindowparticleunstructuredsettingdialog.ui" line="590"/>
         <source>&amp;Region Setting</source>
         <translation>領域設定(&amp;R)</translation>
     </message>
 </context>
 <context>
-    <name>Post2dWindowParticlesScalarGroupDataItem</name>
+    <name>Post2dWindowParticlesBaseScalarGroupDataItem</name>
     <message>
-        <location filename="../datamodel/post2dwindowparticlesscalargroupdataitem.cpp" line="29"/>
+        <location filename="../datamodel/post2dwindowparticlesbasescalargroupdataitem.cpp" line="32"/>
         <source>Scalar</source>
         <translation>スカラー</translation>
     </message>
     <message>
-        <location filename="../datamodel/post2dwindowparticlesscalargroupdataitem.cpp" line="147"/>
+        <location filename="../datamodel/post2dwindowparticlesbasescalargroupdataitem.cpp" line="153"/>
         <source>Particle Scalar value change</source>
         <translation>パーティクル属性値の変更</translation>
     </message>
 </context>
 <context>
+    <name>Post2dWindowParticlesBaseTopDataItem</name>
+    <message>
+        <location filename="../datamodel/private/post2dwindowparticlesbasetopdataitem_setsettingcommand.cpp" line="4"/>
+        <source>Edit Particle Setting</source>
+        <translation>パーティクル設定の変更</translation>
+    </message>
+</context>
+<context>
+    <name>Post2dWindowParticlesBaseVectorGroupDataItem</name>
+    <message>
+        <location filename="../datamodel/post2dwindowparticlesbasevectorgroupdataitem.cpp" line="44"/>
+        <source>Vector</source>
+        <translation>ベクトル</translation>
+    </message>
+    <message>
+        <location filename="../datamodel/post2dwindowparticlesbasevectorgroupdataitem.cpp" line="67"/>
+        <source>Vector Attribute Select Change</source>
+        <translation>ベクトル属性の変更</translation>
+    </message>
+    <message>
+        <location filename="../datamodel/private/post2dwindowparticlesbasevectorgroupdataitem_setsettingcommand.cpp" line="4"/>
+        <source>Update Vector Setting</source>
+        <translation>ベクトル設定の変更</translation>
+    </message>
+</context>
+<context>
+    <name>Post2dWindowParticlesScalarGroupDataItem</name>
+    <message>
+        <source>Scalar</source>
+        <translation type="vanished">スカラー</translation>
+    </message>
+    <message>
+        <source>Particle Scalar value change</source>
+        <translation type="vanished">パーティクル属性値の変更</translation>
+    </message>
+</context>
+<context>
     <name>Post2dWindowParticlesTopDataItem</name>
     <message>
-        <location filename="../datamodel/post2dwindowparticlestopdataitem.cpp" line="22"/>
+        <location filename="../datamodel/post2dwindowparticlestopdataitem.cpp" line="7"/>
         <source>Particles</source>
         <translation>粒子</translation>
     </message>
@@ -1319,27 +1406,23 @@ p, li { white-space: pre-wrap; }
         <translation type="vanished">パーティクル (自動)</translation>
     </message>
     <message>
-        <location filename="../datamodel/private/post2dwindowparticlestopdataitem_setsettingcommand.cpp" line="4"/>
         <source>Edit Particle Setting</source>
-        <translation>パーティクル設定の変更</translation>
+        <translation type="vanished">パーティクル設定の変更</translation>
     </message>
 </context>
 <context>
     <name>Post2dWindowParticlesVectorGroupDataItem</name>
     <message>
-        <location filename="../datamodel/post2dwindowparticlesvectorgroupdataitem.cpp" line="45"/>
         <source>Vector</source>
-        <translation>ベクトル</translation>
+        <translation type="vanished">ベクトル</translation>
     </message>
     <message>
-        <location filename="../datamodel/post2dwindowparticlesvectorgroupdataitem.cpp" line="67"/>
         <source>Vector Attribute Select Change</source>
-        <translation>ベクトル属性の変更</translation>
+        <translation type="vanished">ベクトル属性の変更</translation>
     </message>
     <message>
-        <location filename="../datamodel/private/post2dwindowparticlesvectorgroupdataitem_setsettingcommand.cpp" line="4"/>
         <source>Update Vector Setting</source>
-        <translation>ベクトル設定の変更</translation>
+        <translation type="vanished">ベクトル設定の変更</translation>
     </message>
 </context>
 <context>
@@ -1368,6 +1451,19 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Geographic Data</source>
         <translation type="vanished">地理情報</translation>
+    </message>
+</context>
+<context>
+    <name>Post2dWindowScalarGroupTopDataItem</name>
+    <message>
+        <location filename="../datamodel/post2dwindowscalargrouptopdataitem.cpp" line="45"/>
+        <source>Warning</source>
+        <translation>警告</translation>
+    </message>
+    <message>
+        <location filename="../datamodel/post2dwindowscalargrouptopdataitem.cpp" line="45"/>
+        <source>A maximum of four contours may be defined.</source>
+        <translation>コンターは最大で4つまでしか描画できません。</translation>
     </message>
 </context>
 <context>
@@ -1605,9 +1701,9 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>Post2dWindowZoneDataItem</name>
     <message>
-        <location filename="../datamodel/post2dwindowzonedataitem.cpp" line="126"/>
-        <location filename="../datamodel/post2dwindowzonedataitem.cpp" line="129"/>
-        <location filename="../datamodel/post2dwindowzonedataitem.cpp" line="132"/>
+        <location filename="../datamodel/post2dwindowzonedataitem.cpp" line="148"/>
+        <location filename="../datamodel/post2dwindowzonedataitem.cpp" line="151"/>
+        <location filename="../datamodel/post2dwindowzonedataitem.cpp" line="154"/>
         <source>Show Attribute Browser</source>
         <translation>属性ブラウザの表示</translation>
     </message>
@@ -1657,17 +1753,19 @@ p, li { white-space: pre-wrap; }
         <translation type="vanished">背景色の設定</translation>
     </message>
     <message>
-        <location filename="../datamodel/private/post2dwindowparticlesscalargroupdataitem_setsettingcommand.cpp" line="10"/>
+        <location filename="../datamodel/private/post2dwindowparticlesbasescalargroupdataitem_setsettingcommand.cpp" line="11"/>
         <source>Update Particles Scalar Setting</source>
         <translation>パーティクルのスカラー設定の変更</translation>
     </message>
     <message>
-        <location filename="../datamodel/post2dwindownodescalargrouptopdataitem.cpp" line="251"/>
+        <location filename="../datamodel/post2dwindowedgeiscalargrouptopdataitem.cpp" line="215"/>
+        <location filename="../datamodel/post2dwindowedgejscalargrouptopdataitem.cpp" line="215"/>
+        <location filename="../datamodel/post2dwindownodescalargrouptopdataitem.cpp" line="229"/>
         <source>Create Contour</source>
         <translation>コンターの作成</translation>
     </message>
     <message>
-        <location filename="../datamodel/post2dwindowcellscalargrouptopdataitem.cpp" line="235"/>
+        <location filename="../datamodel/post2dwindowcellscalargrouptopdataitem.cpp" line="237"/>
         <source>Create Cell Contour</source>
         <translation>セルコンターの作成</translation>
     </message>

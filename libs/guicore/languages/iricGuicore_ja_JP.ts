@@ -130,7 +130,7 @@
     <message>
         <location filename="../project/backgroundimageinfogeoreferencedialog.ui" line="54"/>
         <source>PushButton</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../project/backgroundimageinfogeoreferencedialog.cpp" line="242"/>
@@ -1200,14 +1200,14 @@ Do you really want to import this file?</source>
     <message>
         <location filename="../project/inputcond/private/inputconditionwidgetfunctionaldownloaddialog.ui" line="99"/>
         <source>Test</source>
-        <translation type="unfinished">テスト</translation>
+        <translation>テスト</translation>
     </message>
     <message>
         <location filename="../project/inputcond/private/inputconditionwidgetfunctionaldownloaddialog.cpp" line="93"/>
         <location filename="../project/inputcond/private/inputconditionwidgetfunctionaldownloaddialog.cpp" line="99"/>
         <location filename="../project/inputcond/private/inputconditionwidgetfunctionaldownloaddialog.cpp" line="107"/>
         <source>Error</source>
-        <translation type="unfinished">エラー</translation>
+        <translation>エラー</translation>
     </message>
     <message>
         <location filename="../project/inputcond/private/inputconditionwidgetfunctionaldownloaddialog.cpp" line="93"/>
@@ -1603,7 +1603,7 @@ Do you really want to import this file?</source>
         <location filename="../postcontainer/postcalculatedresultargumenteditdialog.cpp" line="75"/>
         <location filename="../postcontainer/postcalculatedresultargumenteditdialog.cpp" line="80"/>
         <source>Warning</source>
-        <translation type="unfinished">警告</translation>
+        <translation>警告</translation>
     </message>
     <message>
         <location filename="../postcontainer/postcalculatedresultargumenteditdialog.cpp" line="75"/>
@@ -1971,12 +1971,12 @@ Do you really want to import this file?</source>
 <context>
     <name>PostIterationSteps</name>
     <message>
-        <location filename="../postcontainer/postiterationsteps.cpp" line="89"/>
+        <location filename="../postcontainer/postiterationsteps.cpp" line="85"/>
         <source>Error</source>
         <translation>エラー</translation>
     </message>
     <message>
-        <location filename="../postcontainer/postiterationsteps.cpp" line="89"/>
+        <location filename="../postcontainer/postiterationsteps.cpp" line="85"/>
         <source>Error occured while loading calculation result.</source>
         <translation>計算結果の読み込み中にエラーが発生しました。</translation>
     </message>
@@ -1984,26 +1984,26 @@ Do you really want to import this file?</source>
 <context>
     <name>PostSolutionInfo</name>
     <message>
-        <location filename="../postcontainer/postsolutioninfo.cpp" line="209"/>
-        <location filename="../postcontainer/postsolutioninfo.cpp" line="999"/>
-        <location filename="../postcontainer/postsolutioninfo.cpp" line="1098"/>
+        <location filename="../postcontainer/postsolutioninfo.cpp" line="205"/>
+        <location filename="../postcontainer/postsolutioninfo.cpp" line="995"/>
+        <location filename="../postcontainer/postsolutioninfo.cpp" line="1094"/>
         <source>Error</source>
         <translation>エラー</translation>
     </message>
     <message>
-        <location filename="../postcontainer/postsolutioninfo.cpp" line="209"/>
+        <location filename="../postcontainer/postsolutioninfo.cpp" line="205"/>
         <source>Error occured while loading calculation result.</source>
         <translation>計算結果の読み込み中にエラーが発生しました。</translation>
     </message>
     <message>
-        <location filename="../postcontainer/postsolutioninfo.cpp" line="503"/>
+        <location filename="../postcontainer/postsolutioninfo.cpp" line="499"/>
         <source>Reading time values...</source>
         <translation>時刻の値を読み込んでいます...</translation>
     </message>
     <message>
-        <location filename="../postcontainer/postsolutioninfo.cpp" line="516"/>
-        <location filename="../postcontainer/postsolutioninfo.cpp" line="642"/>
-        <location filename="../postcontainer/postsolutioninfo.cpp" line="973"/>
+        <location filename="../postcontainer/postsolutioninfo.cpp" line="512"/>
+        <location filename="../postcontainer/postsolutioninfo.cpp" line="638"/>
+        <location filename="../postcontainer/postsolutioninfo.cpp" line="969"/>
         <source>Warning</source>
         <translation>警告</translation>
     </message>
@@ -2054,47 +2054,47 @@ result/Solution1.cgn から result/Solution%2.cgn までに含まれていた計
         <translation type="vanished">output.cgn を開く処理でエラーが発生しました。</translation>
     </message>
     <message>
-        <location filename="../postcontainer/postsolutioninfo.cpp" line="516"/>
+        <location filename="../postcontainer/postsolutioninfo.cpp" line="512"/>
         <source>Reading time value from result/Solution%1.cgn failed. You can visualize calculation result in Solution1.cgn to Solution%2.cgn.</source>
         <translation>result/Solution%1.cgn からの時刻の読み込みに失敗しました。Solution1.cgn から Solution%2.cgn までの結果を可視化できます。</translation>
     </message>
     <message>
-        <location filename="../postcontainer/postsolutioninfo.cpp" line="642"/>
+        <location filename="../postcontainer/postsolutioninfo.cpp" line="638"/>
         <source>Loading calculation result for visualization failed.</source>
         <translation>可視化用計算結果の読み込みに失敗しました。</translation>
     </message>
     <message>
-        <location filename="../postcontainer/postsolutioninfo.cpp" line="973"/>
+        <location filename="../postcontainer/postsolutioninfo.cpp" line="969"/>
         <source>No calculation result exists.</source>
         <translation>計算結果がありません。</translation>
     </message>
     <message>
-        <location filename="../postcontainer/postsolutioninfo.cpp" line="999"/>
+        <location filename="../postcontainer/postsolutioninfo.cpp" line="995"/>
         <source>Calculation result does not contain grid data.</source>
         <translation>計算結果に、格子データがありません。</translation>
     </message>
     <message>
-        <location filename="../postcontainer/postsolutioninfo.cpp" line="1048"/>
+        <location filename="../postcontainer/postsolutioninfo.cpp" line="1044"/>
         <source>Export Calculation Result</source>
         <translation>計算結果のエクスポート</translation>
     </message>
     <message>
-        <location filename="../postcontainer/postsolutioninfo.cpp" line="1052"/>
+        <location filename="../postcontainer/postsolutioninfo.cpp" line="1048"/>
         <source>Saving calculation result as VTK files...</source>
         <translation>計算結果を VTKファイルに保存しています...</translation>
     </message>
     <message>
-        <location filename="../postcontainer/postsolutioninfo.cpp" line="1055"/>
+        <location filename="../postcontainer/postsolutioninfo.cpp" line="1051"/>
         <source>Saving calculation result as CSV files...</source>
         <translation>計算結果を CSVファイルに保存しています...</translation>
     </message>
     <message>
-        <location filename="../postcontainer/postsolutioninfo.cpp" line="1058"/>
+        <location filename="../postcontainer/postsolutioninfo.cpp" line="1054"/>
         <source>Saving calculation result as ESRI Shape files...</source>
         <translation>計算結果を ESRI シェープファイルに保存しています...</translation>
     </message>
     <message>
-        <location filename="../postcontainer/postsolutioninfo.cpp" line="1098"/>
+        <location filename="../postcontainer/postsolutioninfo.cpp" line="1094"/>
         <source>Error occured while saving %1</source>
         <translation>%1 の保存中にエラーが発生しました。</translation>
     </message>
@@ -2102,12 +2102,12 @@ result/Solution1.cgn から result/Solution%2.cgn までに含まれていた計
 <context>
     <name>PostTimeSteps</name>
     <message>
-        <location filename="../postcontainer/posttimesteps.cpp" line="104"/>
+        <location filename="../postcontainer/posttimesteps.cpp" line="100"/>
         <source>Error</source>
         <translation>エラー</translation>
     </message>
     <message>
-        <location filename="../postcontainer/posttimesteps.cpp" line="104"/>
+        <location filename="../postcontainer/posttimesteps.cpp" line="100"/>
         <source>Error occured while loading calculation result.</source>
         <translation>計算結果の読み込み中にエラーが発生しました。</translation>
     </message>
