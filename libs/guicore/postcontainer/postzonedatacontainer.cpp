@@ -733,12 +733,22 @@ bool PostZoneDataContainer::getCellSolutionId(const int fn, const int currentSte
 
 bool PostZoneDataContainer::getEdgeISolutionId(const int fn, const int currentStep, int* solId)
 {
-	return findSolutionId(fn, currentStep, solId, "FlowIFaceSolutionPointers");
+	if (postSolutionInfo()->resultSeparated()) {
+		*solId = 3;
+		return true;
+	} else {
+		return findSolutionId(fn, currentStep, solId, "FlowIFaceSolutionPointers");
+	}
 }
 
 bool PostZoneDataContainer::getEdgeJSolutionId(const int fn, const int currentStep, int* solId)
 {
-	return findSolutionId(fn, currentStep, solId, "FlowJFaceSolutionPointers");
+	if (postSolutionInfo()->resultSeparated()) {
+		*solId = 4;
+		return true;
+	} else {
+		return findSolutionId(fn, currentStep, solId, "FlowJFaceSolutionPointers");
+	}
 }
 
 bool PostZoneDataContainer::loadScalarData(vtkDataSetAttributes* atts, int firstAtt)

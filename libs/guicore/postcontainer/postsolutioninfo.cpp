@@ -363,8 +363,10 @@ bool PostSolutionInfo::setupBaseIterativeResults(int fn, int baseId)
 	ier = cg_narrays(&nArrays);
 	if (ier != 0) {return false;}
 
-
 	int step = currentStep();
+	if (m_resultSeparated) {
+		step = 0;
+	}
 
 	for (int i = 1; i <= nArrays; ++i) {
 		char arrayname[ProjectCgnsFile::BUFFERLEN];
