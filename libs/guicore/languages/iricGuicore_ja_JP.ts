@@ -30,29 +30,24 @@
         <translation type="vanished">位置の固定</translation>
     </message>
     <message>
-        <location filename="../project/backgroundimageinfo.cpp" line="166"/>
         <source>Unable to read image %1</source>
-        <translation>%1 を読み込めませんでした。</translation>
+        <translation type="vanished">%1 を読み込めませんでした。</translation>
     </message>
     <message>
-        <location filename="../project/backgroundimageinfo.cpp" line="267"/>
         <source>Warning</source>
-        <translation>警告</translation>
+        <translation type="vanished">警告</translation>
     </message>
     <message>
-        <location filename="../project/backgroundimageinfo.cpp" line="267"/>
         <source>In file %1, x-coordinate increment per pixel and y-coordinate increment per pixel mismatches. It is acceptable, but it may be wrong.</source>
-        <translation>ファイル %1 で、X方向のピクセルごとの増分と、Y方向のピクセル方向の増分が一致していません。このままでも読み込むことはできますが、恐らく設定が間違っています。</translation>
+        <translation type="vanished">ファイル %1 で、X方向のピクセルごとの増分と、Y方向のピクセル方向の増分が一致していません。このままでも読み込むことはできますが、恐らく設定が間違っています。</translation>
     </message>
     <message>
-        <location filename="../project/backgroundimageinfo.cpp" line="650"/>
         <source>Information</source>
-        <translation>情報</translation>
+        <translation type="vanished">情報</translation>
     </message>
     <message>
-        <location filename="../project/backgroundimageinfo.cpp" line="650"/>
         <source>Select a corresponding point on Main Window.</source>
-        <translation>メインウィンドウで、対応する点を選択してください。</translation>
+        <translation type="vanished">メインウィンドウで、対応する点を選択してください。</translation>
     </message>
 </context>
 <context>
@@ -133,14 +128,12 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../project/backgroundimageinfogeoreferencedialog.cpp" line="242"/>
         <source>Hide</source>
-        <translation>隠す</translation>
+        <translation type="vanished">隠す</translation>
     </message>
     <message>
-        <location filename="../project/backgroundimageinfogeoreferencedialog.cpp" line="244"/>
         <source>Show</source>
-        <translation>表示する</translation>
+        <translation type="vanished">表示する</translation>
     </message>
 </context>
 <context>
@@ -333,14 +326,12 @@ Do you really want to import this file?</source>
         <translation>フォーム</translation>
     </message>
     <message>
-        <location filename="../scalarstocolors/colortransferfunctioneditwidget.cpp" line="53"/>
         <source>Attribute</source>
-        <translation>属性</translation>
+        <translation type="vanished">属性</translation>
     </message>
     <message>
-        <location filename="../scalarstocolors/colortransferfunctioneditwidget.cpp" line="54"/>
         <source>Color</source>
-        <translation>色</translation>
+        <translation type="vanished">色</translation>
     </message>
 </context>
 <context>
@@ -449,71 +440,40 @@ Do you really want to import this file?</source>
     </message>
 </context>
 <context>
-    <name>GcpTableModel</name>
-    <message>
-        <location filename="../project/gcptablemodel.cpp" line="99"/>
-        <source>srcX</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../project/gcptablemodel.cpp" line="101"/>
-        <source>srcY</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../project/gcptablemodel.cpp" line="103"/>
-        <source>dstX</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../project/gcptablemodel.cpp" line="105"/>
-        <source>dstY</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
     <name>GeoData</name>
     <message>
-        <location filename="../pre/geodata/geodata.cpp" line="42"/>
         <source>Edit &amp;Name...</source>
-        <translation>名前の編集(&amp;N)...</translation>
+        <translation type="vanished">名前の編集(&amp;N)...</translation>
     </message>
 </context>
 <context>
     <name>GeoDataBackground</name>
     <message>
-        <location filename="../pre/geodatabackground/geodatabackground.cpp" line="20"/>
         <source>Default</source>
-        <translation>デフォルト</translation>
+        <translation type="vanished">デフォルト</translation>
     </message>
     <message>
-        <location filename="../pre/geodatabackground/geodatabackground.cpp" line="21"/>
         <source>Edit value...</source>
-        <translation>値の編集...</translation>
+        <translation type="vanished">値の編集...</translation>
     </message>
     <message>
-        <location filename="../pre/geodatabackground/private/geodatabackground_editvaluecommand.cpp" line="5"/>
         <source>Background edit value</source>
-        <translation>背景の値の編集</translation>
+        <translation type="vanished">背景の値の編集</translation>
     </message>
     <message>
-        <location filename="../pre/geodatabackground/geodatabackground.cpp" line="90"/>
-        <location filename="../pre/geodatabackground/geodatabackground.cpp" line="101"/>
         <source>Edit %1 default value</source>
-        <translation>%1 のデフォルト値の編集</translation>
+        <translation type="vanished">%1 のデフォルト値の編集</translation>
     </message>
     <message>
-        <location filename="../pre/geodatabackground/geodatabackground.cpp" line="91"/>
         <source>Please input new default value.</source>
-        <translation>新しいデフォルト値を入力してください。</translation>
+        <translation type="vanished">新しいデフォルト値を入力してください。</translation>
     </message>
 </context>
 <context>
     <name>GeoDataBackgroundComplexCreator</name>
     <message>
-        <location filename="../pre/geodatabackground/geodatabackgroundcomplexcreator.cpp" line="9"/>
         <source>Background</source>
-        <translation>背景</translation>
+        <translation type="vanished">背景</translation>
     </message>
 </context>
 <context>
@@ -542,30 +502,24 @@ Do you really want to import this file?</source>
 <context>
     <name>GeoreferenceView::ImageInfo</name>
     <message>
-        <location filename="../project/private/georeferenceview_imageinfo.cpp" line="130"/>
-        <location filename="../project/private/georeferenceview_imageinfo.cpp" line="135"/>
         <source>Warning</source>
-        <translation>警告</translation>
+        <translation type="vanished">警告</translation>
     </message>
     <message>
-        <location filename="../project/private/georeferenceview_imageinfo.cpp" line="130"/>
         <source>No point is selected.</source>
-        <translation>点が選択されていません。</translation>
+        <translation type="vanished">点が選択されていません。</translation>
     </message>
     <message>
-        <location filename="../project/private/georeferenceview_imageinfo.cpp" line="135"/>
         <source>No point can be further deleted.</source>
-        <translation>これ以上削除できる点がありません。</translation>
+        <translation type="vanished">これ以上削除できる点がありません。</translation>
     </message>
     <message>
-        <location filename="../project/private/georeferenceview_imageinfo.cpp" line="151"/>
         <source>Information</source>
-        <translation>情報</translation>
+        <translation type="vanished">情報</translation>
     </message>
     <message>
-        <location filename="../project/private/georeferenceview_imageinfo.cpp" line="151"/>
         <source>Select a point on Georeference dialog.</source>
-        <translation>ジオレファレンスダイアログで、点を選択してください。</translation>
+        <translation type="vanished">ジオレファレンスダイアログで、点を選択してください。</translation>
     </message>
 </context>
 <context>
@@ -600,39 +554,32 @@ Do you really want to import this file?</source>
 <context>
     <name>GridAttributeDimensionTimeSliderSelectWidget</name>
     <message>
-        <location filename="../pre/gridcond/dimensionselectwidget/gridattributedimensiontimesliderselectwidget.cpp" line="290"/>
         <source>Step &amp;Backward</source>
-        <translation>一つ前へ(&amp;B)</translation>
+        <translation type="vanished">一つ前へ(&amp;B)</translation>
     </message>
     <message>
-        <location filename="../pre/gridcond/dimensionselectwidget/gridattributedimensiontimesliderselectwidget.cpp" line="293"/>
         <source>Step &amp;Forward</source>
-        <translation>一つ次へ(&amp;F)</translation>
+        <translation type="vanished">一つ次へ(&amp;F)</translation>
     </message>
     <message>
-        <location filename="../pre/gridcond/dimensionselectwidget/gridattributedimensiontimesliderselectwidget.cpp" line="296"/>
         <source>&amp;Reset</source>
-        <translation>先頭へ(&amp;R)</translation>
+        <translation type="vanished">先頭へ(&amp;R)</translation>
     </message>
     <message>
-        <location filename="../pre/gridcond/dimensionselectwidget/gridattributedimensiontimesliderselectwidget.cpp" line="299"/>
         <source>Go to &amp;Last Step</source>
-        <translation>最後のステップへ(&amp;L)</translation>
+        <translation type="vanished">最後のステップへ(&amp;L)</translation>
     </message>
     <message>
-        <location filename="../pre/gridcond/dimensionselectwidget/gridattributedimensiontimesliderselectwidget.cpp" line="302"/>
         <source>&amp;Start/Stop Animation</source>
-        <translation>開始/停止(&amp;S)</translation>
+        <translation type="vanished">開始/停止(&amp;S)</translation>
     </message>
     <message>
-        <location filename="../pre/gridcond/dimensionselectwidget/gridattributedimensiontimesliderselectwidget.cpp" line="305"/>
         <source>S&amp;top Animation</source>
-        <translation>停止(&amp;T)</translation>
+        <translation type="vanished">停止(&amp;T)</translation>
     </message>
     <message>
-        <location filename="../pre/gridcond/dimensionselectwidget/gridattributedimensiontimesliderselectwidget.cpp" line="308"/>
         <source>&amp;Animation Speed Setting...</source>
-        <translation>再生の速度の編集(&amp;A)...</translation>
+        <translation type="vanished">再生の速度の編集(&amp;A)...</translation>
     </message>
 </context>
 <context>
@@ -666,9 +613,8 @@ Do you really want to import this file?</source>
 <context>
     <name>GridAttributeEditWidget</name>
     <message>
-        <location filename="../pre/gridcond/base/gridattributeeditcommand.cpp" line="8"/>
         <source>Edit grid attribute value(s)</source>
-        <translation>格子属性の編集</translation>
+        <translation type="vanished">格子属性の編集</translation>
     </message>
 </context>
 <context>
@@ -688,9 +634,8 @@ Do you really want to import this file?</source>
 <context>
     <name>GridAttributeVariationEditWidget</name>
     <message>
-        <location filename="../pre/gridcond/base/gridattributeeditvariationcommand.cpp" line="8"/>
         <source>Edit grid attribute value(s)</source>
-        <translation>格子属性の編集</translation>
+        <translation type="vanished">格子属性の編集</translation>
     </message>
 </context>
 <context>
@@ -719,20 +664,16 @@ Do you really want to import this file?</source>
         <translation>削除(&amp;D)</translation>
     </message>
     <message>
-        <location filename="../pre/complex/gridcomplexconditiondialog.cpp" line="57"/>
-        <location filename="../pre/complex/gridcomplexconditiondialog.cpp" line="128"/>
         <source>Warning</source>
-        <translation>警告</translation>
+        <translation type="vanished">警告</translation>
     </message>
     <message>
-        <location filename="../pre/complex/gridcomplexconditiondialog.cpp" line="128"/>
         <source>There must be one group at least.</source>
-        <translation>最低限一つのグループがなくてはいけません。</translation>
+        <translation type="vanished">最低限一つのグループがなくてはいけません。</translation>
     </message>
     <message>
-        <location filename="../pre/complex/gridcomplexconditiondialog.cpp" line="57"/>
         <source>Name has to consist of only English characters.</source>
-        <translation>名前には、英数字と記号しか使用できません。</translation>
+        <translation type="vanished">名前には、英数字と記号しか使用できません。</translation>
     </message>
 </context>
 <context>
@@ -774,9 +715,8 @@ Do you really want to import this file?</source>
 <context>
     <name>GridCreatingCondition</name>
     <message>
-        <location filename="../pre/gridcreatingcondition/gridcreatingcondition.cpp" line="27"/>
         <source>&amp;Grid Creating Condition</source>
-        <translation>格子生成条件(&amp;G)</translation>
+        <translation type="vanished">格子生成条件(&amp;G)</translation>
     </message>
 </context>
 <context>
@@ -891,31 +831,26 @@ Do you really want to import this file?</source>
 <context>
     <name>InputConditionContainerSet</name>
     <message>
-        <location filename="../project/inputcond/inputconditioncontainerset.cpp" line="111"/>
         <source>Definition node is not stored</source>
-        <translation>Definition 要素が見つかりません</translation>
+        <translation type="vanished">Definition 要素が見つかりません</translation>
     </message>
     <message>
-        <location filename="../project/inputcond/inputconditioncontainerset.cpp" line="139"/>
         <source>Wrong valueType &quot;%1&quot; is set.</source>
-        <translation>不正な valueType &quot;%1&quot; が指定されました。</translation>
+        <translation type="vanished">不正な valueType &quot;%1&quot; が指定されました。</translation>
     </message>
     <message>
-        <location filename="../project/inputcond/inputconditioncontainerset.cpp" line="142"/>
         <source>Wrong conditionType &quot;%1&quot;is set.</source>
-        <translation>不正な conditionType &quot;%1&quot; が指定されました。</translation>
+        <translation type="vanished">不正な conditionType &quot;%1&quot; が指定されました。</translation>
     </message>
     <message>
-        <location filename="../project/inputcond/inputconditioncontainerset.cpp" line="145"/>
         <source>Error occured while loading solver definition file.
 %1: %2</source>
-        <translation>ソルバー定義ファイルの読み込み中にエラーが発生しました。
+        <translation type="vanished">ソルバー定義ファイルの読み込み中にエラーが発生しました。
 %1: %2</translation>
     </message>
     <message>
-        <location filename="../project/inputcond/inputconditioncontainerset.cpp" line="146"/>
         <source>Error</source>
-        <translation>エラー</translation>
+        <translation type="vanished">エラー</translation>
     </message>
 </context>
 <context>
@@ -926,69 +861,53 @@ Do you really want to import this file?</source>
         <translation>計算条件</translation>
     </message>
     <message>
-        <location filename="../project/inputcond/inputconditiondialog.cpp" line="47"/>
         <source>&amp;Save and Close</source>
-        <translation>保存して閉じる(&amp;S)</translation>
+        <translation type="vanished">保存して閉じる(&amp;S)</translation>
     </message>
     <message>
-        <location filename="../project/inputcond/inputconditiondialog.cpp" line="125"/>
-        <location filename="../project/inputcond/inputconditiondialog.cpp" line="149"/>
-        <location filename="../project/inputcond/inputconditiondialog.cpp" line="233"/>
-        <location filename="../project/inputcond/inputconditiondialog.cpp" line="276"/>
         <source>Error</source>
-        <translation>エラー</translation>
+        <translation type="vanished">エラー</translation>
     </message>
     <message>
-        <location filename="../project/inputcond/inputconditiondialog.cpp" line="126"/>
         <source>This CGNS file is created for %1 version %2. It is not compatible with the current solver.</source>
-        <translation>この CGNS ファイルは、 %1 version %2 用に作られたものです。現在利用しているソルバーと互換性がありません。</translation>
+        <translation type="vanished">この CGNS ファイルは、 %1 version %2 用に作られたものです。現在利用しているソルバーと互換性がありません。</translation>
     </message>
     <message>
-        <location filename="../project/inputcond/inputconditiondialog.cpp" line="131"/>
-        <location filename="../project/inputcond/inputconditiondialog.cpp" line="225"/>
-        <location filename="../project/inputcond/inputconditiondialog.cpp" line="241"/>
         <source>Warning</source>
-        <translation>警告</translation>
+        <translation type="vanished">警告</translation>
     </message>
     <message>
-        <location filename="../project/inputcond/inputconditiondialog.cpp" line="132"/>
         <source>This CGNS file does not have solver information. We can not check whether this CGNS file is compatible with the solver. If it is not compatible, maybe only some part of the conditions will be imported.
 Do you really want to import this file?</source>
-        <translation>この CGNS ファイルはソルバー情報を持っていないため、この CGNS ファイルが現在使用しているソルバーと互換性があるか確認できません。互換性のない CGNS ファイルを読み込んだ場合、計算条件の一部のみがインポートされることがあります。
+        <translation type="vanished">この CGNS ファイルはソルバー情報を持っていないため、この CGNS ファイルが現在使用しているソルバーと互換性があるか確認できません。互換性のない CGNS ファイルを読み込んだ場合、計算条件の一部のみがインポートされることがあります。
 この CGNS ファイルをインポートしますか?</translation>
     </message>
     <message>
-        <location filename="../project/inputcond/inputconditiondialog.cpp" line="150"/>
         <source>This CGNS file does not contain calculation condition data.</source>
-        <translation>この CGNS ファイルには、計算条件がありません。</translation>
+        <translation type="vanished">この CGNS ファイルには、計算条件がありません。</translation>
     </message>
     <message>
-        <location filename="../project/inputcond/inputconditiondialog.cpp" line="225"/>
         <source>Are you sure you want to reset all calculation conditions to default values?</source>
-        <translation>すべての計算条件を、デフォルト値にリセットしていいですか?</translation>
+        <translation type="vanished">すべての計算条件を、デフォルト値にリセットしていいですか?</translation>
     </message>
     <message>
-        <location filename="../project/inputcond/inputconditiondialog.cpp" line="233"/>
         <source>The solver is running currently, so you can not save calculation condition. Please press Cancel button.</source>
-        <translation>ソルバが実行中のため、計算条件を保存できません。キャンセルボタンを押して下さい。</translation>
+        <translation type="vanished">ソルバが実行中のため、計算条件を保存できません。キャンセルボタンを押して下さい。</translation>
     </message>
     <message>
-        <location filename="../project/inputcond/inputconditiondialog.cpp" line="276"/>
         <source>Error occured while saving.</source>
-        <translation>保存中にエラーが発生しました。</translation>
+        <translation type="vanished">保存中にエラーが発生しました。</translation>
     </message>
     <message>
-        <location filename="../project/inputcond/inputconditiondialog.cpp" line="241"/>
         <source>Modifications you made will be discarded.</source>
-        <translation>行った変更は破棄されます。</translation>
+        <translation type="vanished">行った変更は破棄されます。</translation>
     </message>
 </context>
 <context>
     <name>InputConditionPageList</name>
     <message>
-        <location filename="../project/inputcond/inputconditionpagelist.cpp" line="13"/>
         <source>Groups</source>
-        <translation>グループ</translation>
+        <translation type="vanished">グループ</translation>
     </message>
 </context>
 <context>
@@ -1002,10 +921,8 @@ Do you really want to import this file?</source>
         <translation type="vanished">...</translation>
     </message>
     <message>
-        <location filename="../project/inputcond/inputconditionwidgetfilename.cpp" line="76"/>
-        <location filename="../project/inputcond/inputconditionwidgetfilename.cpp" line="78"/>
         <source>Select File</source>
-        <translation>ファイルを選択してください</translation>
+        <translation type="vanished">ファイルを選択してください</translation>
     </message>
 </context>
 <context>
@@ -1030,9 +947,8 @@ Do you really want to import this file?</source>
         <translation type="vanished">...</translation>
     </message>
     <message>
-        <location filename="../project/inputcond/private/inputconditionwidgetfoldername.cpp" line="67"/>
         <source>Select Directory</source>
-        <translation>フォルダを選択してください</translation>
+        <translation type="vanished">フォルダを選択してください</translation>
     </message>
 </context>
 <context>
@@ -1095,84 +1011,68 @@ Do you really want to import this file?</source>
         <translation>クリア</translation>
     </message>
     <message>
-        <location filename="../project/inputcond/private/inputconditionwidgetfunctionaldialog.cpp" line="34"/>
         <source>%1 at row %2: The value %3 is smaller than minimum value %4</source>
-        <translation>%1 %2行目: 最小値 %4 より小さい値 %3 が入力されています</translation>
+        <translation type="vanished">%1 %2行目: 最小値 %4 より小さい値 %3 が入力されています</translation>
     </message>
     <message>
-        <location filename="../project/inputcond/private/inputconditionwidgetfunctionaldialog.cpp" line="41"/>
         <source>%1 at row %2: The value %3 is larger than maximum value %4</source>
-        <translation>%1 %2行目: 最大値 %4 より大きい値 %3 が入力されています</translation>
+        <translation type="vanished">%1 %2行目: 最大値 %4 より大きい値 %3 が入力されています</translation>
     </message>
     <message>
-        <location filename="../project/inputcond/private/inputconditionwidgetfunctionaldialog.cpp" line="446"/>
         <source>Choose a text file</source>
-        <translation>テキストファイルの選択</translation>
+        <translation type="vanished">テキストファイルの選択</translation>
     </message>
     <message>
-        <location filename="../project/inputcond/private/inputconditionwidgetfunctionaldialog.cpp" line="446"/>
         <source>Text files (*.csv *.txt);;All files (*.*)</source>
-        <translation>テキストファイル (*.csv *.txt);;すべてのファイル (*.*)</translation>
+        <translation type="vanished">テキストファイル (*.csv *.txt);;すべてのファイル (*.*)</translation>
     </message>
     <message>
-        <location filename="../project/inputcond/private/inputconditionwidgetfunctionaldialog.cpp" line="83"/>
-        <location filename="../project/inputcond/private/inputconditionwidgetfunctionaldialog.cpp" line="469"/>
         <source>Error</source>
-        <translation>エラー</translation>
+        <translation type="vanished">エラー</translation>
     </message>
     <message>
-        <location filename="../project/inputcond/private/inputconditionwidgetfunctionaldialog.cpp" line="83"/>
-        <location filename="../project/inputcond/private/inputconditionwidgetfunctionaldialog.cpp" line="469"/>
         <source>Error occured while opening the file.</source>
-        <translation>ファイルを開く時にエラーが発生しました。</translation>
+        <translation type="vanished">ファイルを開く時にエラーが発生しました。</translation>
     </message>
     <message>
-        <location filename="../project/inputcond/private/inputconditionwidgetfunctionaldialog.cpp" line="329"/>
         <source>%1 are values for spans. For example value input at 2nd row is for span between 1st row and 2nd row.</source>
-        <translation>%1 は、区間で定義される値です。例えば、2行目に指定された値は1行目と2行目の間の区間の値です。</translation>
+        <translation type="vanished">%1 は、区間で定義される値です。例えば、2行目に指定された値は1行目と2行目の間の区間の値です。</translation>
     </message>
     <message>
-        <location filename="../project/inputcond/private/inputconditionwidgetfunctionaldialog.cpp" line="460"/>
         <source>Specify file name to save</source>
-        <translation>保存するファイルの名前を指定</translation>
+        <translation type="vanished">保存するファイルの名前を指定</translation>
     </message>
     <message>
-        <location filename="../project/inputcond/private/inputconditionwidgetfunctionaldialog.cpp" line="460"/>
         <source>CSV files (*.csv)</source>
-        <translation>CSV ファイル (*.csv)</translation>
+        <translation type="vanished">CSV ファイル (*.csv)</translation>
     </message>
     <message>
-        <location filename="../project/inputcond/private/inputconditionwidgetfunctionaldialog.cpp" line="541"/>
         <source>File %1 is updated after imported to calculation condition %2. Do you want to import the updated file?</source>
-        <translation>ファイル %1 は、計算条件 %2 にインポートされた後更新されています。更新された値をインポートしますか?</translation>
+        <translation type="vanished">ファイル %1 は、計算条件 %2 にインポートされた後更新されています。更新された値をインポートしますか?</translation>
     </message>
     <message>
         <source>File %1 is updated after imporeted to calculation condition %2. Do you want to import the updated file?</source>
         <translation type="vanished">ファイル %1 は、計算条件 %2 にインポートされた後更新されています。更新された値をインポートしますか?</translation>
     </message>
     <message>
-        <location filename="../project/inputcond/private/inputconditionwidgetfunctionaldialog.cpp" line="542"/>
         <source>Information</source>
-        <translation>情報</translation>
+        <translation type="vanished">情報</translation>
     </message>
     <message>
-        <location filename="../project/inputcond/private/inputconditionwidgetfunctionaldialog.cpp" line="623"/>
         <source>The following problems found: 
 </source>
-        <translation>以下の問題が見つかりました:
+        <translation type="vanished">以下の問題が見つかりました:
 </translation>
     </message>
     <message>
-        <location filename="../project/inputcond/private/inputconditionwidgetfunctionaldialog.cpp" line="626"/>
         <source>
  ... and other %1 errors</source>
-        <translation>
+        <translation type="vanished">
  ... その他 %1 件のエラー</translation>
     </message>
     <message>
-        <location filename="../project/inputcond/private/inputconditionwidgetfunctionaldialog.cpp" line="628"/>
         <source>Warning</source>
-        <translation>警告</translation>
+        <translation type="vanished">警告</translation>
     </message>
 </context>
 <context>
@@ -1203,36 +1103,8 @@ Do you really want to import this file?</source>
         <translation>テスト</translation>
     </message>
     <message>
-        <location filename="../project/inputcond/private/inputconditionwidgetfunctionaldownloaddialog.cpp" line="93"/>
-        <location filename="../project/inputcond/private/inputconditionwidgetfunctionaldownloaddialog.cpp" line="99"/>
-        <location filename="../project/inputcond/private/inputconditionwidgetfunctionaldownloaddialog.cpp" line="107"/>
         <source>Error</source>
-        <translation>エラー</translation>
-    </message>
-    <message>
-        <location filename="../project/inputcond/private/inputconditionwidgetfunctionaldownloaddialog.cpp" line="93"/>
-        <source>Please enter a site number.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../project/inputcond/private/inputconditionwidgetfunctionaldownloaddialog.cpp" line="99"/>
-        <source>Invalid site number.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../project/inputcond/private/inputconditionwidgetfunctionaldownloaddialog.cpp" line="107"/>
-        <source>Start date not prior to end date.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../project/inputcond/private/inputconditionwidgetfunctionaldownloaddialog.cpp" line="244"/>
-        <source>Import failed</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../project/inputcond/private/inputconditionwidgetfunctionaldownloaddialog.cpp" line="244"/>
-        <source>No data to import.</source>
-        <translation type="unfinished"></translation>
+        <translation type="vanished">エラー</translation>
     </message>
 </context>
 <context>
@@ -1297,30 +1169,24 @@ Do you really want to import this file?</source>
 <context>
     <name>MeasuredData</name>
     <message>
-        <location filename="../project/measured/measureddatacsvexporter.cpp" line="18"/>
-        <location filename="../project/measured/measureddatacsvimporter.cpp" line="43"/>
         <source>Error occured while opening the file.</source>
-        <translation>ファイルを開く時にエラーが発生しました。</translation>
+        <translation type="vanished">ファイルを開く時にエラーが発生しました。</translation>
     </message>
     <message>
-        <location filename="../project/measured/measureddatacsvimporter.cpp" line="50"/>
         <source>The first two columns must be &quot;X&quot; and &quot;Y&quot;.</source>
-        <translation>最初の2つの列は &quot;X&quot;,  &quot;Y&quot; でなくてはいけません。</translation>
+        <translation type="vanished">最初の2つの列は &quot;X&quot;,  &quot;Y&quot; でなくてはいけません。</translation>
     </message>
     <message>
-        <location filename="../project/measured/measureddatacsvimporter.cpp" line="56"/>
         <source>The data file has to consist of only English characters.</source>
-        <translation>データファイルには、英数字と記号しか使用できません。</translation>
+        <translation type="vanished">データファイルには、英数字と記号しか使用できません。</translation>
     </message>
     <message>
-        <location filename="../project/measured/measureddatacsvimporter.cpp" line="141"/>
         <source>Wrong data found: %1</source>
-        <translation>不正なデータが見つかりました。: %1</translation>
+        <translation type="vanished">不正なデータが見つかりました。: %1</translation>
     </message>
     <message>
-        <location filename="../project/measured/measureddata.cpp" line="227"/>
         <source>Importing Measured Data...</source>
-        <translation>実測値をインポートしています...</translation>
+        <translation type="vanished">実測値をインポートしています...</translation>
     </message>
 </context>
 <context>
@@ -1512,20 +1378,16 @@ Do you really want to import this file?</source>
         <translation>Y:</translation>
     </message>
     <message>
-        <location filename="../project/offsetsettingdialog.cpp" line="39"/>
-        <location filename="../project/offsetsettingdialog.cpp" line="45"/>
         <source>Warning</source>
-        <translation>警告</translation>
+        <translation type="vanished">警告</translation>
     </message>
     <message>
-        <location filename="../project/offsetsettingdialog.cpp" line="39"/>
         <source>X value is not appropriate. Please input more simple value.</source>
-        <translation>X の値が不正です。もっと単純な値を指定して下さい。</translation>
+        <translation type="vanished">X の値が不正です。もっと単純な値を指定して下さい。</translation>
     </message>
     <message>
-        <location filename="../project/offsetsettingdialog.cpp" line="45"/>
         <source>Y value is not appropriate. Please input more simple value.</source>
-        <translation>Y の値が不正です。もっと単純な値を指定して下さい。</translation>
+        <translation type="vanished">Y の値が不正です。もっと単純な値を指定して下さい。</translation>
     </message>
 </context>
 <context>
@@ -1559,22 +1421,16 @@ Do you really want to import this file?</source>
 <context>
     <name>PostCalculatedResult</name>
     <message>
-        <location filename="../postcontainer/postcalculatedresult.cpp" line="117"/>
-        <location filename="../postcontainer/postcalculatedresult.cpp" line="128"/>
-        <location filename="../postcontainer/postcalculatedresult.cpp" line="155"/>
         <source>Error</source>
-        <translation>エラー</translation>
+        <translation type="vanished">エラー</translation>
     </message>
     <message>
-        <location filename="../postcontainer/postcalculatedresult.cpp" line="117"/>
-        <location filename="../postcontainer/postcalculatedresult.cpp" line="128"/>
         <source>Error occured: %1</source>
-        <translation>エラーが発生しました: %1</translation>
+        <translation type="vanished">エラーが発生しました: %1</translation>
     </message>
     <message>
-        <location filename="../postcontainer/postcalculatedresult.cpp" line="155"/>
         <source>Checking argument for %1 failed. Invalid arguments: %2.</source>
-        <translation>%1 の引数に問題があります。問題がある引数: %2</translation>
+        <translation type="vanished">%1 の引数に問題があります。問題がある引数: %2</translation>
     </message>
 </context>
 <context>
@@ -1600,20 +1456,8 @@ Do you really want to import this file?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../postcontainer/postcalculatedresultargumenteditdialog.cpp" line="75"/>
-        <location filename="../postcontainer/postcalculatedresultargumenteditdialog.cpp" line="80"/>
         <source>Warning</source>
-        <translation>警告</translation>
-    </message>
-    <message>
-        <location filename="../postcontainer/postcalculatedresultargumenteditdialog.cpp" line="75"/>
-        <source>Variable name is not input.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../postcontainer/postcalculatedresultargumenteditdialog.cpp" line="80"/>
-        <source>This variable name is already used</source>
-        <translation type="unfinished"></translation>
+        <translation type="vanished">警告</translation>
     </message>
 </context>
 <context>
@@ -1682,56 +1526,44 @@ Do you really want to import this file?</source>
         <translation>----</translation>
     </message>
     <message>
-        <location filename="../postcontainer/postcalculatedresulteditdialog.cpp" line="38"/>
         <source>Result name</source>
-        <translation>計算結果名</translation>
+        <translation type="vanished">計算結果名</translation>
     </message>
     <message>
-        <location filename="../postcontainer/postcalculatedresulteditdialog.cpp" line="38"/>
         <source>Variable name</source>
-        <translation>変数名</translation>
+        <translation type="vanished">変数名</translation>
     </message>
     <message>
-        <location filename="../postcontainer/postcalculatedresulteditdialog.cpp" line="38"/>
         <source>Value for testing</source>
-        <translation>テスト用の値</translation>
+        <translation type="vanished">テスト用の値</translation>
     </message>
     <message>
-        <location filename="../postcontainer/postcalculatedresulteditdialog.cpp" line="59"/>
         <source>Grid node</source>
-        <translation>格子点</translation>
+        <translation type="vanished">格子点</translation>
     </message>
     <message>
-        <location filename="../postcontainer/postcalculatedresulteditdialog.cpp" line="63"/>
         <source>Grid cell</source>
-        <translation>格子セル</translation>
+        <translation type="vanished">格子セル</translation>
     </message>
     <message>
-        <location filename="../postcontainer/postcalculatedresulteditdialog.cpp" line="67"/>
         <source>Particle</source>
-        <translation>パーティクル</translation>
+        <translation type="vanished">パーティクル</translation>
     </message>
     <message>
-        <location filename="../postcontainer/postcalculatedresulteditdialog.cpp" line="97"/>
-        <location filename="../postcontainer/postcalculatedresulteditdialog.cpp" line="102"/>
-        <location filename="../postcontainer/postcalculatedresulteditdialog.cpp" line="135"/>
         <source>Warning</source>
-        <translation>警告</translation>
+        <translation type="vanished">警告</translation>
     </message>
     <message>
-        <location filename="../postcontainer/postcalculatedresulteditdialog.cpp" line="97"/>
         <source>Name is not input.</source>
-        <translation>名前が入力されていません</translation>
+        <translation type="vanished">名前が入力されていません</translation>
     </message>
     <message>
-        <location filename="../postcontainer/postcalculatedresulteditdialog.cpp" line="102"/>
         <source>This name is already used</source>
-        <translation>この名前は既に使われています</translation>
+        <translation type="vanished">この名前は既に使われています</translation>
     </message>
     <message>
-        <location filename="../postcontainer/postcalculatedresulteditdialog.cpp" line="135"/>
         <source>Are you sure you want to delete %1?</source>
-        <translation>本当に %1 を削除していいですか?</translation>
+        <translation type="vanished">本当に %1 を削除していいですか?</translation>
     </message>
 </context>
 <context>
@@ -1786,29 +1618,24 @@ Do you really want to import this file?</source>
         <translation type="obsolete">エクスポート(&amp;E)...</translation>
     </message>
     <message>
-        <location filename="../postcontainer/postcalculatedresultlistdialog.cpp" line="97"/>
         <source>Warning</source>
-        <translation>警告</translation>
+        <translation type="vanished">警告</translation>
     </message>
     <message>
-        <location filename="../postcontainer/postcalculatedresultlistdialog.cpp" line="97"/>
         <source>Are you sure you want to delete %1?</source>
-        <translation>本当に %1 を削除していいですか?</translation>
+        <translation type="vanished">本当に %1 を削除していいですか?</translation>
     </message>
     <message>
-        <location filename="../postcontainer/postcalculatedresultlistdialog.cpp" line="148"/>
         <source>Grid node</source>
-        <translation>格子点</translation>
+        <translation type="vanished">格子点</translation>
     </message>
     <message>
-        <location filename="../postcontainer/postcalculatedresultlistdialog.cpp" line="151"/>
         <source>Grid cell</source>
-        <translation>格子セル</translation>
+        <translation type="vanished">格子セル</translation>
     </message>
     <message>
-        <location filename="../postcontainer/postcalculatedresultlistdialog.cpp" line="154"/>
         <source>Particle</source>
-        <translation>パーティクル</translation>
+        <translation type="vanished">パーティクル</translation>
     </message>
 </context>
 <context>
@@ -1943,69 +1770,54 @@ Do you really want to import this file?</source>
     </message>
     <message>
         <location filename="../postcontainer/postdataexportdialog.ui" line="395"/>
-        <location filename="../postcontainer/postdataexportdialog.cpp" line="327"/>
         <source>Show &amp;Detail</source>
         <translation>詳細を表示(&amp;D)</translation>
     </message>
     <message>
-        <location filename="../postcontainer/postdataexportdialog.cpp" line="303"/>
         <source>Select Folder</source>
-        <translation>フォルダの選択</translation>
+        <translation type="vanished">フォルダの選択</translation>
     </message>
     <message>
-        <location filename="../postcontainer/postdataexportdialog.cpp" line="313"/>
         <source>Warning</source>
-        <translation>警告</translation>
+        <translation type="vanished">警告</translation>
     </message>
     <message>
-        <location filename="../postcontainer/postdataexportdialog.cpp" line="313"/>
         <source>Folder %1 does not exists.</source>
-        <translation>フォルダ %1 は存在しません。</translation>
+        <translation type="vanished">フォルダ %1 は存在しません。</translation>
     </message>
     <message>
-        <location filename="../postcontainer/postdataexportdialog.cpp" line="325"/>
         <source>&amp;Hide Detail</source>
-        <translation>詳細を隠す(&amp;H)</translation>
+        <translation type="vanished">詳細を隠す(&amp;H)</translation>
     </message>
 </context>
 <context>
     <name>PostIterationSteps</name>
     <message>
-        <location filename="../postcontainer/postiterationsteps.cpp" line="85"/>
         <source>Error</source>
-        <translation>エラー</translation>
+        <translation type="vanished">エラー</translation>
     </message>
     <message>
-        <location filename="../postcontainer/postiterationsteps.cpp" line="85"/>
         <source>Error occured while loading calculation result.</source>
-        <translation>計算結果の読み込み中にエラーが発生しました。</translation>
+        <translation type="vanished">計算結果の読み込み中にエラーが発生しました。</translation>
     </message>
 </context>
 <context>
     <name>PostSolutionInfo</name>
     <message>
-        <location filename="../postcontainer/postsolutioninfo.cpp" line="205"/>
-        <location filename="../postcontainer/postsolutioninfo.cpp" line="995"/>
-        <location filename="../postcontainer/postsolutioninfo.cpp" line="1094"/>
         <source>Error</source>
-        <translation>エラー</translation>
+        <translation type="vanished">エラー</translation>
     </message>
     <message>
-        <location filename="../postcontainer/postsolutioninfo.cpp" line="205"/>
         <source>Error occured while loading calculation result.</source>
-        <translation>計算結果の読み込み中にエラーが発生しました。</translation>
+        <translation type="vanished">計算結果の読み込み中にエラーが発生しました。</translation>
     </message>
     <message>
-        <location filename="../postcontainer/postsolutioninfo.cpp" line="499"/>
         <source>Reading time values...</source>
-        <translation>時刻の値を読み込んでいます...</translation>
+        <translation type="vanished">時刻の値を読み込んでいます...</translation>
     </message>
     <message>
-        <location filename="../postcontainer/postsolutioninfo.cpp" line="512"/>
-        <location filename="../postcontainer/postsolutioninfo.cpp" line="638"/>
-        <location filename="../postcontainer/postsolutioninfo.cpp" line="969"/>
         <source>Warning</source>
-        <translation>警告</translation>
+        <translation type="vanished">警告</translation>
     </message>
     <message>
         <source>Calculation result could not be loaded from copied CGNS file.</source>
@@ -2054,62 +1866,325 @@ result/Solution1.cgn から result/Solution%2.cgn までに含まれていた計
         <translation type="vanished">output.cgn を開く処理でエラーが発生しました。</translation>
     </message>
     <message>
-        <location filename="../postcontainer/postsolutioninfo.cpp" line="512"/>
         <source>Reading time value from result/Solution%1.cgn failed. You can visualize calculation result in Solution1.cgn to Solution%2.cgn.</source>
-        <translation>result/Solution%1.cgn からの時刻の読み込みに失敗しました。Solution1.cgn から Solution%2.cgn までの結果を可視化できます。</translation>
+        <translation type="vanished">result/Solution%1.cgn からの時刻の読み込みに失敗しました。Solution1.cgn から Solution%2.cgn までの結果を可視化できます。</translation>
     </message>
     <message>
-        <location filename="../postcontainer/postsolutioninfo.cpp" line="638"/>
         <source>Loading calculation result for visualization failed.</source>
-        <translation>可視化用計算結果の読み込みに失敗しました。</translation>
+        <translation type="vanished">可視化用計算結果の読み込みに失敗しました。</translation>
     </message>
     <message>
-        <location filename="../postcontainer/postsolutioninfo.cpp" line="969"/>
         <source>No calculation result exists.</source>
-        <translation>計算結果がありません。</translation>
+        <translation type="vanished">計算結果がありません。</translation>
     </message>
     <message>
-        <location filename="../postcontainer/postsolutioninfo.cpp" line="995"/>
         <source>Calculation result does not contain grid data.</source>
-        <translation>計算結果に、格子データがありません。</translation>
+        <translation type="vanished">計算結果に、格子データがありません。</translation>
     </message>
     <message>
-        <location filename="../postcontainer/postsolutioninfo.cpp" line="1044"/>
         <source>Export Calculation Result</source>
-        <translation>計算結果のエクスポート</translation>
+        <translation type="vanished">計算結果のエクスポート</translation>
     </message>
     <message>
-        <location filename="../postcontainer/postsolutioninfo.cpp" line="1048"/>
         <source>Saving calculation result as VTK files...</source>
-        <translation>計算結果を VTKファイルに保存しています...</translation>
+        <translation type="vanished">計算結果を VTKファイルに保存しています...</translation>
     </message>
     <message>
-        <location filename="../postcontainer/postsolutioninfo.cpp" line="1051"/>
         <source>Saving calculation result as CSV files...</source>
-        <translation>計算結果を CSVファイルに保存しています...</translation>
+        <translation type="vanished">計算結果を CSVファイルに保存しています...</translation>
     </message>
     <message>
-        <location filename="../postcontainer/postsolutioninfo.cpp" line="1054"/>
         <source>Saving calculation result as ESRI Shape files...</source>
-        <translation>計算結果を ESRI シェープファイルに保存しています...</translation>
+        <translation type="vanished">計算結果を ESRI シェープファイルに保存しています...</translation>
     </message>
     <message>
-        <location filename="../postcontainer/postsolutioninfo.cpp" line="1094"/>
         <source>Error occured while saving %1</source>
-        <translation>%1 の保存中にエラーが発生しました。</translation>
+        <translation type="vanished">%1 の保存中にエラーが発生しました。</translation>
+    </message>
+</context>
+<context>
+    <name>PostStringResult</name>
+    <message>
+        <source>Error</source>
+        <translation type="vanished">エラー</translation>
+    </message>
+    <message>
+        <source>Error occured: %1</source>
+        <translation type="vanished">エラーが発生しました: %1</translation>
+    </message>
+</context>
+<context>
+    <name>PostStringResultArgumentEditDialog</name>
+    <message>
+        <location filename="../postcontainer/poststringresultargumenteditdialog.ui" line="14"/>
+        <source>Edit String Result Argument</source>
+        <translation>ラベルの引数の編集</translation>
+    </message>
+    <message>
+        <location filename="../postcontainer/poststringresultargumenteditdialog.ui" line="22"/>
+        <source>Position:</source>
+        <translation>位置:</translation>
+    </message>
+    <message>
+        <location filename="../postcontainer/poststringresultargumenteditdialog.ui" line="49"/>
+        <source>Result Name:</source>
+        <translation>計算結果名:</translation>
+    </message>
+    <message>
+        <location filename="../postcontainer/poststringresultargumenteditdialog.ui" line="63"/>
+        <source>Variable Name:</source>
+        <translation>変数名:</translation>
+    </message>
+    <message>
+        <location filename="../postcontainer/poststringresultargumenteditdialog.ui" line="73"/>
+        <source>I:</source>
+        <translation>I:</translation>
+    </message>
+    <message>
+        <location filename="../postcontainer/poststringresultargumenteditdialog.ui" line="104"/>
+        <source>J:</source>
+        <translation>J:</translation>
+    </message>
+    <message>
+        <location filename="../postcontainer/poststringresultargumenteditdialog.ui" line="135"/>
+        <source>K:</source>
+        <translation>K:</translation>
+    </message>
+    <message>
+        <location filename="../postcontainer/poststringresultargumenteditdialog.ui" line="166"/>
+        <source>Index:</source>
+        <translation>インデックス:</translation>
+    </message>
+    <message>
+        <location filename="../postcontainer/poststringresultargumenteditdialog.ui" line="197"/>
+        <source>Value for testing</source>
+        <translation>テスト用の値</translation>
+    </message>
+    <message>
+        <source>Global</source>
+        <translation type="vanished">グローバル</translation>
+    </message>
+    <message>
+        <source>Node</source>
+        <translation type="vanished">格子点</translation>
+    </message>
+    <message>
+        <source>Cell</source>
+        <translation type="vanished">格子セル</translation>
+    </message>
+    <message>
+        <source>EdgeI</source>
+        <translation type="vanished">エッジ(I方向)</translation>
+    </message>
+    <message>
+        <source>EdgeJ</source>
+        <translation type="vanished">エッジ(J方向)</translation>
+    </message>
+    <message>
+        <source>Warning</source>
+        <translation type="vanished">警告</translation>
+    </message>
+    <message>
+        <source>Variable name is empty.</source>
+        <translation type="vanished">変数名が空欄です。</translation>
+    </message>
+</context>
+<context>
+    <name>PostStringResultEditDialog</name>
+    <message>
+        <source>Edit String Result</source>
+        <translation type="vanished">ラベルの編集</translation>
+    </message>
+    <message>
+        <source>Calculation results for input</source>
+        <translation type="vanished">入力として使う計算結果</translation>
+    </message>
+    <message>
+        <source>Type</source>
+        <translation type="vanished">種類</translation>
+    </message>
+    <message>
+        <source>Result name</source>
+        <translation type="vanished">計算結果名</translation>
+    </message>
+    <message>
+        <source>Variable name</source>
+        <translation type="vanished">変数名</translation>
+    </message>
+    <message>
+        <source>Index</source>
+        <translation type="vanished">インデックス</translation>
+    </message>
+    <message>
+        <source>Value for Testing</source>
+        <translation type="vanished">テスト用の値</translation>
+    </message>
+    <message>
+        <source>&amp;Add...</source>
+        <translation type="vanished">追加 (&amp;A)</translation>
+    </message>
+    <message>
+        <source>&amp;Edit...</source>
+        <translation type="vanished">編集 (&amp;E)...</translation>
+    </message>
+    <message>
+        <source>&amp;Delete...</source>
+        <translation type="vanished">削除(&amp;D)...</translation>
+    </message>
+    <message>
+        <source>Definition of output</source>
+        <translation type="vanished">出力の定義</translation>
+    </message>
+    <message>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;You can define the variable with JavaScript language. Please see &lt;a href=&quot;http://iric-gui-user-manual.readthedocs.io/en/latest/03/07_calc_result.html#manage-simple-operation-results-m&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;here&lt;/span&gt;&lt;/a&gt; for detail.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="vanished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;変数を、 JavaScript 言語で定義できます。詳しくは、&lt;a href=&quot;http://iric-gui-user-manual.readthedocs.io/en/latest/03/07_calc_result.html#manage-simple-operation-results-m&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;こちら&lt;/span&gt;&lt;/a&gt;を参照してください。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
+    <message>
+        <source>Test</source>
+        <translation type="vanished">テスト</translation>
+    </message>
+    <message>
+        <source>Warning</source>
+        <translation type="vanished">警告</translation>
+    </message>
+    <message>
+        <source>Are you sure you want to delete %1?</source>
+        <translation type="vanished">本当に %1 を削除していいですか?</translation>
+    </message>
+    <message>
+        <source>Global</source>
+        <translation type="vanished">グローバル</translation>
+    </message>
+    <message>
+        <source>Node</source>
+        <translation type="vanished">格子点</translation>
+    </message>
+    <message>
+        <source>Cell</source>
+        <translation type="vanished">格子セル</translation>
+    </message>
+    <message>
+        <source>EdgeI</source>
+        <translation type="vanished">エッジ(I方向)</translation>
+    </message>
+    <message>
+        <source>EdgeJ</source>
+        <translation type="vanished">エッジ(J方向)</translation>
+    </message>
+    <message>
+        <source>EdgeK</source>
+        <translation type="vanished">エッジ(K方向)</translation>
+    </message>
+</context>
+<context>
+    <name>PostStringResultEditWidget</name>
+    <message>
+        <location filename="../postcontainer/poststringresulteditwidget.ui" line="14"/>
+        <source>Form</source>
+        <translation>フォーム</translation>
+    </message>
+    <message>
+        <location filename="../postcontainer/poststringresulteditwidget.ui" line="24"/>
+        <source>Calculation results for input</source>
+        <translation>入力として使う計算結果</translation>
+    </message>
+    <message>
+        <location filename="../postcontainer/poststringresulteditwidget.ui" line="46"/>
+        <source>Type</source>
+        <translation>種類</translation>
+    </message>
+    <message>
+        <location filename="../postcontainer/poststringresulteditwidget.ui" line="51"/>
+        <source>Result name</source>
+        <translation>計算結果名</translation>
+    </message>
+    <message>
+        <location filename="../postcontainer/poststringresulteditwidget.ui" line="56"/>
+        <source>Variable name</source>
+        <translation>変数名</translation>
+    </message>
+    <message>
+        <location filename="../postcontainer/poststringresulteditwidget.ui" line="61"/>
+        <source>Index</source>
+        <translation>インデックス</translation>
+    </message>
+    <message>
+        <location filename="../postcontainer/poststringresulteditwidget.ui" line="66"/>
+        <source>Value for Testing</source>
+        <translation>テスト用の値</translation>
+    </message>
+    <message>
+        <location filename="../postcontainer/poststringresulteditwidget.ui" line="89"/>
+        <source>&amp;Add...</source>
+        <translation>追加 (&amp;A)</translation>
+    </message>
+    <message>
+        <location filename="../postcontainer/poststringresulteditwidget.ui" line="96"/>
+        <source>&amp;Edit...</source>
+        <translation>編集 (&amp;E)...</translation>
+    </message>
+    <message>
+        <location filename="../postcontainer/poststringresulteditwidget.ui" line="103"/>
+        <source>&amp;Delete...</source>
+        <translation>削除(&amp;D)...</translation>
+    </message>
+    <message>
+        <location filename="../postcontainer/poststringresulteditwidget.ui" line="113"/>
+        <source>Definition of output</source>
+        <translation>出力の定義</translation>
+    </message>
+    <message>
+        <location filename="../postcontainer/poststringresulteditwidget.ui" line="132"/>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;You can define the variable with JavaScript language. Please see &lt;a href=&quot;http://iric-gui-user-manual.readthedocs.io/en/latest/03/07_calc_result.html#manage-simple-operation-results-m&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;here&lt;/span&gt;&lt;/a&gt; for detail.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;変数を、 JavaScript 言語で定義できます。詳しくは、&lt;a href=&quot;http://iric-gui-user-manual.readthedocs.io/en/latest/03/07_calc_result.html#manage-simple-operation-results-m&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;こちら&lt;/span&gt;&lt;/a&gt;を参照してください。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
+    <message>
+        <location filename="../postcontainer/poststringresulteditwidget.ui" line="167"/>
+        <source>Test</source>
+        <translation>テスト</translation>
+    </message>
+    <message>
+        <source>Warning</source>
+        <translation type="vanished">警告</translation>
+    </message>
+    <message>
+        <source>Are you sure you want to delete %1?</source>
+        <translation type="vanished">本当に %1 を削除していいですか?</translation>
+    </message>
+    <message>
+        <source>Global</source>
+        <translation type="vanished">グローバル</translation>
+    </message>
+    <message>
+        <source>Node</source>
+        <translation type="vanished">格子点</translation>
+    </message>
+    <message>
+        <source>Cell</source>
+        <translation type="vanished">格子セル</translation>
+    </message>
+    <message>
+        <source>EdgeI</source>
+        <translation type="vanished">エッジ(I方向)</translation>
+    </message>
+    <message>
+        <source>EdgeJ</source>
+        <translation type="vanished">エッジ(J方向)</translation>
+    </message>
+    <message>
+        <source>EdgeK</source>
+        <translation type="vanished">エッジ(K方向)</translation>
     </message>
 </context>
 <context>
     <name>PostTimeSteps</name>
     <message>
-        <location filename="../postcontainer/posttimesteps.cpp" line="100"/>
         <source>Error</source>
-        <translation>エラー</translation>
+        <translation type="vanished">エラー</translation>
     </message>
     <message>
-        <location filename="../postcontainer/posttimesteps.cpp" line="100"/>
         <source>Error occured while loading calculation result.</source>
-        <translation>計算結果の読み込み中にエラーが発生しました。</translation>
+        <translation type="vanished">計算結果の読み込み中にエラーが発生しました。</translation>
     </message>
 </context>
 <context>
@@ -2133,17 +2208,15 @@ result/Solution1.cgn から result/Solution%2.cgn までに含まれていた計
 <context>
     <name>PreProcessorDataItem</name>
     <message>
-        <location filename="../pre/base/preprocessorgriddataiteminterface.h" line="18"/>
         <source>Grid</source>
-        <translation>格子</translation>
+        <translation type="vanished">格子</translation>
     </message>
 </context>
 <context>
     <name>PreProcessorGridCreatingConditionDataItemInterface</name>
     <message>
-        <location filename="../pre/base/preprocessorgridcreatingconditiondataiteminterface.cpp" line="6"/>
         <source>Grid Creating Condition</source>
-        <translation>格子生成条件</translation>
+        <translation type="vanished">格子生成条件</translation>
     </message>
 </context>
 <context>
@@ -2156,45 +2229,36 @@ result/Solution1.cgn から result/Solution%2.cgn までに含まれていた計
 <context>
     <name>ProjectData</name>
     <message>
-        <location filename="../project/projectdata.cpp" line="122"/>
         <source>Loading project file...</source>
-        <translation>プロジェクトファイルを読み込んでいます...</translation>
+        <translation type="vanished">プロジェクトファイルを読み込んでいます...</translation>
     </message>
     <message>
-        <location filename="../project/projectdata.cpp" line="198"/>
         <source>Saving project file...</source>
-        <translation>プロジェクトファイルを保存しています...</translation>
+        <translation type="vanished">プロジェクトファイルを保存しています...</translation>
     </message>
     <message>
-        <location filename="../project/projectdata.cpp" line="209"/>
         <source>Error</source>
-        <translation>エラー</translation>
+        <translation type="vanished">エラー</translation>
     </message>
     <message>
-        <location filename="../project/projectdata.cpp" line="209"/>
         <source>Could not overwrite %1.</source>
-        <translation>%1 を上書き保存できませんでした。</translation>
+        <translation type="vanished">%1 を上書き保存できませんでした。</translation>
     </message>
     <message>
-        <location filename="../project/projectdata.cpp" line="275"/>
         <source>Warning</source>
-        <translation>警告</translation>
+        <translation type="vanished">警告</translation>
     </message>
     <message>
-        <location filename="../project/projectdata.cpp" line="276"/>
         <source>Elevation grid attribute is not defined for grid type %1. Grid I/O functions, grid creating functions may not work correnctly for these grid types.</source>
-        <translation>格子属性 Elevation が、格子種類 %1 で定義されていません。格子の入出力機能、格子生成機能の一部は、これらの格子種類については正しく動作しません。</translation>
+        <translation type="vanished">格子属性 Elevation が、格子種類 %1 で定義されていません。格子の入出力機能、格子生成機能の一部は、これらの格子種類については正しく動作しません。</translation>
     </message>
     <message>
-        <location filename="../project/projectdata.cpp" line="348"/>
-        <location filename="../project/projectdata.cpp" line="400"/>
         <source>Saving project...</source>
-        <translation>プロジェクトを保存しています...</translation>
+        <translation type="vanished">プロジェクトを保存しています...</translation>
     </message>
     <message>
-        <location filename="../project/projectdata.cpp" line="398"/>
         <source>Opening project...</source>
-        <translation>プロジェクトを開いています...</translation>
+        <translation type="vanished">プロジェクトを開いています...</translation>
     </message>
 </context>
 <context>
@@ -2208,17 +2272,8 @@ result/Solution1.cgn から result/Solution%2.cgn までに含まれていた計
         <translation type="vanished">CGNS ファイル (*.cgn)</translation>
     </message>
     <message>
-        <location filename="../project/projectmainfile.cpp" line="552"/>
-        <location filename="../project/projectmainfile.cpp" line="594"/>
-        <location filename="../project/projectmainfile.cpp" line="597"/>
-        <location filename="../project/projectmainfile.cpp" line="636"/>
-        <location filename="../project/projectmainfile.cpp" line="641"/>
-        <location filename="../project/projectmainfile.cpp" line="919"/>
-        <location filename="../project/projectmainfile.cpp" line="966"/>
-        <location filename="../project/projectmainfile.cpp" line="986"/>
-        <location filename="../project/projectmainfile.cpp" line="993"/>
         <source>Error</source>
-        <translation>エラー</translation>
+        <translation type="vanished">エラー</translation>
     </message>
     <message>
         <source>Solution %1 already exists.</source>
@@ -2233,17 +2288,8 @@ result/Solution1.cgn から result/Solution%2.cgn までに含まれていた計
         <translation type="vanished">この CGNS ファイルは、 %1 version %2 用に作られたものです。現在利用しているソルバーと互換性がありません。</translation>
     </message>
     <message>
-        <location filename="../project/projectmainfile.cpp" line="580"/>
-        <location filename="../project/projectmainfile.cpp" line="584"/>
-        <location filename="../project/projectmainfile.cpp" line="678"/>
-        <location filename="../project/projectmainfile.cpp" line="685"/>
-        <location filename="../project/projectmainfile.cpp" line="695"/>
-        <location filename="../project/projectmainfile.cpp" line="706"/>
-        <location filename="../project/projectmainfile.cpp" line="709"/>
-        <location filename="../project/projectmainfile.cpp" line="975"/>
-        <location filename="../project/projectmainfile.cpp" line="1117"/>
         <source>Warning</source>
-        <translation>警告</translation>
+        <translation type="vanished">警告</translation>
     </message>
     <message>
         <source>This CGNS file is created for %1 version %2. It is not compatible with the current solver. Entering post only mode.</source>
@@ -2276,29 +2322,24 @@ Do you really want to import this file?</source>
         <translation type="vanished">プロジェクト内の CGNS ファイルの読み込み中にエラーが発生しました。: %1</translation>
     </message>
     <message>
-        <location filename="../project/projectmainfile.cpp" line="552"/>
         <source>Error occured while opening %1 in project file.</source>
-        <translation>プロジェクトファイル内の %1 を開く処理でエラーが発生しました。</translation>
+        <translation type="vanished">プロジェクトファイル内の %1 を開く処理でエラーが発生しました。</translation>
     </message>
     <message>
-        <location filename="../project/projectmainfile.cpp" line="580"/>
         <source>The grids are edited. When you save, the calculation result is discarded.</source>
-        <translation>計算格子が編集されています。保存すると、計算結果は破棄されます。</translation>
+        <translation type="vanished">計算格子が編集されています。保存すると、計算結果は破棄されます。</translation>
     </message>
     <message>
-        <location filename="../project/projectmainfile.cpp" line="584"/>
         <source>Deleting output.cgn failed. Maybe it is opened from other programs.</source>
-        <translation>output.cgn の削除が失敗しました。他のプロウラムが開いている可能性があります。</translation>
+        <translation type="vanished">output.cgn の削除が失敗しました。他のプロウラムが開いている可能性があります。</translation>
     </message>
     <message>
-        <location filename="../project/projectmainfile.cpp" line="594"/>
         <source>%1 Saving project file failed.</source>
-        <translation>%1 プロジェクトファイルの保存が失敗しました。</translation>
+        <translation type="vanished">%1 プロジェクトファイルの保存が失敗しました。</translation>
     </message>
     <message>
-        <location filename="../project/projectmainfile.cpp" line="597"/>
         <source>Saving project file failed.</source>
-        <translation>プロジェクトの保存が失敗しました。</translation>
+        <translation type="vanished">プロジェクトの保存が失敗しました。</translation>
     </message>
     <message>
         <source>Saving output.cgn failed.</source>
@@ -2313,103 +2354,83 @@ Do you really want to import this file?</source>
         <translation type="vanished">CGNS ファイルの保存が失敗しました。</translation>
     </message>
     <message>
-        <location filename="../project/projectmainfile.cpp" line="636"/>
         <source>Deleting &quot;output.cgn&quot; failed.</source>
-        <translation>&quot;output.cgn&quot; の削除が失敗しました。</translation>
+        <translation type="vanished">&quot;output.cgn&quot; の削除が失敗しました。</translation>
     </message>
     <message>
-        <location filename="../project/projectmainfile.cpp" line="641"/>
         <source>Deleting &quot;result&quot; folder failed.</source>
-        <translation>result フォルダの削除が失敗しました。</translation>
+        <translation type="vanished">result フォルダの削除が失敗しました。</translation>
     </message>
     <message>
-        <location filename="../project/projectmainfile.cpp" line="666"/>
         <source>All images(*.jpg *.jpeg *.png *.tif);;Jpeg images(*.jpg *.jpeg);;PNG images(*.png);;TIFF images(*.tif)</source>
-        <translation>すべての画像(*.jpg *.jpeg *.png *.tif);;JPEG 画像(*.jpg *.jpeg);;PNG 画像(*.png);;TIFF 画像(*.tif)</translation>
+        <translation type="vanished">すべての画像(*.jpg *.jpeg *.png *.tif);;JPEG 画像(*.jpg *.jpeg);;PNG 画像(*.png);;TIFF 画像(*.tif)</translation>
     </message>
     <message>
-        <location filename="../project/projectmainfile.cpp" line="668"/>
         <source>Open Image file</source>
-        <translation>画像ファイルを開く</translation>
+        <translation type="vanished">画像ファイルを開く</translation>
     </message>
     <message>
-        <location filename="../project/projectmainfile.cpp" line="678"/>
         <source>A background image with the same name already exists.</source>
-        <translation>同じファイル名の背景画像が既に存在します。</translation>
+        <translation type="vanished">同じファイル名の背景画像が既に存在します。</translation>
     </message>
     <message>
-        <location filename="../project/projectmainfile.cpp" line="685"/>
-        <location filename="../project/projectmainfile.cpp" line="695"/>
         <source>The background image was not added. Please try again.</source>
-        <translation>背景画像は追加されませんでした。もう一度試してみてください。</translation>
+        <translation type="vanished">背景画像は追加されませんでした。もう一度試してみてください。</translation>
     </message>
     <message>
-        <location filename="../project/projectmainfile.cpp" line="709"/>
         <source>Invalid image file is specified.</source>
-        <translation>不正な画像ファイルが指定されました。</translation>
+        <translation type="vanished">不正な画像ファイルが指定されました。</translation>
     </message>
     <message>
-        <location filename="../project/projectmainfile.cpp" line="887"/>
         <source>This project file cannot be read, because it was created by too old iRIC (version %1).</source>
-        <translation>このプロジェクトファイルを読み込むことができません。古い iRIC (バージョン %1) で作成されたファイルです。</translation>
+        <translation type="vanished">このプロジェクトファイルを読み込むことができません。古い iRIC (バージョン %1) で作成されたファイルです。</translation>
     </message>
     <message>
-        <location filename="../project/projectmainfile.cpp" line="889"/>
         <source>This project file cannot be read, because it was created by newer iRIC (version %1).</source>
-        <translation>このプロジェクトファイルを読み込むことができません。新しい iRIC (バージョン %1) で作成されたファイルです。</translation>
+        <translation type="vanished">このプロジェクトファイルを読み込むことができません。新しい iRIC (バージョン %1) で作成されたファイルです。</translation>
     </message>
     <message>
-        <location filename="../project/projectmainfile.cpp" line="1117"/>
         <source>Coordinate system not selected.</source>
-        <translation>座標系が選択されていません。</translation>
+        <translation type="vanished">座標系が選択されていません。</translation>
     </message>
     <message>
         <source> : no such file.</source>
         <translation type="vanished"> : そのようなファイルはありません。</translation>
     </message>
     <message>
-        <location filename="../project/projectmainfile.cpp" line="906"/>
         <source>Text Files (*.csv *.txt);;All Files (*.*)</source>
-        <translation>テキストファイル (*.csv *.txt);;すべてのファイル (*.*)</translation>
+        <translation type="vanished">テキストファイル (*.csv *.txt);;すべてのファイル (*.*)</translation>
     </message>
     <message>
-        <location filename="../project/projectmainfile.cpp" line="907"/>
         <source>Open Measured Data File</source>
-        <translation>実測値データファイルを開く</translation>
+        <translation type="vanished">実測値データファイルを開く</translation>
     </message>
     <message>
-        <location filename="../project/projectmainfile.cpp" line="966"/>
         <source>Error occured while loading %1.</source>
-        <translation>%1 の読み込み中にエラーが発生しました。</translation>
+        <translation type="vanished">%1 の読み込み中にエラーが発生しました。</translation>
     </message>
     <message>
-        <location filename="../project/projectmainfile.cpp" line="975"/>
         <source>This file is for solver %1 %2. It is not compatible with the solver you are using, so maybe importing this file will fail. Do you really want to import this file?</source>
-        <translation>このファイルは、ソルバ %1 %2 用のものです。現在お使いのソルバと互換性がないため、インポートは失敗する可能性があります。本当にこのファイルをインポートしますか?</translation>
+        <translation type="vanished">このファイルは、ソルバ %1 %2 用のものです。現在お使いのソルバと互換性がないため、インポートは失敗する可能性があります。本当にこのファイルをインポートしますか?</translation>
     </message>
     <message>
-        <location filename="../project/projectmainfile.cpp" line="986"/>
         <source>There is no visualization/graph windows.</source>
-        <translation>可視化・グラフウィンドウがありません。</translation>
+        <translation type="vanished">可視化・グラフウィンドウがありません。</translation>
     </message>
     <message>
-        <location filename="../project/projectmainfile.cpp" line="993"/>
         <source>File %1 could not be opened.</source>
-        <translation>%1 を開けませんでした。</translation>
+        <translation type="vanished">%1 を開けませんでした。</translation>
     </message>
 </context>
 <context>
     <name>ProjectMainFile::Impl</name>
     <message>
-        <location filename="../project/projectmainfile.cpp" line="165"/>
-        <location filename="../project/projectmainfile.cpp" line="170"/>
         <source>Warning</source>
-        <translation>警告</translation>
+        <translation type="vanished">警告</translation>
     </message>
     <message>
-        <location filename="../project/projectmainfile.cpp" line="169"/>
         <source> : no such file.</source>
-        <translation> : そのようなファイルはありません。</translation>
+        <translation type="vanished"> : そのようなファイルはありません。</translation>
     </message>
 </context>
 <context>
@@ -2438,14 +2459,12 @@ Do you really want to import this file?</source>
 <context>
     <name>ProjectWorkspace</name>
     <message>
-        <location filename="../project/projectworkspace.cpp" line="56"/>
         <source>Workspace &quot;%1&quot; has %2 project folders that seems to be not used any more. Do you want to remove them?</source>
-        <translation>ワークスペース %1&quot; には、もう使われていないと思われるプロジェクトフォルダが %2 あります。削除しますか?</translation>
+        <translation type="vanished">ワークスペース %1&quot; には、もう使われていないと思われるプロジェクトフォルダが %2 あります。削除しますか?</translation>
     </message>
     <message>
-        <location filename="../project/projectworkspace.cpp" line="58"/>
         <source>Information</source>
-        <translation>情報</translation>
+        <translation type="vanished">情報</translation>
     </message>
 </context>
 <context>
@@ -2536,14 +2555,12 @@ Do you really want to import this file?</source>
         <translation>描画</translation>
     </message>
     <message>
-        <location filename="../datamodel/private/graphicswindowrootdataitem_moveupcommand.cpp" line="8"/>
         <source>Move up item</source>
-        <translation>上に移動</translation>
+        <translation type="vanished">上に移動</translation>
     </message>
     <message>
-        <location filename="../datamodel/private/graphicswindowrootdataitem_movedowncommand.cpp" line="8"/>
         <source>Move down item</source>
-        <translation>下に移動</translation>
+        <translation type="vanished">下に移動</translation>
     </message>
     <message>
         <location filename="../datamodel/vtkgraphicsview.cpp" line="396"/>
@@ -2591,20 +2608,16 @@ Do you really want to import this file?</source>
         <translation type="vanished">背景の値の編集</translation>
     </message>
     <message>
-        <location filename="../project/private/backgroundimageinfo_setactorpropertycommand.cpp" line="4"/>
         <source>Reallocate Background Image</source>
-        <translation>背景画像の再配置</translation>
+        <translation type="vanished">背景画像の再配置</translation>
     </message>
     <message>
-        <location filename="../solverdef/solverdefinitionboundarycondition.cpp" line="18"/>
-        <location filename="../solverdef/solverdefinitiongridtype.cpp" line="74"/>
         <source>Default</source>
-        <translation>デフォルト</translation>
+        <translation type="vanished">デフォルト</translation>
     </message>
     <message>
-        <location filename="../solverdef/solverdefinitiongridcomplexattribute.cpp" line="67"/>
         <source>(Undefined)</source>
-        <translation>(未定義)</translation>
+        <translation type="vanished">(未定義)</translation>
     </message>
     <message>
         <location filename="../bgcolor/backgroundcoloreditinterface.cpp" line="15"/>
@@ -2612,9 +2625,8 @@ Do you really want to import this file?</source>
         <translation>背景色</translation>
     </message>
     <message>
-        <location filename="../project/projectmainfile.cpp" line="1074"/>
         <source>Set offset</source>
-        <translation>オフセットの指定</translation>
+        <translation type="vanished">オフセットの指定</translation>
     </message>
 </context>
 <context>
@@ -2680,88 +2692,67 @@ Do you really want to import this file?</source>
 <context>
     <name>SolverDefinition::Impl</name>
     <message>
-        <location filename="../solverdef/solverdefinition.cpp" line="72"/>
         <source>%1 Grids</source>
-        <translation>%1 格子</translation>
+        <translation type="vanished">%1 格子</translation>
     </message>
 </context>
 <context>
     <name>Structured2DGrid</name>
     <message>
-        <location filename="../pre/grid/structured2dgrid.cpp" line="250"/>
         <source>An edge line intersects with that of another cell in this grid.</source>
-        <translation>格子線が、他のセルの格子線と交差しています。</translation>
+        <translation type="vanished">格子線が、他のセルの格子線と交差しています。</translation>
     </message>
     <message>
-        <location filename="../pre/grid/structured2dgrid.cpp" line="256"/>
         <source>Aspect ratio of grid cell exceed limit value %1 in more than one cell.</source>
-        <translation>辺の長さのアスペクト比が、しきい値 %1 を超えているセルがあります。</translation>
+        <translation type="vanished">辺の長さのアスペクト比が、しきい値 %1 を超えているセルがあります。</translation>
     </message>
     <message>
-        <location filename="../pre/grid/structured2dgrid.cpp" line="263"/>
         <source>Variation of grid cell edge lengths exceed limit values (I-direction: %1, J-direction: %2) in more than one cell.</source>
-        <translation>セルの辺の長さの変化率が、しきい値 (I方向:%1, J方向: %2) を超えているセルがあります。</translation>
+        <translation type="vanished">セルの辺の長さの変化率が、しきい値 (I方向:%1, J方向: %2) を超えているセルがあります。</translation>
     </message>
     <message>
-        <location filename="../pre/grid/structured2dgrid.cpp" line="269"/>
         <source>Angle of grid cell edge fall below limit value %1 in more than one cell.</source>
-        <translation>格子の頂点の角度が、しきい値 %1 を下回っているセルがあります。</translation>
+        <translation type="vanished">格子の頂点の角度が、しきい値 %1 を下回っているセルがあります。</translation>
     </message>
     <message>
-        <location filename="../pre/grid/structured2dgrid.cpp" line="278"/>
         <source>* Cells where edges intersect</source>
-        <translation>* 格子線が交差しているセル</translation>
+        <translation type="vanished">* 格子線が交差しているセル</translation>
     </message>
     <message>
-        <location filename="../pre/grid/structured2dgrid.cpp" line="299"/>
-        <location filename="../pre/grid/structured2dgrid.cpp" line="345"/>
-        <location filename="../pre/grid/structured2dgrid.cpp" line="381"/>
-        <location filename="../pre/grid/structured2dgrid.cpp" line="416"/>
-        <location filename="../pre/grid/structured2dgrid.cpp" line="445"/>
         <source>Not exist</source>
-        <translation>ありません</translation>
+        <translation type="vanished">ありません</translation>
     </message>
     <message>
-        <location filename="../pre/grid/structured2dgrid.cpp" line="310"/>
         <source>* Cells where aspect ratio of cell edges exceed %1</source>
-        <translation>* 辺のアスペクト比が %1 以上のセル</translation>
+        <translation type="vanished">* 辺のアスペクト比が %1 以上のセル</translation>
     </message>
     <message>
-        <location filename="../pre/grid/structured2dgrid.cpp" line="325"/>
-        <location filename="../pre/grid/structured2dgrid.cpp" line="335"/>
         <source>I, J, Aspect ratio</source>
-        <translation>I, J, アスペクト比</translation>
+        <translation type="vanished">I, J, アスペクト比</translation>
     </message>
     <message>
-        <location filename="../pre/grid/structured2dgrid.cpp" line="327"/>
         <source>Edge length too small</source>
-        <translation>辺の長さが小さすぎます</translation>
+        <translation type="vanished">辺の長さが小さすぎます</translation>
     </message>
     <message>
-        <location filename="../pre/grid/structured2dgrid.cpp" line="354"/>
         <source>* Cells where angle of cell vertex is below %1</source>
-        <translation>* セルの頂点の角度が %1 以下になっているセル</translation>
+        <translation type="vanished">* セルの頂点の角度が %1 以下になっているセル</translation>
     </message>
     <message>
-        <location filename="../pre/grid/structured2dgrid.cpp" line="372"/>
         <source>I, J, Angle</source>
-        <translation>I, J, 角度</translation>
+        <translation type="vanished">I, J, 角度</translation>
     </message>
     <message>
-        <location filename="../pre/grid/structured2dgrid.cpp" line="390"/>
         <source>* Cells where variation of cell length along i-direction exceed %1</source>
-        <translation>セルの辺のI方向の長さの変化率が、しきい値 %1 を超えているセル</translation>
+        <translation type="vanished">セルの辺のI方向の長さの変化率が、しきい値 %1 を超えているセル</translation>
     </message>
     <message>
-        <location filename="../pre/grid/structured2dgrid.cpp" line="406"/>
-        <location filename="../pre/grid/structured2dgrid.cpp" line="435"/>
         <source>I, J, Variation</source>
-        <translation>I, J, 変化率</translation>
+        <translation type="vanished">I, J, 変化率</translation>
     </message>
     <message>
-        <location filename="../pre/grid/structured2dgrid.cpp" line="421"/>
         <source>* Cells where variation of cell length along j-direction exceed %1</source>
-        <translation>セルの辺のJ方向の長さの変化率が、しきい値 %1 を超えているセル</translation>
+        <translation type="vanished">セルの辺のJ方向の長さの変化率が、しきい値 %1 を超えているセル</translation>
     </message>
 </context>
 <context>
@@ -2778,54 +2769,45 @@ Do you really want to import this file?</source>
 <context>
     <name>TmsImageGroupDataItem</name>
     <message>
-        <location filename="../tmsimage/tmsimagegroupdataitem.cpp" line="173"/>
         <source>Background Images (Internet)</source>
-        <translation>背景画像 (インターネット)</translation>
+        <translation type="vanished">背景画像 (インターネット)</translation>
     </message>
     <message>
-        <location filename="../tmsimage/tmsimagegroupdataitem.cpp" line="201"/>
         <source>Warning</source>
-        <translation>警告</translation>
+        <translation type="vanished">警告</translation>
     </message>
     <message>
-        <location filename="../tmsimage/tmsimagegroupdataitem.cpp" line="201"/>
         <source>To get background image from internet, please specify the coordiyate system of the project, from the following menu.
  File -&gt; Property</source>
-        <translation>インターネットから背景画像を取得するには、以下のメニューから座標系を指定して下さい。
+        <translation type="vanished">インターネットから背景画像を取得するには、以下のメニューから座標系を指定して下さい。
 ファイル -&gt; プロパティ</translation>
     </message>
     <message>
-        <location filename="../tmsimage/tmsimagegroupdataitem.cpp" line="259"/>
         <source>Background Image change</source>
-        <translation>背景画像の変更</translation>
+        <translation type="vanished">背景画像の変更</translation>
     </message>
 </context>
 <context>
     <name>TmsImageSettingManager</name>
     <message>
-        <location filename="../tmsimage/tmsimagesettingmanager.cpp" line="38"/>
         <source>Google Map (Road)</source>
-        <translation>Google Map (道路)</translation>
+        <translation type="vanished">Google Map (道路)</translation>
     </message>
     <message>
-        <location filename="../tmsimage/tmsimagesettingmanager.cpp" line="39"/>
         <source>Google Map (Satellite)</source>
-        <translation>Google Map (衛星写真)</translation>
+        <translation type="vanished">Google Map (衛星写真)</translation>
     </message>
     <message>
-        <location filename="../tmsimage/tmsimagesettingmanager.cpp" line="40"/>
         <source>Google Map (Hybrid)</source>
-        <translation>Google Map (ハイブリッド)</translation>
+        <translation type="vanished">Google Map (ハイブリッド)</translation>
     </message>
     <message>
-        <location filename="../tmsimage/tmsimagesettingmanager.cpp" line="41"/>
         <source>Google Map (Terrain)</source>
-        <translation>Google Map (地形)</translation>
+        <translation type="vanished">Google Map (地形)</translation>
     </message>
     <message>
-        <location filename="../tmsimage/tmsimagesettingmanager.cpp" line="44"/>
         <source>Open Street Map</source>
-        <translation>Open Street Map</translation>
+        <translation type="vanished">Open Street Map</translation>
     </message>
     <message>
         <source>Bing (Aerial)</source>
@@ -2840,29 +2822,24 @@ Do you really want to import this file?</source>
         <translation type="vanished">Bing (道路地図)</translation>
     </message>
     <message>
-        <location filename="../tmsimage/tmsimagesettingmanager.cpp" line="51"/>
         <source>GSI (Standard) (Japan only)</source>
-        <translation>国土地理院 (標準地図)</translation>
+        <translation type="vanished">国土地理院 (標準地図)</translation>
     </message>
     <message>
-        <location filename="../tmsimage/tmsimagesettingmanager.cpp" line="52"/>
         <source>GSI (Pale) (Japan only)</source>
-        <translation>国土地理院 (淡色地図)</translation>
+        <translation type="vanished">国土地理院 (淡色地図)</translation>
     </message>
     <message>
-        <location filename="../tmsimage/tmsimagesettingmanager.cpp" line="53"/>
         <source>GSI (English) (Japan only)</source>
-        <translation>国土地理院 (English)</translation>
+        <translation type="vanished">国土地理院 (English)</translation>
     </message>
     <message>
-        <location filename="../tmsimage/tmsimagesettingmanager.cpp" line="54"/>
         <source>GSI (Relief) (Japan only)</source>
-        <translation>国土地理院 (色別標高図)</translation>
+        <translation type="vanished">国土地理院 (色別標高図)</translation>
     </message>
     <message>
-        <location filename="../tmsimage/tmsimagesettingmanager.cpp" line="55"/>
         <source>GSI (Ortho images) (Japan only)</source>
-        <translation>国土地理院 (写真)</translation>
+        <translation type="vanished">国土地理院 (写真)</translation>
     </message>
 </context>
 <context>

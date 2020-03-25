@@ -30,11 +30,6 @@ const QList<double>& PostZonePointSeriesDataContainer::data() const
 	return m_data;
 }
 
-bool PostZonePointSeriesDataContainer::handleCurrentStepUpdate(const int /*fn*/)
-{
-	return true;
-}
-
 void PostZonePointSeriesDataContainer::update(const int fn)
 {
 	loadFromCgnsFile(fn);
