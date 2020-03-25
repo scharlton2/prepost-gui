@@ -35,7 +35,7 @@ bool PostBaseIterativeSeriesDataContainer::loadData(const int fn)
 	}
 
 	int ier, nSteps;
-	char iterName[32];
+	char iterName[ProjectCgnsFile::BUFFERLEN];
 
 	ier = cg_biter_read(fn, m_baseId, iterName, &nSteps);
 	if (ier != 0) {return false;}
@@ -47,7 +47,7 @@ bool PostBaseIterativeSeriesDataContainer::loadData(const int fn)
 		DataType_t datatype;
 		int dimension;
 		cgsize_t dimVector[3];
-		char arrayname[30];
+		char arrayname[ProjectCgnsFile::BUFFERLEN];
 		cg_array_info(i, arrayname, &datatype, &dimension, dimVector);
 		if (m_baseIterativeName == arrayname) {
 			// load data.

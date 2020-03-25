@@ -598,6 +598,11 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../postcontainer/postdataexportdialog.ui" line="50"/>
+        <source>ESRI Shapefiles</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../postcontainer/postdataexportdialog.ui" line="73"/>
         <source>Output folder:</source>
         <translation type="unfinished"></translation>
@@ -653,11 +658,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../postcontainer/postdataexportdialog.ui" line="50"/>
-        <source>ESRI Shape files</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../postcontainer/postdataexportdialog.ui" line="226"/>
         <source>Region</source>
         <translation type="unfinished"></translation>
@@ -702,6 +702,128 @@
         <source>Show &amp;Detail</source>
         <translation type="unfinished"></translation>
     </message>
+<<<<<<< HEAD
+=======
+    <message>
+        <location filename="../postcontainer/postdataexportdialog.cpp" line="303"/>
+        <source>Select Folder</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../postcontainer/postdataexportdialog.cpp" line="313"/>
+        <source>Warning</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../postcontainer/postdataexportdialog.cpp" line="313"/>
+        <source>Folder %1 does not exists.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../postcontainer/postdataexportdialog.cpp" line="325"/>
+        <source>&amp;Hide Detail</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>PostIterationSteps</name>
+    <message>
+        <location filename="../postcontainer/postiterationsteps.cpp" line="84"/>
+        <source>Error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../postcontainer/postiterationsteps.cpp" line="84"/>
+        <source>Error occured while loading calculation result.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>PostSolutionInfo</name>
+    <message>
+        <location filename="../postcontainer/postsolutioninfo.cpp" line="191"/>
+        <location filename="../postcontainer/postsolutioninfo.cpp" line="779"/>
+        <location filename="../postcontainer/postsolutioninfo.cpp" line="878"/>
+        <source>Error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../postcontainer/postsolutioninfo.cpp" line="191"/>
+        <source>Error occured while loading calculation result.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../postcontainer/postsolutioninfo.cpp" line="444"/>
+        <location filename="../postcontainer/postsolutioninfo.cpp" line="753"/>
+        <source>Warning</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../postcontainer/postsolutioninfo.cpp" line="444"/>
+        <source>Loading calculation result for visualization failed. Please try again later, or wait until end of calculation.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../postcontainer/postsolutioninfo.cpp" line="753"/>
+        <source>No calculation result exists.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../postcontainer/postsolutioninfo.cpp" line="779"/>
+        <source>Calculation result does not contain grid data.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../postcontainer/postsolutioninfo.cpp" line="828"/>
+        <source>Export Calculation Result</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../postcontainer/postsolutioninfo.cpp" line="832"/>
+        <source>Saving calculation result as VTK files...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../postcontainer/postsolutioninfo.cpp" line="835"/>
+        <source>Saving calculation result as CSV files...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../postcontainer/postsolutioninfo.cpp" line="838"/>
+        <source>Saving calculation result as ESRI Shapefiles...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../postcontainer/postsolutioninfo.cpp" line="878"/>
+        <source>Error occured while saving %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>PostStringResult</name>
+    <message>
+        <location filename="../postcontainer/poststringresult.cpp" line="77"/>
+        <location filename="../postcontainer/poststringresult.cpp" line="88"/>
+        <source>Error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../postcontainer/poststringresult.cpp" line="77"/>
+        <location filename="../postcontainer/poststringresult.cpp" line="88"/>
+        <source>Error occured: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../postcontainer/poststringresult.cpp" line="130"/>
+        <source>Warning</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../postcontainer/poststringresult.cpp" line="130"/>
+        <source>I, J, K, index for label is reset because the grid size is changed.</source>
+        <translation type="unfinished"></translation>
+    </message>
+>>>>>>> master
 </context>
 <context>
     <name>PostStringResultArgumentEditDialog</name>
@@ -753,6 +875,7 @@
 </context>
 <context>
     <name>PostStringResultEditWidget</name>
+<<<<<<< HEAD
     <message>
         <location filename="../postcontainer/poststringresulteditwidget.ui" line="14"/>
         <source>Form</source>
@@ -870,6 +993,8 @@
 </context>
 <context>
     <name>PropertyBrowserView</name>
+=======
+>>>>>>> master
     <message>
         <location filename="../datamodel/propertybrowserview.ui" line="14"/>
         <source>Form</source>
@@ -910,6 +1035,405 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
+<<<<<<< HEAD
+=======
+        <location filename="../postcontainer/poststringresulteditwidget.ui" line="89"/>
+        <source>&amp;Add...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../postcontainer/poststringresulteditwidget.ui" line="96"/>
+        <source>&amp;Edit...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../postcontainer/poststringresulteditwidget.ui" line="103"/>
+        <source>&amp;Delete...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../postcontainer/poststringresulteditwidget.ui" line="113"/>
+        <source>Definition of output</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../postcontainer/poststringresulteditwidget.ui" line="132"/>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;You can define the variable with JavaScript language. Please see &lt;a href=&quot;http://iric-gui-user-manual.readthedocs.io/en/latest/03/07_calc_result.html#manage-simple-operation-results-m&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;here&lt;/span&gt;&lt;/a&gt; for detail.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../postcontainer/poststringresulteditwidget.ui" line="167"/>
+        <source>Test</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../postcontainer/poststringresulteditwidget.cpp" line="100"/>
+        <source>Warning</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../postcontainer/poststringresulteditwidget.cpp" line="100"/>
+        <source>Are you sure you want to delete %1?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../postcontainer/poststringresulteditwidget.cpp" line="158"/>
+        <source>Global</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../postcontainer/poststringresulteditwidget.cpp" line="160"/>
+        <source>Node</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../postcontainer/poststringresulteditwidget.cpp" line="162"/>
+        <source>Cell</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../postcontainer/poststringresulteditwidget.cpp" line="164"/>
+        <source>EdgeI</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../postcontainer/poststringresulteditwidget.cpp" line="166"/>
+        <source>EdgeJ</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../postcontainer/poststringresulteditwidget.cpp" line="168"/>
+        <source>EdgeK</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>PostTimeSteps</name>
+    <message>
+        <location filename="../postcontainer/posttimesteps.cpp" line="83"/>
+        <source>Error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../postcontainer/posttimesteps.cpp" line="83"/>
+        <source>Error occured while loading calculation result.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>PostZoneSelectingDialog</name>
+    <message>
+        <location filename="../post/postzoneselectingdialog.ui" line="14"/>
+        <source>Dialog</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../post/postzoneselectingdialog.ui" line="22"/>
+        <source>Grid Type:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../post/postzoneselectingdialog.ui" line="51"/>
+        <source>&amp;Region:</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>PreProcessorDataItem</name>
+    <message>
+        <location filename="../pre/base/preprocessorgriddataiteminterface.h" line="18"/>
+        <source>Grid</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>PreProcessorGridCreatingConditionDataItemInterface</name>
+    <message>
+        <location filename="../pre/base/preprocessorgridcreatingconditiondataiteminterface.cpp" line="6"/>
+        <source>Grid Creating Condition</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>ProjectData</name>
+    <message>
+        <location filename="../project/projectdata.cpp" line="125"/>
+        <source>Loading project file...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../project/projectdata.cpp" line="206"/>
+        <source>Saving project file...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../project/projectdata.cpp" line="217"/>
+        <source>Error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../project/projectdata.cpp" line="217"/>
+        <source>Could not overwrite %1.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../project/projectdata.cpp" line="317"/>
+        <source>Warning</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../project/projectdata.cpp" line="318"/>
+        <source>Elevation grid attribute is not defined for grid type %1. Grid I/O functions, grid creating functions may not work correnctly for these grid types.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../project/projectdata.cpp" line="390"/>
+        <location filename="../project/projectdata.cpp" line="442"/>
+        <source>Saving project...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../project/projectdata.cpp" line="440"/>
+        <source>Opening project...</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>ProjectMainFile</name>
+    <message>
+        <location filename="../project/projectmainfile.cpp" line="570"/>
+        <location filename="../project/projectmainfile.cpp" line="575"/>
+        <location filename="../project/projectmainfile.cpp" line="614"/>
+        <location filename="../project/projectmainfile.cpp" line="646"/>
+        <location filename="../project/projectmainfile.cpp" line="1058"/>
+        <location filename="../project/projectmainfile.cpp" line="1105"/>
+        <location filename="../project/projectmainfile.cpp" line="1125"/>
+        <location filename="../project/projectmainfile.cpp" line="1132"/>
+        <source>Error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../project/projectmainfile.cpp" line="570"/>
+        <source>Solution %1 already exists.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../project/projectmainfile.cpp" line="575"/>
+        <source>CGNS file whose name contains characters other than alphabets and numbers can not be imported.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../project/projectmainfile.cpp" line="678"/>
+        <location filename="../project/projectmainfile.cpp" line="700"/>
+        <location filename="../project/projectmainfile.cpp" line="812"/>
+        <location filename="../project/projectmainfile.cpp" line="819"/>
+        <location filename="../project/projectmainfile.cpp" line="829"/>
+        <location filename="../project/projectmainfile.cpp" line="840"/>
+        <location filename="../project/projectmainfile.cpp" line="843"/>
+        <location filename="../project/projectmainfile.cpp" line="1114"/>
+        <location filename="../project/projectmainfile.cpp" line="1256"/>
+        <source>Warning</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../project/projectmainfile.cpp" line="608"/>
+        <source>Export CGNS file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../project/projectmainfile.cpp" line="608"/>
+        <source>CGNS file (*.cgns)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../project/projectmainfile.cpp" line="614"/>
+        <source>Exporting CGNS file failed. Specified file is locked by other process.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../project/projectmainfile.cpp" line="646"/>
+        <source>Error occured while opening CGNS file in project file : %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../project/projectmainfile.cpp" line="678"/>
+        <location filename="../project/projectmainfile.cpp" line="700"/>
+        <source>%1 Saving project file failed.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../project/projectmainfile.cpp" line="800"/>
+        <source>All images(*.jpg *.jpeg *.png *.tif);;Jpeg images(*.jpg *.jpeg);;PNG images(*.png);;TIFF images(*.tif)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../project/projectmainfile.cpp" line="802"/>
+        <source>Open Image file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../project/projectmainfile.cpp" line="812"/>
+        <source>A background image with the same name already exists.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../project/projectmainfile.cpp" line="819"/>
+        <location filename="../project/projectmainfile.cpp" line="829"/>
+        <source>The background image was not added. Please try again.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../project/projectmainfile.cpp" line="843"/>
+        <source>Invalid image file is specified.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../project/projectmainfile.cpp" line="1021"/>
+        <source>This project file cannot be read, because it was created by too old iRIC (version %1).</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../project/projectmainfile.cpp" line="1023"/>
+        <source>This project file cannot be read, because it was created by newer iRIC (version %1).</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../project/projectmainfile.cpp" line="1045"/>
+        <source>Text Files (*.csv *.txt);;All Files (*.*)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../project/projectmainfile.cpp" line="1046"/>
+        <source>Open Measured Data File</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../project/projectmainfile.cpp" line="1105"/>
+        <source>Error occured while loading %1.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../project/projectmainfile.cpp" line="1114"/>
+        <source>This file is for solver %1 %2. It is not compatible with the solver you are using, so maybe importing this file will fail. Do you really want to import this file?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../project/projectmainfile.cpp" line="1125"/>
+        <source>There is no visualization/graph windows.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../project/projectmainfile.cpp" line="1132"/>
+        <source>File %1 could not be opened.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../project/projectmainfile.cpp" line="1256"/>
+        <source>Coordinate system not selected.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>ProjectMainFile::Impl</name>
+    <message>
+        <location filename="../project/projectmainfile.cpp" line="183"/>
+        <location filename="../project/projectmainfile.cpp" line="188"/>
+        <source>Warning</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../project/projectmainfile.cpp" line="187"/>
+        <source> : no such file.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>ProjectTimeSettingDialog</name>
+    <message>
+        <location filename="../project/projecttimesettingdialog.ui" line="14"/>
+        <source>Date for t = 0 setting</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../project/projecttimesettingdialog.ui" line="22"/>
+        <source>Time for t = 0:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../project/projecttimesettingdialog.ui" line="36"/>
+        <source>Not specified</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../project/projecttimesettingdialog.ui" line="61"/>
+        <source>Time display format</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>ProjectWorkspace</name>
+    <message>
+        <location filename="../project/projectworkspace.cpp" line="56"/>
+        <source>Workspace &quot;%1&quot; has %2 project folders that seems to be not used any more. Do you want to remove them?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../project/projectworkspace.cpp" line="58"/>
+        <source>Information</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>PropertyBrowser</name>
+    <message>
+        <location filename="../base/propertybrowser.cpp" line="10"/>
+        <source>Attribute Browser</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>PropertyBrowserView</name>
+    <message>
+        <location filename="../datamodel/propertybrowserview.ui" line="14"/>
+        <source>Form</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../datamodel/propertybrowserview.ui" line="28"/>
+        <source>Indices</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../datamodel/propertybrowserview.ui" line="36"/>
+        <location filename="../datamodel/propertybrowserview.ui" line="53"/>
+        <location filename="../datamodel/propertybrowserview.ui" line="70"/>
+        <location filename="../datamodel/propertybrowserview.ui" line="120"/>
+        <location filename="../datamodel/propertybrowserview.ui" line="137"/>
+        <source>1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../datamodel/propertybrowserview.ui" line="46"/>
+        <source>J:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../datamodel/propertybrowserview.ui" line="63"/>
+        <source>I:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../datamodel/propertybrowserview.ui" line="80"/>
+        <source>Index:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../datamodel/propertybrowserview.ui" line="105"/>
+        <source>Coordinates</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+>>>>>>> master
         <location filename="../datamodel/propertybrowserview.ui" line="113"/>
         <source>X:</source>
         <translation type="unfinished"></translation>

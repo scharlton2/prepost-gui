@@ -125,7 +125,7 @@
     <message>
         <location filename="../project/backgroundimageinfogeoreferencedialog.ui" line="54"/>
         <source>PushButton</source>
-        <translation type="unfinished"></translation>
+        <translation>PushButton</translation>
     </message>
     <message>
         <source>Hide</source>
@@ -1665,6 +1665,11 @@ Do you really want to import this file?</source>
         <translation>地勢データファイル (*.tpo)</translation>
     </message>
     <message>
+        <location filename="../postcontainer/postdataexportdialog.ui" line="50"/>
+        <source>ESRI Shapefiles</source>
+        <translation>ESRI シェープファイル</translation>
+    </message>
+    <message>
         <location filename="../postcontainer/postdataexportdialog.ui" line="73"/>
         <source>Output folder:</source>
         <translation>出力フォルダ:</translation>
@@ -1724,9 +1729,8 @@ Do you really want to import this file?</source>
         <translation type="vanished">地勢データファイル (*.tpo)</translation>
     </message>
     <message>
-        <location filename="../postcontainer/postdataexportdialog.ui" line="50"/>
         <source>ESRI Shape files</source>
-        <translation>ESRI シェープファイル</translation>
+        <translation type="vanished">ESRI シェープファイル</translation>
     </message>
     <message>
         <location filename="../postcontainer/postdataexportdialog.ui" line="226"/>
@@ -1804,10 +1808,20 @@ Do you really want to import this file?</source>
 <context>
     <name>PostSolutionInfo</name>
     <message>
+<<<<<<< HEAD
+=======
+        <location filename="../postcontainer/postsolutioninfo.cpp" line="191"/>
+        <location filename="../postcontainer/postsolutioninfo.cpp" line="779"/>
+        <location filename="../postcontainer/postsolutioninfo.cpp" line="878"/>
+>>>>>>> master
         <source>Error</source>
         <translation type="vanished">エラー</translation>
     </message>
     <message>
+<<<<<<< HEAD
+=======
+        <location filename="../postcontainer/postsolutioninfo.cpp" line="191"/>
+>>>>>>> master
         <source>Error occured while loading calculation result.</source>
         <translation type="vanished">計算結果の読み込み中にエラーが発生しました。</translation>
     </message>
@@ -1816,6 +1830,11 @@ Do you really want to import this file?</source>
         <translation type="vanished">時刻の値を読み込んでいます...</translation>
     </message>
     <message>
+<<<<<<< HEAD
+=======
+        <location filename="../postcontainer/postsolutioninfo.cpp" line="444"/>
+        <location filename="../postcontainer/postsolutioninfo.cpp" line="753"/>
+>>>>>>> master
         <source>Warning</source>
         <translation type="vanished">警告</translation>
     </message>
@@ -1824,6 +1843,10 @@ Do you really want to import this file?</source>
         <translation type="vanished">計算結果が、コピーしたCGNSファイルから読み込めません。</translation>
     </message>
     <message>
+<<<<<<< HEAD
+=======
+        <location filename="../postcontainer/postsolutioninfo.cpp" line="444"/>
+>>>>>>> master
         <source>Loading calculation result for visualization failed. Please try again later, or wait until end of calculation.</source>
         <translation type="vanished">可視化用の計算結果の読み込みに失敗しました。少し待ってから再度試すか、計算が終了するまでお待ち下さい。</translation>
     </message>
@@ -1874,30 +1897,63 @@ result/Solution1.cgn から result/Solution%2.cgn までに含まれていた計
         <translation type="vanished">可視化用計算結果の読み込みに失敗しました。</translation>
     </message>
     <message>
+<<<<<<< HEAD
+=======
+        <location filename="../postcontainer/postsolutioninfo.cpp" line="753"/>
+>>>>>>> master
         <source>No calculation result exists.</source>
         <translation type="vanished">計算結果がありません。</translation>
     </message>
     <message>
+<<<<<<< HEAD
+=======
+        <location filename="../postcontainer/postsolutioninfo.cpp" line="779"/>
+>>>>>>> master
         <source>Calculation result does not contain grid data.</source>
         <translation type="vanished">計算結果に、格子データがありません。</translation>
     </message>
     <message>
+<<<<<<< HEAD
+=======
+        <location filename="../postcontainer/postsolutioninfo.cpp" line="828"/>
+>>>>>>> master
         <source>Export Calculation Result</source>
         <translation type="vanished">計算結果のエクスポート</translation>
     </message>
     <message>
+<<<<<<< HEAD
+=======
+        <location filename="../postcontainer/postsolutioninfo.cpp" line="832"/>
+>>>>>>> master
         <source>Saving calculation result as VTK files...</source>
         <translation type="vanished">計算結果を VTKファイルに保存しています...</translation>
     </message>
     <message>
+<<<<<<< HEAD
+=======
+        <location filename="../postcontainer/postsolutioninfo.cpp" line="835"/>
+>>>>>>> master
         <source>Saving calculation result as CSV files...</source>
         <translation type="vanished">計算結果を CSVファイルに保存しています...</translation>
+    </message>
+    <message>
+<<<<<<< HEAD
+        <source>Saving calculation result as ESRI Shape files...</source>
+        <translation type="vanished">計算結果を ESRI シェープファイルに保存しています...</translation>
+    </message>
+    <message>
+=======
+        <location filename="../postcontainer/postsolutioninfo.cpp" line="838"/>
+        <source>Saving calculation result as ESRI Shapefiles...</source>
+        <translation>計算結果を ESRI シェープファイルに保存しています...</translation>
     </message>
     <message>
         <source>Saving calculation result as ESRI Shape files...</source>
         <translation type="vanished">計算結果を ESRI シェープファイルに保存しています...</translation>
     </message>
     <message>
+        <location filename="../postcontainer/postsolutioninfo.cpp" line="878"/>
+>>>>>>> master
         <source>Error occured while saving %1</source>
         <translation type="vanished">%1 の保存中にエラーが発生しました。</translation>
     </message>
@@ -1911,6 +1967,16 @@ result/Solution1.cgn から result/Solution%2.cgn までに含まれていた計
     <message>
         <source>Error occured: %1</source>
         <translation type="vanished">エラーが発生しました: %1</translation>
+    </message>
+    <message>
+        <location filename="../postcontainer/poststringresult.cpp" line="130"/>
+        <source>Warning</source>
+        <translation>警告</translation>
+    </message>
+    <message>
+        <location filename="../postcontainer/poststringresult.cpp" line="130"/>
+        <source>I, J, K, index for label is reset because the grid size is changed.</source>
+        <translation>格子のサイズが変更されたため、ラベルの I, J, K はリセットされました。</translation>
     </message>
 </context>
 <context>
@@ -2144,34 +2210,66 @@ result/Solution1.cgn から result/Solution%2.cgn までに含まれていた計
         <translation>テスト</translation>
     </message>
     <message>
+<<<<<<< HEAD
+=======
+        <location filename="../postcontainer/poststringresulteditwidget.cpp" line="100"/>
+>>>>>>> master
         <source>Warning</source>
         <translation type="vanished">警告</translation>
     </message>
     <message>
+<<<<<<< HEAD
+=======
+        <location filename="../postcontainer/poststringresulteditwidget.cpp" line="100"/>
+>>>>>>> master
         <source>Are you sure you want to delete %1?</source>
         <translation type="vanished">本当に %1 を削除していいですか?</translation>
     </message>
     <message>
+<<<<<<< HEAD
+=======
+        <location filename="../postcontainer/poststringresulteditwidget.cpp" line="158"/>
+>>>>>>> master
         <source>Global</source>
         <translation type="vanished">グローバル</translation>
     </message>
     <message>
+<<<<<<< HEAD
+=======
+        <location filename="../postcontainer/poststringresulteditwidget.cpp" line="160"/>
+>>>>>>> master
         <source>Node</source>
         <translation type="vanished">格子点</translation>
     </message>
     <message>
+<<<<<<< HEAD
+=======
+        <location filename="../postcontainer/poststringresulteditwidget.cpp" line="162"/>
+>>>>>>> master
         <source>Cell</source>
         <translation type="vanished">格子セル</translation>
     </message>
     <message>
+<<<<<<< HEAD
+=======
+        <location filename="../postcontainer/poststringresulteditwidget.cpp" line="164"/>
+>>>>>>> master
         <source>EdgeI</source>
         <translation type="vanished">エッジ(I方向)</translation>
     </message>
     <message>
+<<<<<<< HEAD
+=======
+        <location filename="../postcontainer/poststringresulteditwidget.cpp" line="166"/>
+>>>>>>> master
         <source>EdgeJ</source>
         <translation type="vanished">エッジ(J方向)</translation>
     </message>
     <message>
+<<<<<<< HEAD
+=======
+        <location filename="../postcontainer/poststringresulteditwidget.cpp" line="168"/>
+>>>>>>> master
         <source>EdgeK</source>
         <translation type="vanished">エッジ(K方向)</translation>
     </message>

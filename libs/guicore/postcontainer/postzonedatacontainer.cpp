@@ -256,7 +256,7 @@ bool PostZoneDataContainer::setBaseId(const int fn)
 	ier = cg_nbases(fn, &numBases);
 	if (ier != 0) {return false;}
 	for (int B = 1; B <= numBases; ++B) {
-		char basename[32];
+		char basename[ProjectCgnsFile::BUFFERLEN];
 		int phys_dim;
 		ier = cg_base_read(fn, B, basename, &m_cellDim, &phys_dim);
 		if (ier != 0) {return false;}
@@ -278,7 +278,7 @@ bool PostZoneDataContainer::setZoneId(const int fn)
 	ier = cg_nzones(fn, m_baseId, &numZones);
 	if (ier != 0) {return false;}
 	for (int Z = 1; Z <= numZones; ++Z) {
-		char zonename[32];
+		char zonename[ProjectCgnsFile::BUFFERLEN];
 		ier = cg_zone_read(fn, m_baseId, Z, zonename, m_sizes);
 		if (ier != 0) {return false;}
 		if (m_zoneName == zonename) {
@@ -292,7 +292,7 @@ bool PostZoneDataContainer::setZoneId(const int fn)
 bool PostZoneDataContainer::loadZoneSize(const int fn)
 {
 	int ier;
-	char zonename[32];
+	char zonename[ProjectCgnsFile::BUFFERLEN];
 	ier = cg_zone_read(fn, m_baseId, m_zoneId, zonename, m_sizes);
 	return (ier == 0);
 }
@@ -346,7 +346,7 @@ bool PostZoneDataContainer::loadStructuredGrid(const int fn, const int currentSt
 
 
 	// Find zone iterative data.
-	char zoneItername[32];
+	char zoneItername[ProjectCgnsFile::BUFFERLEN];
 	int ier;
 
 	/// only for test!
@@ -506,7 +506,7 @@ bool PostZoneDataContainer::loadStructuredGrid(const int fn, const int currentSt
 
 		vtkSmartPointer<vtkPoints> iface_points = vtkSmartPointer<vtkPoints>::New();
 		iface_points->SetDataTypeToDouble();
-		for (int k = 0; k < NVertexK; ++k) {
+		for (int k = 0; k < NVertexK - 1; ++k) {
 			for (int j = 0; j < (NVertexJ - 1); ++j) {
 				for (int i = 0; i < NVertexI; ++i) {
 					int idx1 = i + NVertexI * (j + NVertexJ * k);
@@ -524,7 +524,7 @@ bool PostZoneDataContainer::loadStructuredGrid(const int fn, const int currentSt
 
 		vtkSmartPointer<vtkPoints> jface_points = vtkSmartPointer<vtkPoints>::New();
 		jface_points->SetDataTypeToDouble();
-		for (int k = 0; k < NVertexK; ++k) {
+		for (int k = 0; k < NVertexK - 1; ++k) {
 			for (int j = 0; j < NVertexJ; ++j) {
 				for (int i = 0; i < (NVertexI - 1); ++i) {
 					int idx1 = i + NVertexI * (j + NVertexJ * k);
@@ -560,7 +560,7 @@ bool PostZoneDataContainer::loadUnstructuredGrid(const int fn, const int current
 	vtkUnstructuredGrid* grid = dynamic_cast<vtkUnstructuredGrid*>(p1);
 	int NVertex = m_sizes[0];
 	// Find zone iterative data.
-	char zoneItername[32];
+	char zoneItername[ProjectCgnsFile::BUFFERLEN];
 	int ier;
 	ier = cg_ziter_read(fn, m_baseId, m_zoneId, zoneItername);
 	bool iterativeCoordinates = false;
@@ -662,7 +662,7 @@ bool PostZoneDataContainer::loadUnstructuredGrid(const int fn, const int current
 bool PostZoneDataContainer::findSolutionId(const int fn, const int currentStep, int* solId, const char* arrName)
 {
 	int ier;
-	char zoneItername[32];
+	char zoneItername[ProjectCgnsFile::BUFFERLEN];
 	ier = cg_ziter_read(fn, m_baseId, m_zoneId, zoneItername);
 	if (ier == 0) {
 		ier = cg_goto(fn, m_baseId, "Zone_t", m_zoneId, zoneItername, 0, "end");
@@ -671,7 +671,7 @@ bool PostZoneDataContainer::findSolutionId(const int fn, const int currentStep, 
 		ier = cg_narrays(&narrays);
 		if (ier != 0) {return false;}
 		for (int i = 1; i <= narrays; ++i) {
-			char arrayname[32];
+			char arrayname[ProjectCgnsFile::BUFFERLEN];
 			DataType_t dataType;
 			int dimension;
 			cgsize_t dimVector[3];
@@ -692,7 +692,7 @@ bool PostZoneDataContainer::findSolutionId(const int fn, const int currentStep, 
 				int nsols;
 				cg_nsols(fn, m_baseId, m_zoneId, &nsols);
 				for (int j = 1; j <= nsols; ++j) {
-					char solname[32];
+					char solname[ProjectCgnsFile::BUFFERLEN];
 					GridLocation_t location;
 					ier = cg_sol_info(fn, m_baseId, m_zoneId, j, solname, &location);
 					if (ier != 0) {return false;}
@@ -749,7 +749,7 @@ bool PostZoneDataContainer::loadScalarData(vtkDataSetAttributes* atts, int first
 		DataType_t datatype;
 		int dimension;
 		cgsize_t dimVector[3];
-		char arrayname[33];
+		char arrayname[ProjectCgnsFile::BUFFERLEN];
 		cg_array_info(i, arrayname, &datatype, &dimension, dimVector);
 		QString name(arrayname);
 
@@ -782,7 +782,7 @@ bool PostZoneDataContainer::loadEdgeIScalarData(vtkDataSetAttributes* atts, int 
 		DataType_t datatype;
 		int dimension;
 		cgsize_t dimVector[3];
-		char arrayname[33];
+		char arrayname[ProjectCgnsFile::BUFFERLEN];
 		cg_array_info(i, arrayname, &datatype, &dimension, dimVector);
 		QString name(arrayname);
 
@@ -815,7 +815,7 @@ bool PostZoneDataContainer::loadEdgeJScalarData(vtkDataSetAttributes* atts, int 
 		DataType_t datatype;
 		int dimension;
 		cgsize_t dimVector[3];
-		char arrayname[33];
+		char arrayname[ProjectCgnsFile::BUFFERLEN];
 		cg_array_info(i, arrayname, &datatype, &dimension, dimVector);
 		QString name(arrayname);
 
@@ -847,7 +847,7 @@ bool PostZoneDataContainer::loadVectorData(vtkDataSetAttributes* atts, int first
 
 	// try to find vector attributes.
 	for (int i = firstAtt; i <= narrays; ++i) {
-		char arrayname[30];
+		char arrayname[ProjectCgnsFile::BUFFERLEN];
 		DataType_t datatype;
 		int dimension;
 		cgsize_t dimVector[3];
@@ -895,7 +895,7 @@ bool PostZoneDataContainer::loadVectorData(vtkDataSetAttributes* atts, int first
 bool PostZoneDataContainer::loadGridScalarData(const int fn, const int solid)
 {
 	int ier;
-	char solname[32];
+	char solname[ProjectCgnsFile::BUFFERLEN];
 	GridLocation_t location;
 	ier = cg_sol_info(fn, m_baseId, m_zoneId, solid, solname, &location);
 	if (ier != 0) {return false;}
@@ -931,7 +931,7 @@ bool PostZoneDataContainer::loadGridScalarData(const int fn, const int solid)
 bool PostZoneDataContainer::loadGridVectorData(const int fn, const int solid)
 {
 	int ier;
-	char solname[32];
+	char solname[ProjectCgnsFile::BUFFERLEN];
 	GridLocation_t location;
 	ier = cg_sol_info(fn, m_baseId, m_zoneId, solid, solname, &location);
 	if (ier != 0) {return false;}
@@ -1275,6 +1275,7 @@ bool PostZoneDataContainer::cellScalarValueExists() const
 
 bool PostZoneDataContainer::edgeIScalarValueExists() const
 {
+	if (m_edgeidata == nullptr) { return false; }
 	auto names = vtkDataSetAttributesTool::getArrayNamesWithOneComponent(m_edgeidata->GetPointData());
 	for (const auto& name : names) {
 		if (hasInputDataPrefix(name)) { continue; }
@@ -1285,6 +1286,7 @@ bool PostZoneDataContainer::edgeIScalarValueExists() const
 
 bool PostZoneDataContainer::edgeJScalarValueExists() const
 {
+	if (m_edgejdata == nullptr) { return false; }
 	auto names = vtkDataSetAttributesTool::getArrayNamesWithOneComponent(m_edgejdata->GetPointData());
 	for (const auto& name : names) {
 		if (hasInputDataPrefix(name)) { continue; }

@@ -598,6 +598,11 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../postcontainer/postdataexportdialog.ui" line="50"/>
+        <source>ESRI Shapefiles</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../postcontainer/postdataexportdialog.ui" line="73"/>
         <source>Output folder:</source>
         <translation type="unfinished"></translation>
@@ -653,11 +658,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../postcontainer/postdataexportdialog.ui" line="50"/>
-        <source>ESRI Shape files</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../postcontainer/postdataexportdialog.ui" line="226"/>
         <source>Region</source>
         <translation type="unfinished"></translation>
@@ -700,6 +700,133 @@
     <message>
         <location filename="../postcontainer/postdataexportdialog.ui" line="395"/>
         <source>Show &amp;Detail</source>
+<<<<<<< HEAD
+        <translation type="unfinished"></translation>
+=======
+        <translation>&amp;显示细节</translation>
+    </message>
+    <message>
+        <location filename="../postcontainer/postdataexportdialog.cpp" line="303"/>
+        <source>Select Folder</source>
+        <translation>选择文件夹</translation>
+    </message>
+    <message>
+        <location filename="../postcontainer/postdataexportdialog.cpp" line="313"/>
+        <source>Warning</source>
+        <translation>警告</translation>
+    </message>
+    <message>
+        <location filename="../postcontainer/postdataexportdialog.cpp" line="313"/>
+        <source>Folder %1 does not exists.</source>
+        <translation>文件夹%1不存在</translation>
+    </message>
+    <message>
+        <location filename="../postcontainer/postdataexportdialog.cpp" line="325"/>
+        <source>&amp;Hide Detail</source>
+        <translation>&amp;隐藏细节</translation>
+    </message>
+</context>
+<context>
+    <name>PostIterationSteps</name>
+    <message>
+        <location filename="../postcontainer/postiterationsteps.cpp" line="84"/>
+        <source>Error</source>
+        <translation>错误</translation>
+    </message>
+    <message>
+        <location filename="../postcontainer/postiterationsteps.cpp" line="84"/>
+        <source>Error occured while loading calculation result.</source>
+        <translation>加载计算结果是错误</translation>
+    </message>
+</context>
+<context>
+    <name>PostSolutionInfo</name>
+    <message>
+        <location filename="../postcontainer/postsolutioninfo.cpp" line="191"/>
+        <location filename="../postcontainer/postsolutioninfo.cpp" line="779"/>
+        <location filename="../postcontainer/postsolutioninfo.cpp" line="878"/>
+        <source>Error</source>
+        <translation>错误</translation>
+    </message>
+    <message>
+        <location filename="../postcontainer/postsolutioninfo.cpp" line="191"/>
+        <source>Error occured while loading calculation result.</source>
+        <translation>加载计算结果时错误</translation>
+    </message>
+    <message>
+        <location filename="../postcontainer/postsolutioninfo.cpp" line="444"/>
+        <location filename="../postcontainer/postsolutioninfo.cpp" line="753"/>
+        <source>Warning</source>
+        <translation>警告</translation>
+    </message>
+    <message>
+        <location filename="../postcontainer/postsolutioninfo.cpp" line="444"/>
+        <source>Loading calculation result for visualization failed. Please try again later, or wait until end of calculation.</source>
+        <translation>加载可视化计算结果失败。 请稍后重试，或等到计算结束。</translation>
+    </message>
+    <message>
+        <location filename="../postcontainer/postsolutioninfo.cpp" line="753"/>
+        <source>No calculation result exists.</source>
+        <translation>无计算结果存在</translation>
+    </message>
+    <message>
+        <location filename="../postcontainer/postsolutioninfo.cpp" line="779"/>
+        <source>Calculation result does not contain grid data.</source>
+        <translation>计算结果不包括网格数据</translation>
+    </message>
+    <message>
+        <location filename="../postcontainer/postsolutioninfo.cpp" line="828"/>
+        <source>Export Calculation Result</source>
+        <translation>导出计算结果</translation>
+    </message>
+    <message>
+        <location filename="../postcontainer/postsolutioninfo.cpp" line="832"/>
+        <source>Saving calculation result as VTK files...</source>
+        <translation>以VTK文件保存计算结果</translation>
+    </message>
+    <message>
+        <location filename="../postcontainer/postsolutioninfo.cpp" line="835"/>
+        <source>Saving calculation result as CSV files...</source>
+        <translation>以CSV文件保存计算结果</translation>
+    </message>
+    <message>
+        <location filename="../postcontainer/postsolutioninfo.cpp" line="838"/>
+        <source>Saving calculation result as ESRI Shapefiles...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Saving calculation result as ESRI Shape files...</source>
+        <translation type="vanished">以ESRI Shape文件保存计算结果</translation>
+    </message>
+    <message>
+        <location filename="../postcontainer/postsolutioninfo.cpp" line="878"/>
+        <source>Error occured while saving %1</source>
+        <translation>保存%1时发生错误</translation>
+    </message>
+</context>
+<context>
+    <name>PostStringResult</name>
+    <message>
+        <location filename="../postcontainer/poststringresult.cpp" line="77"/>
+        <location filename="../postcontainer/poststringresult.cpp" line="88"/>
+        <source>Error</source>
+        <translation type="unfinished">错误</translation>
+    </message>
+    <message>
+        <location filename="../postcontainer/poststringresult.cpp" line="77"/>
+        <location filename="../postcontainer/poststringresult.cpp" line="88"/>
+        <source>Error occured: %1</source>
+        <translation type="unfinished">错误:%1</translation>
+>>>>>>> master
+    </message>
+    <message>
+        <location filename="../postcontainer/poststringresult.cpp" line="130"/>
+        <source>Warning</source>
+        <translation type="unfinished">警告</translation>
+    </message>
+    <message>
+        <location filename="../postcontainer/poststringresult.cpp" line="130"/>
+        <source>I, J, K, index for label is reset because the grid size is changed.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -748,7 +875,81 @@
     <message>
         <location filename="../postcontainer/poststringresultargumenteditdialog.ui" line="197"/>
         <source>Value for testing</source>
+<<<<<<< HEAD
         <translation type="unfinished"></translation>
+=======
+        <translation type="unfinished">测试值</translation>
+    </message>
+    <message>
+        <location filename="../postcontainer/poststringresultargumenteditdialog.cpp" line="64"/>
+        <source>Global</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../postcontainer/poststringresultargumenteditdialog.cpp" line="69"/>
+        <source>Node</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../postcontainer/poststringresultargumenteditdialog.cpp" line="80"/>
+        <source>Cell</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../postcontainer/poststringresultargumenteditdialog.cpp" line="84"/>
+        <source>EdgeI</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../postcontainer/poststringresultargumenteditdialog.cpp" line="88"/>
+        <source>EdgeJ</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../postcontainer/poststringresultargumenteditdialog.cpp" line="109"/>
+        <source>Warning</source>
+        <translation type="unfinished">警告</translation>
+    </message>
+    <message>
+        <location filename="../postcontainer/poststringresultargumenteditdialog.cpp" line="109"/>
+        <source>Variable name is empty.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>PostStringResultEditDialog</name>
+    <message>
+        <source>Calculation results for input</source>
+        <translation type="obsolete">输入的计算结果</translation>
+    </message>
+    <message>
+        <source>Result name</source>
+        <translation type="obsolete">结果名称</translation>
+    </message>
+    <message>
+        <source>Variable name</source>
+        <translation type="obsolete">变量名</translation>
+    </message>
+    <message>
+        <source>&amp;Edit...</source>
+        <translation type="obsolete">&amp;编辑...</translation>
+    </message>
+    <message>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;You can define the variable with JavaScript language. Please see &lt;a href=&quot;http://iric-gui-user-manual.readthedocs.io/en/latest/03/07_calc_result.html#manage-simple-operation-results-m&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;here&lt;/span&gt;&lt;/a&gt; for detail.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="obsolete">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;您可以使用JavaScript语言定义. 请参考 &lt;a href=&quot;http://iric-gui-user-manual.readthedocs.io/en/latest/03/07_calc_result.html#manage-simple-operation-results-m&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;here&lt;/span&gt;&lt;/a&gt; for detail.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
+    <message>
+        <source>Test</source>
+        <translation type="obsolete">测试</translation>
+    </message>
+    <message>
+        <source>Warning</source>
+        <translation type="obsolete">警告</translation>
+    </message>
+    <message>
+        <source>Are you sure you want to delete %1?</source>
+        <translation type="obsolete">确认删除%1?</translation>
+>>>>>>> master
     </message>
 </context>
 <context>
@@ -816,8 +1017,66 @@
     <message>
         <location filename="../postcontainer/poststringresulteditwidget.ui" line="167"/>
         <source>Test</source>
+<<<<<<< HEAD
         <translation type="unfinished"></translation>
     </message>
+=======
+        <translation type="unfinished">测试</translation>
+    </message>
+    <message>
+        <location filename="../postcontainer/poststringresulteditwidget.cpp" line="100"/>
+        <source>Warning</source>
+        <translation type="unfinished">警告</translation>
+    </message>
+    <message>
+        <location filename="../postcontainer/poststringresulteditwidget.cpp" line="100"/>
+        <source>Are you sure you want to delete %1?</source>
+        <translation type="unfinished">确认删除%1?</translation>
+    </message>
+    <message>
+        <location filename="../postcontainer/poststringresulteditwidget.cpp" line="158"/>
+        <source>Global</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../postcontainer/poststringresulteditwidget.cpp" line="160"/>
+        <source>Node</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../postcontainer/poststringresulteditwidget.cpp" line="162"/>
+        <source>Cell</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../postcontainer/poststringresulteditwidget.cpp" line="164"/>
+        <source>EdgeI</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../postcontainer/poststringresulteditwidget.cpp" line="166"/>
+        <source>EdgeJ</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../postcontainer/poststringresulteditwidget.cpp" line="168"/>
+        <source>EdgeK</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>PostTimeSteps</name>
+    <message>
+        <location filename="../postcontainer/posttimesteps.cpp" line="83"/>
+        <source>Error</source>
+        <translation>错误</translation>
+    </message>
+    <message>
+        <location filename="../postcontainer/posttimesteps.cpp" line="83"/>
+        <source>Error occured while loading calculation result.</source>
+        <translation>加载计算结果时发生错误</translation>
+    </message>
+>>>>>>> master
 </context>
 <context>
     <name>PostZoneSelectingDialog</name>
