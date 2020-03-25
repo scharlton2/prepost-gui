@@ -1155,12 +1155,17 @@ void PostZoneDataContainer::loadFromCgnsFile(const int fn, const int timeStep, b
 	if (ret == false) {goto ERROR;}
 	ret = setupIndexData();
 
+	int step = timeStep;
+	if (postSolutionInfo()->resultSeparated()) {
+		step = 0;
+	}
+
 	// load particles
-	ret = ParticleLoader::load(fn, m_baseId, m_zoneId, timeStep, &m_particleData, this->offset());
+	ret = ParticleLoader::load(fn, m_baseId, m_zoneId, step, &m_particleData, this->offset());
 	// load particleGroup
-	ret = ParticleGroupLoader::load(fn, m_baseId, m_zoneId, timeStep, &m_particleGroupMap, this->offset());
+	ret = ParticleGroupLoader::load(fn, m_baseId, m_zoneId, step, &m_particleGroupMap, this->offset());
 	// load polydata
-	ret = PolyDataLoader::load(fn, m_baseId, m_zoneId, timeStep, &m_polyDataMap, &m_polyDataCellIdsMap, this->offset());
+	ret = PolyDataLoader::load(fn, m_baseId, m_zoneId, step, &m_polyDataMap, &m_polyDataCellIdsMap, this->offset());
 
 	if (! disableCalculatedResult) {
 		addCalculatedResultArrays();
