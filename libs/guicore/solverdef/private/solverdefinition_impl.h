@@ -33,6 +33,7 @@ public:
 	QList<SolverDefinitionGridType*> m_gridTypes {};
 	SolverDefinitionGridType* m_dummyGridType {nullptr};
 	QMap<std::string, SolverDefinitionGridType*> m_gridTypeNameMap {};
+	bool m_divideSupport;
 	QDomDocument m_document {};
 	QLocale m_locale;
 

@@ -116,6 +116,8 @@ public:
 	void setTimeFormat(TimeFormat format);
 	QString customTimeFormat() const;
 	void setCustomTimeFormat(const QString& format);
+	bool divideSolution() const;
+	void setDivideSolution(bool divide);
 
 	QPointF offset() const;
 	void setOffset(double x, double y);

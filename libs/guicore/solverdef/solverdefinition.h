@@ -61,6 +61,8 @@ public:
 	SolverDefinitionGridType* gridType(const std::string& name) const;
 	/// XML Document
 	const QDomDocument& document() const;
+	/// This solver supports divide or not
+	bool divideSupport() const;
 
 	SolverDefinitionTranslator buildTranslator() const;
 

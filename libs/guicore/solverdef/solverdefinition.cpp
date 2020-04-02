@@ -18,6 +18,7 @@ const QString SolverDefinition::README {"README"};
 const QString SolverDefinition::LICENSE {"LICENSE"};
 
 SolverDefinition::Impl::Impl(const QString& solverfolder, const QLocale& locale, SolverDefinition *p) :
+	m_divideSupport {false},
 	m_locale {locale},
 	m_abstract {solverfolder, locale, 0},
 	m_parent {p}
@@ -57,6 +58,8 @@ void SolverDefinition::Impl::load()
 	m_executableFilename = folder.absoluteFilePath(sdElem.attribute("executable"));
 	// iterationtype
 	setupIterationType(sdElem);
+	// divideSupport
+	m_divideSupport = iRIC::getBooleanAttribute(sdElem, "dividesupport", false);
 	// setup gridtypes
 	QDomNode gdsNode = iRIC::getChildNode(sdElem, "GridTypes");
 	if (gdsNode.isNull()) {
@@ -201,6 +204,11 @@ SolverDefinitionGridType* SolverDefinition::gridType(const std::string& name) co
 const QDomDocument& SolverDefinition::document() const
 {
 	return impl->m_document;
+}
+
+bool SolverDefinition::divideSupport() const
+{
+	return impl->m_divideSupport;
 }
 
 SolverDefinitionTranslator SolverDefinition::buildTranslator() const

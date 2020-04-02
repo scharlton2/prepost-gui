@@ -23,6 +23,7 @@ ProjectPropertyBasicInfoWidget::ProjectPropertyBasicInfoWidget(QWidget* parent) 
 	connect(ui->csEditButton, SIGNAL(clicked()), this, SLOT(showSelectCoordinateSystemDialog()));
 	connect(ui->coEditButton, SIGNAL(clicked()), this, SLOT(showSetOffsetDialog()));
 	connect(ui->timeEditButton, SIGNAL(clicked()), this, SLOT(showTimeDialog()));
+	connect(ui->divideCheckBox, SIGNAL(toggled(bool)), this, SLOT(handleDivideChanged(bool)));
 }
 
 ProjectPropertyBasicInfoWidget::~ProjectPropertyBasicInfoWidget()
@@ -73,6 +74,13 @@ void ProjectPropertyBasicInfoWidget::setProjectData(ProjectData* data)
 	} else {
 		ui->resultWidget->setText(tr("No data"));
 	}
+	if (data->solverDefinition()->divideSupport()) {
+		ui->divideCheckBox->setEnabled(true);
+		ui->divideCheckBox->setChecked(data->mainfile()->divideSolution());
+	} else {
+		ui->divideCheckBox->setEnabled(false);
+		ui->divideCheckBox->setChecked(false);
+	}
 
 	updateCoordinateSystem();
 	updateCoordinateOffset();
@@ -103,6 +111,12 @@ void ProjectPropertyBasicInfoWidget::showTimeDialog()
 	mainFile->setCustomTimeFormat(dialog.customTimeFormat());
 
 	updateTimeString();
+}
+
+void ProjectPropertyBasicInfoWidget::handleDivideChanged(bool enabled)
+{
+	auto mainFile = m_projectData->mainfile();
+	mainFile->setDivideSolution(enabled);
 }
 
 void ProjectPropertyBasicInfoWidget::updateCoordinateSystem()

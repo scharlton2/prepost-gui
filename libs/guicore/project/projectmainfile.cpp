@@ -93,6 +93,7 @@ ProjectMainFile::Impl::Impl(ProjectMainFile *parent) :
 	m_coordinateSystem {nullptr},
 	m_zeroDateTime {},
 	m_timeFormat {TimeFormat::elapsed_SS_sec},
+	m_divideSolution {false},
 	m_offset {QPointF(0, 0)},
 	m_isModified {false},
 	m_parent {parent}
@@ -385,6 +386,9 @@ void ProjectMainFile::doLoadFromProjectMainFile(const QDomNode& node)
 	impl->m_timeFormat = TimeFormatUtil::fromString(f);
 	impl->m_customTimeFormat = element.attribute("customTimeFormat", "");
 
+	// divide solution
+	impl->m_divideSolution = iRIC::getBooleanAttribute(element, "divideSolution", false);
+
 	// coordinate offset
 	double offsetX = iRIC::getDoubleAttribute(node, "offsetX");
 	double offsetY = iRIC::getDoubleAttribute(node, "offsetY");
@@ -426,6 +430,8 @@ void ProjectMainFile::doSaveToProjectMainFile(QXmlStreamWriter& writer)
 	}
 	writer.writeAttribute("timeFormat", TimeFormatUtil::toString(impl->m_timeFormat));
 	writer.writeAttribute("customTimeFormat", impl->m_customTimeFormat);
+
+	iRIC::setBooleanAttribute(writer, "divideSolution", impl->m_divideSolution);
 
 	iRIC::setDoubleAttribute(writer, "offsetX", impl->m_offset.x());
 	iRIC::setDoubleAttribute(writer, "offsetY", impl->m_offset.y());
@@ -1049,6 +1055,16 @@ QString ProjectMainFile::customTimeFormat() const
 void ProjectMainFile::setCustomTimeFormat(const QString& format)
 {
 	impl->m_customTimeFormat = format;
+}
+
+bool ProjectMainFile::divideSolution() const
+{
+	return impl->m_divideSolution;
+}
+
+void ProjectMainFile::setDivideSolution(bool divide)
+{
+	impl->m_divideSolution = divide;
 }
 
 QPointF ProjectMainFile::offset() const

@@ -314,6 +314,10 @@ void SolverConsoleWindow::startSolverSilently()
 	QProcessEnvironment env = impl->m_projectData->mainWindow()->processEnvironment();
 	env.insert("iRIC_LANG", locale);
 
+	bool divide = impl->m_projectData->mainfile()->divideSolution();
+	if (divide) {
+		env.insert("IRIC_DIVIDE_RESULT", "1");
+	}
 	impl->m_process->setProcessEnvironment(env);
 
 	// create connections.
