@@ -39,6 +39,7 @@ void SolverConsoleWindow::Impl::init()
 {
 	m_window->setMinimumSize(480, 360);
 	m_projectData = nullptr;
+	m_projectDataItem = nullptr;
 	m_destructing = false;
 
 	m_window->exportLogAction = new QAction(SolverConsoleWindow::tr("&Export solver console log..."), m_window);
@@ -49,7 +50,7 @@ void SolverConsoleWindow::Impl::init()
 	m_console->setReadOnly(true);
 	m_console->setAutoFillBackground(true);
 	m_console->setWordWrapMode(QTextOption::WrapAnywhere);
-	m_console->setMaximumBlockCount(SolverConsoleWindowProjectDataItem::MAXLINES);
+	m_console->setUndoRedoEnabled(false);
 	QFont font("Courier");
 	font.setStyleHint(QFont::Courier);
 	font.setPointSize(9);
@@ -295,6 +296,13 @@ void SolverConsoleWindow::clear()
 {
 	impl->m_console->clear();
 	impl->m_projectDataItem->clear();
+}
+
+void SolverConsoleWindow::applyPreferenceSetting()
+{
+	if (impl->m_projectDataItem) {
+		impl->m_projectDataItem->loadExternalData();
+	}
 }
 
 void SolverConsoleWindow::startSolverSilently()

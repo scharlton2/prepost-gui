@@ -1432,6 +1432,7 @@ void iRICMainWindow::showPreferenceDialog()
 
 	setupNetworkProxy();
 	updateTmsListForAllWindows();
+	m_solverConsoleWindow->applyPreferenceSetting();
 }
 
 void iRICMainWindow::loadPlugins()
