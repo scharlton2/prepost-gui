@@ -147,7 +147,6 @@ void SolverConsoleWindow::startSolver()
 	// discard result, and save now.
 	try {
 		impl->m_projectData->mainfile()->clearResults();
-		impl->m_projectData->mainfile()->saveCgnsFile();
 	} catch (ErrorMessage& m) {
 		QMessageBox::warning(this, tr("Warning"), tr("Error occured. %1").arg(m));
 		return;
@@ -309,7 +308,7 @@ void SolverConsoleWindow::startSolverSilently()
 {
 	impl->m_projectData->mainfile()->postSolutionInfo()->close();
 
-	QString cgnsname = impl->m_projectData->mainfile()->cgnsManager()->inputFileName().c_str();
+	QString cgnsname = impl->m_projectData->mainfile()->cgnsManager()->mainFileName().c_str();
 
 	impl->m_process = new QProcess(this);
 	QString wd = impl->m_projectData->workDirectory();

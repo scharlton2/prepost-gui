@@ -171,7 +171,7 @@ void PreProcessorDataModel::importCalcConditionFromOtherProject(const QString& f
 	tmpProj.unzipFrom(fname);
 
 	PreProcessorWindow* pre = dynamic_cast<PreProcessorWindow*>(projectData()->mainWindow()->preProcessorWindow());
-	auto cgnsName = tmpProj.mainfile()->cgnsManager()->importFileFullName();
+	auto cgnsName = tmpProj.mainfile()->cgnsManager()->mainFileFullName();
 
 	bool ret = pre->importInputCondition(cgnsName.c_str());
 	if (! ret) {

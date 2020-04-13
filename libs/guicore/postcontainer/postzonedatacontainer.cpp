@@ -368,7 +368,7 @@ bool PostZoneDataContainer::loadStructuredGrid(const int fn, const int currentSt
 			cgsize_t dimVector[3];
 			cg_array_info(i, arrayname, &dataType, &dimension, dimVector);
 			if (QString(arrayname) == "GridCoordinatesPointers") {
-				if (postSolutionInfo()->resultSeparated()) {
+				if (postSolutionInfo()->divideSolution()) {
 					ier = cg_goto(fn, m_baseId, "Zone_t", m_zoneId, "GridCoordinates_t", 2, "end");
 					iterativeCoordinates = true;
 				} else {
@@ -713,7 +713,7 @@ bool PostZoneDataContainer::findSolutionId(const int fn, const int currentStep, 
 
 bool PostZoneDataContainer::getSolutionId(const int fn, const int currentStep, int* solId)
 {
-	if (postSolutionInfo()->resultSeparated()) {
+	if (postSolutionInfo()->divideSolution()) {
 		*solId = 1;
 		return true;
 	} else {
@@ -723,7 +723,7 @@ bool PostZoneDataContainer::getSolutionId(const int fn, const int currentStep, i
 
 bool PostZoneDataContainer::getCellSolutionId(const int fn, const int currentStep, int* solId)
 {
-	if (postSolutionInfo()->resultSeparated()) {
+	if (postSolutionInfo()->divideSolution()) {
 		*solId = 2;
 		return true;
 	} else {
@@ -733,7 +733,7 @@ bool PostZoneDataContainer::getCellSolutionId(const int fn, const int currentSte
 
 bool PostZoneDataContainer::getEdgeISolutionId(const int fn, const int currentStep, int* solId)
 {
-	if (postSolutionInfo()->resultSeparated()) {
+	if (postSolutionInfo()->divideSolution()) {
 		*solId = 3;
 		return true;
 	} else {
@@ -743,7 +743,7 @@ bool PostZoneDataContainer::getEdgeISolutionId(const int fn, const int currentSt
 
 bool PostZoneDataContainer::getEdgeJSolutionId(const int fn, const int currentStep, int* solId)
 {
-	if (postSolutionInfo()->resultSeparated()) {
+	if (postSolutionInfo()->divideSolution()) {
 		*solId = 4;
 		return true;
 	} else {
@@ -1156,7 +1156,7 @@ void PostZoneDataContainer::loadFromCgnsFile(const int fn, const int timeStep, b
 	ret = setupIndexData();
 
 	int step = timeStep;
-	if (postSolutionInfo()->resultSeparated()) {
+	if (postSolutionInfo()->divideSolution()) {
 		step = 0;
 	}
 

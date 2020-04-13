@@ -353,22 +353,14 @@ void Graph2dScatteredWindowDataModel::applySettings()
 void Graph2dScatteredWindowDataModel::updateData()
 {
 	int fn;
-	CgnsFileOpener* opener = nullptr;
-	fn = postSolutionInfo()->fileId();
-	if (fn == 0) {
-		// file not opened.
-		try {
-			opener = new CgnsFileOpener(resultCgnsFileName(), CG_MODE_READ);
-			fn = opener->fileId();
-		} catch (const std::runtime_error&) {
-			return;
-		}
+	auto sol = postSolutionInfo();
+	if (sol->divideSolution()) {
+		fn = sol->fileIdForStep();
+	} else {
+		fn = sol->fileId();
 	}
 
 	updateData(fn);
-
-	delete opener;
-
 	updateTitle();
 }
 

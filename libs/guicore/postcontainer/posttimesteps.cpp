@@ -26,7 +26,7 @@ void PostTimeSteps::loadFromCgnsFile(const int fn)
 {
 	QList<double> tmplist;
 
-	if (postSolutionInfo()->resultSeparated()) {
+	if (postSolutionInfo()->divideSolution()) {
 		auto container = postSolutionInfo()->baseIterativeValuesContainer();
 		if (container->baseContainers().size() != 0) {
 			auto baseContainer = container->baseContainers().at(0);
@@ -96,6 +96,7 @@ void PostTimeSteps::loadFromCgnsFile(const int fn)
 		emit stepsUpdated(fn);
 	}
 	return;
+
 ERRORMSG:
 	QMessageBox::critical(projectData()->mainWindow(), tr("Error"), tr("Error occured while loading calculation result."));
 }

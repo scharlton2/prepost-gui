@@ -67,7 +67,7 @@ void PreProcessorInputConditionDataItem::showDialog(bool readonly)
 {
 	// set default folder for filename input conditions.
 	InputConditionWidgetFilename::defaultFolder = LastIODirectory::get();
-	auto fname = projectData()->mainfile()->cgnsManager()->inputFileFullName();
+	auto fname = projectData()->mainfile()->cgnsManager()->mainFileFullName();
 	m_dialog->setFileName(fname.c_str());
 	// show dialog
 	m_dialog->setReadOnly(readonly);
@@ -96,7 +96,7 @@ bool PreProcessorInputConditionDataItem::importInputCondition(const QString& fil
 {
 	projectData()->mainfile()->postSolutionInfo()->close();
 
-	auto fname = projectData()->mainfile()->cgnsManager()->importFileFullName();
+	auto fname = projectData()->mainfile()->cgnsManager()->mainFileFullName();
 	m_dialog->setFileName(fname.c_str());
 
 	bool ret;
@@ -112,7 +112,7 @@ bool PreProcessorInputConditionDataItem::importInputCondition(const QString& fil
 
 bool PreProcessorInputConditionDataItem::exportInputCondition(const QString& filename)
 {
-	auto fname = projectData()->mainfile()->cgnsManager()->inputFileFullName();
+	auto fname = projectData()->mainfile()->cgnsManager()->mainFileFullName();
 	m_dialog->setFileName(fname.c_str());
 
 	QFileInfo finfo(filename);

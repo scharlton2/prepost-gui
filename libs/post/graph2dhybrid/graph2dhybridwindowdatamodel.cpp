@@ -1103,7 +1103,7 @@ bool Graph2dHybridWindowDataModel::setupInitialSetting()
 		return false;
 	}
 	// initially, setup physical value settings.
-	bool loaded = m_setting.init(postSolutionInfo(), resultCgnsFileName().c_str());
+	bool loaded = m_setting.init(postSolutionInfo());
 	if (! loaded) {
 		QMessageBox::critical(mainWindow(), tr("Error"), tr("Graph window setup fail. Calculation result is not loaded properly."));
 		return false;
@@ -1449,7 +1449,7 @@ void Graph2dHybridWindowDataModel::updateData()
 {
 	auto sinfo = postSolutionInfo();
 	int fn;
-	if (sinfo->resultSeparated()) {
+	if (sinfo->divideSolution()) {
 		fn = sinfo->fileIdForStep();
 	} else{
 		fn = sinfo->fileId();
@@ -1557,7 +1557,7 @@ CONDITIONERROR:
 
 void Graph2dHybridWindowDataModel::doLoadFromProjectMainFile(const QDomNode& node)
 {
-	bool ok = m_setting.init(postSolutionInfo(), resultCgnsFileName().c_str());
+	bool ok = m_setting.init(postSolutionInfo());
 	if (! ok) {
 		throw ErrorMessage("No solution found.");
 	}

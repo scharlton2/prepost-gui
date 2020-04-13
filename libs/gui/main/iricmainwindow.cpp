@@ -3,7 +3,6 @@
 #include "../factory/postprocessorwindowfactory.h"
 #include "../factory/postprocessorwindowfactory.h"
 #include "../misc/animationcontroller.h"
-#include "../misc/flushrequester.h"
 #include "../misc/iricmainwindowactionmanager.h"
 #include "../misc/iricmainwindowmiscdialogmanager.h"
 #include "../misc/newprojectsolverselectingdialog.h"
@@ -262,7 +261,7 @@ void iRICMainWindow::newProject(SolverDefinitionAbstract* solver)
 	}
 
 	m_mousePositionWidget->setProjectData(m_projectData);
-	m_projectData->mainfile()->createInputCgnsFile();
+	m_projectData->mainfile()->createMainCgnsFile();
 	setupForNewProjectData();
 	handleCgnsLoaded();
 

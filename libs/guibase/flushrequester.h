@@ -6,7 +6,9 @@
 class QString;
 class QWidget;
 
-class FlushRequester : public QObject
+#include "guibase_global.h"
+
+class GUIBASEDLL_EXPORT FlushRequester : public QObject
 {
 	Q_OBJECT
 

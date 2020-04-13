@@ -22,7 +22,7 @@ PostBaseIterativeSeriesDataContainer::PostBaseIterativeSeriesDataContainer(PostS
 bool PostBaseIterativeSeriesDataContainer::loadData(const int fn)
 {
 	m_data.clear();
-	if (postSolutionInfo()->resultSeparated()) {
+	if (postSolutionInfo()->divideSolution()) {
 		auto cont = postSolutionInfo()->baseIterativeValuesContainer();
 		auto bcontainer = cont->baseContainer(m_baseId);
 		if (bcontainer == nullptr) {return false;}

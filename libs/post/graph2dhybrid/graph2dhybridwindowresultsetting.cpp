@@ -89,12 +89,11 @@ Graph2dHybridWindowResultSetting::~Graph2dHybridWindowResultSetting()
 	delete m_colorSource;
 }
 
-bool Graph2dHybridWindowResultSetting::init(PostSolutionInfo* sol, const QString& cgnsFilename)
+bool Graph2dHybridWindowResultSetting::init(PostSolutionInfo* sol)
 {
 	int fn, ier;
-	CgnsFileOpener* opener = nullptr;
 
-	if (sol->resultSeparated()) {
+	if (sol->divideSolution()) {
 		fn = sol->fileIdForStep();
 	} else {
 		fn = sol->fileId();
@@ -103,7 +102,6 @@ bool Graph2dHybridWindowResultSetting::init(PostSolutionInfo* sol, const QString
 	int nbases;
 	ier = cg_nbases(fn, &nbases);
 	if (ier != 0) {
-		delete opener;
 		return false;
 	}
 
@@ -204,8 +202,6 @@ bool Graph2dHybridWindowResultSetting::init(PostSolutionInfo* sol, const QString
 			m_dataTypeInfos.append(ti);
 		}
 	}
-
-	delete opener;
 
 	setupMap();
 	setupPolyLines();

@@ -40,7 +40,7 @@ public:
 	ProjectMainFile(ProjectData* parent);
 	virtual ~ProjectMainFile();
 	/// Create first Cgns file.
-	void createInputCgnsFile();
+	void createMainCgnsFile();
 	/// Initializes for the specified solver definition.
 	void initForSolverDefinition();
 	/// Load solver information from file
@@ -78,8 +78,6 @@ public:
 	PostSolutionInfo* postSolutionInfo() const;
 	bool hasResults();
 	QStringList containedFiles() override;
-	std::string resultCgnsFileName() const override;
-	std::string resultCgnsFileNameForStep(int step) const override;
 	/// Clear the results stored in the current CGNS file.
 	void clearResults();
 	/// Save current cgns file.
@@ -163,8 +161,8 @@ private:
 	void doLoadFromProjectMainFile(const QDomNode& node) override;
 	void doSaveToProjectMainFile(QXmlStreamWriter& writer) override;
 
-	bool loadInputCgnsFile();
-	bool loadOutputCgnsFile();
+	bool loadInputData();
+	bool LoadResultData();
 
 	ProjectData* projectData() const override;
 	QString relativeSubPath() const override;

@@ -118,10 +118,10 @@ bool PostZonePointSeriesDataContainer::loadData(const int fn, GridLocation_t loc
 	char solname[32];
 	GridLocation_t loc;
 
-	if (postSolutionInfo()->resultSeparated()) {
+	if (postSolutionInfo()->divideSolution()) {
 		int numTimes = projectData()->mainfile()->postSolutionInfo()->timeSteps()->timesteps().length();
 		for (int i = 0; i < numTimes; ++i) {
-			CgnsFileOpener o(resultCgnsFileNameForStep(i), CG_MODE_READ);
+			CgnsFileOpener o(postSolutionInfo()->resultCgnsFileNameForStep(i), CG_MODE_READ);
 			ier = cg_nsols(o.fileId(), m_baseId, m_zoneId, &numSols);
 			if (ier != 0) {return false;}
 
@@ -150,6 +150,7 @@ bool PostZonePointSeriesDataContainer::loadData(const int fn, GridLocation_t loc
 			m_data.push_back(value);
 		}
 	}
+	return true;
 }
 
 bool PostZonePointSeriesDataContainer::loadData(const QString& name, bool magnitude, double* value)

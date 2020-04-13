@@ -6,7 +6,6 @@
 #include "../project/projectcgnsmanager.h"
 #include "../solverdef/solverdefinition.h"
 #include "../solverdef/solverdefinitiongridtype.h"
-#include "../solverdef/solverdefinitiongridtype.h"
 #include "exporter/postzonedatacsvexporter.h"
 #include "exporter/postzonedatashapeexporter.h"
 #include "exporter/postzonedatatpoexporter.h"
@@ -22,10 +21,9 @@
 #include "postsolutioninfo.h"
 #include "posttimesteps.h"
 #include "postzonedatacontainer.h"
-// #include "private/postsolutioninfo_buildcopyfileandopenthread.h"
-// #include "private/postsolutioninfo_copyresulttooutputandopenthread.h"
 #include "private/postsolutioninfo_updateifneededthread.h"
 
+#include <guibase/flushrequester.h>
 #include <guibase/widget/itemselectingdialog.h>
 #include <guibase/widget/waitdialog.h>
 #include <misc/lastiodirectory.h>
@@ -40,13 +38,11 @@
 #include <QMessageBox>
 #include <QProgressDialog>
 #include <QThread>
-#include <QTime>
-#include <QTimerEvent>
-#include <QVector2D>
 #include <QXmlStreamWriter>
 
 #include <vtkStructuredGrid.h>
 #include <memory>
+#include <sstream>
 #include <string>
 #include <vector>
 
@@ -83,7 +79,6 @@ PostSolutionInfo::PostSolutionInfo(ProjectMainFile* parent) :
 	m_exportFormat {PostDataExportDialog::Format::VTKASCII},
 	m_disableCalculatedResult {false},
 	m_particleExportPrefix {"Particle_"},
-	m_resultSeparated {true},
 	m_loadedElement {nullptr}
 {}
 
@@ -164,7 +159,7 @@ bool PostSolutionInfo::setCurrentStep(unsigned int step, int fn)
 	wholetime.start();
 
 	int tmpfn = fn;
-	if (fn == 0 || m_resultSeparated) {
+	if (fn == 0 || mainFile()->divideSolution()) {
 		bool ok = openForStep();
 		if (ok) {
 			tmpfn = m_openerForStep->fileId();
@@ -212,7 +207,7 @@ bool PostSolutionInfo::setCurrentStep(unsigned int step, int fn)
 
 void PostSolutionInfo::informStepsUpdated()
 {
-	if (resultSeparated()) {
+	if (divideSolution()) {
 		int fid = 0;
 		bool ok = openForStep();
 		if (ok) {fid = m_openerForStep->fileId();}
@@ -364,7 +359,7 @@ bool PostSolutionInfo::setupBaseIterativeResults(int fn, int baseId)
 	if (ier != 0) {return false;}
 
 	int step = currentStep();
-	if (m_resultSeparated) {
+	if (divideSolution()) {
 		step = 0;
 	}
 
@@ -427,46 +422,32 @@ ProjectMainFile* PostSolutionInfo::mainFile() const
 	return dynamic_cast<ProjectMainFile*> (parent());
 }
 
-void PostSolutionInfo::checkIfResultSeparated(int fn)
+void PostSolutionInfo::loadDividedBaseIterativeData()
 {
-	if (fn != 0) {
-		int ier;
-		int narrays = 0;
+	if (! divideSolution()) {return;}
 
-		ier = cg_goto(fn, 1, "Zone_t", 1, "ZoneIterativeData", 0, "end");
-		if (ier == 0) {
-			ier = cg_narrays(&narrays);
-		}
+	if (m_baseIterativeValuesContainer == nullptr) {
+		m_baseIterativeValuesContainer = new PostBaseIterativeValuesContainer(projectData());
+		m_baseIterativeValuesContainer->load();
+	}
+	UpdateIfNeededThread thread(m_baseIterativeValuesContainer);
+	thread.start();
 
-		m_resultSeparated = ! (narrays > 0);
-	} else {
-		m_resultSeparated = true;
+	WaitDialog dialog(iricMainWindow());
+	dialog.setMessage(tr("Reading time values..."));
+	dialog.showProgressBar();
+	dialog.setProgress(0);
+	dialog.show();
+
+	while (! thread.isFinished()) {
+		dialog.setProgress(thread.progress());
+		QThread::msleep(100);
+		qApp->processEvents();
 	}
 
-	if (m_resultSeparated) {
-		if (m_baseIterativeValuesContainer == nullptr) {
-			m_baseIterativeValuesContainer = new PostBaseIterativeValuesContainer(projectData());
-			m_baseIterativeValuesContainer->load();
-		}
-		UpdateIfNeededThread thread(m_baseIterativeValuesContainer);
-		thread.start();
-
-		WaitDialog dialog(iricMainWindow());
-		dialog.setMessage(tr("Reading time values..."));
-		dialog.showProgressBar();
-		dialog.setProgress(0);
-		dialog.show();
-
-		while (! thread.isFinished()) {
-			dialog.setProgress(thread.progress());
-			QThread::msleep(100);
-			qApp->processEvents();
-		}
-
-		int invalidDataId = thread.invalidDataId();
-		if (invalidDataId != -1) {
-			QMessageBox::warning(iricMainWindow(), tr("Warning"), tr("Reading time value from result/Solution%1.cgn failed. You can visualize calculation result in Solution1.cgn to Solution%2.cgn.").arg(invalidDataId + 1).arg(invalidDataId));
-		}
+	int invalidDataId = thread.invalidDataId();
+	if (invalidDataId != -1) {
+		QMessageBox::warning(iricMainWindow(), tr("Warning"), tr("Reading time value from result/Solution%1.cgn failed. You can visualize calculation result in Solution1.cgn to Solution%2.cgn.").arg(invalidDataId + 1).arg(invalidDataId));
 	}
 }
 
@@ -511,68 +492,27 @@ void PostSolutionInfo::handleSolverFinished()
 {
 	close();
 
-	/*
-	mainFile()->cgnsManager()->deleteCopyFile();
-
-	CopyResultToOutputAndOpenThread openThread(this);
-	openThread.start();
-
-	WaitDialog dialog(iricMainWindow());
-	dialog.setMessage(tr("Reading time values..."));
-	dialog.showProgressBar();
-	dialog.setProgress(0);
-	dialog.show();
-
-	while (! openThread.isFinished()) {
-		dialog.setProgress(openThread.progress());
-		QThread::msleep(100);
-		qApp->processEvents();
-	}
-
-	int invalidDataId = openThread.invalidDataId();
-	if (invalidDataId != 0) {
-		QMessageBox::warning(iricMainWindow(), tr("Warning"), tr("Reading time value from result/Solution%1.cgn failed. You can visualize calculation result in Solution1.cgn to Solution%2.cgn.").arg(invalidDataId).arg(invalidDataId - 1));
-		return;
-	}
-	if (openThread.result() == CopyResultToOutputAndOpenThread::OpenError) {
-		QMessageBox::critical(iricMainWindow(), tr("Error"), tr("Opening output.cgn failed."));
-		return;
-	}
-	*/
+	QFile::remove(flushCopyCgnsFileName().c_str());
+	m_flushIndex = 0;
 
 	load(false);
 }
 
 void PostSolutionInfo::handleReloadCalculationResult()
 {
+	if (! iricMainWindow()->isSolverRunning()) {return;}
 	close();
-/*
-	BuildCopyFileAndOpenThread openThread(this);
-	openThread.start();
 
-	WaitDialog dialog(iricMainWindow());
-	dialog.setMessage(tr("Reading time values..."));
-	dialog.showProgressBar();
-	dialog.setProgress(0);
-	dialog.show();
+	if (! divideSolution()) {
+		QDir dir(projectData()->workDirectory());
+		dir.mkdir("tmp");
 
-	while (! openThread.isFinished()) {
-		dialog.setProgress(openThread.progress());
-		QThread::msleep(100);
-		qApp->processEvents();
+		QFile::remove(resultCgnsFileName().c_str());
+		++ m_flushIndex;
+		bool ok = FlushRequester::requestFlush(projectData()->workDirectory(), m_flushIndex, iricMainWindow());
+		if (! ok) {return;}
 	}
 
-	int invalidDataId = openThread.invalidDataId();
-	if (invalidDataId != 0) {
-		QMessageBox::warning(iricMainWindow(), tr("Warning"), tr("Reading time value from result/Solution%1.cgn failed. You can visualize calculation result in Solution1.cgn to Solution%2.cgn.").arg(invalidDataId).arg(invalidDataId - 1));
-		return;
-	}
-	if (openThread.result() == CopyResultToOutputAndOpenThread::OpenError) {
-		auto cgnsManager = mainFile()->cgnsManager();
-		QMessageBox::critical(iricMainWindow(), tr("Error"), tr("Opening %1 failed.").arg(cgnsManager->copyFileName().c_str()));
-		return;
-	}
-*/
 	load(false);
 }
 
@@ -584,19 +524,14 @@ bool PostSolutionInfo::load(bool moveToFirst)
 	}
 	loading = true;
 
-	QFile f(resultCgnsFileName().c_str());
-	int fid = 0;
-	if (f.exists()) {
-		bool ok = open();
-		if (! ok) {
-			// error occured while opening.
-			loading = false;
-			QMessageBox::warning(projectData()->mainWindow(), tr("Warning"), tr("Loading calculation result for visualization failed."));
-			return false;
-		} else {
-			fid = m_opener->fileId();
-		}
+	bool ok = open();
+	if (! ok) {
+		QMessageBox::warning(projectData()->mainWindow(), tr("Warning"), tr("Loading calculation result for visualization failed. Sorry, calculation result is lost."));
+		mainFile()->clearResults();
+		loading = false;
+		return false;
 	}
+
 	PostAbstractSteps* steps = nullptr;
 	if (m_timeSteps != nullptr) {
 		steps = m_timeSteps;
@@ -605,14 +540,14 @@ bool PostSolutionInfo::load(bool moveToFirst)
 		steps = m_iterationSteps;
 	}
 
-	checkIfResultSeparated(fid);
+	loadDividedBaseIterativeData();
 	if (moveToFirst) {
 		steps->blockSignals(true);
-		steps->loadFromCgnsFile(fid);
+		steps->loadFromCgnsFile(fileId());
 		steps->blockSignals(false);
 		setCurrentStep(0);
 	} else {
-		m_timeSteps->checkStepsUpdate(fid);
+		steps->loadFromCgnsFile(fileId());
 	}
 
 	loading = false;
@@ -641,6 +576,7 @@ void PostSolutionInfo::clearResults()
 		int progress, invalidId;
 		m_baseIterativeValuesContainer->updateIfNeeded(&progress, &invalidId);
 	}
+	m_flushIndex = 0;
 	emit updated();
 }
 
@@ -864,7 +800,7 @@ void PostSolutionInfo::close()
 	delete m_opener;
 	m_opener = nullptr;
 
-	if (m_resultSeparated) {
+	if (divideSolution()) {
 		delete m_openerForStep;
 	}
 	m_openerForStep = nullptr;
@@ -896,9 +832,34 @@ void PostSolutionInfo::setParticleExportPrefix(const QString& prefix)
 	m_particleExportPrefix = prefix;
 }
 
-bool PostSolutionInfo::resultSeparated() const
+bool PostSolutionInfo::divideSolution() const
 {
-	return m_resultSeparated;
+	return mainFile()->divideSolution();
+}
+
+std::string PostSolutionInfo::resultCgnsFileName() const
+{
+	if (iricMainWindow()->isSolverRunning()) {
+		return flushCopyCgnsFileName();
+	} else {
+		return mainFile()->cgnsManager()->mainFileFullName();
+	}
+}
+
+std::string PostSolutionInfo::flushCopyCgnsFileName() const
+{
+	QDir dir(projectData()->workDirectory());
+	auto fname = dir.absoluteFilePath(QString("tmp/Case1.cgn.copy"));
+	fname.append(QString::number(m_flushIndex));
+	return iRIC::toStr(fname);
+}
+
+std::string PostSolutionInfo::resultCgnsFileNameForStep(int step) const
+{
+	std::ostringstream ss;
+	ss << "result/Solution" << (step + 1) << ".cgn";
+	QDir dir(mainFile()->workDirectory());
+	return iRIC::toStr(dir.absoluteFilePath(ss.str().c_str()));
 }
 
 int PostSolutionInfo::fileId() const
@@ -1144,7 +1105,7 @@ bool PostSolutionInfo::open()
 
 bool PostSolutionInfo::openForStep()
 {
-	if (! m_resultSeparated) {
+	if (! divideSolution()) {
 		bool ok = open();
 		if (! ok) {return false;}
 

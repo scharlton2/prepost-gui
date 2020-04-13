@@ -51,11 +51,8 @@ InputConditionDialog::InputConditionDialog(SolverDefinition* solverDef, const QL
 InputConditionDialog::~InputConditionDialog()
 {
 	delete ui;
-	m_containerSet->clear();
 	delete m_containerSet;
-	m_containerSetBackup->clear();
 	delete m_containerSetBackup;
-	m_widgetSet->clear();
 	delete m_widgetSet;
 }
 
@@ -234,6 +231,8 @@ void InputConditionDialog::accept()
 		QMessageBox::critical(parentWidget(), tr("Error"), tr("The solver is running currently, so you can not save calculation condition. Please press Cancel button."));
 		return;
 	}
+	m_containerSetBackup->copyValues(m_containerSet);
+	m_modified = false;
 	QDialog::accept();
 }
 
@@ -268,15 +267,4 @@ void InputConditionDialog::setReadOnly(bool readonly)
 void InputConditionDialog::checkImportSourceUpdate()
 {
 	bool ret = m_widgetSet->checkImportSourceUpdate();
-
-	if (! ret) {return;}
-
-	int fn, ier;
-	ier = cg_open(iRIC::toStr(m_fileName).c_str(), CG_MODE_MODIFY, &fn);
-	if (ier != 0) {
-		QMessageBox::critical(parentWidget(), tr("Error"), tr("Error occured while saving."));
-		return;
-	}
-	save(fn);
-	cg_close(fn);
 }

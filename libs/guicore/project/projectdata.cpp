@@ -422,7 +422,7 @@ ERROR:
 
 bool ProjectData::hasHugeCgns() const
 {
-	auto outputName = m_mainfile->cgnsManager()->outputFileFullName();
+	auto outputName = m_mainfile->cgnsManager()->mainFileFullName();
 	QFileInfo finfo(outputName.c_str());
 
 	return (finfo.size() > 2000000000);

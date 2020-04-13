@@ -25,6 +25,7 @@ class GUICOREDLL_EXPORT InputConditionContainerSet : public QObject
 
 public:
 	InputConditionContainerSet();
+	~InputConditionContainerSet();
 	void clear();
 	void setup(const QDomNode& condNode, const SolverDefinition& def, const SolverDefinitionTranslator &t, bool forBC = false);
 	void setBCProperty(const std::string& bcname, int bcindex);

@@ -15,42 +15,11 @@ public:
 	ProjectCgnsManager(ProjectMainFile* mainFile);
 	~ProjectCgnsManager();
 
-	// The name of CGNS file that handles input data
-	std::string inputFileName() const;
-	std::string inputFileFullName() const;
+	std::string mainFileName() const;
+	std::string mainFileFullName() const;
+	std::string mainTmpFileFullName() const;
 
-	// The name of tmp file that cgnslib creates while saving input file.
-	std::string inputTmpFileFullName() const;
-	// The name of CGNS file that contains calculation result data
-	std::string outputFileName() const;
-	std::string outputFileFullName() const;
-
-	// Case1.cgn
-	std::string oldOutputFileName() const;
-	std::string oldOutputFileFullName() const;
-
-	// The name of CGNS file that preprocessor should import input data from. When inputFileName() exists, it returns inputFileName(), and if not, outputFileName().
-	std::string importFileName() const;
-	std::string importFileFullName() const;
-	// The name of CGNS file that post-processors should load result from. When the solver is running it is tmpFileName(), and when not running outputFileName().
-	std::string resultFileName() const;
-	std::string resultFileFullName() const;
-
-	std::string resultFileForStep(int step) const;
-
-	bool renameOldOutputToOutput();
-	bool copyOutputToInput();
-
-	bool deleteInputFile();
-	bool deleteInputTmpFile();
-	bool deleteOutputFile();
-	bool deleteOldOutputFile();
 	bool deleteResultFolder();
-
-	bool inputFileExists() const;
-	bool inputTmpFileExists() const;
-	bool outputFileExists() const;
-	bool oldOutputFileExists() const;
 
 	QStringList containedFiles() const;
 

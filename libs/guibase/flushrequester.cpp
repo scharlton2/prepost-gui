@@ -1,7 +1,6 @@
 #include "flushrequester.h"
+#include "widget/waitdialog.h"
 #include "private/cancelhandler.h"
-
-#include <guibase/widget/waitdialog.h>
 
 #include <QCoreApplication>
 #include <QDir>

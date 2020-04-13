@@ -293,7 +293,6 @@ HEADERS += gui_api.h \
            main/iricmainwindow.h \
            main/iricmergablecommands.h \
            misc/animationcontroller.h \
-           misc/flushrequester.h \
            misc/installertool.h \
            misc/iricmainwindowaboutdialog.h \
            misc/iricmainwindowactionmanager.h \
@@ -335,7 +334,6 @@ HEADERS += gui_api.h \
            verification/verificationsettingdialog.h \
            main/private/iricmainwindow_calculatedresultmanager.h \
            main/private/iricmainwindow_snapshotsaver.h \
-           misc/private/cancelhandler.h \
            pref/private/preferencepageriversurveyfractionadddialog.h \
            pref/private/preferencepagetmsadddialog.h \
            pref/private/preferencepagewebcsvtileadddialog.h \
@@ -383,7 +381,6 @@ SOURCES += continuoussnapshot/continuoussnapshotconfirmpage.cpp \
            factory/postprocessorwindowfactory.cpp \
            main/iricmainwindow.cpp \
            misc/animationcontroller.cpp \
-           misc/flushrequester.cpp \
            misc/installertool.cpp \
            misc/iricmainwindowaboutdialog.cpp \
            misc/iricmainwindowactionmanager.cpp \
@@ -424,7 +421,6 @@ SOURCES += continuoussnapshot/continuoussnapshotconfirmpage.cpp \
            verification/verificationsettingdialog.cpp \
            main/private/iricmainwindow_calculatedresultmanager.cpp \
            main/private/iricmainwindow_snapshotsaver.cpp \
-           misc/private/cancelhandler.cpp \
            pref/private/preferencepageriversurveyfractionadddialog.cpp \
            pref/private/preferencepagetmsadddialog.cpp \
            pref/private/preferencepagewebcsvtileadddialog.cpp

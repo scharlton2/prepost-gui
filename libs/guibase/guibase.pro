@@ -86,6 +86,7 @@ HEADERS += arrowsettingcontainer.h \
            comboboxtool.h \
            currentpathchanger.h \
            cursorchanger.h \
+           flushrequester.h \
            graphicsmisc.h \
            guibase_global.h \
            iricactivecellfilter.h \
@@ -153,6 +154,7 @@ HEADERS += arrowsettingcontainer.h \
            polyline/polylinepushvertexcommand.h \
            polyline/polylineremovevertexcommand.h \
            polyline/polylineutil.h \
+           private/cancelhandler.h \
            timeformat/timeformat.h \
            timeformat/timeformateditwidget.h \
            timeformat/timeformatutil.h \
@@ -225,6 +227,7 @@ SOURCES += arrowsettingcontainer.cpp \
            comboboxtool.cpp \
            currentpathchanger.cpp \
            cursorchanger.cpp \
+           flushrequester.cpp \
            graphicsmisc.cpp \
            iricactivecellfilter.cpp \
            irictoolbar.cpp \
@@ -289,6 +292,7 @@ SOURCES += arrowsettingcontainer.cpp \
            polyline/polylinepushvertexcommand.cpp \
            polyline/polylineremovevertexcommand.cpp \
            polyline/polylineutil.cpp \
+           private/cancelhandler.cpp \
            timeformat/timeformateditwidget.cpp \
            timeformat/timeformatutil.cpp \
            vtktool/vtkactorpolydatamapperpair.cpp \

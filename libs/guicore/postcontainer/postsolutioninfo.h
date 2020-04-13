@@ -81,7 +81,9 @@ public:
 	const QString& particleExportPrefix() const;
 	void setExportSetting(const PostExportSetting& setting);
 	void setParticleExportPrefix(const QString& prefix);
-	bool resultSeparated() const;
+	bool divideSolution() const;
+
+	std::string resultCgnsFileNameForStep(int step) const;
 
 	/// File ID that can be used with cgnslib functions.
 	int fileId() const;
@@ -115,11 +117,13 @@ signals:
 	void zoneList3DUpdated();
 
 private:
+	std::string resultCgnsFileName() const;
+	std::string flushCopyCgnsFileName() const;
 	bool stepsExist() const;
 	void setupZoneDataContainers(int fn);
 	ProjectMainFile* mainFile() const;
 
-	void checkIfResultSeparated(int fn);
+	void loadDividedBaseIterativeData();
 
 	void loadCalculatedResult();
 	void clearCalculatedResults(QMap<std::string, std::vector<PostCalculatedResult*> >* results);
@@ -165,7 +169,7 @@ private:
 
 	PostExportSetting m_exportSetting;
 	QString m_particleExportPrefix;
-	bool m_resultSeparated;
+	int m_flushIndex;
 
 	QDomElement* m_loadedElement;
 

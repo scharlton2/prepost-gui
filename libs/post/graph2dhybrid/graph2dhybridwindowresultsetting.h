@@ -179,7 +179,7 @@ public:
 	// constructor
 	Graph2dHybridWindowResultSetting();
 	~Graph2dHybridWindowResultSetting();
-	bool init(PostSolutionInfo* sol, const QString& cgnsFilename);
+	bool init(PostSolutionInfo* sol);
 	bool settingExists();
 
 	QList<Graph2dWindowDataItem*> setupItems(Graph2dHybridWindowResultGroupDataItem* gItem) const ;

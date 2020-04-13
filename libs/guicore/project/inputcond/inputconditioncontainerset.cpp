@@ -24,6 +24,11 @@
 InputConditionContainerSet::InputConditionContainerSet()
 {}
 
+InputConditionContainerSet::~InputConditionContainerSet()
+{
+	clear();
+}
+
 void InputConditionContainerSet::clear()
 {
 	m_integers.clear();

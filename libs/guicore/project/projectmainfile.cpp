@@ -23,6 +23,7 @@
 #include <cs/coordinatesystemselectdialog.h>
 #include <guibase/timeformat/timeformatutil.h>
 #include <misc/errormessage.h>
+#include <misc/filesystemfunction.h>
 #include <misc/iricundostack.h>
 #include <misc/lastiodirectory.h>
 #include <misc/stringtool.h>
@@ -64,20 +65,16 @@ void copyCgnsFile(const QString& from, const QString& to)
 	// copy the CGNS itself
 	QFile::copy(from, to);
 
-	// copy linked file like Solution1.cgn, Solution2.cgn, ...
+
+	// copy Solution1.cgn, Solution2.cgn, ...
 	QFileInfo from_finfo(from);
 	QFileInfo to_finfo(to);
 
-	QStringList nameFilters;
-	nameFilters.append("*.cgn");
-	nameFilters.append("*.cgns");
-	QRegExp re(from_finfo.baseName() + "_Solution[\\d]+");
-	auto files = from_finfo.absoluteDir().entryList(nameFilters, QDir::Files);
-	for (auto f : files) {
-		QFileInfo f_info(f);
-		if (re.indexIn(f_info.baseName()) != -1) {
-			QFile::copy(from_finfo.absoluteDir().filePath(f), to_finfo.absoluteDir().filePath(f));
-		}
+	auto from_result = from_finfo.dir().absoluteFilePath("result");
+	auto to_result = to_finfo.dir().absoluteFilePath("result");
+
+	if (QFile(from_result).exists()) {
+		iRIC::copyDirRecursively(from_result, to_result);
 	}
 }
 
@@ -232,9 +229,9 @@ void ProjectMainFile::setModified(bool modified)
 	impl->m_isModified = modified;
 }
 
-void ProjectMainFile::createInputCgnsFile()
+void ProjectMainFile::createMainCgnsFile()
 {
-	auto fname = impl->m_cgnsManager->inputFileFullName();
+	auto fname = impl->m_cgnsManager->mainFileFullName();
 	ProjectCgnsFile::createNewFile(fname.c_str(), 2, 2);
 	ProjectCgnsFile::writeSolverInfo(fname.c_str(), &(projectData()->solverDefinition()->abstract()));
 }
@@ -497,7 +494,7 @@ QStringList ProjectMainFile::containedFiles()
 
 bool ProjectMainFile::importCgnsFile(const QString& fname)
 {
-	QString to = impl->m_cgnsManager->resultFileFullName().c_str();
+	QString to = impl->m_cgnsManager->mainFileFullName().c_str();
 	copyCgnsFile(fname, to);
 
 	std::string solverName;
@@ -521,46 +518,30 @@ bool ProjectMainFile::importCgnsFile(const QString& fname)
 	return true;
 }
 
-std::string ProjectMainFile::resultCgnsFileName() const
-{
-	return impl->m_cgnsManager->resultFileFullName();
-}
-
-std::string ProjectMainFile::resultCgnsFileNameForStep(int step) const
-{
-	return impl->m_cgnsManager->resultFileForStep(step);
-}
-
 bool ProjectMainFile::loadCgnsFile()
 {
-	if (! impl->m_cgnsManager->renameOldOutputToOutput()) {return false;}
-	if (! impl->m_cgnsManager->copyOutputToInput()) {return false;}
-
-	if (! loadInputCgnsFile()) {return false;}
-	if (! loadOutputCgnsFile()) {return false;}
+	if (! loadInputData()) {return false;}
+	if (! LoadResultData()) {return false;}
 
 	emit cgnsFileLoaded();
 	return true;
 }
 
-bool ProjectMainFile::loadInputCgnsFile()
+bool ProjectMainFile::loadInputData()
 {
 	try {
-		auto fname = impl->m_cgnsManager->importFileFullName();
+		auto fname = impl->m_cgnsManager->mainFileFullName();
 		CgnsFileOpener opener(fname, CG_MODE_MODIFY);
 
 		m_projectData->mainWindow()->loadFromCgnsFile(opener.fileId());
-		ResultRemover::removeResults(opener.fileId());
-		cg_configure(CG_CONFIG_COMPRESS, reinterpret_cast<void*>(1));
-
 		return true;
 	} catch (const std::runtime_error&) {
-		QMessageBox::critical(m_projectData->mainWindow(), tr("Error"), tr("Error occured while opening %1 in project file.").arg(impl->m_cgnsManager->importFileName().c_str()));
+		QMessageBox::critical(m_projectData->mainWindow(), tr("Error"), tr("Error occured while opening %1 in project file.").arg(impl->m_cgnsManager->mainFileName().c_str()));
 		return false;
 	}
 }
 
-bool ProjectMainFile::loadOutputCgnsFile()
+bool ProjectMainFile::LoadResultData()
 {
 	return impl->m_postSolutionInfo->load(true);
 }
@@ -585,24 +566,31 @@ bool ProjectMainFile::saveCgnsFile(bool inhibitWarning)
 	if (mainW->isGridEdited() && impl->m_postSolutionInfo->hasResults() && ! inhibitWarning) {
 		int ret = QMessageBox::warning(mainW, tr("Warning"), tr("The grids are edited. When you save, the calculation result is discarded."), QMessageBox::Ok | QMessageBox::Cancel, QMessageBox::Cancel);
 		if (ret == QMessageBox::Cancel) {return false;}
-		bool ok = impl->m_cgnsManager->deleteOutputFile();
+		bool ok = impl->m_cgnsManager->deleteResultFolder();
 		if (! ok) {
 			QMessageBox::warning(mainW, tr("Warning"), tr("Deleting output.cgn failed. Maybe it is opened from other programs."));
 			return false;
 		}
 	}
 
-	try {
-		CgnsFileOpener opener(impl->m_cgnsManager->inputFileFullName(), CG_MODE_MODIFY);
-		saveToCgnsFile(opener.fileId());
-		cg_configure(CG_CONFIG_COMPRESS, reinterpret_cast<void*>(1));
-	} catch (ErrorMessage& m) {
-		QMessageBox::warning(mainW, tr("Error"), tr("%1 Saving project file failed.").arg(m));
-		return false;
-	} catch (...) {
-		QMessageBox::warning(mainW, tr("Error"), tr("Saving project file failed."));
-		return false;
+	int fileid, ier;
+	ier = cg_open(impl->m_cgnsManager->mainFileFullName().c_str(), CG_MODE_MODIFY, &fileid);
+	if (ier != 0) {
+		// main file is broken. create new one.
+		int ret = QMessageBox::warning(mainW, tr("Warning"), tr("Project CGNS file is broken. The calculation result is discarded."), QMessageBox::Ok | QMessageBox::Cancel, QMessageBox::Cancel);
+		createMainCgnsFile();
+
+		ier = cg_open(impl->m_cgnsManager->mainFileFullName().c_str(), CG_MODE_MODIFY, &fileid);
+		if (ier != 0) {
+			// backup file is broken.
+			QMessageBox::warning(mainW, tr("Error"), tr("Saving project file failed."));
+			return false;
+		}
 	}
+	saveToCgnsFile(fileid);
+	cg_configure(CG_CONFIG_COMPRESS, reinterpret_cast<void*>(1));
+	cg_close(fileid);
+
 	return true;
 }
 
@@ -636,17 +624,21 @@ const std::vector<vtkRenderer*>& ProjectMainFile::renderers() const
 void ProjectMainFile::clearResults()
 {
 	impl->m_postSolutionInfo->close();
-	bool ok;
-	ok = impl->m_cgnsManager->deleteOutputFile();
-	if (! ok) {
-		QMessageBox::critical(iricMainWindow(), tr("Error"), tr("Deleting \"output.cgn\" failed."));
-		return;
-	}
-	ok = impl->m_cgnsManager->deleteResultFolder();
+	bool ok = impl->m_cgnsManager->deleteResultFolder();
 	if (! ok) {
 		QMessageBox::critical(iricMainWindow(), tr("Error"), tr("Deleting \"result\" folder failed."));
 		return;
 	}
+	createMainCgnsFile();
+
+	auto name = impl->m_cgnsManager->mainFileFullName();
+	int fn, ier;
+
+	ier = cg_open(name.c_str(), CG_MODE_MODIFY, &fn);
+	if (ier != 0) {return;}
+	saveToCgnsFile(fn);
+	cg_close(fn);
+
 	impl->m_postSolutionInfo->clearResults();
 	projectData()->mainWindow()->clearSolverConsoleLog();
 }
