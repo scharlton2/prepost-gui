@@ -51,35 +51,35 @@ inline my_vector& operator/=(my_vector& lhs, const double rhs) {
 }
 
 inline my_vector operator+(const my_vector& lhs, const my_vector& rhs) {
-	return my_vector(lhs) += rhs;
+	return my_vector(lhs) + rhs;
 }
 
 inline my_vector operator-(const my_vector& lhs, const my_vector& rhs) {
-	return my_vector(lhs) -= rhs;
+	return my_vector(lhs) - rhs;
 }
 
 inline my_vector operator*(const my_vector& lhs, const my_vector& rhs) {
-	return my_vector(lhs) *= rhs;
+	return my_vector(lhs) * rhs;
 }
 
 inline my_vector operator/(const my_vector& lhs, const my_vector& rhs) {
-	return my_vector(lhs) /= rhs;
+	return my_vector(lhs) / rhs;
 }
 
-inline my_vector operator+(const my_vector& lhs, const double rhs) {
-	return my_vector(lhs) += rhs;
+inline my_vector operator+(const my_vector& lhs, double rhs) {
+	return my_vector(lhs) + rhs;
 }
 
-inline my_vector operator-(const my_vector& lhs, const double rhs) {
-	return my_vector(lhs) -= rhs;
+inline my_vector operator-(const my_vector& lhs, double rhs) {
+	return my_vector(lhs) - rhs;
 }
 
-inline my_vector operator*(const my_vector& lhs, const double rhs) {
-	return my_vector(lhs) *= rhs;
+inline my_vector operator*(const my_vector& lhs, double rhs) {
+	return my_vector(lhs) * rhs;
 }
 
-inline my_vector operator/(const my_vector& lhs, const double rhs) {
-	return my_vector(lhs) /= rhs;
+inline my_vector operator/(const my_vector& lhs, double rhs) {
+	return my_vector(lhs) / rhs;
 }
 
 inline double mean(const my_vector& obj) {

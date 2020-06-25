@@ -3,7 +3,7 @@
 
 #include <QString>
 
-LatitudeLongitudeAngle::Impl::Impl(bool f, int a, int m, double s) :
+LatitudeLongitudeAngle::Impl::Impl(bool f, unsigned int a, unsigned int m, double s) :
 	m_flag {f}, m_angle {a}, m_minute {m}, m_second {s}
 {}
 

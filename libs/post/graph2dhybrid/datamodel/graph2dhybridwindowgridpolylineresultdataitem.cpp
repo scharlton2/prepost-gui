@@ -112,7 +112,7 @@ void Graph2dHybridWindowGridPolylineResultDataItem::updateValuesVertex(vtkPointS
 
 	GeoDataPolyLineImplPolyLine* impl = line->polyLine();
 
-	std::vector<QPointF>& pts = impl->polyLine();
+	auto pts = impl->polyLine();
 
 	double origin[3];
 	std::map<double, std::vector<double> > amap;
@@ -223,7 +223,7 @@ void Graph2dHybridWindowGridPolylineResultDataItem::updateValuesCellCenter(vtkPo
 
 	GeoDataPolyLineImplPolyLine* impl = line->polyLine();
 
-	std::vector<QPointF>& pts = impl->polyLine();
+	auto pts = impl->polyLine();
 
 	double origin[3];
 	std::map<double, std::vector<double> > amap;
