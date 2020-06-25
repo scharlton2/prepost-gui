@@ -164,6 +164,7 @@ iRICMainWindow::iRICMainWindow(bool cuiMode, QWidget* parent) :
 
 iRICMainWindow::~iRICMainWindow()
 {
+	delete m_preProcessorWindow;
 	QSettings settings;
 	settings.setValue("general/lastiodir", LastIODirectory::get());
 

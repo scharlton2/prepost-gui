@@ -11,7 +11,7 @@
 
 #include <map>
 
-class QWebView;
+class QWebEngineView;
 class QWidget;
 
 namespace tmsloader {
@@ -21,12 +21,12 @@ class TmsRequestHandler : public QObject
 	Q_OBJECT
 
 public:
-	TmsRequestHandler(const QPointF& centerLonLat, const QSize& size, double scale, const QString& templateName, int requestId, QWebView* view);
+	TmsRequestHandler(const QPointF& centerLonLat, const QSize& size, double scale, const QString& templateName, int requestId, QWebEngineView* view);
 	~TmsRequestHandler();
 
 	int requestId() const;
 	QImage image() const;
-	QWebView* webView() const;
+	QWebEngineView* webView() const;
 
 protected:
 	void setArgs(const std::map<QString, QString>& args);
@@ -52,7 +52,7 @@ private:
 	std::map<QString, QString> m_args;
 	std::map<QString, QString> m_options;
 
-	QWebView* m_webView;
+	QWebEngineView* m_webView;
 	QImage m_image;
 	mutable QMutex m_imageMutex;
 	bool m_terminating;

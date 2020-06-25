@@ -74,6 +74,9 @@ PreProcessorWindowProjectDataItem::~PreProcessorWindowProjectDataItem()
 	// explicitly delete the datamodel, so that it is sure
 	// datamodel is destructed earlier than graphicsview.
 	PreProcessorWindow* parent = m_preProcessorWindow;
+
+	parent->propertyBrowser()->view()->setTargetDataItem(nullptr);
+
 	if (parent->isVisible()) {
 		parent->m_isLastHiding = true;
 	}

@@ -5,6 +5,7 @@
 
 #include <misc/iricundostack.h>
 
+#include <QRegExpValidator>
 #include <QUndoCommand>
 
 /*!

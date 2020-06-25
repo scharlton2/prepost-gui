@@ -4,6 +4,8 @@
 
 #include <guibase/vtktextpropertysettingdialog.h>
 
+#include <QButtonGroup>
+
 PreProcessorWindowScalarBarSettingWidget::Setting::Setting()
 {
 	visible = true;
