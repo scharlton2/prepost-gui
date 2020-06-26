@@ -9,6 +9,7 @@ VTK_MODULE_INIT(vtkRenderingFreeTypeOpenGL);
 #include <gui/misc/periodicalupdatechecker.h>
 #include <misc/errormessage.h>
 #include <misc/iricrootpath.h>
+#include <misc/qttool.h>
 
 #include <QApplication>
 #include <QDir>
@@ -25,6 +26,8 @@ VTK_MODULE_INIT(vtkRenderingFreeTypeOpenGL);
 
 int main(int argc, char* argv[])
 {
+	QtTool::initNetworkAccessManager();
+
 	QApplication a(argc, argv);
 	// show splash screen.
 	QPixmap pixmap(":/images/splashscreen.gif");
