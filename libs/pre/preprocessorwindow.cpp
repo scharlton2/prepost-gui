@@ -339,9 +339,9 @@ void PreProcessorWindow::hideEvent(QHideEvent* /*e*/)
 		m_isLastHiding = false;
 		return;
 	}
-	if (m_projectDataItem == 0) {return;}
+	if (m_projectDataItem == nullptr) {return;}
 	ProjectMainFile* mainfile = dynamic_cast<ProjectMainFile*>(m_projectDataItem->parent());
-	if (mainfile == 0) {return;}
+	if (mainfile == nullptr) {return;}
 	mainfile->removeRenderer(m_dataModel->graphicsView()->mainRenderer());
 }
 
