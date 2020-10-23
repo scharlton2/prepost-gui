@@ -8,7 +8,8 @@ include( ../../paths.pri )
 
 # Post-Build Event
 win32 {
-	QMAKE_POST_LINK += copy $(TargetPath) $(SolutionDir)\\libdlls\\$(Configuration)
+	DESTDIR = $(SolutionDir)\\libdlls\\$(Configuration)
+	LIBS += -L$(SolutionDir)\\libdlls\\$(Configuration)
 }
 
 # Input
