@@ -20,13 +20,6 @@ QT += network widgets xml
 
 # iricMisc
 
-win32 {
-	CONFIG(debug, debug|release) {
-		LIBS += -L"../../misc/debug"
-	} else {
-		LIBS += -L"../../misc/release"
-	}
-}
 unix {
 	LIBS += -L"../../misc"
 }
@@ -34,13 +27,6 @@ LIBS += -liricMisc
 
 # iricCs
 
-win32 {
-	CONFIG(debug, debug|release) {
-		LIBS += -L"../../cs/debug"
-	} else {
-		LIBS += -L"../../cs/release"
-	}
-}
 unix {
 	LIBS += -L"../../cs"
 }
@@ -48,13 +34,6 @@ LIBS += -liricCs
 
 # iricTriangle
 
-win32 {
-	CONFIG(debug, debug|release) {
-		LIBS += -L"../../triangle/debug"
-	} else {
-		LIBS += -L"../../triangle/release"
-	}
-}
 unix {
 	LIBS += -L"../../triangle"
 }
@@ -62,13 +41,6 @@ LIBS += -liricTriangle
 
 # iricGuibase
 
-win32 {
-	CONFIG(debug, debug|release) {
-		LIBS += -L"../../guibase/debug"
-	} else {
-		LIBS += -L"../../guibase/release"
-	}
-}
 unix {
 	LIBS += -L"../../guibase"
 }
@@ -76,13 +48,6 @@ LIBS += -liricGuibase
 
 # iricGuicore
 
-win32 {
-	CONFIG(debug, debug|release) {
-		LIBS += -L"../../guicore/debug"
-	} else {
-		LIBS += -L"../../guicore/release"
-	}
-}
 unix {
 	LIBS += -L"../../guicore"
 }
@@ -123,10 +88,9 @@ unix {
 	LIBS += -lgdal
 }
 
-# Post-Build Event
 win32 {
-	DESTDIR = $(SolutionDir)\\libdlls\\$(Configuration)
-	LIBS += -L$(SolutionDir)\\libdlls\\$(Configuration)
+	DESTDIR = $(SolutionDir)/libdlls/$(Configuration)
+	LIBS += -L$(SolutionDir)/libdlls/$(Configuration)
 }
 
 # Input

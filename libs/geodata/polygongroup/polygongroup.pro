@@ -14,15 +14,15 @@ QT += widgets xml
 # Internal libraries #
 ######################
 
+# iricGdPolydata
+
+unix {
+        LIBS += -L"../polydata"
+}
+LIBS += -liricGdPolydata
+
 # iricGdPolygon
 
-win32 {
-        CONFIG(debug, debug|release) {
-                LIBS += -L"../polygon/debug"
-        } else {
-                LIBS += -L"../polygon/release"
-        }
-}
 unix {
         LIBS += -L"../polygon"
 }
@@ -30,13 +30,6 @@ LIBS += -liricGdPolygon
 
 # iricGeoio
 
-win32 {
-	CONFIG(debug, debug|release) {
-		LIBS += -L"../../geoio/debug"
-	} else {
-		LIBS += -L"../../geoio/release"
-	}
-}
 unix {
 	LIBS += -L"../../geoio"
 }
@@ -44,13 +37,6 @@ LIBS += -liricGeoio
 
 # iricMisc
 
-win32 {
-	CONFIG(debug, debug|release) {
-		LIBS += -L"../../misc/debug"
-	} else {
-		LIBS += -L"../../misc/release"
-	}
-}
 unix {
 	LIBS += -L"../../misc"
 }
@@ -58,13 +44,6 @@ LIBS += -liricMisc
 
 # iricTriangle
 
-win32 {
-	CONFIG(debug, debug|release) {
-		LIBS += -L"../../triangle/debug"
-	} else {
-		LIBS += -L"../../triangle/release"
-	}
-}
 unix {
 	LIBS += -L"../../triangle"
 }
@@ -72,13 +51,6 @@ LIBS += -liricTriangle
 
 # iricGuibase
 
-win32 {
-	CONFIG(debug, debug|release) {
-		LIBS += -L"../../guibase/debug"
-	} else {
-		LIBS += -L"../../guibase/release"
-	}
-}
 unix {
 	LIBS += -L"../../guibase"
 }
@@ -86,17 +58,17 @@ LIBS += -liricGuibase
 
 # iricGuicore
 
-win32 {
-	CONFIG(debug, debug|release) {
-		LIBS += -L"../../guicore/debug"
-	} else {
-		LIBS += -L"../../guicore/release"
-	}
-}
 unix {
 	LIBS += -L"../../guicore"
 }
 LIBS += -liricGuicore
+
+# iricPolydataGroup
+
+unix {
+	LIBS += -L"../polydatagroup"
+}
+LIBS += -liricGdPolydataGroup
 
 ######################
 # External libraries #
@@ -119,10 +91,9 @@ LIBS += -lshapelib_i
 
 LIBS += -lgeos
 
-# Post-Build Event
 win32 {
-	DESTDIR = $(SolutionDir)\\libdlls\\$(Configuration)
-	LIBS += -L$(SolutionDir)\\libdlls\\$(Configuration)
+	DESTDIR = $(SolutionDir)/libdlls/$(Configuration)
+	LIBS += -L$(SolutionDir)/libdlls/$(Configuration)
 }
 
 # Input
