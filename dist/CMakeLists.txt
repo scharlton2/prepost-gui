@@ -477,33 +477,8 @@ install(FILES ${IRIC_CN}
   DESTINATION ${CMAKE_INSTALL_PREFIX}/${SRC_FOLDER}/packages/gui.prepost/data/languages
   )
 install(FILES ${IRIC_PY}
-  DESTINATION ${CMAKE_INSTALL_PREFIX}/${SRC_FOLDER}/packages/gui.prepost/data/pythonmodule
-  )
-
-
-
-# RIVMAKER_ICO
-set(RIVMAKER_ICO
-  ${PREPOST_GUI}/apps/rivmaker/images/iconRivMakerFile.ico
-  )
-
-# RIVMAKER_EXE
-set(RIVMAKER_EXE
-  ${PREPOST_GUI}/apps/rivmaker/release/Rivmaker.exe
-  )
-
-# RIVMAKER_DLLS
-set(RIVMAKER_DLLS
-  ${PREPOST_GUI}/libs/misc/release/iricMisc.dll
-  ${PREPOST_GUI}/libs/triangle/release/iricTriangle.dll
-  )
-
-# RIVMAKER_JP
-# dev_src/packages/gui.rivmaker/data/languages/qtbase_ja_JP.qm ???
-set(RIVMAKER_JP
-  ${PREPOST_GUI}/apps/rivmaker/languages/rivmaker_ja_JP.qm
-  ${PREPOST_GUI}/libs/gui/languages/qt_ja_JP.qm
-  )
+  DESTINATION ${CMAKE_INSTALL_PREFIX}/${SRC_FOLDER}/packages/gui.runtime/data/pythonmodule
+)
 
 # Install RIVMAKER  
 #install(FILES ${RIVMAKER_ICO} ${RIVMAKER_EXE} ${RIVMAKER_DLLS}
