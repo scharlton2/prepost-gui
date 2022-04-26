@@ -181,20 +181,27 @@ before_build:
       # from git push to be an error
       Write-Output "Status:"
       git status
-  - call C:\Qt\5.14.2\msvc2017_64\bin\qtenv2.bat
+  - call C:\Qt\5.15.2\msvc2019_64\bin\qtenv2.bat
   - call "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Auxiliary\Build\vcvars64.bat"
   - cd %APPVEYOR_BUILD_FOLDER%
-  - curl -L -O https://github.com/i-RIC/iricdev-2019/archive/2019.zip
+  - REM @TODO curl -L -O https://github.com/i-RIC/iricdev-2019/archive/2019.zip
+  - REM @TODO replace next line with the line above
+  - curl -L https://github.com/scharlton2/iricdev-2019/archive/2019-qt-5.15.2.zip -o 2019.zip
   - cd \
   - 7z x %APPVEYOR_BUILD_FOLDER%\2019.zip
   - del %APPVEYOR_BUILD_FOLDER%\2019.zip
-  - ren c:\iricdev-2019-2019 iricdev-2019
+  - REM @TODO ren c:\iricdev-2019-2019 iricdev-2019
+  - REM @TODO replace next line with the line above
+  - ren C:\iricdev-2019-2019-qt-5.15.2 iricdev-2019
   - cd \iricdev-2019
   - ps: |
-      $releases_url = "https://api.github.com/repos/i-RIC/iricdev-2019/releases"
-      $latest_response = Invoke-WebRequest -Uri $releases_url/latest -Method GET -UseBasicParsing
-      $latest = $latest_response.Content | ConvertFrom-Json
-      $url = $latest.assets.browser_download_url
+      # @TODO $releases_url = "https://api.github.com/repos/i-RIC/iricdev-2019/releases"
+      # @TODO $releases_url = "https://api.github.com/repos/scharlton2/iricdev-2019/releases"
+      # @TODO $latest_response = Invoke-WebRequest -Uri $releases_url/latest -Method GET -UseBasicParsing
+      # @TODO $latest = $latest_response.Content | ConvertFrom-Json
+      # @TODO $url = $latest.assets.browser_download_url
+      # @TODO replace next line with the 5 lines above
+      $url = "https://github.com/scharlton2/iricdev-2019/releases/download/2022-04-26T19.21.50Z/iricdev-vs2019-build-cache.7z"
       (New-Object Net.WebClient).DownloadFile($url, "\iricdev-2019\install.7z")
       7z x install.7z
       rm install.7z
