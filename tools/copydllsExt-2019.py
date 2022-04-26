@@ -20,8 +20,6 @@ config.read(configFile)
 
 # check config.
 sections = ["release", "debug"]
-# options  = ["cgnslib", "expat", "gdal", "geos", "hdf5", "iriclib", "netcdf", "openssl", "proj", "qwt", "shapelib", "szip", "udunits", "vtk", "yaml-cpp", "zlib"]
-## options  = ["expat", "gdal", "geos", "hdf5", "iriclib", "libpng", "netcdf", "openssl", "poco", "proj", "qwt", "shapelib", "szip", "tiff", "udunits", "vtk", "yaml-cpp", "zlib"]
 options  = ["expat", "gdal", "geos", "hdf5", "iriclib", "libpng", "netcdf", "openssl", "poco", "proj", "qwt", "shapelib", "sqlite3", "tiff", "udunits", "vtk", "yaml-cpp"]
 for section in sections:
   if (section in config.sections()):
@@ -42,7 +40,7 @@ for section in sections:
       dirList[section].append(config.get(section, option))
 
 # dll to be excluded:
-exList = ["msvcp120.dll", "msvcr120.dll"]
+exList = ["concrt140.dll", "msvcp140_1.dll", "msvcp140_2.dll", "msvcp140_atomic_wait.dll", "msvcp140_codecvt_ids.dll", "msvcp140.dll", "vcruntime140_1.dll", "vcruntime140.dll"]
 
 # dll files that are not included in dirList:
 fileList = {}
@@ -56,13 +54,13 @@ fileList["release"] = [
   str(Path(config.get("release", "qwt"),     "qwt.dll"))
 ]
 fileList["debug"] = [
-  str(Path(config.get("debug",  "iriclib"),  "iriclibd.dll")),
-  str(Path(config.get("debug",  "hdf5"),     "hdf5_D.dll")),
-  str(Path(config.get("debug",  "hdf5"),     "hdf5_hl_D.dll")),
-  str(Path(config.get("debug",  "hdf5"),     "szip_D.dll")),
-  str(Path(config.get("debug",  "hdf5"),     "zlib_D.dll")),
-  str(Path(config.get("debug",  "poco"),     "PocoFoundationd.dll")),
-  str(Path(config.get("debug",  "qwt"),      "qwtd.dll")),
+  str(Path(config.get("debug",   "iriclib"), "iriclibd.dll")),
+  str(Path(config.get("debug",   "hdf5"),    "hdf5_D.dll")),
+  str(Path(config.get("debug",   "hdf5"),    "hdf5_hl_D.dll")),
+  str(Path(config.get("debug",   "hdf5"),    "szip_D.dll")),
+  str(Path(config.get("debug",   "hdf5"),    "zlib_D.dll")),
+  str(Path(config.get("debug",   "poco"),    "PocoFoundationd.dll")),
+  str(Path(config.get("debug",   "qwt"),     "qwtd.dll")),
 ]
 
 # copy dll
